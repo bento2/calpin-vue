@@ -25,13 +25,18 @@ const showSave = computed(() =>
 const { saveTraining, loadTrainings, getTrainingById } = useTrainingStore()
 onMounted(() => {
   loadTrainings()
-  if (!training.value && route.params.id) {
+  if (route.params.id) {
     const tmp = getTrainingById(route.params.id as string)
     if (tmp !== undefined) {
       training.value = tmp
     }
   }
 })
+
+const remove = (id:string) =>{
+  const index = training.value.exercices.findIndex(e=>e.id = id)
+  training.value.exercices.splice(index, 1)
+}
 const save = () => {
   saveTraining(training.value)
 }
@@ -39,7 +44,7 @@ const save = () => {
 
 <template>
   <v-card class="d-flex flex-column" style="height: 100%">
-    <v-card-title class="bg-blue">
+    <v-card-title class="bg-blue mb-1">
       <v-text-field
         label="Titre de l'entrainement"
         v-model="training.name"
@@ -49,18 +54,18 @@ const save = () => {
       ></v-text-field>
     </v-card-title>
     <template v-if="training.exercices">
-      <div
-        v-for="exercice in training.exercices"
-        :key="exercice.id"
-        class="d-flex flex-row align-center w-100"
-      >
-        <ExerciceCard :exercice="exercice" class="flex-grow-1">
-          <template v-slot:actions></template>
+        <ExerciceCard v-for="exercice in training.exercices" :key="exercice.id" :exercice="exercice" class="w-100 mb-1">
+          <template v-slot:actions>
+            <v-btn
+              icon="mdi-delete"
+              variant="text"
+              @click="remove(exercice.id)"
+            ></v-btn>
+          </template>
         </ExerciceCard>
-      </div>
     </template>
-    <v-card-item class="text-center text-blue pa-2">
-      <v-btn variant="elevated" @click="dialog = true">+ Ajouter un exercice</v-btn>
+    <v-card-item class="text-center text-blue">
+      <v-btn variant="elevated" @click="dialog = true" class="mt-2 mb-2">+ Ajouter un exercice</v-btn>
     </v-card-item>
 
     <v-card-actions class="mt-auto align-self-end">
@@ -96,4 +101,8 @@ const save = () => {
   </v-dialog>
 </template>
 
-<style scoped></style>
+<style scoped>
+.no-padding{
+  padding: 0 !important;
+}
+</style>
