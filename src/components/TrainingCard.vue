@@ -8,12 +8,13 @@ const training = props.training
 
 <template>
   <div v-if="training === undefined">Cette entrainement n'existe pas</div>
-  <v-card v-else :title="training.name" class="mb-1 ml-1 mr-1" elevation="16" hover>
+  <v-card v-else :title="training.name" class="mb-1" hover>
     <v-card-text>
       <ExerciceIcon
         v-for="exercice in training.exercices"
         :exercice="exercice"
         :key="exercice.id"
+        class="mr-2"
       />
     </v-card-text>
   </v-card>
