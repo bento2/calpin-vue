@@ -11,11 +11,17 @@ const training = props.training
   <v-card v-else class="mb-1" hover>
     <v-card-title class="d-flex justify-space-between align-center">
       <div class="text-medium-emphasis ps-2">{{ training.name }}</div>
+      <div>
+        <v-btn
+          icon="mdi-play"
+          variant="text"
+        ></v-btn>
       <v-btn
         icon="mdi-note-edit"
         variant="text"
         :to="{ name: 'training', params: { id: training.id } }"
       ></v-btn>
+      </div>
     </v-card-title>
 
     <v-card-text>
