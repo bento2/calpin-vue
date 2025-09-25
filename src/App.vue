@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import Exervices from '@/components/Exervices.vue'
+import Trainings from '@/Trainings.vue'
 </script>
 <template>
-  <div class="container">
-    <Exervices/>
-  </div>
+    <Trainings/>
 </template>
 
 <style scoped></style>

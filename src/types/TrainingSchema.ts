@@ -6,3 +6,5 @@ export const TrainingSchema = z.object({
   name: z.string().optional(),
   exercices: z.array(ExerciceSchema),
 });
+
+export type Training = z.infer<typeof TrainingSchema>;
