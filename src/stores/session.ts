@@ -118,7 +118,7 @@ export const useSessionStore = defineStore(storageName, {
 
       const updatedSession = {
         ...session,
-        dateFin: new Date().toISOString(),
+        dateFin: new Date(),
         status: 'terminee' as const,
       }
 
