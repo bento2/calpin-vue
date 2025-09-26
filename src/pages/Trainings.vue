@@ -4,11 +4,10 @@ import TrainingCard from '@/components/TrainingCard.vue'
 import { onMounted, ref } from 'vue'
 import type { Training } from '@/types/TrainingSchema.ts'
 
-const { getTrainings, loadTrainings } = useTrainingStore()
+const { getTrainings } = useTrainingStore()
 const trainings = ref<Training[]>([])
-onMounted(() => {
-  loadTrainings()
-  trainings.value = getTrainings()
+onMounted(async () => {
+  trainings.value = await getTrainings()
 })
 </script>
 

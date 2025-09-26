@@ -13,6 +13,8 @@ const props = withDefaults(defineProps<{ training?: Training }>(), {
       id: uuidv4().toLowerCase(),
       name: 'Entrainement 1',
       exercices: [],
+      ctime: new Date(),
+      mtime: new Date()
     }),
 })
 const route = useRoute()
@@ -22,11 +24,10 @@ const training = ref(props.training)
 const showSave = computed(() =>
   training.value.exercices ? training.value.exercices.length > 0 : false,
 )
-const { saveTraining, loadTrainings, getTrainingById } = useTrainingStore()
-onMounted(() => {
-  loadTrainings()
+const { saveTraining,  getTrainingById } = useTrainingStore()
+onMounted(async () => {
   if (route.params.id) {
-    const tmp = getTrainingById(route.params.id as string)
+    const tmp = await getTrainingById(route.params.id as string)
     if (tmp !== undefined) {
       training.value = tmp
     }
