@@ -17,7 +17,7 @@ export default class SessionService {
       id: this.generateId(),
       trainingId: training.id,
       name: options?.name || `${training.name} - ${startTime.toLocaleDateString()}`,
-      dateDebut: startTime.toISOString(),
+      dateDebut: startTime,
       dateFin: undefined,
       exercices: this.initializeExercices(training.exercices),
       status: 'en_cours',
