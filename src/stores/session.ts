@@ -7,14 +7,15 @@ import type { StorageConfig } from '@/Storages/StorageAdapter.ts'
 import { z } from 'zod'
 import { getErrorMessage } from '@/services/Functions.ts'
 
-export const useSessionStore = defineStore('sessions', {
+const storageName = 'sessions'
+export const useSessionStore = defineStore(storageName, {
   state: () => ({
     sessions: [] as Session[],
     loaded: false,
     loading: false,
     error: null as string | null,
     // Service de stockage configurable
-    storage: new StorageService<Session[]>('sessions', {
+    storage: new StorageService<Session[]>(storageName, {
       adapter: 'localStorage', // Facile à changer ici
     }),
   }),
