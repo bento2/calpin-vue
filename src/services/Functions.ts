@@ -18,8 +18,14 @@ export function forHumans(seconds: number) {
   return (
     Math.floor(seconds / 3600).toString() +
     ':' +
-    Math.floor((seconds % 3600) / 60).toString() +
+    Math.floor((seconds % 3600) / 60).toLocaleString('en-US', {
+      minimumIntegerDigits: 2,
+      useGrouping: false
+    }) +
     ':' +
-    ((seconds % 3600) % 60).toString()
+    ((seconds % 3600) % 60).toLocaleString('en-US', {
+      minimumIntegerDigits: 2,
+      useGrouping: false
+    })
   )
 }
