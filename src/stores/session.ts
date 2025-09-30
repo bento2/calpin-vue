@@ -63,6 +63,11 @@ export const useSessionStore = defineStore(storageName, {
       }
     },
 
+    async getSessionActive(): Promise<Session | undefined> {
+      await this.ensureLoaded()
+      return this.sessions.find((session: Session) => session.status === 'en_cours')
+    },
+
     async getSessionById(id: string): Promise<Session | undefined> {
       await this.ensureLoaded()
       return this.sessions.find((session: Session) => session.id === id)
@@ -105,12 +110,10 @@ export const useSessionStore = defineStore(storageName, {
           })
         })
         this.updateSession(session)
-
       } catch (error) {
         this.error = `Erreur lors du restart: ${getErrorMessage(error)}`
         throw error
       }
-
     },
 
     async deleteSession(id: string) {

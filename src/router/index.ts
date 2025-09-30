@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import App from '@/App.vue'
 import Trainings from '@/pages/Trainings.vue'
 import Training from '@/pages/Training.vue'
 import DefaultLayout from '@/Layouts/DefaultLayout.vue'

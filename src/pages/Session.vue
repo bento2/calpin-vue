@@ -3,30 +3,29 @@ import { onMounted, ref, watch } from 'vue'
 import { useSessionStore } from '@/stores/session.ts'
 import { useRoute, useRouter } from 'vue-router'
 import type { Session } from '@/types/SessionSchema.ts'
-import { forHumans } from '@/services/Functions.ts'
 import ExerciceCard from '@/components/ExerciceCard.vue'
 import SeriesCard from '@/components/SeriesCard.vue'
+import { useSessionTimer } from '@/composables/useSessionTimer.ts'
 
 const session = ref<Session | null>(null)
 const { getSessionById, deleteSession, finishSession, restartSession, updateSession } =
   useSessionStore()
 const route = useRoute()
 const router = useRouter()
-const diff = ref('')
+const { diff } = useSessionTimer(session)
 
 onMounted(async () => {
   if (route.params.id) {
     const tmp = await getSessionById(route.params.id as string)
     if (tmp !== undefined) {
       session.value = tmp
+
+
     }
   }
 })
-setInterval(() => {
-  if (session.value) {
-    diff.value = forHumans(Math.floor((Date.now() - session.value.dateDebut.getTime()) / 1000))
-  }
-}, 1000)
+
+
 
 watch(
   () => session.value,
@@ -41,7 +40,7 @@ watch(
   { deep: true },
 )
 
-const dialog = ref(true)
+const dialog = ref(false)
 //const showEnded = computed(() => (session.value?.ended ?? false) )
 
 const close = () => {
