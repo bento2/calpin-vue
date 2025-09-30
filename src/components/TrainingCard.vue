@@ -4,15 +4,21 @@ import ExerciceIcon from '@/components/ExerciceIcon.vue'
 import { useSessionStore } from '@/stores/session.ts'
 
 import { useRouter } from 'vue-router'
+import { useTrainingStore } from '@/stores/training.ts'
 
 const props = defineProps<{ training: Training }>()
 const training = props.training
 const { createSession } = useSessionStore()
+const { deleteTrainingById } = useTrainingStore()
 const router = useRouter()
 const run = () => {
   createSession(training).then((session) => {
     router.push({ name: 'session', params: { id: session.id } })
   })
+}
+
+const remove = () => {
+  deleteTrainingById(training.id)
 }
 </script>
 
@@ -28,6 +34,7 @@ const run = () => {
           variant="text"
           :to="{ name: 'training', params: { id: training.id } }"
         ></v-btn>
+        <v-btn icon="mdi-delete" variant="text" @click="remove"></v-btn>
       </div>
     </v-card-title>
 

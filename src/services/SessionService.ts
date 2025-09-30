@@ -21,15 +21,18 @@ export default class SessionService {
       dateFin: undefined,
       exercices: this.initializeExercices(training.exercices),
       status: 'en_cours',
+      ended: false,
     }
   }
 
   private static initializeExercices(
     exercices: Exercice[],
+
     defaultSeriesCount: number = 4,
   ): ExerciceSeries[] {
     return exercices.map((exercice) => ({
       ...exercice,
+      completed : false,
       series: Array.from({ length: defaultSeriesCount }, () => ({
         poids: 0,
         repetitions: 0,

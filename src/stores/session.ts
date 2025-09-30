@@ -93,6 +93,26 @@ export const useSessionStore = defineStore(storageName, {
       }
     },
 
+    async restartSession(session: Session) {
+      try {
+        //remise à zéro des informations
+        session.dateDebut = new Date()
+        session.exercices.map((exercice) => {
+          exercice.series?.map((serie) => {
+            serie.poids = 0
+            serie.checked = false
+            serie.repetitions = 0
+          })
+        })
+        this.updateSession(session)
+
+      } catch (error) {
+        this.error = `Erreur lors du restart: ${getErrorMessage(error)}`
+        throw error
+      }
+
+    },
+
     async deleteSession(id: string) {
       try {
         await this.ensureLoaded()
