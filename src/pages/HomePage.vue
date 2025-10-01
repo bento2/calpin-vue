@@ -37,7 +37,7 @@ onMounted(async () => {
   </v-main>
   <v-footer app fixed class="bg-transparent d-flex flex-row justify-space-between" >
     <UserAvatar />
-    <v-btn :to="{name: 'trainings'}">Entrainement</v-btn>
+    <v-btn :to="{name: 'trainings'}">Entrainements</v-btn>
   </v-footer>
 </template>
 

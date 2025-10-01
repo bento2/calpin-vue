@@ -2,7 +2,7 @@
 import { type Training } from '@/types/TrainingSchema.ts'
 import { computed, onMounted, ref } from 'vue'
 import ExerciceCard from '@/components/ExerciceCard.vue'
-import Exercices from '@/components/Exercices.vue'
+import Exercices from '@/components/ExercicesCard.vue'
 import { useTrainingStore } from '@/stores/training.ts'
 import { useRoute } from 'vue-router'
 

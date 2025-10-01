@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Trainings from '@/pages/Trainings.vue'
-import Training from '@/pages/Training.vue'
+import Trainings from '@/pages/TrainingsPage.vue'
+import Training from '@/pages/TrainingPage.vue'
 import DefaultLayout from '@/Layouts/DefaultLayout.vue'
-import Home from '@/pages/Home.vue'
-import Session from '@/pages/Session.vue'
+import Home from '@/pages/HomePage.vue'
+import Session from '@/pages/SessionPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
