@@ -3,10 +3,14 @@ import { useSessionStore } from '@/stores/session.ts'
 import { onMounted, ref } from 'vue'
 import type { Session } from '@/types/SessionSchema.ts'
 import { useSessionTimer } from '@/composables/useSessionTimer.ts'
+import UserAvatar from '@/components/UserAvatar.vue'
+
 
 const { getSessionActive } = useSessionStore()
 const activeSession = ref<Session | null>(null)
 const { diff } = useSessionTimer(activeSession)
+
+
 onMounted(async () => {
   getSessionActive().then((session) => {
     activeSession.value = session ?? null
@@ -33,7 +37,7 @@ onMounted(async () => {
       >
     </v-card>
   </v-main>
-  <v-footer app fixed> footer </v-footer>
+  <v-footer app fixed class="bg-transparent"> <UserAvatar/> </v-footer>
 </template>
 
 <style scoped></style>
