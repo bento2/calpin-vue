@@ -4,6 +4,7 @@ import { StorageService } from '@/services/StorageService.ts'
 import { z } from 'zod'
 
 import { getErrorMessage } from '@/services/Functions.ts'
+import { v4 as uuidv4 } from 'uuid'
 
 const storageName = 'trainings'
 export const useTrainingStore = defineStore(storageName, {
@@ -14,7 +15,7 @@ export const useTrainingStore = defineStore(storageName, {
     error: null as string | null,
     // Service de stockage configurable
     storage: new StorageService<Training[]>(storageName, {
-      adapter: 'localStorage', // Facile à changer ici
+      adapter: 'localStorage',
     }),
   }),
 
@@ -29,6 +30,19 @@ export const useTrainingStore = defineStore(storageName, {
       if (!this.loaded && !this.loading) {
         await this.loadTrainings()
       }
+    },
+
+    async createTraining() {
+      await this.ensureLoaded()
+      const training =  TrainingSchema.parse({
+        id: uuidv4().toLowerCase(),
+        name: 'Entrainement '+(this.trainings.length + 1).toString(),
+        exercices: [],
+        ctime: new Date(),
+        mtime: new Date(),
+      })
+
+      return this.saveTraining(training)
     },
     async saveTraining(training: Training) {
       try {
@@ -65,7 +79,7 @@ export const useTrainingStore = defineStore(storageName, {
     },
     async getTrainings() {
       await this.ensureLoaded()
-      return this.trainings ?? []
+      return (this.trainings ?? []).sort((a, b) => b.ctime.getTime() - a.ctime.getTime())
     },
     async loadTrainings() {
       if (this.loading) return

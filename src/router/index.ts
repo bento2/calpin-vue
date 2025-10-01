@@ -13,7 +13,7 @@ const router = createRouter({
       component: DefaultLayout,
       children: [
         { path: '', component: Home, name: 'Home' },
-        { path: 'trainings', component: Trainings  , meta: { title: 'Entrainements' }},
+        { path: 'trainings', component: Trainings  ,name: 'trainings', meta: { title: 'Entrainements' }},
         { path: 'trainings/:id', component: Training, name: 'training', meta: { title: 'Entrainement', noPadding: true } },
         { path: 'sessions/:id', component: Session, name: 'session', meta: { noPadding: true } },
       ],
