@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import { ExerciceUtils } from '@/services/ExerciceUtils.ts'
 import { ExerciceArraySchema, ExerciceSchema } from '@/types/ExerciceSchema.ts'
-
+type Item = { id: string; name: string }
 function arraysAreDisjointById(a: Item[], b: Item[]) {
   return a.every((itemA) => !b.some((itemB) => itemB.id === itemA.id))
 }
@@ -9,7 +9,7 @@ function arraysAreDisjointById(a: Item[], b: Item[]) {
 describe('ExerciceUtils test functions', () => {
   let util: ExerciceUtils
   beforeEach(async () => {
-    util = new ExerciceUtils()
+    util = ExerciceUtils.getInstance()
   })
   it('should be a function findById', () => {
     expect(typeof util.findById).toBe('function')

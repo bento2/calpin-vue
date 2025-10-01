@@ -21,6 +21,8 @@
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
+    "@vueuse/firebase": "^14.0.0-alpha.0",
+    "firebase": "^12.3.0",
     "pinia": "^3.0.3",
     "uuid": "^13.0.0",
     "vue": "^3.5.18",

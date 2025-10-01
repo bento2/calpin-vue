@@ -24,7 +24,10 @@ onMounted(async () => {
   exercices.value = utils.find({ page: page.value })
 })
 
-const updateExercices = ({ done }: { done: (value: string) => void }) => {
+const updateExercices = ({ done }: {
+  done: (status: 'ok' | 'empty' | 'error') => void;
+
+}) => {
   const newExercices = utils.find({ page: ++page.value, filter: filter.value })
   exercices.value.push(...newExercices)
   done(newExercices.length > 0 ? 'ok' : 'empty')
