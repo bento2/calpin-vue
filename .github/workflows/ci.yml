@@ -22,3 +22,24 @@ jobs:
       - run: npm ci
       - run: npm run build --if-present
       - run: npm run lint
+
+  merge-to-main:
+    needs: test
+    if: success()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Merge dev to main
+        run: |
+          git fetch origin main
+          git checkout main
+          git merge origin/dev --no-ff -m "🤖 Auto-merge dev to main"
+          git push origin main
