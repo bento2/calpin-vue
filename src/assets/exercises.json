@@ -3,1794 +3,3993 @@
     "id": "ab_coaster",
     "name": "AB Coaster",
     "url": "https://www.docteur-fitness.com/ab-coaster",
-    "icon": "/exercise_icons/ab-coaster.png"
+    "icon": "/exercise_icons/ab-coaster.png",
+    "description": "Exercice ciblant les abdominaux.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Abdominaux"
+    ],
+    "muscles_secondaires": [
+      "Obliques",
+      "Transverse"
+    ]
   },
   {
     "id": "air_squat",
     "name": "Air Squat",
     "url": "https://www.docteur-fitness.com/air-squat",
-    "icon": "/exercise_icons/air-squat.png"
+    "icon": "/exercise_icons/air-squat.png",
+    "description": "Exercice de base sollicitant les cuisses et les fessiers.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Quadriceps",
+      "Fessiers"
+    ],
+    "muscles_secondaires": [
+      "Ischio-jambiers",
+      "Mollets",
+      "Abdominaux"
+    ]
   },
   {
     "id": "barre_front",
     "name": "Barre front",
     "url": "https://www.docteur-fitness.com/barre-front",
-    "icon": "/exercise_icons/barre-front.png"
+    "icon": "/exercise_icons/barre-front.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "belt_squat",
     "name": "Belt squat",
     "url": "https://www.docteur-fitness.com/belt-squat",
-    "icon": "/exercise_icons/belt-squat.png"
+    "icon": "/exercise_icons/belt-squat.png",
+    "description": "Exercice de base sollicitant les cuisses et les fessiers.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Quadriceps",
+      "Fessiers"
+    ],
+    "muscles_secondaires": [
+      "Ischio-jambiers",
+      "Mollets",
+      "Abdominaux"
+    ]
   },
   {
     "id": "bent_over_row_prise_disque",
     "name": "Bent over row prise disque",
     "url": "https://www.docteur-fitness.com/bent-over-row-prise-disque",
-    "icon": "/exercise_icons/bent-over-row-prise-disque.png"
+    "icon": "/exercise_icons/bent-over-row-prise-disque.png",
+    "description": "Exercice de tirage pour le dos.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Grand dorsal",
+      "Rhomboïdes",
+      "Trapèzes"
+    ],
+    "muscles_secondaires": [
+      "Biceps",
+      "Avant-bras",
+      "Deltoïdes postérieurs"
+    ]
   },
   {
     "id": "bird_dog",
     "name": "Bird dog",
     "url": "https://www.docteur-fitness.com/bird-dog",
-    "icon": "/exercise_icons/bird-dog.png"
+    "icon": "/exercise_icons/bird-dog.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "cercles_jambes_tendues",
     "name": "Cercles jambes tendues",
     "url": "https://www.docteur-fitness.com/cercles-jambes-tendues",
-    "icon": "/exercise_icons/cercles-jambes-tendues.png"
+    "icon": "/exercise_icons/cercles-jambes-tendues.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "chest_press_avec_sangles_de_suspension",
     "name": "Chest press avec sangles de suspension",
     "url": "https://www.docteur-fitness.com/chest-press-avec-sangles-de-suspension",
-    "icon": "/exercise_icons/chest-press-avec-sangles-de-suspension.png"
+    "icon": "/exercise_icons/chest-press-avec-sangles-de-suspension.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "ciseaux",
     "name": "Ciseaux",
     "url": "https://www.docteur-fitness.com/ciseaux",
-    "icon": "/exercise_icons/ciseaux.png"
+    "icon": "/exercise_icons/ciseaux.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "clean_and_jerk_epaule_jete",
     "name": "Clean and jerk (épaulé-jeté)",
     "url": "https://www.docteur-fitness.com/clean-and-jerk-epaule-jete",
-    "icon": "/exercise_icons/clean-and-jerk-épaulé-jeté.png"
+    "icon": "/exercise_icons/clean-and-jerk-épaulé-jeté.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "cocon",
     "name": "Cocon",
     "url": "https://www.docteur-fitness.com/cocon",
-    "icon": "/exercise_icons/cocon.png"
+    "icon": "/exercise_icons/cocon.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "croix_de_fer_avec_halteres",
     "name": "Croix de fer avec haltères",
     "url": "https://www.docteur-fitness.com/croix-de-fer-avec-halteres",
-    "icon": "/exercise_icons/croix-de-fer-avec-haltères.png"
+    "icon": "/exercise_icons/croix-de-fer-avec-haltères.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "crunch",
     "name": "Crunch",
     "url": "https://www.docteur-fitness.com/crunch-au-sol",
-    "icon": "/exercise_icons/crunch.png"
+    "icon": "/exercise_icons/crunch.png",
+    "description": "Exercice ciblant les abdominaux.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Abdominaux"
+    ],
+    "muscles_secondaires": [
+      "Obliques",
+      "Transverse"
+    ]
   },
   {
     "id": "crunch_avec_jambes_verticales",
     "name": "Crunch avec jambes verticales",
     "url": "https://www.docteur-fitness.com/crunch-avec-jambes-verticales",
-    "icon": "/exercise_icons/crunch-avec-jambes-verticales.png"
+    "icon": "/exercise_icons/crunch-avec-jambes-verticales.png",
+    "description": "Exercice ciblant les abdominaux.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Abdominaux"
+    ],
+    "muscles_secondaires": [
+      "Obliques",
+      "Transverse"
+    ]
   },
   {
     "id": "crunch_bicyclette",
     "name": "Crunch bicyclette",
     "url": "https://www.docteur-fitness.com/crunch-bicyclette",
-    "icon": "/exercise_icons/crunch-bicyclette.png"
+    "icon": "/exercise_icons/crunch-bicyclette.png",
+    "description": "Exercice ciblant les abdominaux.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Abdominaux"
+    ],
+    "muscles_secondaires": [
+      "Obliques",
+      "Transverse"
+    ]
   },
   {
     "id": "crunch_papillon",
     "name": "Crunch papillon",
     "url": "https://www.docteur-fitness.com/crunch-papillon",
-    "icon": "/exercise_icons/crunch-papillon.png"
+    "icon": "/exercise_icons/crunch-papillon.png",
+    "description": "Exercice ciblant les abdominaux.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Abdominaux"
+    ],
+    "muscles_secondaires": [
+      "Obliques",
+      "Transverse"
+    ]
   },
   {
     "id": "crunch_a_la_machine",
     "name": "Crunch à la machine",
     "url": "https://www.docteur-fitness.com/crunch-a-la-machine",
-    "icon": "/exercise_icons/crunch-à-la-machine.png"
+    "icon": "/exercise_icons/crunch-à-la-machine.png",
+    "description": "Exercice ciblant les abdominaux.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Abdominaux"
+    ],
+    "muscles_secondaires": [
+      "Obliques",
+      "Transverse"
+    ]
   },
   {
     "id": "crunch_a_la_poulie",
     "name": "Crunch à la poulie",
     "url": "https://www.docteur-fitness.com/crunch-a-la-poulie",
-    "icon": "/exercise_icons/crunch-à-la-poulie.png"
+    "icon": "/exercise_icons/crunch-à-la-poulie.png",
+    "description": "Exercice ciblant les abdominaux.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Abdominaux"
+    ],
+    "muscles_secondaires": [
+      "Obliques",
+      "Transverse"
+    ]
   },
   {
     "id": "crunch_a_la_poulie_pour_les_obliques",
     "name": "Crunch à la poulie pour les obliques",
     "url": "https://www.docteur-fitness.com/crunch-a-la-poulie-pour-les-obliques",
-    "icon": "/exercise_icons/crunch-à-la-poulie-pour-les-obliques.png"
+    "icon": "/exercise_icons/crunch-à-la-poulie-pour-les-obliques.png",
+    "description": "Exercice ciblant les abdominaux.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Abdominaux"
+    ],
+    "muscles_secondaires": [
+      "Obliques",
+      "Transverse"
+    ]
   },
   {
     "id": "curl_allonge_a_la_poulie",
     "name": "Curl allongé à la poulie",
     "url": "https://www.docteur-fitness.com/curl-allonge-a-la-poulie",
-    "icon": "/exercise_icons/curl-allongé-à-la-poulie.png"
+    "icon": "/exercise_icons/curl-allongé-à-la-poulie.png",
+    "description": "Exercice d'isolation des biceps.",
+    "equipment": "Machine de curl / Poulie",
+    "type": "Machine",
+    "muscles_principaux": [
+      "Biceps"
+    ],
+    "muscles_secondaires": [
+      "Avant-bras"
+    ]
   },
   {
     "id": "curl_au_pupitre_a_la_poulie",
     "name": "Curl au pupitre à la poulie",
     "url": "https://www.docteur-fitness.com/curl-au-pupitre-a-la-poulie",
-    "icon": "/exercise_icons/curl-au-pupitre-à-la-poulie.png"
+    "icon": "/exercise_icons/curl-au-pupitre-à-la-poulie.png",
+    "description": "Exercice d'isolation des biceps.",
+    "equipment": "Machine de curl / Poulie",
+    "type": "Machine",
+    "muscles_principaux": [
+      "Biceps"
+    ],
+    "muscles_secondaires": [
+      "Avant-bras"
+    ]
   },
   {
     "id": "curl_avec_sangles_de_suspension",
     "name": "Curl avec sangles de suspension",
     "url": "https://www.docteur-fitness.com/curl-avec-sangles-de-suspension",
-    "icon": "/exercise_icons/curl-avec-sangles-de-suspension.png"
+    "icon": "/exercise_icons/curl-avec-sangles-de-suspension.png",
+    "description": "Exercice d'isolation des biceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Biceps"
+    ],
+    "muscles_secondaires": [
+      "Avant-bras"
+    ]
   },
   {
     "id": "curl_biceps_alterne_avec_halteres",
     "name": "Curl biceps alterné avec haltères",
     "url": "https://www.docteur-fitness.com/curl-biceps-avec-halteres-alterne",
-    "icon": "/exercise_icons/curl-biceps-alterné-avec-haltères.png"
+    "icon": "/exercise_icons/curl-biceps-alterné-avec-haltères.png",
+    "description": "Exercice d'isolation des biceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Biceps"
+    ],
+    "muscles_secondaires": [
+      "Avant-bras"
+    ]
   },
   {
     "id": "curl_biceps_alterne_en_supination_sur_banc_incline",
     "name": "Curl biceps alterné en supination sur banc incliné",
     "url": "https://www.docteur-fitness.com/curl-biceps-alterne-sur-banc-incline",
-    "icon": "/exercise_icons/curl-biceps-alterné-en-supination-sur-banc-incliné.png"
+    "icon": "/exercise_icons/curl-biceps-alterné-en-supination-sur-banc-incliné.png",
+    "description": "Exercice d'isolation des biceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Biceps"
+    ],
+    "muscles_secondaires": [
+      "Avant-bras"
+    ]
   },
   {
     "id": "curl_biceps_assis_a_la_machine",
     "name": "Curl biceps assis à la machine",
     "url": "https://www.docteur-fitness.com/curl-biceps-assis-a-la-machine",
-    "icon": "/exercise_icons/curl-biceps-assis-à-la-machine.png"
+    "icon": "/exercise_icons/curl-biceps-assis-à-la-machine.png",
+    "description": "Exercice d'isolation des biceps.",
+    "equipment": "Machine de curl / Poulie",
+    "type": "Machine",
+    "muscles_principaux": [
+      "Biceps"
+    ],
+    "muscles_secondaires": [
+      "Avant-bras"
+    ]
   },
   {
     "id": "curl_biceps_avec_elastique",
     "name": "Curl biceps avec élastique",
     "url": "https://www.docteur-fitness.com/curl-biceps-avec-elastique",
-    "icon": "/exercise_icons/curl-biceps-avec-élastique.png"
+    "icon": "/exercise_icons/curl-biceps-avec-élastique.png",
+    "description": "Exercice d'isolation des biceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Biceps"
+    ],
+    "muscles_secondaires": [
+      "Avant-bras"
+    ]
   },
   {
     "id": "curl_biceps_a_la_poulie_basse",
     "name": "Curl biceps à la poulie basse",
     "url": "https://www.docteur-fitness.com/curl-biceps-a-la-poulie-basse",
-    "icon": "/exercise_icons/curl-biceps-à-la-poulie-basse.png"
+    "icon": "/exercise_icons/curl-biceps-à-la-poulie-basse.png",
+    "description": "Exercice d'isolation des biceps.",
+    "equipment": "Machine de curl / Poulie",
+    "type": "Machine",
+    "muscles_principaux": [
+      "Biceps"
+    ],
+    "muscles_secondaires": [
+      "Avant-bras"
+    ]
   },
   {
     "id": "curl_concentre",
     "name": "Curl concentré",
     "url": "https://www.docteur-fitness.com/curl-concentre",
-    "icon": "/exercise_icons/curl-concentré.png"
+    "icon": "/exercise_icons/curl-concentré.png",
+    "description": "Exercice d'isolation des biceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Biceps"
+    ],
+    "muscles_secondaires": [
+      "Avant-bras"
+    ]
   },
   {
     "id": "curl_en_prise_marteau_avec_elastique",
     "name": "Curl en prise marteau avec élastique",
     "url": "https://www.docteur-fitness.com/curl-en-prise-marteau-avec-elastique",
-    "icon": "/exercise_icons/curl-en-prise-marteau-avec-élastique.png"
+    "icon": "/exercise_icons/curl-en-prise-marteau-avec-élastique.png",
+    "description": "Exercice d'isolation des biceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Biceps"
+    ],
+    "muscles_secondaires": [
+      "Avant-bras"
+    ]
   },
   {
     "id": "curl_haltere_debout_sur_banc_incline",
     "name": "Curl haltère debout sur banc incliné",
     "url": "https://www.docteur-fitness.com/curl-haltere-debout-sur-banc-incline",
-    "icon": "/exercise_icons/curl-haltère-debout-sur-banc-incliné.png"
+    "icon": "/exercise_icons/curl-haltère-debout-sur-banc-incliné.png",
+    "description": "Exercice d'isolation des biceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Biceps"
+    ],
+    "muscles_secondaires": [
+      "Avant-bras"
+    ]
   },
   {
     "id": "curl_haltere_incline_avec_rotation",
     "name": "Curl haltère incliné avec rotation",
     "url": "https://www.docteur-fitness.com/curl-haltere-incline",
-    "icon": "/exercise_icons/curl-haltère-incliné-avec-rotation.png"
+    "icon": "/exercise_icons/curl-haltère-incliné-avec-rotation.png",
+    "description": "Exercice d'isolation des biceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Biceps"
+    ],
+    "muscles_secondaires": [
+      "Avant-bras"
+    ]
   },
   {
     "id": "curl_haltere_prise_marteau_au_pupitre",
     "name": "Curl haltère prise marteau au pupitre",
     "url": "https://www.docteur-fitness.com/curl-haltere-prise-marteau-au-pupitre",
-    "icon": "/exercise_icons/curl-haltère-prise-marteau-au-pupitre.png"
+    "icon": "/exercise_icons/curl-haltère-prise-marteau-au-pupitre.png",
+    "description": "Exercice d'isolation des biceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Biceps"
+    ],
+    "muscles_secondaires": [
+      "Avant-bras"
+    ]
   },
   {
     "id": "curl_halteres_prise_neutre",
     "name": "Curl haltères prise neutre",
     "url": "https://www.docteur-fitness.com/curl-haltere-prise-neutre",
-    "icon": "/exercise_icons/curl-haltères-prise-neutre.png"
+    "icon": "/exercise_icons/curl-haltères-prise-neutre.png",
+    "description": "Exercice d'isolation des biceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Biceps"
+    ],
+    "muscles_secondaires": [
+      "Avant-bras"
+    ]
   },
   {
     "id": "curl_incline_a_la_poulie",
     "name": "Curl incliné à la poulie",
     "url": "https://www.docteur-fitness.com/curl-incline-a-la-poulie",
-    "icon": "/exercise_icons/curl-incliné-à-la-poulie.png"
+    "icon": "/exercise_icons/curl-incliné-à-la-poulie.png",
+    "description": "Exercice d'isolation des biceps.",
+    "equipment": "Machine de curl / Poulie",
+    "type": "Machine",
+    "muscles_principaux": [
+      "Biceps"
+    ],
+    "muscles_secondaires": [
+      "Avant-bras"
+    ]
   },
   {
     "id": "curl_inverse_a_la_barre",
     "name": "Curl inversé à la barre",
     "url": "https://www.docteur-fitness.com/curl-inverse-a-la-barre",
-    "icon": "/exercise_icons/curl-inversé-à-la-barre.png"
+    "icon": "/exercise_icons/curl-inversé-à-la-barre.png",
+    "description": "Exercice d'isolation des biceps.",
+    "equipment": "Barre",
+    "type": "Poids libres",
+    "muscles_principaux": [
+      "Biceps"
+    ],
+    "muscles_secondaires": [
+      "Avant-bras"
+    ]
   },
   {
     "id": "curl_poulie_en_position_squat",
     "name": "Curl poulie en position squat",
     "url": "https://www.docteur-fitness.com/curl-poulie-en-position-squat",
-    "icon": "/exercise_icons/curl-poulie-en-position-squat.png"
+    "icon": "/exercise_icons/curl-poulie-en-position-squat.png",
+    "description": "Exercice de base sollicitant les cuisses et les fessiers.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Quadriceps",
+      "Fessiers"
+    ],
+    "muscles_secondaires": [
+      "Ischio-jambiers",
+      "Mollets",
+      "Abdominaux"
+    ]
   },
   {
     "id": "curl_pupitre_barre_ez",
     "name": "Curl pupitre barre EZ",
     "url": "https://www.docteur-fitness.com/curl-pupitre-barre-ez",
-    "icon": "/exercise_icons/curl-pupitre-barre-ez.png"
+    "icon": "/exercise_icons/curl-pupitre-barre-ez.png",
+    "description": "Exercice d'isolation des biceps.",
+    "equipment": "Barre",
+    "type": "Poids libres",
+    "muscles_principaux": [
+      "Biceps"
+    ],
+    "muscles_secondaires": [
+      "Avant-bras"
+    ]
   },
   {
     "id": "curl_spider",
     "name": "Curl Spider",
     "url": "https://www.docteur-fitness.com/curl-spider",
-    "icon": "/exercise_icons/curl-spider.png"
+    "icon": "/exercise_icons/curl-spider.png",
+    "description": "Exercice d'isolation des biceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Biceps"
+    ],
+    "muscles_secondaires": [
+      "Avant-bras"
+    ]
   },
   {
     "id": "curl_unilateral_avec_sangles_de_suspension",
     "name": "Curl unilatéral avec sangles de suspension",
     "url": "https://www.docteur-fitness.com/curl-unilateral-avec-sangles-de-suspension",
-    "icon": "/exercise_icons/curl-unilatéral-avec-sangles-de-suspension.png"
+    "icon": "/exercise_icons/curl-unilatéral-avec-sangles-de-suspension.png",
+    "description": "Exercice d'isolation des biceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Biceps"
+    ],
+    "muscles_secondaires": [
+      "Avant-bras"
+    ]
   },
   {
     "id": "curl_zottman",
     "name": "Curl Zottman",
     "url": "https://www.docteur-fitness.com/curl-zottman",
-    "icon": "/exercise_icons/curl-zottman.png"
+    "icon": "/exercise_icons/curl-zottman.png",
+    "description": "Exercice d'isolation des biceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Biceps"
+    ],
+    "muscles_secondaires": [
+      "Avant-bras"
+    ]
   },
   {
     "id": "curl_a_la_barre",
     "name": "Curl à la barre",
     "url": "https://www.docteur-fitness.com/curl-a-la-barre",
-    "icon": "/exercise_icons/curl-à-la-barre.png"
+    "icon": "/exercise_icons/curl-à-la-barre.png",
+    "description": "Exercice d'isolation des biceps.",
+    "equipment": "Barre",
+    "type": "Poids libres",
+    "muscles_principaux": [
+      "Biceps"
+    ],
+    "muscles_secondaires": [
+      "Avant-bras"
+    ]
   },
   {
     "id": "curl_a_la_poulie_vis_a_vis",
     "name": "Curl à la poulie vis-à-vis",
     "url": "https://www.docteur-fitness.com/curl-a-la-poulie-vis-a-vis",
-    "icon": "/exercise_icons/curl-à-la-poulie-vis-à-vis.png"
+    "icon": "/exercise_icons/curl-à-la-poulie-vis-à-vis.png",
+    "description": "Exercice d'isolation des biceps.",
+    "equipment": "Machine de curl / Poulie",
+    "type": "Machine",
+    "muscles_principaux": [
+      "Biceps"
+    ],
+    "muscles_secondaires": [
+      "Avant-bras"
+    ]
   },
   {
     "id": "dead_bug",
     "name": "Dead bug",
     "url": "https://www.docteur-fitness.com/dead-bug",
-    "icon": "/exercise_icons/dead-bug.png"
+    "icon": "/exercise_icons/dead-bug.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "dips_assis_a_la_machine_hammer_strength",
     "name": "Dips assis à la machine Hammer Strength",
     "url": "https://www.docteur-fitness.com/dips-assis-a-la-machine",
-    "icon": "/exercise_icons/dips-assis-à-la-machine-hammer-strength.png"
+    "icon": "/exercise_icons/dips-assis-à-la-machine-hammer-strength.png",
+    "description": "Exercice polyarticulaire ciblant triceps et pectoraux.",
+    "equipment": "Machine à dips",
+    "type": "Machine",
+    "muscles_principaux": [
+      "Triceps",
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "dips_assis_a_la_machine_matrix",
     "name": "Dips assis à la machine Matrix",
     "url": "https://www.docteur-fitness.com/dips-assis-a-la-machine-matrix",
-    "icon": "/exercise_icons/dips-assis-à-la-machine-matrix.png"
+    "icon": "/exercise_icons/dips-assis-à-la-machine-matrix.png",
+    "description": "Exercice polyarticulaire ciblant triceps et pectoraux.",
+    "equipment": "Machine à dips",
+    "type": "Machine",
+    "muscles_principaux": [
+      "Triceps",
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "dips_assistes_a_la_machine",
     "name": "Dips assistés à la machine",
     "url": "https://www.docteur-fitness.com/dips-assistes-a-la-machine",
-    "icon": "/exercise_icons/dips-assistés-à-la-machine.png"
+    "icon": "/exercise_icons/dips-assistés-à-la-machine.png",
+    "description": "Exercice polyarticulaire ciblant triceps et pectoraux.",
+    "equipment": "Machine à dips",
+    "type": "Machine",
+    "muscles_principaux": [
+      "Triceps",
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "dips_aux_anneaux",
     "name": "Dips aux anneaux",
     "url": "https://www.docteur-fitness.com/dips-aux-anneaux",
-    "icon": "/exercise_icons/dips-aux-anneaux.png"
+    "icon": "/exercise_icons/dips-aux-anneaux.png",
+    "description": "Exercice polyarticulaire ciblant triceps et pectoraux.",
+    "equipment": "Barres parallèles",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Triceps",
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "dips_aux_barres_paralleles",
     "name": "Dips aux barres parallèles",
     "url": "https://www.docteur-fitness.com/comment-faire-des-dips",
-    "icon": "/exercise_icons/dips-aux-barres-parallèles.png"
+    "icon": "/exercise_icons/dips-aux-barres-parallèles.png",
+    "description": "Exercice polyarticulaire ciblant triceps et pectoraux.",
+    "equipment": "Barres parallèles",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Triceps",
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "dips_entre_deux_bancs",
     "name": "Dips entre deux bancs",
     "url": "https://www.docteur-fitness.com/dips-entre-deux-bancs",
-    "icon": "/exercise_icons/dips-entre-deux-bancs.png"
+    "icon": "/exercise_icons/dips-entre-deux-bancs.png",
+    "description": "Exercice polyarticulaire ciblant triceps et pectoraux.",
+    "equipment": "Barres parallèles",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Triceps",
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "dips_sur_banc",
     "name": "Dips sur banc",
     "url": "https://www.docteur-fitness.com/dips-sur-banc",
-    "icon": "/exercise_icons/dips-sur-banc.png"
+    "icon": "/exercise_icons/dips-sur-banc.png",
+    "description": "Exercice polyarticulaire ciblant triceps et pectoraux.",
+    "equipment": "Barres parallèles",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Triceps",
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "dips_sur_une_chaise",
     "name": "Dips sur une chaise",
     "url": "https://www.docteur-fitness.com/dips-sur-une-chaise",
-    "icon": "/exercise_icons/dips-sur-une-chaise.png"
+    "icon": "/exercise_icons/dips-sur-une-chaise.png",
+    "description": "Exercice polyarticulaire ciblant triceps et pectoraux.",
+    "equipment": "Barres parallèles",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Triceps",
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "donkey_kick",
     "name": "Donkey kick",
     "url": "https://www.docteur-fitness.com/donkey-kick",
-    "icon": "/exercise_icons/donkey-kick.png"
+    "icon": "/exercise_icons/donkey-kick.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "drag_curl",
     "name": "Drag curl",
     "url": "https://www.docteur-fitness.com/drag-curl",
-    "icon": "/exercise_icons/drag-curl.png"
+    "icon": "/exercise_icons/drag-curl.png",
+    "description": "Exercice d'isolation des biceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Biceps"
+    ],
+    "muscles_secondaires": [
+      "Avant-bras"
+    ]
   },
   {
     "id": "drag_curl_avec_halteres",
     "name": "Drag curl avec haltères",
     "url": "https://www.docteur-fitness.com/drag-curl-avec-halteres",
-    "icon": "/exercise_icons/drag-curl-avec-haltères.png"
+    "icon": "/exercise_icons/drag-curl-avec-haltères.png",
+    "description": "Exercice d'isolation des biceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Biceps"
+    ],
+    "muscles_secondaires": [
+      "Avant-bras"
+    ]
   },
   {
     "id": "drag_curl_a_la_smith_machine",
     "name": "Drag curl à la Smith machine",
     "url": "https://www.docteur-fitness.com/drag-curl-a-la-smith-machine",
-    "icon": "/exercise_icons/drag-curl-à-la-smith-machine.png"
+    "icon": "/exercise_icons/drag-curl-à-la-smith-machine.png",
+    "description": "Exercice d'isolation des biceps.",
+    "equipment": "Machine de curl / Poulie",
+    "type": "Machine",
+    "muscles_principaux": [
+      "Biceps"
+    ],
+    "muscles_secondaires": [
+      "Avant-bras"
+    ]
   },
   {
     "id": "developpe_arnold",
     "name": "Développé Arnold",
     "url": "https://www.docteur-fitness.com/developpe-arnold",
-    "icon": "/exercise_icons/développé-arnold.png"
+    "icon": "/exercise_icons/développé-arnold.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_assis_a_la_machine_pour_les_pectoraux",
     "name": "Développé assis à la machine pour les pectoraux",
     "url": "https://www.docteur-fitness.com/developpe-machine-assis-pour-les-pectoraux",
-    "icon": "/exercise_icons/développé-assis-à-la-machine-pour-les-pectoraux.png"
+    "icon": "/exercise_icons/développé-assis-à-la-machine-pour-les-pectoraux.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "Machine de développé",
+    "type": "Machine",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_couche",
     "name": "Développé couché",
     "url": "https://www.docteur-fitness.com/comment-faire-developpe-couche",
-    "icon": "/exercise_icons/développé-couché.png"
+    "icon": "/exercise_icons/développé-couché.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_couche_au_sol",
     "name": "Développé couché au sol",
     "url": "https://www.docteur-fitness.com/developpe-couche-au-sol",
-    "icon": "/exercise_icons/développé-couché-au-sol.png"
+    "icon": "/exercise_icons/développé-couché-au-sol.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_couche_au_sol_avec_kettlebell",
     "name": "Développé couché au sol avec kettlebell",
     "url": "https://www.docteur-fitness.com/developpe-couche-au-sol-avec-kettlebell",
-    "icon": "/exercise_icons/développé-couché-au-sol-avec-kettlebell.png"
+    "icon": "/exercise_icons/développé-couché-au-sol-avec-kettlebell.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_couche_avec_chaines",
     "name": "Développé couché avec chaînes",
     "url": "https://www.docteur-fitness.com/developpe-couche-avec-chaines",
-    "icon": "/exercise_icons/développé-couché-avec-chaînes.png"
+    "icon": "/exercise_icons/développé-couché-avec-chaînes.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_couche_avec_elastique",
     "name": "Développé couché avec élastique",
     "url": "https://www.docteur-fitness.com/developpe-couche-avec-elastique",
-    "icon": "/exercise_icons/développé-couché-avec-élastique.png"
+    "icon": "/exercise_icons/développé-couché-avec-élastique.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_couche_halteres",
     "name": "Développé couché haltères",
     "url": "https://www.docteur-fitness.com/developpe-couche-halteres",
-    "icon": "/exercise_icons/développé-couché-haltères.png"
+    "icon": "/exercise_icons/développé-couché-haltères.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_couche_larsen",
     "name": "Développé couché Larsen",
     "url": "https://www.docteur-fitness.com/developpe-couche-larsen",
-    "icon": "/exercise_icons/développé-couché-larsen.png"
+    "icon": "/exercise_icons/développé-couché-larsen.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_couche_prise_inversee",
     "name": "Développé couché prise inversée",
     "url": "https://www.docteur-fitness.com/developpe-couche-prise-inversee",
-    "icon": "/exercise_icons/développé-couché-prise-inversée.png"
+    "icon": "/exercise_icons/développé-couché-prise-inversée.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_couche_prise_serree_a_la_smith_machine",
     "name": "Développé couché prise serrée à la Smith machine",
     "url": "https://www.docteur-fitness.com/developpe-couche-prise-serree-smith-machine",
-    "icon": "/exercise_icons/développé-couché-prise-serrée-à-la-smith-machine.png"
+    "icon": "/exercise_icons/développé-couché-prise-serrée-à-la-smith-machine.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "Smith Machine",
+    "type": "Machine guidée",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_couche_serre_avec_halteres",
     "name": "Développé couché serré avec haltères",
     "url": "https://www.docteur-fitness.com/developpe-couche-serre-avec-halteres",
-    "icon": "/exercise_icons/développé-couché-serré-avec-haltères.png"
+    "icon": "/exercise_icons/développé-couché-serré-avec-haltères.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_couche_unilateral_avec_kettlebell",
     "name": "Développé couché unilatéral avec kettlebell",
     "url": "https://www.docteur-fitness.com/developpe-couche-unilateral-avec-kettlebell",
-    "icon": "/exercise_icons/développé-couché-unilatéral-avec-kettlebell.png"
+    "icon": "/exercise_icons/développé-couché-unilatéral-avec-kettlebell.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_couche_a_la_smith_machine",
     "name": "Développé couché à la Smith machine",
     "url": "https://www.docteur-fitness.com/developpe-couche-a-la-smith-machine",
-    "icon": "/exercise_icons/développé-couché-à-la-smith-machine.png"
+    "icon": "/exercise_icons/développé-couché-à-la-smith-machine.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "Smith Machine",
+    "type": "Machine guidée",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_debout_avec_elastique",
     "name": "Développé debout avec élastique",
     "url": "https://www.docteur-fitness.com/developpe-debout-avec-elastique",
-    "icon": "/exercise_icons/développé-debout-avec-élastique.png"
+    "icon": "/exercise_icons/développé-debout-avec-élastique.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_decline_avec_haltere",
     "name": "Développé décliné avec haltère",
     "url": "https://www.docteur-fitness.com/developpe-decline-avec-haltere",
-    "icon": "/exercise_icons/développé-décliné-avec-haltère.png"
+    "icon": "/exercise_icons/développé-décliné-avec-haltère.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_decline_avec_elastique",
     "name": "Développé décliné avec élastique",
     "url": "https://www.docteur-fitness.com/developpe-decline-avec-elastique",
-    "icon": "/exercise_icons/développé-décliné-avec-élastique.png"
+    "icon": "/exercise_icons/développé-décliné-avec-élastique.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_decline_a_la_barre",
     "name": "Développé décliné à la barre",
     "url": "https://www.docteur-fitness.com/developpe-decline-a-la-barre",
-    "icon": "/exercise_icons/développé-décliné-à-la-barre.png"
+    "icon": "/exercise_icons/développé-décliné-à-la-barre.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "Barre",
+    "type": "Poids libres",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_incline_avec_halteres",
     "name": "Développé incliné avec haltères",
     "url": "https://www.docteur-fitness.com/developpe-incline-avec-halteres",
-    "icon": "/exercise_icons/développé-incliné-avec-haltères.png"
+    "icon": "/exercise_icons/développé-incliné-avec-haltères.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_incline_a_la_barre",
     "name": "Développé incliné à la barre",
     "url": "https://www.docteur-fitness.com/developpe-incline-a-la-barre",
-    "icon": "/exercise_icons/développé-incliné-à-la-barre.png"
+    "icon": "/exercise_icons/développé-incliné-à-la-barre.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "Barre",
+    "type": "Poids libres",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_incline_a_la_machine_convergente",
     "name": "Développé incliné à la machine convergente",
     "url": "https://www.docteur-fitness.com/developpe-incline-a-la-machine-convergente",
-    "icon": "/exercise_icons/développé-incliné-à-la-machine-convergente.png"
+    "icon": "/exercise_icons/développé-incliné-à-la-machine-convergente.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "Machine de développé",
+    "type": "Machine",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_incline_a_la_poulie",
     "name": "Développé incliné à la poulie",
     "url": "https://www.docteur-fitness.com/developpe-incline-a-la-poulie",
-    "icon": "/exercise_icons/développé-incliné-à-la-poulie.png"
+    "icon": "/exercise_icons/développé-incliné-à-la-poulie.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_militaire",
     "name": "Développé militaire",
     "url": "https://www.docteur-fitness.com/developpe-militaire",
-    "icon": "/exercise_icons/développé-militaire.png"
+    "icon": "/exercise_icons/développé-militaire.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_nuque_barre_guidee",
     "name": "Développé nuque barre guidée",
     "url": "https://www.docteur-fitness.com/developpe-nuque-barre-guidee",
-    "icon": "/exercise_icons/développé-nuque-barre-guidée.png"
+    "icon": "/exercise_icons/développé-nuque-barre-guidée.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "Barre",
+    "type": "Poids libres",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_a_la_landmine_a_genoux_pour_les_pectoraux",
     "name": "Développé à la landmine à genoux pour les pectoraux",
     "url": "https://www.docteur-fitness.com/developpe-a-la-landmine-pour-les-pectoraux",
-    "icon": "/exercise_icons/développé-à-la-landmine-à-genoux-pour-les-pectoraux.png"
+    "icon": "/exercise_icons/développé-à-la-landmine-à-genoux-pour-les-pectoraux.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_epaule_avec_kettlebell",
     "name": "Développé épaule avec kettlebell",
     "url": "https://www.docteur-fitness.com/developpe-epaule-avec-kettlebell",
-    "icon": "/exercise_icons/développé-épaule-avec-kettlebell.png"
+    "icon": "/exercise_icons/développé-épaule-avec-kettlebell.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_epaule_unilateral_avec_elastique",
     "name": "Développé épaule unilatéral avec élastique",
     "url": "https://www.docteur-fitness.com/developpe-epaule-unilateral-avec-elastique",
-    "icon": "/exercise_icons/développé-épaule-unilatéral-avec-élastique.png"
+    "icon": "/exercise_icons/développé-épaule-unilatéral-avec-élastique.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_epaule_unilateral_a_genou_avec_landmine",
     "name": "Développé épaule unilatéral à genou avec landmine",
     "url": "https://www.docteur-fitness.com/developpe-epaules-unilateral-landmine",
-    "icon": "/exercise_icons/développé-épaule-unilatéral-à-genou-avec-landmine.png"
+    "icon": "/exercise_icons/développé-épaule-unilatéral-à-genou-avec-landmine.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_epaules_assis",
     "name": "Développé épaules assis",
     "url": "https://www.docteur-fitness.com/developpe-epaules-assis",
-    "icon": "/exercise_icons/développé-épaules-assis.png"
+    "icon": "/exercise_icons/développé-épaules-assis.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_epaules_assis_avec_elastique",
     "name": "Développé épaules assis avec élastique",
     "url": "https://www.docteur-fitness.com/developpe-epaules-assis-avec-elastique",
-    "icon": "/exercise_icons/développé-épaules-assis-avec-élastique.png"
+    "icon": "/exercise_icons/développé-épaules-assis-avec-élastique.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_epaules_avec_halteres",
     "name": "Développé épaules avec haltères",
     "url": "https://www.docteur-fitness.com/developpe-epaules-avec-halteres",
-    "icon": "/exercise_icons/développé-épaules-avec-haltères.png"
+    "icon": "/exercise_icons/développé-épaules-avec-haltères.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_epaules_avec_elastique",
     "name": "Développé épaules avec élastique",
     "url": "https://www.docteur-fitness.com/developpe-epaules-avec-elastique",
-    "icon": "/exercise_icons/développé-épaules-avec-élastique.png"
+    "icon": "/exercise_icons/développé-épaules-avec-élastique.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_epaules_debout_a_la_landmine",
     "name": "Développé épaules debout à la landmine",
     "url": "https://www.docteur-fitness.com/developpe-a-la-landmine",
-    "icon": "/exercise_icons/développé-épaules-debout-à-la-landmine.png"
+    "icon": "/exercise_icons/développé-épaules-debout-à-la-landmine.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_epaules_a_la_machine",
     "name": "Développé épaules à la machine",
     "url": "https://www.docteur-fitness.com/developpe-epaules-a-la-machine",
-    "icon": "/exercise_icons/développé-épaules-à-la-machine.png"
+    "icon": "/exercise_icons/développé-épaules-à-la-machine.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "Machine de développé",
+    "type": "Machine",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "developpe_epaules_a_la_smith_machine",
     "name": "Développé épaules à la Smith machine",
     "url": "https://www.docteur-fitness.com/developpe-epaules-a-la-smith-machine",
-    "icon": "/exercise_icons/développé-épaules-à-la-smith-machine.png"
+    "icon": "/exercise_icons/développé-épaules-à-la-smith-machine.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "Smith Machine",
+    "type": "Machine guidée",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "extension_de_jambe_unilaterale_sur_une_machine_a_dips_assistes",
     "name": "Extension de jambe unilatérale sur une machine à dips assistés",
     "url": "https://www.docteur-fitness.com/extension-de-jambe-unilaterale-sur-une-machine-a-dips-assistes",
-    "icon": "/exercise_icons/extension-de-jambe-unilatérale-sur-une-machine-à-dips-assistés.png"
+    "icon": "/exercise_icons/extension-de-jambe-unilatérale-sur-une-machine-à-dips-assistés.png",
+    "description": "Exercice polyarticulaire ciblant triceps et pectoraux.",
+    "equipment": "Machine à dips",
+    "type": "Machine",
+    "muscles_principaux": [
+      "Triceps",
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "extension_de_la_hanche_a_la_poulie_basse",
     "name": "Extension de la hanche à la poulie basse",
     "url": "https://www.docteur-fitness.com/extension-de-la-hanche-a-la-poulie-basse",
-    "icon": "/exercise_icons/extension-de-la-hanche-à-la-poulie-basse.png"
+    "icon": "/exercise_icons/extension-de-la-hanche-à-la-poulie-basse.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "extension_des_mollets_assis_a_la_machine",
     "name": "Extension des mollets assis à la machine",
     "url": "https://www.docteur-fitness.com/extension-des-mollets-assis-a-la-machine",
-    "icon": "/exercise_icons/extension-des-mollets-assis-à-la-machine.png"
+    "icon": "/exercise_icons/extension-des-mollets-assis-à-la-machine.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "extension_des_mollets_a_la_barre_debout",
     "name": "Extension des mollets à la barre debout",
     "url": "https://www.docteur-fitness.com/extension-des-mollets-a-la-barre-debout",
-    "icon": "/exercise_icons/extension-des-mollets-à-la-barre-debout.png"
+    "icon": "/exercise_icons/extension-des-mollets-à-la-barre-debout.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "extension_des_mollets_a_la_presse",
     "name": "Extension des mollets à la presse",
     "url": "https://www.docteur-fitness.com/extension-des-mollets-a-la-presse",
-    "icon": "/exercise_icons/extension-des-mollets-à-la-presse.png"
+    "icon": "/exercise_icons/extension-des-mollets-à-la-presse.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "extension_des_triceps_au_dessus_de_la_tete_avec_elastique",
     "name": "Extension des triceps au-dessus de la tête avec élastique",
     "url": "https://www.docteur-fitness.com/extension-des-triceps-au-dessus-de-la-tete-avec-elastique",
-    "icon": "/exercise_icons/extension-des-triceps-au-dessus-de-la-tête-avec-élastique.png"
+    "icon": "/exercise_icons/extension-des-triceps-au-dessus-de-la-tête-avec-élastique.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "extension_des_triceps_en_planche",
     "name": "Extension des triceps en planche",
     "url": "https://www.docteur-fitness.com/extension-des-triceps-en-planche",
-    "icon": "/exercise_icons/extension-des-triceps-en-planche.png"
+    "icon": "/exercise_icons/extension-des-triceps-en-planche.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "extension_horizontale_des_epaules_avec_elastique",
     "name": "Extension horizontale des épaules avec élastique",
     "url": "https://www.docteur-fitness.com/extension-horizontale-des-epaules-avec-elastique",
-    "icon": "/exercise_icons/extension-horizontale-des-épaules-avec-élastique.png"
+    "icon": "/exercise_icons/extension-horizontale-des-épaules-avec-élastique.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "extension_horizontale_a_la_poulie",
     "name": "Extension horizontale à la poulie",
     "url": "https://www.docteur-fitness.com/extension-horizontale-a-la-poulie",
-    "icon": "/exercise_icons/extension-horizontale-à-la-poulie.png"
+    "icon": "/exercise_icons/extension-horizontale-à-la-poulie.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "extension_lombaire_au_banc_a_45deg",
     "name": "Extension lombaire au banc à 45°",
     "url": "https://www.docteur-fitness.com/extension-lombaire-au-banc-a-45",
-    "icon": "/exercise_icons/extension-lombaire-au-banc-à-45.png"
+    "icon": "/exercise_icons/extension-lombaire-au-banc-à-45.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "extension_lombaire_a_la_machine",
     "name": "Extension lombaire à la machine",
     "url": "https://www.docteur-fitness.com/extension-lombaire-a-la-machine",
-    "icon": "/exercise_icons/extension-lombaire-à-la-machine.png"
+    "icon": "/exercise_icons/extension-lombaire-à-la-machine.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "extension_verticale_assis_a_la_barre",
     "name": "Extension verticale assis à la barre",
     "url": "https://www.docteur-fitness.com/extension-verticale-assis-a-la-barre",
-    "icon": "/exercise_icons/extension-verticale-assis-à-la-barre.png"
+    "icon": "/exercise_icons/extension-verticale-assis-à-la-barre.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "extension_verticale_des_triceps_avec_elastique",
     "name": "Extension verticale des triceps avec élastique",
     "url": "https://www.docteur-fitness.com/extension-verticale-des-triceps-avec-elastique",
-    "icon": "/exercise_icons/extension-verticale-des-triceps-avec-élastique.png"
+    "icon": "/exercise_icons/extension-verticale-des-triceps-avec-élastique.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "extension_verticale_a_la_poulie_basse",
     "name": "Extension verticale à la poulie basse",
     "url": "https://www.docteur-fitness.com/extension-verticale-a-la-poulie-basse",
-    "icon": "/exercise_icons/extension-verticale-à-la-poulie-basse.png"
+    "icon": "/exercise_icons/extension-verticale-à-la-poulie-basse.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "extensions_concentrees_des_triceps_a_la_poulie",
     "name": "Extensions concentrées des triceps à la poulie",
     "url": "https://www.docteur-fitness.com/extensions-concentrees-des-triceps-a-la-poulie",
-    "icon": "/exercise_icons/extensions-concentrées-des-triceps-à-la-poulie.png"
+    "icon": "/exercise_icons/extensions-concentrées-des-triceps-à-la-poulie.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "extensions_de_hanches_au_ghd",
     "name": "Extensions de hanches au GHD",
     "url": "https://www.docteur-fitness.com/glute-ham-developer",
-    "icon": "/exercise_icons/extensions-de-hanches-au-ghd.png"
+    "icon": "/exercise_icons/extensions-de-hanches-au-ghd.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "extensions_des_mollets_assis_avec_barre",
     "name": "Extensions des mollets assis avec barre",
     "url": "https://www.docteur-fitness.com/extensions-des-mollets-assis-avec-barre",
-    "icon": "/exercise_icons/extensions-des-mollets-assis-avec-barre.png"
+    "icon": "/exercise_icons/extensions-des-mollets-assis-avec-barre.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "extensions_des_mollets_au_hack_squat",
     "name": "Extensions des mollets au hack-squat",
     "url": "https://www.docteur-fitness.com/extensions-des-mollets-au-hack-squat",
-    "icon": "/exercise_icons/extensions-des-mollets-au-hack-squat.png"
+    "icon": "/exercise_icons/extensions-des-mollets-au-hack-squat.png",
+    "description": "Exercice de base sollicitant les cuisses et les fessiers.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Quadriceps",
+      "Fessiers"
+    ],
+    "muscles_secondaires": [
+      "Ischio-jambiers",
+      "Mollets",
+      "Abdominaux"
+    ]
   },
   {
     "id": "extensions_des_mollets_avec_partenaire",
     "name": "Extensions des mollets avec partenaire",
     "url": "https://www.docteur-fitness.com/extensions-des-mollets-avec-partenaire",
-    "icon": "/exercise_icons/extensions-des-mollets-avec-partenaire.png"
+    "icon": "/exercise_icons/extensions-des-mollets-avec-partenaire.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "extensions_des_mollets_debout_a_la_machine",
     "name": "Extensions des mollets debout à la machine",
     "url": "https://www.docteur-fitness.com/extensions-des-mollets-debout-a-la-machine",
-    "icon": "/exercise_icons/extensions-des-mollets-debout-à-la-machine.png"
+    "icon": "/exercise_icons/extensions-des-mollets-debout-à-la-machine.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "extensions_des_mollets_sur_une_marche",
     "name": "Extensions des mollets sur une marche",
     "url": "https://www.docteur-fitness.com/extensions-des-mollets-sur-une-marche",
-    "icon": "/exercise_icons/extensions-des-mollets-sur-une-marche.png"
+    "icon": "/exercise_icons/extensions-des-mollets-sur-une-marche.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "extensions_des_triceps_assis_avec_haltere",
     "name": "Extensions des triceps assis avec haltère",
     "url": "https://www.docteur-fitness.com/extensions-des-triceps-assis-avec-haltere",
-    "icon": "/exercise_icons/extensions-des-triceps-assis-avec-haltère.png"
+    "icon": "/exercise_icons/extensions-des-triceps-assis-avec-haltère.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "extensions_des_triceps_avec_sangles_de_suspension",
     "name": "Extensions des triceps avec sangles de suspension",
     "url": "https://www.docteur-fitness.com/extensions-des-triceps-avec-sangles-de-suspension",
-    "icon": "/exercise_icons/extensions-des-triceps-avec-sangles-de-suspension.png"
+    "icon": "/exercise_icons/extensions-des-triceps-avec-sangles-de-suspension.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "extensions_des_triceps_couche_avec_halteres",
     "name": "Extensions des triceps couché avec haltères",
     "url": "https://www.docteur-fitness.com/extensions-des-triceps-couche-avec-halteres",
-    "icon": "/exercise_icons/extensions-des-triceps-couché-avec-haltères.png"
+    "icon": "/exercise_icons/extensions-des-triceps-couché-avec-haltères.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "extensions_des_triceps_decline_avec_halteres",
     "name": "Extensions des triceps décliné avec haltères",
     "url": "https://www.docteur-fitness.com/extensions-des-triceps-decline-avec-halteres",
-    "icon": "/exercise_icons/extensions-des-triceps-décliné-avec-haltères.png"
+    "icon": "/exercise_icons/extensions-des-triceps-décliné-avec-haltères.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "extensions_des_triceps_incline_avec_halteres",
     "name": "Extensions des triceps incliné avec haltères",
     "url": "https://www.docteur-fitness.com/extensions-des-triceps-avec-halteres-incline",
-    "icon": "/exercise_icons/extensions-des-triceps-incliné-avec-haltères.png"
+    "icon": "/exercise_icons/extensions-des-triceps-incliné-avec-haltères.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "extensions_des_triceps_incline_a_la_poulie_basse",
     "name": "Extensions des triceps incliné à la poulie basse",
     "url": "https://www.docteur-fitness.com/extensions-des-triceps-incline-a-la-poulie-basse",
-    "icon": "/exercise_icons/extensions-des-triceps-incliné-à-la-poulie-basse.png"
+    "icon": "/exercise_icons/extensions-des-triceps-incliné-à-la-poulie-basse.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "extensions_des_triceps_incline_a_la_smith_machine",
     "name": "Extensions des triceps incliné à la Smith machine",
     "url": "https://www.docteur-fitness.com/extensions-triceps-incline-smith-machine",
-    "icon": "/exercise_icons/extensions-des-triceps-incliné-à-la-smith-machine.png"
+    "icon": "/exercise_icons/extensions-des-triceps-incliné-à-la-smith-machine.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "extensions_des_triceps_a_la_machine_technogym",
     "name": "Extensions des triceps à la machine Technogym",
     "url": "https://www.docteur-fitness.com/extensions-des-triceps-a-la-machine-technogym",
-    "icon": "/exercise_icons/extensions-des-triceps-à-la-machine-technogym.png"
+    "icon": "/exercise_icons/extensions-des-triceps-à-la-machine-technogym.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "extensions_des_triceps_a_la_poulie_haute_a_la_corde",
     "name": "Extensions des triceps à la poulie haute à la corde",
     "url": "https://www.docteur-fitness.com/extensions-des-triceps-a-la-poulie-haute-a-la-corde",
-    "icon": "/exercise_icons/extensions-des-triceps-à-la-poulie-haute-à-la-corde.png"
+    "icon": "/exercise_icons/extensions-des-triceps-à-la-poulie-haute-à-la-corde.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "extensions_lombaires_sur_swiss_ball",
     "name": "Extensions lombaires sur Swiss ball",
     "url": "https://www.docteur-fitness.com/extensions-lombaires-sur-swiss-ball",
-    "icon": "/exercise_icons/extensions-lombaires-sur-swiss-ball.png"
+    "icon": "/exercise_icons/extensions-lombaires-sur-swiss-ball.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "extensions_verticales_dun_bras_avec_haltere",
     "name": "Extensions verticales d’un bras avec haltère",
     "url": "https://www.docteur-fitness.com/extensions-verticales-dun-bras-avec-haltere",
-    "icon": "/exercise_icons/extensions-verticales-dun-bras-avec-haltère.png"
+    "icon": "/exercise_icons/extensions-verticales-dun-bras-avec-haltère.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "extensions_verticales_a_deux_mains_avec_haltere",
     "name": "Extensions verticales à deux mains avec haltère",
     "url": "https://www.docteur-fitness.com/extensions-verticales-a-deux-mains-avec-haltere",
-    "icon": "/exercise_icons/extensions-verticales-à-deux-mains-avec-haltère.png"
+    "icon": "/exercise_icons/extensions-verticales-à-deux-mains-avec-haltère.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "extensions_verticales_a_la_poulie_haute",
     "name": "Extensions verticales à la poulie haute",
     "url": "https://www.docteur-fitness.com/extensions-verticales-a-la-poulie-haute",
-    "icon": "/exercise_icons/extensions-verticales-à-la-poulie-haute.png"
+    "icon": "/exercise_icons/extensions-verticales-à-la-poulie-haute.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "face_pull",
     "name": "Face pull",
     "url": "https://www.docteur-fitness.com/face-pull",
-    "icon": "/exercise_icons/face-pull.png"
+    "icon": "/exercise_icons/face-pull.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "fentes_avant_avec_barre",
     "name": "Fentes avant avec barre",
     "url": "https://www.docteur-fitness.com/fentes-avant-avec-barre",
-    "icon": "/exercise_icons/fentes-avant-avec-barre.png"
+    "icon": "/exercise_icons/fentes-avant-avec-barre.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "fentes_avant_avec_halteres",
     "name": "Fentes avant avec haltères",
     "url": "https://www.docteur-fitness.com/fentes-avant-avec-halteres",
-    "icon": "/exercise_icons/fentes-avant-avec-haltères.png"
+    "icon": "/exercise_icons/fentes-avant-avec-haltères.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "fentes_croisees",
     "name": "Fentes croisées",
     "url": "https://www.docteur-fitness.com/fentes-croisees",
-    "icon": "/exercise_icons/fentes-croisées.png"
+    "icon": "/exercise_icons/fentes-croisées.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "fire_hydrant",
     "name": "Fire hydrant",
     "url": "https://www.docteur-fitness.com/fire-hydrant",
-    "icon": "/exercise_icons/fire-hydrant.png"
+    "icon": "/exercise_icons/fire-hydrant.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "flexions_des_obliques_au_banc_a_lombaire_a_45deg",
     "name": "Flexions des obliques au banc à lombaire à 45°",
     "url": "https://www.docteur-fitness.com/flexions-des-obliques-au-banc-a-lombaire-a-45",
-    "icon": "/exercise_icons/flexions-des-obliques-au-banc-à-lombaire-à-45.png"
+    "icon": "/exercise_icons/flexions-des-obliques-au-banc-à-lombaire-à-45.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "flexions_laterales_avec_haltere",
     "name": "Flexions latérales avec haltère",
     "url": "https://www.docteur-fitness.com/flexions-laterales-avec-haltere",
-    "icon": "/exercise_icons/flexions-latérales-avec-haltère.png"
+    "icon": "/exercise_icons/flexions-latérales-avec-haltère.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "flexions_laterales_a_la_poulie_basse",
     "name": "Flexions latérales à la poulie basse",
     "url": "https://www.docteur-fitness.com/flexions-laterales-a-la-poulie-basse",
-    "icon": "/exercise_icons/flexions-latérales-à-la-poulie-basse.png"
+    "icon": "/exercise_icons/flexions-latérales-à-la-poulie-basse.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "front_squat_avec_halteres",
     "name": "Front squat avec haltères",
     "url": "https://www.docteur-fitness.com/front-squat-avec-halteres",
-    "icon": "/exercise_icons/front-squat-avec-haltères.png"
+    "icon": "/exercise_icons/front-squat-avec-haltères.png",
+    "description": "Exercice de base sollicitant les cuisses et les fessiers.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Quadriceps",
+      "Fessiers"
+    ],
+    "muscles_secondaires": [
+      "Ischio-jambiers",
+      "Mollets",
+      "Abdominaux"
+    ]
   },
   {
     "id": "goblet_squat_avec_haltere",
     "name": "Goblet squat avec haltère",
     "url": "https://www.docteur-fitness.com/goblet-squat",
-    "icon": "/exercise_icons/goblet-squat-avec-haltère.png"
+    "icon": "/exercise_icons/goblet-squat-avec-haltère.png",
+    "description": "Exercice de base sollicitant les cuisses et les fessiers.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Quadriceps",
+      "Fessiers"
+    ],
+    "muscles_secondaires": [
+      "Ischio-jambiers",
+      "Mollets",
+      "Abdominaux"
+    ]
   },
   {
     "id": "good_morning",
     "name": "Good morning",
     "url": "https://www.docteur-fitness.com/good-morning",
-    "icon": "/exercise_icons/good-morning.png"
+    "icon": "/exercise_icons/good-morning.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "hack_squat",
     "name": "Hack squat",
     "url": "https://www.docteur-fitness.com/hack-squat",
-    "icon": "/exercise_icons/hack-squat.png"
+    "icon": "/exercise_icons/hack-squat.png",
+    "description": "Exercice de base sollicitant les cuisses et les fessiers.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Quadriceps",
+      "Fessiers"
+    ],
+    "muscles_secondaires": [
+      "Ischio-jambiers",
+      "Mollets",
+      "Abdominaux"
+    ]
   },
   {
     "id": "hack_squat_assis",
     "name": "Hack squat assis",
     "url": "https://www.docteur-fitness.com/hack-squat-assis",
-    "icon": "/exercise_icons/hack-squat-assis.png"
+    "icon": "/exercise_icons/hack-squat-assis.png",
+    "description": "Exercice de base sollicitant les cuisses et les fessiers.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Quadriceps",
+      "Fessiers"
+    ],
+    "muscles_secondaires": [
+      "Ischio-jambiers",
+      "Mollets",
+      "Abdominaux"
+    ]
   },
   {
     "id": "hack_squat_inverse",
     "name": "Hack squat inversé",
     "url": "https://www.docteur-fitness.com/hack-squat-inverse",
-    "icon": "/exercise_icons/hack-squat-inversé.png"
+    "icon": "/exercise_icons/hack-squat-inversé.png",
+    "description": "Exercice de base sollicitant les cuisses et les fessiers.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Quadriceps",
+      "Fessiers"
+    ],
+    "muscles_secondaires": [
+      "Ischio-jambiers",
+      "Mollets",
+      "Abdominaux"
+    ]
   },
   {
     "id": "handstand_push_up",
     "name": "Handstand push-up",
     "url": "https://www.docteur-fitness.com/handstand-push-up",
-    "icon": "/exercise_icons/handstand-push-up.png"
+    "icon": "/exercise_icons/handstand-push-up.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "hex_press_a_la_smith_machine",
     "name": "Hex press à la Smith machine",
     "url": "https://www.docteur-fitness.com/hex-press-a-la-smith-machine",
-    "icon": "/exercise_icons/hex-press-à-la-smith-machine.png"
+    "icon": "/exercise_icons/hex-press-à-la-smith-machine.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "hip_thrust",
     "name": "Hip thrust",
     "url": "https://www.docteur-fitness.com/hip-thrust",
-    "icon": "/exercise_icons/hip-thrust.png"
+    "icon": "/exercise_icons/hip-thrust.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "hip_thrust_unilateral",
     "name": "Hip thrust unilatéral",
     "url": "https://www.docteur-fitness.com/hip-thrust-unilateral",
-    "icon": "/exercise_icons/hip-thrust-unilatéral.png"
+    "icon": "/exercise_icons/hip-thrust-unilatéral.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "hip_thrust_a_la_machine",
     "name": "Hip thrust à la machine",
     "url": "https://www.docteur-fitness.com/hip-thrust-a-la-machine",
-    "icon": "/exercise_icons/hip-thrust-à-la-machine.png"
+    "icon": "/exercise_icons/hip-thrust-à-la-machine.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "hollow_hold",
     "name": "Hollow hold",
     "url": "https://www.docteur-fitness.com/hollow-hold",
-    "icon": "/exercise_icons/hollow-hold.png"
+    "icon": "/exercise_icons/hollow-hold.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "jefferson_squat",
     "name": "Jefferson squat",
     "url": "https://www.docteur-fitness.com/jefferson-squat",
-    "icon": "/exercise_icons/jefferson-squat.png"
+    "icon": "/exercise_icons/jefferson-squat.png",
+    "description": "Exercice de base sollicitant les cuisses et les fessiers.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Quadriceps",
+      "Fessiers"
+    ],
+    "muscles_secondaires": [
+      "Ischio-jambiers",
+      "Mollets",
+      "Abdominaux"
+    ]
   },
   {
     "id": "kickback",
     "name": "Kickback",
     "url": "https://www.docteur-fitness.com/kickback",
-    "icon": "/exercise_icons/kickback.png"
+    "icon": "/exercise_icons/kickback.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "kickback_alterne_assis",
     "name": "Kickback alterné assis",
     "url": "https://www.docteur-fitness.com/kickback-alterne-assis",
-    "icon": "/exercise_icons/kickback-alterné-assis.png"
+    "icon": "/exercise_icons/kickback-alterné-assis.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "kickback_debout_avec_halteres",
     "name": "Kickback debout avec haltères",
     "url": "https://www.docteur-fitness.com/kickback-debout-avec-halteres",
-    "icon": "/exercise_icons/kickback-debout-avec-haltères.png"
+    "icon": "/exercise_icons/kickback-debout-avec-haltères.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "leg_curl_allonge",
     "name": "Leg curl allongé",
     "url": "https://www.docteur-fitness.com/leg-curl-allonge",
-    "icon": "/exercise_icons/leg-curl-allongé.png"
+    "icon": "/exercise_icons/leg-curl-allongé.png",
+    "description": "Exercice d'isolation des biceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Biceps"
+    ],
+    "muscles_secondaires": [
+      "Avant-bras"
+    ]
   },
   {
     "id": "leg_curl_assis_a_la_machine",
     "name": "Leg curl assis à la machine",
     "url": "https://www.docteur-fitness.com/leg-curl-assis-a-la-machine",
-    "icon": "/exercise_icons/leg-curl-assis-à-la-machine.png"
+    "icon": "/exercise_icons/leg-curl-assis-à-la-machine.png",
+    "description": "Exercice d'isolation des biceps.",
+    "equipment": "Machine de curl / Poulie",
+    "type": "Machine",
+    "muscles_principaux": [
+      "Biceps"
+    ],
+    "muscles_secondaires": [
+      "Avant-bras"
+    ]
   },
   {
     "id": "leg_curl_decline_avec_haltere",
     "name": "Leg curl décliné avec haltère",
     "url": "https://www.docteur-fitness.com/leg-curl-decline-avec-haltere",
-    "icon": "/exercise_icons/leg-curl-décliné-avec-haltère.png"
+    "icon": "/exercise_icons/leg-curl-décliné-avec-haltère.png",
+    "description": "Exercice d'isolation des biceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Biceps"
+    ],
+    "muscles_secondaires": [
+      "Avant-bras"
+    ]
   },
   {
     "id": "leg_curl_inverse_sur_le_tirage_vertical",
     "name": "Leg curl inversé sur le tirage vertical",
     "url": "https://www.docteur-fitness.com/leg-curl-inverse-sur-le-tirage-vertical",
-    "icon": "/exercise_icons/leg-curl-inversé-sur-le-tirage-vertical.png"
+    "icon": "/exercise_icons/leg-curl-inversé-sur-le-tirage-vertical.png",
+    "description": "Exercice d'isolation des biceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Biceps"
+    ],
+    "muscles_secondaires": [
+      "Avant-bras"
+    ]
   },
   {
     "id": "leg_curl_unilateral_debout_a_la_machine",
     "name": "Leg curl unilatéral debout à la machine",
     "url": "https://www.docteur-fitness.com/leg-curl-unilateral-debout-a-la-machine",
-    "icon": "/exercise_icons/leg-curl-unilatéral-debout-à-la-machine.png"
+    "icon": "/exercise_icons/leg-curl-unilatéral-debout-à-la-machine.png",
+    "description": "Exercice d'isolation des biceps.",
+    "equipment": "Machine de curl / Poulie",
+    "type": "Machine",
+    "muscles_principaux": [
+      "Biceps"
+    ],
+    "muscles_secondaires": [
+      "Avant-bras"
+    ]
   },
   {
     "id": "leg_extension",
     "name": "Leg extension",
     "url": "https://www.docteur-fitness.com/leg-extension",
-    "icon": "/exercise_icons/leg-extension.png"
+    "icon": "/exercise_icons/leg-extension.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "leg_extension_iso_lateral_unilateral_hammer_strenght",
     "name": "Leg extension iso latéral unilatéral Hammer strenght",
     "url": "https://www.docteur-fitness.com/leg-extension-iso-lateral-unilateral-hammer-strenght",
-    "icon": "/exercise_icons/leg-extension-iso-latéral-unilatéral-hammer-strenght.png"
+    "icon": "/exercise_icons/leg-extension-iso-latéral-unilatéral-hammer-strenght.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "marche_de_lours",
     "name": "Marche de l’ours",
     "url": "https://www.docteur-fitness.com/marche-de-lours",
-    "icon": "/exercise_icons/marche-de-lours.png"
+    "icon": "/exercise_icons/marche-de-lours.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "montee_a_la_corde",
     "name": "Montée à la corde",
     "url": "https://www.docteur-fitness.com/montee-de-corde",
-    "icon": "/exercise_icons/montée-à-la-corde.png"
+    "icon": "/exercise_icons/montée-à-la-corde.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "montees_sur_banc",
     "name": "Montées sur banc",
     "url": "https://www.docteur-fitness.com/montees-sur-banc",
-    "icon": "/exercise_icons/montées-sur-banc.png"
+    "icon": "/exercise_icons/montées-sur-banc.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "montees_sur_banc_laterales_avec_barre",
     "name": "Montées sur banc latérales avec barre",
     "url": "https://www.docteur-fitness.com/montees-sur-banc-laterales-avec-barre",
-    "icon": "/exercise_icons/montées-sur-banc-latérales-avec-barre.png"
+    "icon": "/exercise_icons/montées-sur-banc-latérales-avec-barre.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "montees_sur_banc_laterales_avec_halteres",
     "name": "Montées sur banc latérales avec haltères",
     "url": "https://www.docteur-fitness.com/montees-sur-banc-lateral-avec-halteres",
-    "icon": "/exercise_icons/montées-sur-banc-latérales-avec-haltères.png"
+    "icon": "/exercise_icons/montées-sur-banc-latérales-avec-haltères.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "mountain_climber",
     "name": "Mountain climber",
     "url": "https://www.docteur-fitness.com/mountain-climber",
-    "icon": "/exercise_icons/mountain-climber.png"
+    "icon": "/exercise_icons/mountain-climber.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "muscle_up",
     "name": "Muscle-up",
     "url": "https://www.docteur-fitness.com/muscle-up",
-    "icon": "/exercise_icons/muscle-up.png"
+    "icon": "/exercise_icons/muscle-up.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "oiseau_assis_sur_un_banc",
     "name": "Oiseau assis sur un banc",
     "url": "https://www.docteur-fitness.com/oiseau-assis-sur-un-banc",
-    "icon": "/exercise_icons/oiseau-assis-sur-un-banc.png"
+    "icon": "/exercise_icons/oiseau-assis-sur-un-banc.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "oiseau_avec_elastique",
     "name": "Oiseau avec élastique",
     "url": "https://www.docteur-fitness.com/oiseau-avec-elastique",
-    "icon": "/exercise_icons/oiseau-avec-élastique.png"
+    "icon": "/exercise_icons/oiseau-avec-élastique.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "oiseau_inverse_avec_sangles_de_suspension",
     "name": "Oiseau inversé avec sangles de suspension",
     "url": "https://www.docteur-fitness.com/oiseau-inverse-avec-sangles-de-suspension",
-    "icon": "/exercise_icons/oiseau-inversé-avec-sangles-de-suspension.png"
+    "icon": "/exercise_icons/oiseau-inversé-avec-sangles-de-suspension.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "overhead_shrug",
     "name": "Overhead shrug",
     "url": "https://www.docteur-fitness.com/overhead-shrug",
-    "icon": "/exercise_icons/overhead-shrug.png"
+    "icon": "/exercise_icons/overhead-shrug.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "overhead_squat",
     "name": "Overhead squat",
     "url": "https://www.docteur-fitness.com/overhead-squat",
-    "icon": "/exercise_icons/overhead-squat.png"
+    "icon": "/exercise_icons/overhead-squat.png",
+    "description": "Exercice de base sollicitant les cuisses et les fessiers.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Quadriceps",
+      "Fessiers"
+    ],
+    "muscles_secondaires": [
+      "Ischio-jambiers",
+      "Mollets",
+      "Abdominaux"
+    ]
   },
   {
     "id": "overhead_squat_avec_halteres",
     "name": "Overhead squat avec haltères",
     "url": "https://www.docteur-fitness.com/overhead-squat-avec-halteres",
-    "icon": "/exercise_icons/overhead-squat-avec-haltères.png"
+    "icon": "/exercise_icons/overhead-squat-avec-haltères.png",
+    "description": "Exercice de base sollicitant les cuisses et les fessiers.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Quadriceps",
+      "Fessiers"
+    ],
+    "muscles_secondaires": [
+      "Ischio-jambiers",
+      "Mollets",
+      "Abdominaux"
+    ]
   },
   {
     "id": "pec_deck_inverse",
     "name": "Pec deck inversé",
     "url": "https://www.docteur-fitness.com/pec-deck-inverse",
-    "icon": "/exercise_icons/pec-deck-inversé.png"
+    "icon": "/exercise_icons/pec-deck-inversé.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "pec_deck_ou_butterfly",
     "name": "Pec-deck ou butterfly",
     "url": "https://www.docteur-fitness.com/pec-deck-ou-butterfly",
-    "icon": "/exercise_icons/pec-deck-ou-butterfly.png"
+    "icon": "/exercise_icons/pec-deck-ou-butterfly.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "pendulum_squat",
     "name": "Pendulum squat",
     "url": "https://www.docteur-fitness.com/pendulum-squat",
-    "icon": "/exercise_icons/pendulum-squat.png"
+    "icon": "/exercise_icons/pendulum-squat.png",
+    "description": "Exercice de base sollicitant les cuisses et les fessiers.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Quadriceps",
+      "Fessiers"
+    ],
+    "muscles_secondaires": [
+      "Ischio-jambiers",
+      "Mollets",
+      "Abdominaux"
+    ]
   },
   {
     "id": "pin_squat",
     "name": "Pin squat",
     "url": "https://www.docteur-fitness.com/pin-squat",
-    "icon": "/exercise_icons/pin-squat.png"
+    "icon": "/exercise_icons/pin-squat.png",
+    "description": "Exercice de base sollicitant les cuisses et les fessiers.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Quadriceps",
+      "Fessiers"
+    ],
+    "muscles_secondaires": [
+      "Ischio-jambiers",
+      "Mollets",
+      "Abdominaux"
+    ]
   },
   {
     "id": "pistol_squat",
     "name": "Pistol squat",
     "url": "https://www.docteur-fitness.com/pistol-squat",
-    "icon": "/exercise_icons/pistol-squat.png"
+    "icon": "/exercise_icons/pistol-squat.png",
+    "description": "Exercice de base sollicitant les cuisses et les fessiers.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Quadriceps",
+      "Fessiers"
+    ],
+    "muscles_secondaires": [
+      "Ischio-jambiers",
+      "Mollets",
+      "Abdominaux"
+    ]
   },
   {
     "id": "planche",
     "name": "Planche",
     "url": "https://www.docteur-fitness.com/planche",
-    "icon": "/exercise_icons/planche.png"
+    "icon": "/exercise_icons/planche.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "planche_de_lours",
     "name": "Planche de l’ours",
     "url": "https://www.docteur-fitness.com/planche-de-l-ours",
-    "icon": "/exercise_icons/planche-de-lours.png"
+    "icon": "/exercise_icons/planche-de-lours.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "planche_inversee",
     "name": "Planche inversée",
     "url": "https://www.docteur-fitness.com/planche-inversee",
-    "icon": "/exercise_icons/planche-inversée.png"
+    "icon": "/exercise_icons/planche-inversée.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "planche_laterale",
     "name": "Planche latérale",
     "url": "https://www.docteur-fitness.com/planche-laterale",
-    "icon": "/exercise_icons/planche-latérale.png"
+    "icon": "/exercise_icons/planche-latérale.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "planche_laterale_avec_rotation",
     "name": "Planche latérale avec rotation",
     "url": "https://www.docteur-fitness.com/planche-laterale-avec-rotation",
-    "icon": "/exercise_icons/planche-latérale-avec-rotation.png"
+    "icon": "/exercise_icons/planche-latérale-avec-rotation.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "pompes",
     "name": "Pompes",
     "url": "https://www.docteur-fitness.com/pourquoi-devrait-on-faire-des-pompes-plus-souvent",
-    "icon": "/exercise_icons/pompes.png"
+    "icon": "/exercise_icons/pompes.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "pompes_inclinees_avec_sangles_de_suspension",
     "name": "Pompes inclinées avec sangles de suspension",
     "url": "https://www.docteur-fitness.com/pompes-inclinees-avec-sangles-de-suspension",
-    "icon": "/exercise_icons/pompes-inclinées-avec-sangles-de-suspension.png"
+    "icon": "/exercise_icons/pompes-inclinées-avec-sangles-de-suspension.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "pompes_inclinees_sur_smith_machine",
     "name": "Pompes inclinées sur Smith Machine",
     "url": "https://www.docteur-fitness.com/pompes-inclinees-sur-smith-machine",
-    "icon": "/exercise_icons/pompes-inclinées-sur-smith-machine.png"
+    "icon": "/exercise_icons/pompes-inclinées-sur-smith-machine.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "pompes_piquees",
     "name": "Pompes piquées",
     "url": "https://www.docteur-fitness.com/pompes-piquees",
-    "icon": "/exercise_icons/pompes-piquées.png"
+    "icon": "/exercise_icons/pompes-piquées.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "power_sled_chariot_de_puissance",
     "name": "Power sled (chariot de puissance)",
     "url": "https://www.docteur-fitness.com/power-sled-chariot-de-puissance",
-    "icon": "/exercise_icons/power-sled-chariot-de-puissance.png"
+    "icon": "/exercise_icons/power-sled-chariot-de-puissance.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "presse_a_cuisse_sur_le_cote",
     "name": "Presse à cuisse sur le côté",
     "url": "https://www.docteur-fitness.com/presse-a-cuisse-sur-le-cote",
-    "icon": "/exercise_icons/presse-à-cuisse-sur-le-côté.png"
+    "icon": "/exercise_icons/presse-à-cuisse-sur-le-côté.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "presse_a_cuisses_horizontale",
     "name": "Presse à cuisses horizontale",
     "url": "https://www.docteur-fitness.com/presse-a-cuisses-horizontale",
-    "icon": "/exercise_icons/presse-à-cuisses-horizontale.png"
+    "icon": "/exercise_icons/presse-à-cuisses-horizontale.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "presse_a_cuisses_inclinee",
     "name": "Presse à cuisses inclinée",
     "url": "https://www.docteur-fitness.com/presse-a-cuisses-inclinee",
-    "icon": "/exercise_icons/presse-à-cuisses-inclinée.png"
+    "icon": "/exercise_icons/presse-à-cuisses-inclinée.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "presse_a_cuisses_iso_laterale",
     "name": "Presse à cuisses iso-latérale",
     "url": "https://www.docteur-fitness.com/presse-a-cuisses-iso-laterale",
-    "icon": "/exercise_icons/presse-à-cuisses-iso-latérale.png"
+    "icon": "/exercise_icons/presse-à-cuisses-iso-latérale.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "presse_a_cuisses_verticale",
     "name": "Presse à cuisses verticale",
     "url": "https://www.docteur-fitness.com/presse-a-cuisses-verticale",
-    "icon": "/exercise_icons/presse-à-cuisses-verticale.png"
+    "icon": "/exercise_icons/presse-à-cuisses-verticale.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "presse_a_epaules_inclinee",
     "name": "Presse à épaules inclinée",
     "url": "https://www.docteur-fitness.com/presse-a-epaules-inclinee",
-    "icon": "/exercise_icons/presse-à-épaules-inclinée.png"
+    "icon": "/exercise_icons/presse-à-épaules-inclinée.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "pull_through_a_la_poulie",
     "name": "Pull through à la poulie",
     "url": "https://www.docteur-fitness.com/pull-through-a-la-poulie",
-    "icon": "/exercise_icons/pull-through-à-la-poulie.png"
+    "icon": "/exercise_icons/pull-through-à-la-poulie.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "pull_over_assis_a_la_machine",
     "name": "Pull-over assis à la machine",
     "url": "https://www.docteur-fitness.com/pull-over-assis-a-la-machine",
-    "icon": "/exercise_icons/pull-over-assis-à-la-machine.png"
+    "icon": "/exercise_icons/pull-over-assis-à-la-machine.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "pull_over_avec_barre",
     "name": "Pull-over avec barre",
     "url": "https://www.docteur-fitness.com/pull-over-avec-barre",
-    "icon": "/exercise_icons/pull-over-avec-barre.png"
+    "icon": "/exercise_icons/pull-over-avec-barre.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "pull_over_decline_a_la_barre",
     "name": "Pull-over décliné à la barre",
     "url": "https://www.docteur-fitness.com/pull-over-decline-a-la-barre",
-    "icon": "/exercise_icons/pull-over-décliné-à-la-barre.png"
+    "icon": "/exercise_icons/pull-over-décliné-à-la-barre.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "pull_over_a_la_poulie",
     "name": "Pull-over à la poulie",
     "url": "https://www.docteur-fitness.com/pull-over-a-la-poulie",
-    "icon": "/exercise_icons/pull-over-à-la-poulie.png"
+    "icon": "/exercise_icons/pull-over-à-la-poulie.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "pullover_avec_deux_halteres",
     "name": "Pullover avec deux haltères",
     "url": "https://www.docteur-fitness.com/pullover-avec-deux-halteres",
-    "icon": "/exercise_icons/pullover-avec-deux-haltères.png"
+    "icon": "/exercise_icons/pullover-avec-deux-haltères.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "pullover_avec_haltere",
     "name": "Pullover avec haltère",
     "url": "https://www.docteur-fitness.com/pullover-avec-haltere",
-    "icon": "/exercise_icons/pullover-avec-haltère.png"
+    "icon": "/exercise_icons/pullover-avec-haltère.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "rack_pull",
     "name": "Rack Pull",
     "url": "https://www.docteur-fitness.com/rack-pull",
-    "icon": "/exercise_icons/rack-pull.png"
+    "icon": "/exercise_icons/rack-pull.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "reeves_deadlift",
     "name": "Reeves deadlift",
     "url": "https://www.docteur-fitness.com/deadlift-reeves",
-    "icon": "/exercise_icons/reeves-deadlift.png"
+    "icon": "/exercise_icons/reeves-deadlift.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "renegade_row",
     "name": "Renegade row",
     "url": "https://www.docteur-fitness.com/renegade-row",
-    "icon": "/exercise_icons/renegade-row.png"
+    "icon": "/exercise_icons/renegade-row.png",
+    "description": "Exercice de tirage pour le dos.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Grand dorsal",
+      "Rhomboïdes",
+      "Trapèzes"
+    ],
+    "muscles_secondaires": [
+      "Biceps",
+      "Avant-bras",
+      "Deltoïdes postérieurs"
+    ]
   },
   {
     "id": "reverse_hyperextension",
     "name": "Reverse hyperextension",
     "url": "https://www.docteur-fitness.com/reverse-hyperextension",
-    "icon": "/exercise_icons/reverse-hyperextension.png"
+    "icon": "/exercise_icons/reverse-hyperextension.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "rotation_du_buste_debout_a_la_poulie",
     "name": "Rotation du buste debout à la poulie",
     "url": "https://www.docteur-fitness.com/rotation-du-buste-debout-a-la-poulie",
-    "icon": "/exercise_icons/rotation-du-buste-debout-à-la-poulie.png"
+    "icon": "/exercise_icons/rotation-du-buste-debout-à-la-poulie.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "rotation_externe_de_lepaule_couchee_avec_haltere",
     "name": "Rotation externe de l’épaule couchée avec haltère",
     "url": "https://www.docteur-fitness.com/rotation-externe-de-lepaule-couchee-avec-haltere",
-    "icon": "/exercise_icons/rotation-externe-de-lépaule-couchée-avec-haltère.png"
+    "icon": "/exercise_icons/rotation-externe-de-lépaule-couchée-avec-haltère.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "rotation_externe_de_lepaule_a_la_poulie",
     "name": "Rotation externe de l’épaule à la poulie",
     "url": "https://www.docteur-fitness.com/rotation-externe-de-lepaule-a-la-poulie",
-    "icon": "/exercise_icons/rotation-externe-de-lépaule-à-la-poulie.png"
+    "icon": "/exercise_icons/rotation-externe-de-lépaule-à-la-poulie.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "rotations_cubaines",
     "name": "Rotations cubaines",
     "url": "https://www.docteur-fitness.com/rotations-cubaines",
-    "icon": "/exercise_icons/rotations-cubaines.png"
+    "icon": "/exercise_icons/rotations-cubaines.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "rotations_du_buste_avec_barre",
     "name": "Rotations du buste avec barre",
     "url": "https://www.docteur-fitness.com/rotations-du-buste-avec-barre",
-    "icon": "/exercise_icons/rotations-du-buste-avec-barre.png"
+    "icon": "/exercise_icons/rotations-du-buste-avec-barre.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "roulage_avec_une_barre",
     "name": "Roulage avec une barre",
     "url": "https://www.docteur-fitness.com/abdominaux-avec-une-barre",
-    "icon": "/exercise_icons/roulage-avec-une-barre.png"
+    "icon": "/exercise_icons/roulage-avec-une-barre.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "rowing_avec_halteres",
     "name": "Rowing avec haltères",
     "url": "https://www.docteur-fitness.com/bent-over-row-avec-halteres",
-    "icon": "/exercise_icons/rowing-avec-haltères.png"
+    "icon": "/exercise_icons/rowing-avec-haltères.png",
+    "description": "Exercice de tirage pour le dos.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Grand dorsal",
+      "Rhomboïdes",
+      "Trapèzes"
+    ],
+    "muscles_secondaires": [
+      "Biceps",
+      "Avant-bras",
+      "Deltoïdes postérieurs"
+    ]
   },
   {
     "id": "rowing_avec_sangles_de_suspension",
     "name": "Rowing avec sangles de suspension",
     "url": "https://www.docteur-fitness.com/rowing-avec-sangles-de-suspension",
-    "icon": "/exercise_icons/rowing-avec-sangles-de-suspension.png"
+    "icon": "/exercise_icons/rowing-avec-sangles-de-suspension.png",
+    "description": "Exercice de tirage pour le dos.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Grand dorsal",
+      "Rhomboïdes",
+      "Trapèzes"
+    ],
+    "muscles_secondaires": [
+      "Biceps",
+      "Avant-bras",
+      "Deltoïdes postérieurs"
+    ]
   },
   {
     "id": "rowing_barre",
     "name": "Rowing barre",
     "url": "https://www.docteur-fitness.com/comment-faire-du-rowing-barre",
-    "icon": "/exercise_icons/rowing-barre.png"
+    "icon": "/exercise_icons/rowing-barre.png",
+    "description": "Exercice de tirage pour le dos.",
+    "equipment": "Barre",
+    "type": "Poids libres",
+    "muscles_principaux": [
+      "Grand dorsal",
+      "Rhomboïdes",
+      "Trapèzes"
+    ],
+    "muscles_secondaires": [
+      "Biceps",
+      "Avant-bras",
+      "Deltoïdes postérieurs"
+    ]
   },
   {
     "id": "rowing_buste_penche_avec_elastique",
     "name": "Rowing buste penché avec élastique",
     "url": "https://www.docteur-fitness.com/rowing-buste-penche-avec-elastique",
-    "icon": "/exercise_icons/rowing-buste-penché-avec-élastique.png"
+    "icon": "/exercise_icons/rowing-buste-penché-avec-élastique.png",
+    "description": "Exercice de tirage pour le dos.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Grand dorsal",
+      "Rhomboïdes",
+      "Trapèzes"
+    ],
+    "muscles_secondaires": [
+      "Biceps",
+      "Avant-bras",
+      "Deltoïdes postérieurs"
+    ]
   },
   {
     "id": "rowing_en_prise_neutre_assis_a_la_machine",
     "name": "Rowing en prise neutre assis à la machine",
     "url": "https://www.docteur-fitness.com/rowing-assis-a-la-machine-en-prise-neutre",
-    "icon": "/exercise_icons/rowing-en-prise-neutre-assis-à-la-machine.png"
+    "icon": "/exercise_icons/rowing-en-prise-neutre-assis-à-la-machine.png",
+    "description": "Exercice de tirage pour le dos.",
+    "equipment": "Machine de tirage",
+    "type": "Machine",
+    "muscles_principaux": [
+      "Grand dorsal",
+      "Rhomboïdes",
+      "Trapèzes"
+    ],
+    "muscles_secondaires": [
+      "Biceps",
+      "Avant-bras",
+      "Deltoïdes postérieurs"
+    ]
   },
   {
     "id": "rowing_en_pronation_assis_a_la_machine_technogym",
     "name": "Rowing en pronation assis à la machine Technogym",
     "url": "https://www.docteur-fitness.com/rowing-en-pronation-assis-a-la-machine-technogym",
-    "icon": "/exercise_icons/rowing-en-pronation-assis-à-la-machine-technogym.png"
+    "icon": "/exercise_icons/rowing-en-pronation-assis-à-la-machine-technogym.png",
+    "description": "Exercice de tirage pour le dos.",
+    "equipment": "Machine de tirage",
+    "type": "Machine",
+    "muscles_principaux": [
+      "Grand dorsal",
+      "Rhomboïdes",
+      "Trapèzes"
+    ],
+    "muscles_secondaires": [
+      "Biceps",
+      "Avant-bras",
+      "Deltoïdes postérieurs"
+    ]
   },
   {
     "id": "rowing_haltere_a_un_bras",
     "name": "Rowing haltère à un bras",
     "url": "https://www.docteur-fitness.com/rowing-haltere-a-un-bras",
-    "icon": "/exercise_icons/rowing-haltère-à-un-bras.png"
+    "icon": "/exercise_icons/rowing-haltère-à-un-bras.png",
+    "description": "Exercice de tirage pour le dos.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Grand dorsal",
+      "Rhomboïdes",
+      "Trapèzes"
+    ],
+    "muscles_secondaires": [
+      "Biceps",
+      "Avant-bras",
+      "Deltoïdes postérieurs"
+    ]
   },
   {
     "id": "rowing_halteres_sur_banc_incline",
     "name": "Rowing haltères sur banc incliné",
     "url": "https://www.docteur-fitness.com/rowing-halteres-sur-banc-incline",
-    "icon": "/exercise_icons/rowing-haltères-sur-banc-incliné.png"
+    "icon": "/exercise_icons/rowing-haltères-sur-banc-incliné.png",
+    "description": "Exercice de tirage pour le dos.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Grand dorsal",
+      "Rhomboïdes",
+      "Trapèzes"
+    ],
+    "muscles_secondaires": [
+      "Biceps",
+      "Avant-bras",
+      "Deltoïdes postérieurs"
+    ]
   },
   {
     "id": "rowing_inverse_sous_une_table",
     "name": "Rowing inversé sous une table",
     "url": "https://www.docteur-fitness.com/rowing-inverse-sous-une-table",
-    "icon": "/exercise_icons/rowing-inversé-sous-une-table.png"
+    "icon": "/exercise_icons/rowing-inversé-sous-une-table.png",
+    "description": "Exercice ciblant les abdominaux.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Abdominaux"
+    ],
+    "muscles_secondaires": [
+      "Obliques",
+      "Transverse"
+    ]
   },
   {
     "id": "rowing_unilateral_avec_elastique",
     "name": "Rowing unilatéral avec élastique",
     "url": "https://www.docteur-fitness.com/rowing-unilateral-avec-elastique",
-    "icon": "/exercise_icons/rowing-unilatéral-avec-élastique.png"
+    "icon": "/exercise_icons/rowing-unilatéral-avec-élastique.png",
+    "description": "Exercice de tirage pour le dos.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Grand dorsal",
+      "Rhomboïdes",
+      "Trapèzes"
+    ],
+    "muscles_secondaires": [
+      "Biceps",
+      "Avant-bras",
+      "Deltoïdes postérieurs"
+    ]
   },
   {
     "id": "rowing_unilateral_a_la_landmine",
     "name": "Rowing unilatéral à la landmine",
     "url": "https://www.docteur-fitness.com/rowing-unilateral-a-la-landmine",
-    "icon": "/exercise_icons/rowing-unilatéral-à-la-landmine.png"
+    "icon": "/exercise_icons/rowing-unilatéral-à-la-landmine.png",
+    "description": "Exercice de tirage pour le dos.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Grand dorsal",
+      "Rhomboïdes",
+      "Trapèzes"
+    ],
+    "muscles_secondaires": [
+      "Biceps",
+      "Avant-bras",
+      "Deltoïdes postérieurs"
+    ]
   },
   {
     "id": "rowing_t_bar",
     "name": "Rowing « T-bar »",
     "url": "https://www.docteur-fitness.com/rowing-t-bar",
-    "icon": "/exercise_icons/rowing-t-bar.png"
+    "icon": "/exercise_icons/rowing-t-bar.png",
+    "description": "Exercice de tirage pour le dos.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Grand dorsal",
+      "Rhomboïdes",
+      "Trapèzes"
+    ],
+    "muscles_secondaires": [
+      "Biceps",
+      "Avant-bras",
+      "Deltoïdes postérieurs"
+    ]
   },
   {
     "id": "rowing_a_la_barre_en_t_avec_machine",
     "name": "Rowing à la barre en T avec machine",
     "url": "https://www.docteur-fitness.com/rowing-a-la-barre-en-t-avec-machine",
-    "icon": "/exercise_icons/rowing-à-la-barre-en-t-avec-machine.png"
+    "icon": "/exercise_icons/rowing-à-la-barre-en-t-avec-machine.png",
+    "description": "Exercice de tirage pour le dos.",
+    "equipment": "Barre",
+    "type": "Poids libres",
+    "muscles_principaux": [
+      "Grand dorsal",
+      "Rhomboïdes",
+      "Trapèzes"
+    ],
+    "muscles_secondaires": [
+      "Biceps",
+      "Avant-bras",
+      "Deltoïdes postérieurs"
+    ]
   },
   {
     "id": "rowing_a_la_smith_machine",
     "name": "Rowing à la Smith machine",
     "url": "https://www.docteur-fitness.com/rowing-a-la-smith-machine",
-    "icon": "/exercise_icons/rowing-à-la-smith-machine.png"
+    "icon": "/exercise_icons/rowing-à-la-smith-machine.png",
+    "description": "Exercice de tirage pour le dos.",
+    "equipment": "Smith Machine",
+    "type": "Machine guidée",
+    "muscles_principaux": [
+      "Grand dorsal",
+      "Rhomboïdes",
+      "Trapèzes"
+    ],
+    "muscles_secondaires": [
+      "Biceps",
+      "Avant-bras",
+      "Deltoïdes postérieurs"
+    ]
   },
   {
     "id": "russian_twist_avec_developpe_epaules",
     "name": "Russian twist avec développé épaules",
     "url": "https://www.docteur-fitness.com/russian-twist-avec-developpe-epaule",
-    "icon": "/exercise_icons/russian-twist-avec-développé-épaules.png"
+    "icon": "/exercise_icons/russian-twist-avec-développé-épaules.png",
+    "description": "Exercice de poussée ciblant les pectoraux et triceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Pectoraux"
+    ],
+    "muscles_secondaires": [
+      "Triceps",
+      "Deltoïdes antérieurs"
+    ]
   },
   {
     "id": "russian_twists_a_la_poulie_sur_swiss_ball",
     "name": "Russian twists à la poulie sur Swiss ball",
     "url": "https://www.docteur-fitness.com/russian-twists-a-la-poulie-sur-swiss-ball",
-    "icon": "/exercise_icons/russian-twists-à-la-poulie-sur-swiss-ball.png"
+    "icon": "/exercise_icons/russian-twists-à-la-poulie-sur-swiss-ball.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "safety_bar_squat",
     "name": "Safety bar squat",
     "url": "https://www.docteur-fitness.com/safety-bar-squat",
-    "icon": "/exercise_icons/safety-bar-squat.png"
+    "icon": "/exercise_icons/safety-bar-squat.png",
+    "description": "Exercice de base sollicitant les cuisses et les fessiers.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Quadriceps",
+      "Fessiers"
+    ],
+    "muscles_secondaires": [
+      "Ischio-jambiers",
+      "Mollets",
+      "Abdominaux"
+    ]
   },
   {
     "id": "seal_row_avec_halteres",
     "name": "Seal row avec haltères",
     "url": "https://www.docteur-fitness.com/seal-row-avec-halteres",
-    "icon": "/exercise_icons/seal-row-avec-haltères.png"
+    "icon": "/exercise_icons/seal-row-avec-haltères.png",
+    "description": "Exercice de tirage pour le dos.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Grand dorsal",
+      "Rhomboïdes",
+      "Trapèzes"
+    ],
+    "muscles_secondaires": [
+      "Biceps",
+      "Avant-bras",
+      "Deltoïdes postérieurs"
+    ]
   },
   {
     "id": "shrug_barre",
     "name": "Shrug barre",
     "url": "https://www.docteur-fitness.com/shrug-barre",
-    "icon": "/exercise_icons/shrug-barre.png"
+    "icon": "/exercise_icons/shrug-barre.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "shrug_a_la_machine_a_mollets",
     "name": "Shrug à la machine à mollets",
     "url": "https://www.docteur-fitness.com/shrug-a-la-machine-a-mollets",
-    "icon": "/exercise_icons/shrug-à-la-machine-à-mollets.png"
+    "icon": "/exercise_icons/shrug-à-la-machine-à-mollets.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "shrug_a_la_poulie",
     "name": "Shrug à la poulie",
     "url": "https://www.docteur-fitness.com/shrug-a-la-poulie",
-    "icon": "/exercise_icons/shrug-à-la-poulie.png"
+    "icon": "/exercise_icons/shrug-à-la-poulie.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "shrugs_avec_halteres",
     "name": "Shrugs avec haltères",
     "url": "https://www.docteur-fitness.com/shrugs-avec-halteres",
-    "icon": "/exercise_icons/shrugs-avec-haltères.png"
+    "icon": "/exercise_icons/shrugs-avec-haltères.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "sissy_squat_avec_machine",
     "name": "Sissy squat avec machine",
     "url": "https://www.docteur-fitness.com/sissy-squat-avec-machine",
-    "icon": "/exercise_icons/sissy-squat-avec-machine.png"
+    "icon": "/exercise_icons/sissy-squat-avec-machine.png",
+    "description": "Exercice de base sollicitant les cuisses et les fessiers.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Quadriceps",
+      "Fessiers"
+    ],
+    "muscles_secondaires": [
+      "Ischio-jambiers",
+      "Mollets",
+      "Abdominaux"
+    ]
   },
   {
     "id": "snatch_arrache",
     "name": "Snatch (arraché)",
     "url": "https://www.docteur-fitness.com/snatch-arrache",
-    "icon": "/exercise_icons/snatch-arraché.png"
+    "icon": "/exercise_icons/snatch-arraché.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "souleve_de_terre",
     "name": "Soulevé de terre",
     "url": "https://www.docteur-fitness.com/souleve-de-terre",
-    "icon": "/exercise_icons/soulevé-de-terre.png"
+    "icon": "/exercise_icons/soulevé-de-terre.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "souleve_de_terre_avec_deficit",
     "name": "Soulevé de terre avec déficit",
     "url": "https://www.docteur-fitness.com/souleve-de-terre-avec-deficit",
-    "icon": "/exercise_icons/soulevé-de-terre-avec-déficit.png"
+    "icon": "/exercise_icons/soulevé-de-terre-avec-déficit.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "souleve_de_terre_avec_machine",
     "name": "Soulevé de terre avec machine",
     "url": "https://www.docteur-fitness.com/souleve-de-terre-avec-machine",
-    "icon": "/exercise_icons/soulevé-de-terre-avec-machine.png"
+    "icon": "/exercise_icons/soulevé-de-terre-avec-machine.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "souleve_de_terre_jambes_tendues",
     "name": "Soulevé de terre jambes tendues",
     "url": "https://www.docteur-fitness.com/souleve-de-terre-jambes-tendues",
-    "icon": "/exercise_icons/soulevé-de-terre-jambes-tendues.png"
+    "icon": "/exercise_icons/soulevé-de-terre-jambes-tendues.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "souleve_de_terre_roumain",
     "name": "Soulevé de terre roumain",
     "url": "https://www.docteur-fitness.com/souleve-de-terre-roumain",
-    "icon": "/exercise_icons/soulevé-de-terre-roumain.png"
+    "icon": "/exercise_icons/soulevé-de-terre-roumain.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "souleve_de_terre_sumo",
     "name": "Soulevé de terre sumo",
     "url": "https://www.docteur-fitness.com/souleve-de-terre-sumo",
-    "icon": "/exercise_icons/soulevé-de-terre-sumo.png"
+    "icon": "/exercise_icons/soulevé-de-terre-sumo.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "souleve_de_terre_a_la_trap_bar",
     "name": "Soulevé de terre à la trap bar",
     "url": "https://www.docteur-fitness.com/souleve-de-terre-a-la-trap-bar",
-    "icon": "/exercise_icons/soulevé-de-terre-à-la-trap-bar.png"
+    "icon": "/exercise_icons/soulevé-de-terre-à-la-trap-bar.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "squat",
     "name": "Squat",
     "url": "https://www.docteur-fitness.com/squat",
-    "icon": "/exercise_icons/squat.png"
+    "icon": "/exercise_icons/squat.png",
+    "description": "Exercice de base sollicitant les cuisses et les fessiers.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Quadriceps",
+      "Fessiers"
+    ],
+    "muscles_secondaires": [
+      "Ischio-jambiers",
+      "Mollets",
+      "Abdominaux"
+    ]
   },
   {
     "id": "squat_barre_devant",
     "name": "Squat barre devant",
     "url": "https://www.docteur-fitness.com/squat-barre-devant",
-    "icon": "/exercise_icons/squat-barre-devant.png"
+    "icon": "/exercise_icons/squat-barre-devant.png",
+    "description": "Exercice de base sollicitant les cuisses et les fessiers.",
+    "equipment": "Barre",
+    "type": "Poids libres",
+    "muscles_principaux": [
+      "Quadriceps",
+      "Fessiers"
+    ],
+    "muscles_secondaires": [
+      "Ischio-jambiers",
+      "Mollets",
+      "Abdominaux"
+    ]
   },
   {
     "id": "squat_bulgare_avec_halteres",
     "name": "Squat bulgare avec haltères",
     "url": "https://www.docteur-fitness.com/squat-bulgare-avec-halteres",
-    "icon": "/exercise_icons/squat-bulgare-avec-haltères.png"
+    "icon": "/exercise_icons/squat-bulgare-avec-haltères.png",
+    "description": "Exercice de base sollicitant les cuisses et les fessiers.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Quadriceps",
+      "Fessiers"
+    ],
+    "muscles_secondaires": [
+      "Ischio-jambiers",
+      "Mollets",
+      "Abdominaux"
+    ]
   },
   {
     "id": "squat_cosaque",
     "name": "Squat cosaque",
     "url": "https://www.docteur-fitness.com/squat-cosaque",
-    "icon": "/exercise_icons/squat-cosaque.png"
+    "icon": "/exercise_icons/squat-cosaque.png",
+    "description": "Exercice de base sollicitant les cuisses et les fessiers.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Quadriceps",
+      "Fessiers"
+    ],
+    "muscles_secondaires": [
+      "Ischio-jambiers",
+      "Mollets",
+      "Abdominaux"
+    ]
   },
   {
     "id": "squat_saute",
     "name": "Squat sauté",
     "url": "https://www.docteur-fitness.com/squat-saute",
-    "icon": "/exercise_icons/squat-sauté.png"
+    "icon": "/exercise_icons/squat-sauté.png",
+    "description": "Exercice de base sollicitant les cuisses et les fessiers.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Quadriceps",
+      "Fessiers"
+    ],
+    "muscles_secondaires": [
+      "Ischio-jambiers",
+      "Mollets",
+      "Abdominaux"
+    ]
   },
   {
     "id": "squat_statique_contre_un_mur_exercice_de_la_chaise",
     "name": "Squat statique contre un mur (exercice de la chaise)",
     "url": "https://www.docteur-fitness.com/squat-statique-contre-un-mur-exercice-de-la-chaise",
-    "icon": "/exercise_icons/squat-statique-contre-un-mur-exercice-de-la-chaise.png"
+    "icon": "/exercise_icons/squat-statique-contre-un-mur-exercice-de-la-chaise.png",
+    "description": "Exercice de base sollicitant les cuisses et les fessiers.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Quadriceps",
+      "Fessiers"
+    ],
+    "muscles_secondaires": [
+      "Ischio-jambiers",
+      "Mollets",
+      "Abdominaux"
+    ]
   },
   {
     "id": "squat_sumo_avec_haltere",
     "name": "Squat sumo avec haltère",
     "url": "https://www.docteur-fitness.com/squat-sumo-avec-haltere",
-    "icon": "/exercise_icons/squat-sumo-avec-haltère.png"
+    "icon": "/exercise_icons/squat-sumo-avec-haltère.png",
+    "description": "Exercice de base sollicitant les cuisses et les fessiers.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Quadriceps",
+      "Fessiers"
+    ],
+    "muscles_secondaires": [
+      "Ischio-jambiers",
+      "Mollets",
+      "Abdominaux"
+    ]
   },
   {
     "id": "squat_sur_banc",
     "name": "Squat sur banc",
     "url": "https://www.docteur-fitness.com/squat-sur-banc",
-    "icon": "/exercise_icons/squat-sur-banc.png"
+    "icon": "/exercise_icons/squat-sur-banc.png",
+    "description": "Exercice de base sollicitant les cuisses et les fessiers.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Quadriceps",
+      "Fessiers"
+    ],
+    "muscles_secondaires": [
+      "Ischio-jambiers",
+      "Mollets",
+      "Abdominaux"
+    ]
   },
   {
     "id": "superman",
     "name": "Superman",
     "url": "https://www.docteur-fitness.com/superman",
-    "icon": "/exercise_icons/superman.png"
+    "icon": "/exercise_icons/superman.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "svend_press",
     "name": "Svend press",
     "url": "https://www.docteur-fitness.com/svend-press",
-    "icon": "/exercise_icons/svend-press.png"
+    "icon": "/exercise_icons/svend-press.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "tate_press_a_un_bras_avec_haltere",
     "name": "Tate press à un bras avec haltère",
     "url": "https://www.docteur-fitness.com/tate-press-a-un-bras-avec-haltere",
-    "icon": "/exercise_icons/tate-press-à-un-bras-avec-haltère.png"
+    "icon": "/exercise_icons/tate-press-à-un-bras-avec-haltère.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "thruster",
     "name": "Thruster",
     "url": "https://www.docteur-fitness.com/thruster",
-    "icon": "/exercise_icons/thruster.png"
+    "icon": "/exercise_icons/thruster.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "thruster_avec_kettlebell",
     "name": "Thruster avec kettlebell",
     "url": "https://www.docteur-fitness.com/thruster-avec-kettlebell",
-    "icon": "/exercise_icons/thruster-avec-kettlebell.png"
+    "icon": "/exercise_icons/thruster-avec-kettlebell.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "thruster_avec_landmine",
     "name": "Thruster avec landmine",
     "url": "https://www.docteur-fitness.com/thruster-avec-landmine",
-    "icon": "/exercise_icons/thruster-avec-landmine.png"
+    "icon": "/exercise_icons/thruster-avec-landmine.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "tirage_horizontal_avec_elastique",
     "name": "Tirage horizontal avec élastique",
     "url": "https://www.docteur-fitness.com/rowing-horizontal-avec-elastique",
-    "icon": "/exercise_icons/tirage-horizontal-avec-élastique.png"
+    "icon": "/exercise_icons/tirage-horizontal-avec-élastique.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "tirage_horizontal_prise_large",
     "name": "Tirage horizontal prise large",
     "url": "https://www.docteur-fitness.com/tirage-horizontal-prise-large",
-    "icon": "/exercise_icons/tirage-horizontal-prise-large.png"
+    "icon": "/exercise_icons/tirage-horizontal-prise-large.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "tirage_horizontal_a_la_poulie",
     "name": "Tirage horizontal à la poulie",
     "url": "https://www.docteur-fitness.com/tirage-horizontal-a-la-poulie",
-    "icon": "/exercise_icons/tirage-horizontal-à-la-poulie.png"
+    "icon": "/exercise_icons/tirage-horizontal-à-la-poulie.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "tirage_incline_a_la_poulie_haute",
     "name": "Tirage incliné à la poulie haute",
     "url": "https://www.docteur-fitness.com/tirage-incline-a-la-poulie-haute",
-    "icon": "/exercise_icons/tirage-incliné-à-la-poulie-haute.png"
+    "icon": "/exercise_icons/tirage-incliné-à-la-poulie-haute.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "tirage_menton_avec_kettlebell",
     "name": "Tirage menton avec kettlebell",
     "url": "https://www.docteur-fitness.com/tirage-menton-avec-kettlebell",
-    "icon": "/exercise_icons/tirage-menton-avec-kettlebell.png"
+    "icon": "/exercise_icons/tirage-menton-avec-kettlebell.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "tirage_menton_avec_elastique",
     "name": "Tirage menton avec élastique",
     "url": "https://www.docteur-fitness.com/tirage-menton-avec-elastique",
-    "icon": "/exercise_icons/tirage-menton-avec-élastique.png"
+    "icon": "/exercise_icons/tirage-menton-avec-élastique.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "tirage_menton_barre_guidee",
     "name": "Tirage menton barre guidée",
     "url": "https://www.docteur-fitness.com/tirage-menton-barre-guidee",
-    "icon": "/exercise_icons/tirage-menton-barre-guidée.png"
+    "icon": "/exercise_icons/tirage-menton-barre-guidée.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "tirage_vertical_en_supination_a_la_machine_hammer_strength",
     "name": "Tirage vertical en supination à la machine Hammer Strength",
     "url": "https://www.docteur-fitness.com/tirage-vertical-en-supination-machine-hammer-strength",
-    "icon": "/exercise_icons/tirage-vertical-en-supination-à-la-machine-hammer-strength.png"
+    "icon": "/exercise_icons/tirage-vertical-en-supination-à-la-machine-hammer-strength.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "tirage_vertical_poitrine",
     "name": "Tirage vertical poitrine",
     "url": "https://www.docteur-fitness.com/tirage-vertical-poitrine",
-    "icon": "/exercise_icons/tirage-vertical-poitrine.png"
+    "icon": "/exercise_icons/tirage-vertical-poitrine.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "tirage_vertical_prise_inversee",
     "name": "Tirage vertical prise inversée",
     "url": "https://www.docteur-fitness.com/tirage-vertical-prise-inversee",
-    "icon": "/exercise_icons/tirage-vertical-prise-inversée.png"
+    "icon": "/exercise_icons/tirage-vertical-prise-inversée.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "tirage_vertical_prise_serree",
     "name": "Tirage vertical prise serrée",
     "url": "https://www.docteur-fitness.com/tirage-vertical-prise-serree",
-    "icon": "/exercise_icons/tirage-vertical-prise-serrée.png"
+    "icon": "/exercise_icons/tirage-vertical-prise-serrée.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "touche_talon_alternes",
     "name": "Touche talon alternés",
     "url": "https://www.docteur-fitness.com/touche-talon-alternes",
-    "icon": "/exercise_icons/touche-talon-alternés.png"
+    "icon": "/exercise_icons/touche-talon-alternés.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "traction",
     "name": "Traction",
     "url": "https://www.docteur-fitness.com/traction",
-    "icon": "/exercise_icons/traction.png"
+    "icon": "/exercise_icons/traction.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "traction_assistee_avec_banc",
     "name": "Traction assistée avec banc",
     "url": "https://www.docteur-fitness.com/traction-assistee-avec-banc",
-    "icon": "/exercise_icons/traction-assistée-avec-banc.png"
+    "icon": "/exercise_icons/traction-assistée-avec-banc.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "traction_assistee_avec_elastique",
     "name": "Traction assistée avec élastique",
     "url": "https://www.docteur-fitness.com/traction-assistee-avec-elastique",
-    "icon": "/exercise_icons/traction-assistée-avec-élastique.png"
+    "icon": "/exercise_icons/traction-assistée-avec-élastique.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "traction_assistee_a_la_machine",
     "name": "Traction assistée à la machine",
     "url": "https://www.docteur-fitness.com/traction-assistee-a-la-machine",
-    "icon": "/exercise_icons/traction-assistée-à-la-machine.png"
+    "icon": "/exercise_icons/traction-assistée-à-la-machine.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "traction_lestee",
     "name": "Traction lestée",
     "url": "https://www.docteur-fitness.com/traction-lestee",
-    "icon": "/exercise_icons/traction-lestée.png"
+    "icon": "/exercise_icons/traction-lestée.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "traction_supination",
     "name": "Traction supination",
     "url": "https://www.docteur-fitness.com/traction-supination",
-    "icon": "/exercise_icons/traction-supination.png"
+    "icon": "/exercise_icons/traction-supination.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "tractions_australiennes",
     "name": "Tractions australiennes",
     "url": "https://www.docteur-fitness.com/tractions-australiennes",
-    "icon": "/exercise_icons/tractions-australiennes.png"
+    "icon": "/exercise_icons/tractions-australiennes.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "tractions_australiennes_avec_sangles_de_suspension",
     "name": "Tractions australiennes avec sangles de suspension",
     "url": "https://www.docteur-fitness.com/tractions-australiennes-avec-sangles-de-suspension",
-    "icon": "/exercise_icons/tractions-australiennes-avec-sangles-de-suspension.png"
+    "icon": "/exercise_icons/tractions-australiennes-avec-sangles-de-suspension.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "tractions_prise_neutre",
     "name": "Tractions prise neutre",
     "url": "https://www.docteur-fitness.com/tractions-prise-neutre",
-    "icon": "/exercise_icons/tractions-prise-neutre.png"
+    "icon": "/exercise_icons/tractions-prise-neutre.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "waiter_curl",
     "name": "Waiter curl",
     "url": "https://www.docteur-fitness.com/waiter-curl",
-    "icon": "/exercise_icons/waiter-curl.png"
+    "icon": "/exercise_icons/waiter-curl.png",
+    "description": "Exercice d'isolation des biceps.",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [
+      "Biceps"
+    ],
+    "muscles_secondaires": [
+      "Avant-bras"
+    ]
   },
   {
     "id": "windmill",
     "name": "Windmill",
     "url": "https://www.docteur-fitness.com/windmill",
-    "icon": "/exercise_icons/windmill.png"
+    "icon": "/exercise_icons/windmill.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "zercher_carry",
     "name": "Zercher carry",
     "url": "https://www.docteur-fitness.com/zercher-carry",
-    "icon": "/exercise_icons/zercher-carry.png"
+    "icon": "/exercise_icons/zercher-carry.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "zercher_deadlift",
     "name": "Zercher deadlift",
     "url": "https://www.docteur-fitness.com/zercher-deadlift",
-    "icon": "/exercise_icons/zercher-deadlift.png"
+    "icon": "/exercise_icons/zercher-deadlift.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "zercher_squat",
     "name": "Zercher Squat",
     "url": "https://www.docteur-fitness.com/zercher-squat",
-    "icon": "/exercise_icons/zercher-squat.png"
+    "icon": "/exercise_icons/zercher-squat.png",
+    "description": "Exercice de base sollicitant les cuisses et les fessiers.",
+    "equipment": "Aucun",
+    "type": "Poids du corps",
+    "muscles_principaux": [
+      "Quadriceps",
+      "Fessiers"
+    ],
+    "muscles_secondaires": [
+      "Ischio-jambiers",
+      "Mollets",
+      "Abdominaux"
+    ]
   },
   {
     "id": "ecarte_unilateral_a_la_poulie",
     "name": "Écarté unilatéral à la poulie",
     "url": "https://www.docteur-fitness.com/ecarte-unilateral-a-la-poulie",
-    "icon": "/exercise_icons/écarté-unilatéral-à-la-poulie.png"
+    "icon": "/exercise_icons/écarté-unilatéral-à-la-poulie.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "ecarte_a_la_poulie_vis_a_vis_haute_a_genoux",
     "name": "Écarté à la poulie vis à vis haute à genoux",
     "url": "https://www.docteur-fitness.com/ecarte-a-la-poulie-vis-a-vis-haute-a-genoux",
-    "icon": "/exercise_icons/écarté-à-la-poulie-vis-à-vis-haute-à-genoux.png"
+    "icon": "/exercise_icons/écarté-à-la-poulie-vis-à-vis-haute-à-genoux.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "ecartes_avec_sangles_de_suspension",
     "name": "Écartés avec sangles de suspension",
     "url": "https://www.docteur-fitness.com/ecartes-avec-sangles-de-suspension",
-    "icon": "/exercise_icons/écartés-avec-sangles-de-suspension.png"
+    "icon": "/exercise_icons/écartés-avec-sangles-de-suspension.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "ecartes_avec_elastique",
     "name": "Écartés avec élastique",
     "url": "https://www.docteur-fitness.com/ecartes-avec-elastique",
-    "icon": "/exercise_icons/écartés-avec-élastique.png"
+    "icon": "/exercise_icons/écartés-avec-élastique.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "ecartes_couche_avec_halteres",
     "name": "Écartés couché avec haltères",
     "url": "https://www.docteur-fitness.com/ecartes-couche-avec-halteres",
-    "icon": "/exercise_icons/écartés-couché-avec-haltères.png"
+    "icon": "/exercise_icons/écartés-couché-avec-haltères.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "ecartes_couche_a_la_poulie_vis_a_vis",
     "name": "Écartés couché à la poulie vis-à-vis",
     "url": "https://www.docteur-fitness.com/ecartes-couche-la-poulie-vis-a-vis",
-    "icon": "/exercise_icons/écartés-couché-à-la-poulie-vis-à-vis.png"
+    "icon": "/exercise_icons/écartés-couché-à-la-poulie-vis-à-vis.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "ecartes_decline_avec_halteres",
     "name": "Écartés décliné avec haltères",
     "url": "https://www.docteur-fitness.com/ecartes-decline-avec-halteres",
-    "icon": "/exercise_icons/écartés-décliné-avec-haltères.png"
+    "icon": "/exercise_icons/écartés-décliné-avec-haltères.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "ecartes_hyght",
     "name": "Écartés Hyght",
     "url": "https://www.docteur-fitness.com/ecartes-hyght",
-    "icon": "/exercise_icons/écartés-hyght.png"
+    "icon": "/exercise_icons/écartés-hyght.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "ecartes_incline_avec_halteres",
     "name": "Écartés incliné avec haltères",
     "url": "https://www.docteur-fitness.com/ecartes-incline-avec-halteres",
-    "icon": "/exercise_icons/écartés-incliné-avec-haltères.png"
+    "icon": "/exercise_icons/écartés-incliné-avec-haltères.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "ecartes_unilateraux_a_la_landmine",
     "name": "Écartés unilatéraux à la landmine",
     "url": "https://www.docteur-fitness.com/ecartes-unilateraux-a-la-landmine",
-    "icon": "/exercise_icons/écartés-unilatéraux-à-la-landmine.png"
+    "icon": "/exercise_icons/écartés-unilatéraux-à-la-landmine.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "ecartes_a_la_poulie_haute",
     "name": "Écartés à la poulie haute",
     "url": "https://www.docteur-fitness.com/ecartes-a-la-poulie-haute",
-    "icon": "/exercise_icons/écartés-à-la-poulie-haute.png"
+    "icon": "/exercise_icons/écartés-à-la-poulie-haute.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "ecartes_a_la_poulie_vis_a_vis",
     "name": "Écartés à la poulie vis-à-vis",
     "url": "https://www.docteur-fitness.com/ecartes-a-la-poulie-vis-a-vis-pour-les-pectoraux",
-    "icon": "/exercise_icons/écartés-à-la-poulie-vis-à-vis.png"
+    "icon": "/exercise_icons/écartés-à-la-poulie-vis-à-vis.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "elevations_des_mollets_au_donkey",
     "name": "Élévations des mollets au Donkey",
     "url": "https://www.docteur-fitness.com/elevations-des-mollets-au-donkey",
-    "icon": "/exercise_icons/élévations-des-mollets-au-donkey.png"
+    "icon": "/exercise_icons/élévations-des-mollets-au-donkey.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "elevations_frontales",
     "name": "Élévations frontales",
     "url": "https://www.docteur-fitness.com/elevations-frontales",
-    "icon": "/exercise_icons/élévations-frontales.png"
+    "icon": "/exercise_icons/élévations-frontales.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "elevations_frontales_a_la_poulie_basse",
     "name": "Élévations frontales à la poulie basse",
     "url": "https://www.docteur-fitness.com/elevations-frontales-a-la-poulie-basse",
-    "icon": "/exercise_icons/élévations-frontales-à-la-poulie-basse.png"
+    "icon": "/exercise_icons/élévations-frontales-à-la-poulie-basse.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "elevations_laterales",
     "name": "Élévations latérales",
     "url": "https://www.docteur-fitness.com/elevations-laterales",
-    "icon": "/exercise_icons/élévations-latérales.png"
+    "icon": "/exercise_icons/élévations-latérales.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "elevations_laterales_avec_kettlebell",
     "name": "Élévations latérales avec kettlebell",
     "url": "https://www.docteur-fitness.com/elevations-laterales-avec-kettlebell",
-    "icon": "/exercise_icons/élévations-latérales-avec-kettlebell.png"
+    "icon": "/exercise_icons/élévations-latérales-avec-kettlebell.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "elevations_laterales_avec_landmine",
     "name": "Élévations latérales avec landmine",
     "url": "https://www.docteur-fitness.com/elevations-laterales-avec-landmine",
-    "icon": "/exercise_icons/élévations-latérales-avec-landmine.png"
+    "icon": "/exercise_icons/élévations-latérales-avec-landmine.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "elevations_laterales_inclinees_avec_haltere",
     "name": "Élévations latérales inclinées avec haltère",
     "url": "https://www.docteur-fitness.com/elevations-laterales-inclinees-avec-haltere",
-    "icon": "/exercise_icons/élévations-latérales-inclinées-avec-haltère.png"
+    "icon": "/exercise_icons/élévations-latérales-inclinées-avec-haltère.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "elevations_laterales_unilaterales_a_la_poulie",
     "name": "Élévations latérales unilatérales à la poulie",
     "url": "https://www.docteur-fitness.com/elevations-laterales-unilaterale-poulie",
-    "icon": "/exercise_icons/élévations-latérales-unilatérales-à-la-poulie.png"
+    "icon": "/exercise_icons/élévations-latérales-unilatérales-à-la-poulie.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "elevations_laterales_a_la_machine",
     "name": "Élévations latérales à la machine",
     "url": "https://www.docteur-fitness.com/elevations-laterales-a-la-machine",
-    "icon": "/exercise_icons/élévations-latérales-à-la-machine.png"
+    "icon": "/exercise_icons/élévations-latérales-à-la-machine.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   },
   {
     "id": "elevations_laterales_a_la_poulie",
     "name": "Élévations latérales à la poulie",
     "url": "https://www.docteur-fitness.com/elevations-laterales-a-la-poulie",
-    "icon": "/exercise_icons/élévations-latérales-à-la-poulie.png"
+    "icon": "/exercise_icons/élévations-latérales-à-la-poulie.png",
+    "description": "",
+    "equipment": "",
+    "type": "",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
   }
 ]
