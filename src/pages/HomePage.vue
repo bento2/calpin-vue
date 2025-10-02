@@ -35,10 +35,26 @@ onMounted(async () => {
       </v-btn>
     </v-card>
   </v-main>
-  <v-footer app fixed class="bg-transparent d-flex flex-row justify-space-between " >
-    <UserAvatar />
-    <v-btn :to="{name: 'trainings'}">Entrainements</v-btn>
-  </v-footer>
+
+
+    <v-bottom-navigation grow height="64" class="bg-transparent d-flex align-center">
+      <UserAvatar />
+      <v-btn class="d-flex flex-column align-center" variant="text" :to="{ name: 'trainings' }">
+        <v-icon size="28">mdi-dumbbell</v-icon>
+        <span class="text-caption">Entraînements</span>
+      </v-btn>
+
+      <v-btn class="d-flex flex-column align-center" variant="text" :to="{ name: 'exercices' }">
+        <v-icon size="28">mdi-run</v-icon>
+        <span class="text-caption">Exercices</span>
+      </v-btn>
+
+      <v-btn class="d-flex flex-column align-center" variant="text">
+        <v-icon size="28">mdi-history</v-icon>
+        <span class="text-caption">Historiques</span>
+      </v-btn>
+    </v-bottom-navigation>
+
 </template>
 
 <style scoped></style>
