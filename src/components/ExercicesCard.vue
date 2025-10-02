@@ -24,10 +24,7 @@ onMounted(async () => {
   exercices.value = utils.find({ page: page.value })
 })
 
-const updateExercices = ({ done }: {
-  done: (status: 'ok' | 'empty' | 'error') => void;
-
-}) => {
+const updateExercices = ({ done }: { done: (status: 'ok' | 'empty' | 'error') => void }) => {
   const newExercices = utils.find({ page: ++page.value, filter: filter.value })
   exercices.value.push(...newExercices)
   done(newExercices.length > 0 ? 'ok' : 'empty')
@@ -58,16 +55,29 @@ watch(filter, (newValue) => {
 
 <template>
   <div class="mt-2">
-    <v-text-field clearable label="Recherche" variant="outlined" v-model="filter" placeholder="Nom d'un exercice"
-      append-inner-icon="mdi-magnify" hide-details="auto" density="compact"
-      @click:clear="() => (filter = '')"></v-text-field>
-    <v-infinite-scroll :items="merged" @load="updateExercices" ref="scroll">
+    <v-text-field
+      clearable
+      label="Recherche"
+      variant="outlined"
+      v-model="filter"
+      placeholder="Nom d'un exercice"
+      append-inner-icon="mdi-magnify"
+      hide-details="auto"
+      density="compact"
+      @click:clear="() => (filter = '')"
+    ></v-text-field>
+    <v-infinite-scroll :items="merged" @load="updateExercices" ref="scroll" :key="filter">
       <template v-for="exercice of merged" :key="exercice.id">
         <ExerciceCard :exercice="exercice">
           <template v-slot:actions>
-            <v-checkbox v-if="props.selectable" class="align-self-end" hide-details="auto"
-              :model-value="selectedExercices.some((e) => e.id === exercice.id)" color="success"
-              @update:model-value="() => updateSelected(exercice)"></v-checkbox>
+            <v-checkbox
+              v-if="props.selectable"
+              class="align-self-end"
+              hide-details="auto"
+              :model-value="selectedExercices.some((e) => e.id === exercice.id)"
+              color="success"
+              @update:model-value="() => updateSelected(exercice)"
+            ></v-checkbox>
           </template>
         </ExerciceCard>
       </template>
