@@ -6,8 +6,9 @@ import { useSessionStore } from '@/stores/session.ts'
 import { useRouter } from 'vue-router'
 import { useTrainingStore } from '@/stores/training.ts'
 
-const props = defineProps<{ training: Training }>()
+const props = defineProps<{ training: Training, showDelete?: boolean }>()
 const training = props.training
+const showDelete = props.showDelete ?? true;
 const { createSession } = useSessionStore()
 const { deleteTrainingById } = useTrainingStore()
 const router = useRouter()
@@ -34,7 +35,7 @@ const remove = () => {
           variant="text"
           :to="{ name: 'training', params: { id: training.id } }"
         ></v-btn>
-        <v-btn icon="mdi-delete" variant="text" @click="remove"></v-btn>
+        <v-btn icon="mdi-delete" variant="text" @click="remove" v-if="showDelete"></v-btn>
       </div>
     </v-card-title>
 

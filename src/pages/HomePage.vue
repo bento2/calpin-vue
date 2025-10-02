@@ -61,7 +61,7 @@ onMounted(async () => {
       <span class="text-caption">Exercices</span>
     </v-btn>
 
-    <v-btn class="d-flex flex-column align-center" variant="text">
+    <v-btn class="d-flex flex-column align-center" variant="text" :to="{ name: 'history' }">
       <v-icon size="28">mdi-history</v-icon>
       <span class="text-caption">Historiques</span>
     </v-btn>

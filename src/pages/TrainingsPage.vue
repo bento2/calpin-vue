@@ -20,7 +20,7 @@ const newTraining = async () => {
 
 <template>
   <v-btn @click="newTraining" class="mb-4">Nouvel entrainement</v-btn>
-  <TrainingCard v-for="training in trainings" :key="training.id" :training="training" />
+  <TrainingCard v-for="training in trainings" :key="training.id" :training="training" :showDelete="true"/>
 </template>
 
 <style scoped></style>
