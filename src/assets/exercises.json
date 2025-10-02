@@ -1650,6 +1650,28 @@
     "muscles_secondaires": []
   },
   {
+    "id": "abducteurs_assis_a_la_machine",
+    "name": "Abducteurs assis à la machine",
+    "url": "",
+    "icon": "",
+    "description": "",
+    "equipment": "Machine Abducteurs",
+    "type": "Machine",
+    "muscles_principaux": ["Moyens et petits fessiers"],
+    "muscles_secondaires": []
+  },
+  {
+    "id": "adducteurs_assis_a_la_machine",
+    "name": "Adducteurs assis à la machine",
+    "url": "",
+    "icon": "",
+    "description": "",
+    "equipment": "Machine Adducteurs",
+    "type": "Machine",
+    "muscles_principaux": ["Moyens et petits fessiers"],
+    "muscles_secondaires": []
+  },
+  {
     "id": "extensions_des_triceps_decline_avec_halteres",
     "name": "Extensions des triceps décliné avec haltères",
     "url": "https://www.docteur-fitness.com/extensions-des-triceps-decline-avec-halteres",
@@ -2325,8 +2347,8 @@
     "url": "https://www.docteur-fitness.com/pec-deck-inverse",
     "icon": "/exercise_icons/pec-deck-inversé.png",
     "description": "",
-    "equipment": "",
-    "type": "",
+    "equipment": "ButterFly machine",
+    "type": "Machine",
     "muscles_principaux": [],
     "muscles_secondaires": []
   },
@@ -2336,8 +2358,8 @@
     "url": "https://www.docteur-fitness.com/pec-deck-ou-butterfly",
     "icon": "/exercise_icons/pec-deck-ou-butterfly.png",
     "description": "",
-    "equipment": "",
-    "type": "",
+    "equipment": "ButterFly machine",
+    "type": "Machine",
     "muscles_principaux": [],
     "muscles_secondaires": []
   },
@@ -2478,8 +2500,19 @@
     "url": "https://www.docteur-fitness.com/pompes-inclinees-sur-smith-machine",
     "icon": "/exercise_icons/pompes-inclinées-sur-smith-machine.png",
     "description": "",
-    "equipment": "",
-    "type": "",
+    "equipment": "Smith Machine",
+    "type": "Machine",
+    "muscles_principaux": [],
+    "muscles_secondaires": []
+  },
+  {
+    "id": "squat_sur_smith_machine",
+    "name": "Squat à la Smith machine",
+    "url": "https://www.docteur-fitness.com/squat-a-la-smith-machine",
+    "icon": "",
+    "description": "",
+    "equipment": "Smith Machine",
+    "type": "Machine",
     "muscles_principaux": [],
     "muscles_secondaires": []
   },
