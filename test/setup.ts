@@ -6,6 +6,7 @@ import * as directives from 'vuetify/directives'
 
 // Polyfills pour jsdom
 import { TextEncoder, TextDecoder } from 'util'
+import { vi } from 'vitest'
 
 global.TextEncoder = global.TextEncoder || TextEncoder
 global.TextDecoder = global.TextDecoder || TextDecoder

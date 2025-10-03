@@ -35,9 +35,9 @@ export const useTrainingStore = defineStore(storageName, {
 
     async createTraining() {
       await this.ensureLoaded()
-      const training =  TrainingSchema.parse({
+      const training = TrainingSchema.parse({
         id: uuidv4().toLowerCase(),
-        name: 'Entrainement '+(this.trainings.length + 1).toString(),
+        name: 'Entrainement ' + (this.trainings.length + 1).toString(),
         exercices: [],
         ctime: new Date(),
         mtime: new Date(),
@@ -90,36 +90,36 @@ export const useTrainingStore = defineStore(storageName, {
       this.trainings = []
       try {
         const data = await this.storage.load()
-        console.log(data)
         if (data) {
           this.trainings = z.array(TrainingSchema).parse(data)
         }
         this.loaded = true
 
+
         this.storage.enableRealtimeSync((data) => {
           if (data) {
-            console.log('🔄 Préférences synchronisées depuis un autre appareil');
-            this.trainings = data;
-            this.lastSync = new Date();
+            console.log('🔄 Préférences synchronisées depuis un autre appareil')
+            console.log(this.trainings)
+            this.trainings = data
+            console.log(this.trainings)
+            this.lastSync = new Date()
 
             // Émettre un événement pour notifier l'UI
-            window.dispatchEvent(new CustomEvent('preferences:synced', {
-              detail: data
-            }));
+            window.dispatchEvent(
+              new CustomEvent('preferences:synced', {
+                detail: data,
+              }),
+            )
           }
-        });
-
+        })
       } catch (error) {
         this.error = `Erreur lors du chargement: ${getErrorMessage(error)}`
         console.error('Erreur lors du chargement des trainings:', error)
 
         this.loaded = true
-
       } finally {
         this.loading = false
       }
-
-
     },
 
     async persistTrainings() {

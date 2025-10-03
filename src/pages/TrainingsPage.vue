@@ -1,26 +1,40 @@
 <script setup lang="ts">
 import { useTrainingStore } from '@/stores/training.ts'
 import TrainingCard from '@/components/TrainingCard.vue'
-import { onMounted, ref } from 'vue'
-import type { Training } from '@/types/TrainingSchema.ts'
-import { useRouter } from 'vue-router'
 
-const { getTrainings, createTraining } = useTrainingStore()
-const trainings = ref<Training[]>([])
+import { useRouter } from 'vue-router'
+import { computed, onMounted, ref, watch } from 'vue'
+
+const store = useTrainingStore()
 const router = useRouter()
+const update = ref(0)
+
 onMounted(async () => {
-  trainings.value = await getTrainings()
+  await store.loadTrainings()
 })
 
 const newTraining = async () => {
-  const training = await createTraining()
+  const training = await store.createTraining()
   router.push({ name: 'training', params: { id: training.id } })
 }
+
+const trainings = computed(() => store.trainings)
+
+watch(trainings, () => {
+  update.value++;
+})
 </script>
 
 <template>
   <v-btn @click="newTraining" class="mb-4">Nouvel entrainement</v-btn>
-  <TrainingCard v-for="training in trainings" :key="training.id" :training="training" :showDelete="true"/>
+  <div :key="update">
+    <TrainingCard
+      v-for="training in trainings"
+      :key="training.id"
+      :training="training"
+      :showDelete="true"
+    />
+  </div>
 </template>
 
 <style scoped></style>
