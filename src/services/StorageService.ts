@@ -68,9 +68,9 @@ export class StorageService<T> {
    * @param callback - Fonction appelée lors d'une mise à jour
    * @returns Fonction pour désactiver la synchro
    */
-  enableRealtimeSync(callback?: (data: T | null) => void): Unsubscribe | null {
+  async enableRealtimeSync(callback?: (data: T | null) => void): Promise<Unsubscribe | null> {
     if (this.adapter instanceof FirebaseStorageAdapter) {
-      this.realtimeUnsubscribe = this.adapter.setupRealtimeSync(this.key, callback);
+      this.realtimeUnsubscribe = await this.adapter.setupRealtimeSync(this.key, callback);
       return this.realtimeUnsubscribe;
     }
     console.warn('La synchronisation temps réel nécessite FirebaseStorageAdapter');
