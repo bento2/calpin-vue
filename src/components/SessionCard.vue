@@ -6,7 +6,7 @@ const model = defineModel<Session>()
 
 <template>
   <v-card>
-    {{ model.name }}
+    {{ model?.name ?? 'Pas de nom' }}
   </v-card>
 </template>
 
