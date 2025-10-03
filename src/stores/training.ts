@@ -15,8 +15,9 @@ export const useTrainingStore = defineStore(storageName, {
     error: null as string | null,
     // Service de stockage configurable
     storage: new StorageService<Training[]>(storageName, {
-      adapter: 'localStorage',
+      adapter: 'firebase',
     }),
+    lastSync: null as Date | null,
   }),
 
   getters: {
@@ -83,23 +84,42 @@ export const useTrainingStore = defineStore(storageName, {
     },
     async loadTrainings() {
       if (this.loading) return
+
       this.loading = true
       this.error = null
       this.trainings = []
       try {
         const data = await this.storage.load()
+        console.log(data)
         if (data) {
           this.trainings = z.array(TrainingSchema).parse(data)
         }
         this.loaded = true
+
+        this.storage.enableRealtimeSync((data) => {
+          if (data) {
+            console.log('🔄 Préférences synchronisées depuis un autre appareil');
+            this.trainings = data;
+            this.lastSync = new Date();
+
+            // Émettre un événement pour notifier l'UI
+            window.dispatchEvent(new CustomEvent('preferences:synced', {
+              detail: data
+            }));
+          }
+        });
+
       } catch (error) {
         this.error = `Erreur lors du chargement: ${getErrorMessage(error)}`
         console.error('Erreur lors du chargement des trainings:', error)
 
         this.loaded = true
+
       } finally {
         this.loading = false
       }
+
+
     },
 
     async persistTrainings() {
