@@ -8,10 +8,11 @@ const exerciceMock: Exercice = {
   id: '1',
   name: 'Pompes',
   icon: '/icons/push-up.png',
-  difficulty: 'débutant'
+  difficulty: 'débutant',
+  hasEquipment: true
 }
 
-describe("ExerciceCard", () => {
+describe('ExerciceCard', () => {
   it('Render ExerciceCard', () => {
     const wrapper = mount(ExerciceCard, {
       props: {
@@ -32,5 +33,4 @@ describe("ExerciceCard", () => {
     // Snapshot test
     expect(wrapper.html()).toMatchSnapshot()
   })
-
 })

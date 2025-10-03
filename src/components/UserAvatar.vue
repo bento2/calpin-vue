@@ -1,24 +1,26 @@
 <template>
   <v-tooltip v-if="auth.isAuthenticated" :text="auth.user?.displayName ?? ''">
     <template #activator="{ props: activatorProps }">
-      <v-avatar
-        v-bind="activatorProps"
-        :size="size"
-        :class="['user-avatar', roundedClass]"
-        :style="avatarStyle"
-      >
-        <v-img
-          v-if="auth.user?.photoURL !== null && !imageError"
-          :src="auth.user?.photoURL ?? ''"
-          :alt="altText"
-          @error="onImageError"
-          cover
-        />
-        <template v-else>
-          <span v-if="initials" class="initials">{{ initials }}</span>
-          <v-icon v-else class="anon-icon" size="20">mdi-account</v-icon>
-        </template>
-      </v-avatar>
+      <v-btn>
+        <v-avatar
+          v-bind="activatorProps"
+          :size="size"
+          :class="['user-avatar', roundedClass]"
+          :style="avatarStyle"
+        >
+          <v-img
+            v-if="auth.user?.photoURL !== null && !imageError"
+            :src="auth.user?.photoURL ?? ''"
+            :alt="altText"
+            @error="onImageError"
+            cover
+          />
+          <template v-else>
+            <span v-if="initials" class="initials">{{ initials }}</span>
+            <v-icon v-else class="anon-icon" size="20">mdi-account</v-icon>
+          </template>
+        </v-avatar>
+      </v-btn>
     </template>
   </v-tooltip>
 
@@ -80,9 +82,7 @@ const initials = computed(() => {
   return (parts[0][0] + parts[1][0]).toUpperCase()
 })
 
-const altText = computed(() =>
-  auth.user ? `${auth.user.displayName}` : 'Utilisateur invité',
-)
+const altText = computed(() => (auth.user ? `${auth.user.displayName}` : 'Utilisateur invité'))
 
 // rounded class
 const roundedClass = computed(() => {
@@ -120,7 +120,6 @@ const avatarStyle = computed(() => {
 })
 
 const auth = useAuthStore()
-
 </script>
 
 <style scoped>

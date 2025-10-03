@@ -9,7 +9,7 @@ export interface StorageAdapter<T = unknown> {
 
 
 export type StorageConfig = {
-  adapter: 'localStorage' | 'indexedDB' | 'memory';
+  adapter: 'localStorage' | 'indexedDB' | 'memory' | 'firebase';
   dbName?: string;
   version?: number;
 };

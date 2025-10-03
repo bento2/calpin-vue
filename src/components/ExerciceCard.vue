@@ -4,13 +4,18 @@ import ExerciceIcon from '@/components/ExerciceIcon.vue'
 
 const props = defineProps<{ exercice: Exercice }>()
 const { exercice } = props
+
 </script>
 
 <template>
   <v-card class="bg-blue-accent-2" elevation="2" outline>
     <v-card-text class="d-flex align-center font-bold mb-1 ga-1">
       <ExerciceIcon :exercice="exercice" />
-      <div class="font-bold flex-grow-1">{{ exercice.name }}</div>
+      <div class="font-bold flex-grow-1 d-flex flex-column">
+        {{ exercice.name }}
+        <span class="text-caption" v-if="exercice.hasEquipment">{{ exercice.equipment}}</span>
+      </div>
+
       <slot name="actions"></slot>
     </v-card-text>
   </v-card>
