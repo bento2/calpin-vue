@@ -14,6 +14,7 @@ const { exercice } = props
       <div class="font-bold flex-grow-1 d-flex flex-column">
         {{ exercice.name }}
         <span class="text-caption" v-if="exercice.hasEquipment">{{ exercice.equipment}}</span>
+        <slot name="subtitle"></slot>
       </div>
 
       <slot name="actions"></slot>

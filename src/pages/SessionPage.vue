@@ -7,6 +7,8 @@ import ExerciceCard from '@/components/ExerciceCard.vue'
 import SeriesCard from '@/components/SeriesCard.vue'
 import { useSessionTimer } from '@/composables/useSessionTimer.ts'
 import Exercices from '@/components/ExercicesCard.vue'
+import type { ExerciceSeries } from '@/types/ExerciceSeriesSchema.ts'
+import { isCompleted, nbChecked } from '@/composables/useExerciceSeries'
 
 const session = ref<Session | null>(null)
 const { getSessionById, deleteSession, finishSession, restartSession, updateSession } =
@@ -91,6 +93,9 @@ const toggle = (index: number) => {
 const isOpen = (index: number) => openIndexes.value.has(index)
 
 const dialogExercices = ref(false)
+
+
+
 
 const updateExercices = () => {
   //il y a eu une mise à jour des exercices pour en ajouter 1
@@ -218,7 +223,12 @@ const updateExercices = () => {
       :key="exercice.id"
       class="d-flex flex-column justify-center"
     >
-      <ExerciceCard :exercice="exercice">
+      <ExerciceCard :exercice="exercice as ExerciceSeries">
+        <template #subtitle>
+          <p class="text-caption" :key="exercice.nbChecked" :class="{ 'text-green-lighten-1': isCompleted(exercice).value }">
+            Nombre de d'exercice : {{ nbChecked(exercice) }}/{{ exercice.series?.length }}
+          </p>
+        </template>
         <template #actions>
           <v-menu>
             <template v-slot:activator="{ props }">

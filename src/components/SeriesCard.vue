@@ -18,10 +18,15 @@ const add = () => {
 </script>
 
 <template>
-  <v-card v-for="(serie, index) in series" :key="index"  hover :color="serie.checked ? 'success':''">
+  <v-card
+    v-for="(serie, index) in series"
+    :key="index"
+    hover
+    :color="serie.checked ? 'success' : ''"
+  >
     <div class="d-flex flex-row align-center pa-2 justify-start" style="min-width: 320px">
       <v-checkbox
-        :label="(index+1).toString()"
+        :label="(index + 1).toString()"
         color="primary"
         hide-details
         class="mr-2 rounded-checkbox"
