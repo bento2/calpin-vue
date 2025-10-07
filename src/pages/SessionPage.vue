@@ -7,8 +7,6 @@ import ExerciceCard from '@/components/ExerciceCard.vue'
 import SeriesCard from '@/components/SeriesCard.vue'
 import { useSessionTimer } from '@/composables/useSessionTimer.ts'
 import Exercices from '@/components/ExercicesCard.vue'
-import type { Exercice } from '@/types/ExerciceSchema.ts'
-import { type ExerciceSeries, ExerciceSeriesSchema } from '@/types/ExerciceSeriesSchema.ts'
 
 const session = ref<Session | null>(null)
 const { getSessionById, deleteSession, finishSession, restartSession, updateSession } =
