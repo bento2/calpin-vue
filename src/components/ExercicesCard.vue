@@ -43,7 +43,9 @@ const updateSelected = (exercice: Exercice): void => {
 }
 
 const merged = computed(() => {
-  return [...new Map([...selectedExercices, ...exercices.value].map((e) => [e.id, e])).values()]
+  return exercices.value.filter(
+    (e) => !selectedExercices.some((s) => s.id === e.id)
+  )
 })
 
 watch(filter, (newValue) => {
