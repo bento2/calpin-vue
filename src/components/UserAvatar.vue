@@ -23,22 +23,23 @@
       </v-btn>
     </template>
   </v-tooltip>
-
-  <v-avatar v-else :size="size" :class="['user-avatar', roundedClass]" :style="avatarStyle">
-    <v-img
-      v-if="hasImage && !imageError"
-      :src="avatarUrl"
-      :alt="altText"
-      @error="onImageError"
-      cover
-    />
-    <template v-else>
-      <v-btn @click="auth.login()">
-        <span v-if="initials" class="initials">{{ initials }}</span>
-        <v-icon v-else class="anon-icon" size="20">mdi-account</v-icon>
-      </v-btn>
-    </template>
-  </v-avatar>
+  <v-btn v-else>
+    <v-avatar :size="size" :class="['user-avatar', roundedClass]" :style="avatarStyle">
+      <v-img
+        v-if="hasImage && !imageError"
+        :src="avatarUrl"
+        :alt="altText"
+        @error="onImageError"
+        cover
+      />
+      <template v-else>
+        <v-btn @click="auth.login()">
+          <span v-if="initials" class="initials">{{ initials }}</span>
+          <v-icon v-else class="anon-icon" size="20">mdi-account</v-icon>
+        </v-btn>
+      </template>
+    </v-avatar>
+  </v-btn>
 </template>
 
 <script setup lang="ts">
