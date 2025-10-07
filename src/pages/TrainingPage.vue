@@ -5,6 +5,7 @@ import ExerciceCard from '@/components/ExerciceCard.vue'
 import Exercices from '@/components/ExercicesCard.vue'
 import { useTrainingStore } from '@/stores/training.ts'
 import { useRoute } from 'vue-router'
+import draggable from 'vuedraggable'
 
 const props = defineProps<{ training?: Training }>()
 const route = useRoute()
@@ -16,6 +17,22 @@ const isLoading = ref(true)
 const showSave = computed(() => {
   return training.value?.exercices && training.value.exercices.length > 0
 })
+
+const moveUp = (index: number) => {
+  if (index > 0 && training.value) {
+    const tmp = training.value?.exercices[index - 1]
+    training.value.exercices[index - 1] = training.value.exercices[index]
+    training.value.exercices[index] = tmp
+  }
+}
+
+const moveDown = (index: number) => {
+  if (training.value && index < training.value.exercices.length - 1) {
+    const tmp = training.value?.exercices[index + 1]
+    training.value.exercices[index + 1] = training.value.exercices[index]
+    training.value.exercices[index] = tmp
+  }
+}
 
 const { saveTraining, getTrainingById, createTraining } = useTrainingStore()
 
@@ -48,9 +65,6 @@ const save = () => {
     saveTraining(training.value)
   }
 }
-
-
-
 </script>
 
 <template>
@@ -65,18 +79,41 @@ const save = () => {
       ></v-text-field>
     </v-card-title>
 
-    <template v-if="training.exercices && training.exercices.length > 0">
-      <ExerciceCard
-        v-for="exercice in training.exercices"
-        :key="exercice.id"
-        :exercice="exercice"
-        class="w-100 mb-1"
-      >
-        <template #actions>
-          <v-btn icon="mdi-delete" variant="text" @click="remove(exercice.id)"></v-btn>
-        </template>
-      </ExerciceCard>
-    </template>
+    <draggable
+      v-model="training.exercices"
+      item-key="id"
+      :animation="200"
+      v-if="training.exercices && training.exercices.length > 0"
+    >
+      <template #item="{ element: exercice, index: idx }">
+        <ExerciceCard :key="exercice.id" :exercice="exercice" class="w-100 mb-1">
+          <template #actions>
+            <v-menu>
+              <template v-slot:activator="{ props }">
+                <v-btn icon="mdi-dots-vertical" variant="outlined" v-bind="props"></v-btn>
+              </template>
+              <v-list>
+                <v-list-item @click="moveUp(idx)" v-if="idx > 0">
+                  <v-list-item-title>Monter</v-list-item-title>
+                </v-list-item>
+                <v-list-item @click="moveDown(idx)" v-if="idx < training.exercices.length - 1">
+                  <v-list-item-title>Descendre</v-list-item-title>
+                </v-list-item>
+                <v-list-item @click="remove(exercice.id)">
+                  <v-list-item-title>
+                    <v-icon>mdi-delete</v-icon>
+                    Supprimer
+                  </v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
+            <v-btn icon variant="text" class="drag-handle" title="Déplacer">
+              <v-icon>mdi-drag</v-icon>
+            </v-btn>
+          </template>
+        </ExerciceCard>
+      </template>
+    </draggable>
 
     <v-card-item class="text-center text-blue">
       <v-btn variant="elevated" @click="dialog = true" class="mt-2 mb-2">
