@@ -12,6 +12,11 @@ export const ExerciceSeriesSchema = BaseExerciceSchema.extend({
       if (!data.series || data.series.length === 0) return false
       return data.series.every((serie) => serie.checked === true)
     },
+    get nbChecked() {
+      if (!data.series || data.series.length === 0) return 0
+      return data.series.filter((serie) => serie.checked).length
+
+    },
   }
 })
 

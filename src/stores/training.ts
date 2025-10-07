@@ -99,11 +99,8 @@ export const useTrainingStore = defineStore(storageName, {
         this.storage.enableRealtimeSync((data) => {
           if (data) {
             console.log('🔄 Préférences synchronisées depuis un autre appareil')
-            console.log(this.trainings)
             this.trainings = data
-            console.log(this.trainings)
             this.lastSync = new Date()
-
             // Émettre un événement pour notifier l'UI
             window.dispatchEvent(
               new CustomEvent('preferences:synced', {
