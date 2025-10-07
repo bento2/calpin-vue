@@ -33,6 +33,7 @@ export default class SessionService {
     return exercices.map((exercice) => ({
       ...exercice,
       completed : false,
+      nbChecked: 0,
       series: Array.from({ length: defaultSeriesCount }, () => ({
         poids: 0,
         repetitions: 0,
