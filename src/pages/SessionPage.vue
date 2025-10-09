@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue'
-import { useSessionStore } from '@/stores/session.ts'
+import { useSessionStore } from '@/stores/useSessionStore.ts'
 import { useRoute, useRouter } from 'vue-router'
 import type { Session } from '@/types/SessionSchema.ts'
 import ExerciceCard from '@/components/ExerciceCard.vue'

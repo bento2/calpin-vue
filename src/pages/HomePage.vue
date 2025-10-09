@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useSessionStore } from '@/stores/session.ts'
+import { useSessionStore } from '@/stores/useSessionStore.ts'
 import { onMounted, ref } from 'vue'
 import type { Session } from '@/types/SessionSchema.ts'
 import { useSessionTimer } from '@/composables/useSessionTimer.ts'
 import UserAvatar from '@/components/UserAvatar.vue'
-import { useTrainingStore } from '@/stores/training.ts'
+import { useTrainingStore } from '@/stores/useTrainingStore.ts'
 import type { Training } from '@/types/TrainingSchema.ts'
 import TrainingCard from '@/components/TrainingCard.vue'
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useTrainingStore } from '@/stores/training.ts'
+import { useTrainingStore } from '@/stores/useTrainingStore.ts'
 import TrainingCard from '@/components/TrainingCard.vue'
 
 import { useRouter } from 'vue-router'
