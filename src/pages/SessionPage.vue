@@ -5,7 +5,7 @@ import { useRoute, useRouter } from 'vue-router'
 import type { Session } from '@/types/SessionSchema.ts'
 import ExerciceCard from '@/components/ExerciceCard.vue'
 import SeriesCard from '@/components/SeriesCard.vue'
-import { useSessionTimer } from '@/composables/useSessionTimer.ts'
+import { getErrorMessage } from '@/composables/getErrorMessage.ts'
 import Exercices from '@/components/ExercicesCard.vue'
 import type { ExerciceSeries } from '@/types/ExerciceSeriesSchema.ts'
 import { isCompleted, nbChecked } from '@/composables/useExerciceSeries'
@@ -15,7 +15,7 @@ const { getSessionById, deleteSession, finishSession, restartSession, updateSess
   useSessionStore()
 const route = useRoute()
 const router = useRouter()
-const { diff } = useSessionTimer(session)
+const { diff } = getErrorMessage(session)
 
 onMounted(async () => {
   if (route.params.id) {

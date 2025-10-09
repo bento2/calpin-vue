@@ -5,7 +5,7 @@ import SessionService from '@/services/SessionService.ts'
 import { StorageService } from '@/services/StorageService.ts'
 import type { StorageConfig } from '@/Storages/StorageAdapter.ts'
 import { z } from 'zod'
-import { getErrorMessage } from '@/services/Functions.ts'
+import { getErrorMessage } from '@/composables/Functions.ts'
 
 const storageName = 'sessions'
 export const useSessionStore = defineStore(storageName, {

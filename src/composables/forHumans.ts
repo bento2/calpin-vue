@@ -1,13 +1,3 @@
-export function getErrorMessage(error: unknown): string {
-  if (error instanceof Error) {
-    return error.message
-  }
-  if (typeof error === 'string') {
-    return error
-  }
-  return 'Une erreur inconnue est survenue'
-}
-
 /**
  * Translates seconds into human readable format of seconds, minutes, hours, days, and years
  *

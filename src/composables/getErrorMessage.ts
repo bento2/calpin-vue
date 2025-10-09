@@ -1,11 +1,12 @@
 import { ref, type Ref, onMounted, onUnmounted, watch } from 'vue'
-import { forHumans } from '@/services/Functions.ts'
+
 import type { Session } from '@/types/SessionSchema.ts'
+import { forHumans } from '@/composables/forHumans.ts'
 
 /**
  * @param session Ref<{ dateDebut: Date } | null>
  */
-export function useSessionTimer(
+export function getErrorMessage(
   session: Ref<Session | null>,
 
 ) {
