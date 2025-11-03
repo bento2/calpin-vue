@@ -29,7 +29,7 @@ exports[`ExerciceCard > Check snapshot 1`] = `
       </div>
       <!----><span class="v-avatar__underlay"></span>
     </div>
-    <div class="font-bold flex-grow-1">Pompes</div>
+    <div class="font-bold flex-grow-1 d-flex flex-column">Pompes <span class="text-caption"></span></div>
   </div>
   <!---->
   <!----><span class="v-card__underlay"></span>
