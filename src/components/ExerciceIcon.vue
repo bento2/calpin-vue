@@ -6,17 +6,8 @@ const { exercice } = props
 </script>
 
 <template>
-  <v-avatar
-    size="56"
-    color="transparent"
-    class="border"
-    style="border: 2px solid black"
-  >
-    <v-img
-      :src="exercice.icon"
-      :alt="exercice.name"
-      cover
-    />
+  <v-avatar size="56" color="transparent" class="border" style="border: 2px solid black">
+    <v-img :src="exercice.icon" :alt="exercice.name" cover />
   </v-avatar>
 </template>
 

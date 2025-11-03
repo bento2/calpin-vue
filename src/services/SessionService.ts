@@ -22,6 +22,7 @@ export default class SessionService {
       exercices: this.initializeExercices(training.exercices),
       status: 'en_cours',
       ended: false,
+      nbChecked: 0
     }
   }
 

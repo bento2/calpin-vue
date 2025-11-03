@@ -3,7 +3,7 @@ import { type Training, TrainingSchema } from '@/types/TrainingSchema.ts'
 import { StorageService } from '@/services/StorageService.ts'
 import { z } from 'zod'
 
-import { getErrorMessage } from '@/services/Functions.ts'
+import { getErrorMessage } from '@/composables/Functions.ts'
 import { v4 as uuidv4 } from 'uuid'
 
 const storageName = 'trainings'

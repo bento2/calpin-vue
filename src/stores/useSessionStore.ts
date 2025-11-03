@@ -5,7 +5,7 @@ import SessionService from '@/services/SessionService.ts'
 import { StorageService } from '@/services/StorageService.ts'
 import type { StorageConfig } from '@/Storages/StorageAdapter.ts'
 import { z } from 'zod'
-import { getErrorMessage } from '@/services/Functions.ts'
+import { getErrorMessage } from '@/composables/Functions.ts'
 
 const storageName = 'sessions'
 export const useSessionStore = defineStore(storageName, {
@@ -16,8 +16,9 @@ export const useSessionStore = defineStore(storageName, {
     error: null as string | null,
     // Service de stockage configurable
     storage: new StorageService<Session[]>(storageName, {
-      adapter: 'localStorage', // Facile à changer ici
+      adapter: 'firebase', // Facile à changer ici
     }),
+    lastSync: null as Date | null,
   }),
 
   getters: {
@@ -164,6 +165,21 @@ export const useSessionStore = defineStore(storageName, {
         }
 
         this.loaded = true
+        this.storage.enableRealtimeSync((data) => {
+          if (data) {
+            console.log('🔄 Préférences synchronisées depuis un autre appareil')
+            this.sessions = data
+            this.lastSync = new Date()
+            // Émettre un événement pour notifier l'UI
+            window.dispatchEvent(
+              new CustomEvent('preferences:synced', {
+                detail: data,
+              }),
+            )
+          }
+        })
+
+
       } catch (error) {
         this.error = `Erreur lors du chargement: ${getErrorMessage(error)}`
         console.error('Erreur lors du chargement des sessions:', error)

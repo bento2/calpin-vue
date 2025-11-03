@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useSessionStore } from '@/stores/session.ts'
+import { useSessionStore } from '@/stores/useSessionStore.ts'
 import { onMounted, ref } from 'vue'
 import type { Session } from '@/types/SessionSchema.ts'
 import SessionCard from '@/components/SessionCard.vue'

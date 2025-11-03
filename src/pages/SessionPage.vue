@@ -1,21 +1,22 @@
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
-import { useSessionStore } from '@/stores/session.ts'
+import { onMounted, ref,  watch } from 'vue'
+import { useSessionStore } from '@/stores/useSessionStore.ts'
 import { useRoute, useRouter } from 'vue-router'
 import type { Session } from '@/types/SessionSchema.ts'
 import ExerciceCard from '@/components/ExerciceCard.vue'
 import SeriesCard from '@/components/SeriesCard.vue'
-import { useSessionTimer } from '@/composables/useSessionTimer.ts'
+import { getErrorMessage } from '@/composables/getErrorMessage.ts'
 import Exercices from '@/components/ExercicesCard.vue'
 import type { ExerciceSeries } from '@/types/ExerciceSeriesSchema.ts'
 import { isCompleted, nbChecked } from '@/composables/useExerciceSeries'
+import { debounce } from 'lodash-es'
 
 const session = ref<Session | null>(null)
 const { getSessionById, deleteSession, finishSession, restartSession, updateSession } =
   useSessionStore()
 const route = useRoute()
 const router = useRouter()
-const { diff } = useSessionTimer(session)
+const { diff } = getErrorMessage(session)
 
 onMounted(async () => {
   if (route.params.id) {
@@ -25,15 +26,23 @@ onMounted(async () => {
     }
   }
 })
+const debouncedUpdate = debounce((value) => {
+  updateSession(value)
+}, 2000)
 
 watch(
-  () => session.value,
-  (newValue) => {
-    if (newValue !== null) {
-      updateSession(newValue)
-      if (newValue?.ended) {
-        dialog.value = true
-      }
+  () => JSON.parse(JSON.stringify(session.value)),
+  (newValue, oldValue) => {
+    if (!newValue || !oldValue) return
+
+    //on regarde si il y une serie de terminée
+    if (newValue.nbChecked !== oldValue.nbChecked) {
+      debouncedUpdate(newValue)
+    }
+
+    debouncedUpdate(newValue)
+    if (newValue?.ended) {
+      dialog.value = true
     }
   },
   { deep: true },
@@ -93,9 +102,6 @@ const toggle = (index: number) => {
 const isOpen = (index: number) => openIndexes.value.has(index)
 
 const dialogExercices = ref(false)
-
-
-
 
 const updateExercices = () => {
   //il y a eu une mise à jour des exercices pour en ajouter 1
@@ -225,7 +231,11 @@ const updateExercices = () => {
     >
       <ExerciceCard :exercice="exercice as ExerciceSeries">
         <template #subtitle>
-          <p class="text-caption" :key="exercice.nbChecked" :class="{ 'text-green-lighten-1': isCompleted(exercice).value }">
+          <p
+            class="text-caption"
+            :key="exercice.nbChecked"
+            :class="{ 'text-green-lighten-1': isCompleted(exercice).value }"
+          >
             Nombre de d'exercice : {{ nbChecked(exercice) }}/{{ exercice.series?.length }}
           </p>
         </template>

@@ -22,6 +22,9 @@ export const SessionSchema = z
       }
       return data.exercices.every((exercice) => exercice.completed)
     },
+    get nbChecked() {
+      return data.exercices.reduce((count,  currentValue) => count+= (currentValue.completed?1:0) , 0)
+    }
   }))
 
 export type Session = z.infer<typeof SessionSchema>

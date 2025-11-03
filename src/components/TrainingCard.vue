@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { type Training } from '@/types/TrainingSchema.ts'
 import ExerciceIcon from '@/components/ExerciceIcon.vue'
-import { useSessionStore } from '@/stores/session.ts'
+import { useSessionStore } from '@/stores/useSessionStore.ts'
 
 import { useRouter } from 'vue-router'
-import { useTrainingStore } from '@/stores/training.ts'
+import { useTrainingStore } from '@/stores/useTrainingStore.ts'
 
 const props = defineProps<{ training: Training, showDelete?: boolean }>()
 const training = props.training

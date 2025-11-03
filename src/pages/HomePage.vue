@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useSessionStore } from '@/stores/session.ts'
+import { useSessionStore } from '@/stores/useSessionStore.ts'
 import { onMounted, ref } from 'vue'
 import type { Session } from '@/types/SessionSchema.ts'
-import { useSessionTimer } from '@/composables/useSessionTimer.ts'
+import { getErrorMessage } from '@/composables/getErrorMessage.ts'
 import UserAvatar from '@/components/UserAvatar.vue'
-import { useTrainingStore } from '@/stores/training.ts'
+import { useTrainingStore } from '@/stores/useTrainingStore.ts'
 import type { Training } from '@/types/TrainingSchema.ts'
 import TrainingCard from '@/components/TrainingCard.vue'
 
@@ -12,7 +12,7 @@ const { getSessionActive } = useSessionStore()
 const { getTrainings } = useTrainingStore()
 const activeSession = ref<Session | null>(null)
 const lastTrainnings = ref<Training[] | null>(null)
-const { diff } = useSessionTimer(activeSession)
+const { diff } = getErrorMessage(activeSession)
 
 onMounted(async () => {
   getSessionActive().then((session) => {

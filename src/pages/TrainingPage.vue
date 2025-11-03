@@ -3,7 +3,7 @@ import { type Training } from '@/types/TrainingSchema.ts'
 import { computed, onMounted, ref } from 'vue'
 import ExerciceCard from '@/components/ExerciceCard.vue'
 import Exercices from '@/components/ExercicesCard.vue'
-import { useTrainingStore } from '@/stores/training.ts'
+import { useTrainingStore } from '@/stores/useTrainingStore.ts'
 import { useRoute } from 'vue-router'
 import draggable from 'vuedraggable'
 
