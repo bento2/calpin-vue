@@ -44,7 +44,7 @@ const autoCheck = (index: number) => {
       ></v-checkbox>
       <InputNumberSerie v-model="serie.poids" unit="KG" />
       <InputNumberSerie v-model="serie.repetitions" unit="Rép ." @focusout="autoCheck(index)" />
-      <v-btn icon="mdi-elete" variant="text" @click="remove(index)" class="ml-auto"></v-btn>
+      <v-btn icon="mdi-delete" variant="text" @click="remove(index)" class="ml-auto"></v-btn>
     </div>
   </v-card>
   <v-btn @click="add">+ Ajouter une serie</v-btn>
