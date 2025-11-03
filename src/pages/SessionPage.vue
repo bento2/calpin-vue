@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, toRaw, watch } from 'vue'
+import { onMounted, ref,  watch } from 'vue'
 import { useSessionStore } from '@/stores/useSessionStore.ts'
 import { useRoute, useRouter } from 'vue-router'
 import type { Session } from '@/types/SessionSchema.ts'
