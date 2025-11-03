@@ -15,7 +15,15 @@ export const ExerciceSeriesSchema = BaseExerciceSchema.extend({
     get nbChecked() {
       if (!data.series || data.series.length === 0) return 0
       return data.series.filter((serie) => serie.checked).length
+    },
 
+    get total() {
+      if (data.series)
+        return data.series.reduce(
+          (accumulator, currentValue) => accumulator + currentValue.total,
+          0,
+        )
+      return 0
     },
   }
 })

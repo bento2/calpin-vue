@@ -109,7 +109,6 @@ const updateExercices = () => {
   if (session.value) {
     session.value.exercices = session.value.exercices.map((exercice) => {
       if (exercice.series) return exercice
-
       return {
         ...exercice,
         completed: false,
@@ -117,6 +116,7 @@ const updateExercices = () => {
           poids: 0,
           repetitions: 0,
           checked: false,
+          total:0
         })),
       }
     })

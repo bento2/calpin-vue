@@ -22,7 +22,8 @@ export default class SessionService {
       exercices: this.initializeExercices(training.exercices),
       status: 'en_cours',
       ended: false,
-      nbChecked: 0
+      nbChecked: 0,
+      total:0
     }
   }
 
@@ -35,10 +36,12 @@ export default class SessionService {
       ...exercice,
       completed : false,
       nbChecked: 0,
+      total:0,
       series: Array.from({ length: defaultSeriesCount }, () => ({
         poids: 0,
         repetitions: 0,
         checked: false,
+        total:0
       })),
     }))
   }
