@@ -117,6 +117,7 @@ const updateExercices = () => {
           poids: 0,
           repetitions: 0,
           checked: false,
+          total:0
         })),
       }
     })
