@@ -54,6 +54,7 @@ export const useSessionStore = defineStore(storageName, {
         const session = SessionService.createFromTraining(training, options)
         const validatedSession = SessionSchema.parse(session)
 
+
         this.sessions.push(validatedSession)
         await this.persistSessions()
 
@@ -163,6 +164,8 @@ export const useSessionStore = defineStore(storageName, {
         } else {
           this.sessions = []
         }
+
+        this.sessions.sort((a, b) => new Date(b.dateDebut).getTime() - new Date(a.dateDebut).getTime())
 
         this.loaded = true
         this.storage.enableRealtimeSync((data) => {

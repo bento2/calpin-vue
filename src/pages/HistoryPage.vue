@@ -4,7 +4,7 @@ import { onMounted, ref } from 'vue'
 import { type Session } from '@/types/SessionSchema.ts'
 import SessionCard from '@/components/SessionCard.vue'
 
-const { getSessions } = useSessionStore()
+const { getSessions,deleteSession } = useSessionStore()
 const sessions = ref<Session[] | []>([])
 
 onMounted(async () => {
@@ -29,9 +29,14 @@ onMounted(async () => {
       }
     })**/
   })
-
-
 })
+
+function confirmDelete(id: string) {
+  if (confirm("Voulez-vous vraiment supprimer cette session ?")) {
+    deleteSession(id);
+  }
+}
+
 </script>
 
 <template>
@@ -40,7 +45,12 @@ onMounted(async () => {
     :key="session.id"
     :model-value="session"
     class="mb-4"
-  ></SessionCard>
+  >
+    <template #actions>
+      <v-btn icon="mdi-delete" variant="text" @click="confirmDelete(session.id)" class="ml-auto"></v-btn>
+
+    </template>
+  </SessionCard>
 </template>
 
 <style scoped></style>
