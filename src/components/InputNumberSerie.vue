@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+
 const value = defineModel<number | undefined | null>()
-const { unit } = defineProps<{ unit: string }>()
+const { unit, placeholder } = defineProps<{ unit: string, placeholder?: number }>()
 
 // Déclarez seulement focusout, pas update:modelValue
 const emit = defineEmits<{
@@ -16,6 +18,11 @@ const onFocus = (): void => {
     value.value = null
   }
 }
+
+const displayValue = computed({
+  get: () => (value.value && value.value > 0) ? value.value : null,
+  set: (val) => { value.value = val }
+})
 </script>
 
 <template>
@@ -27,8 +34,9 @@ const onFocus = (): void => {
       label=""
       :hideInput="false"
       inset
+      :placeholder="placeholder !== undefined ? `${placeholder}` : '0'"
       variant="solo-filled"
-      v-model="value"
+      v-model="displayValue"
       class="mx-2"
       style="max-width: 70px"
       @focus="onFocus"

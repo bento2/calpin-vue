@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref,  watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { useSessionStore } from '@/stores/useSessionStore.ts'
 import { useRoute, useRouter } from 'vue-router'
 import type { Session } from '@/types/SessionSchema.ts'
@@ -10,20 +10,32 @@ import Exercices from '@/components/ExercicesCard.vue'
 import type { ExerciceSeries } from '@/types/ExerciceSeriesSchema.ts'
 import { isCompleted, nbChecked } from '@/composables/useExerciceSeries'
 import { debounce } from 'lodash-es'
+import type { Serie } from '@/types/SerieSchema.ts'
 
 const session = ref<Session | null>(null)
-const { getSessionById, deleteSession, finishSession, restartSession, updateSession } =
-  useSessionStore()
+const stats = ref<Map<string, Serie> | null>(null)
+const {
+  getSessionById,
+  deleteSession,
+  finishSession,
+  restartSession,
+  updateSession,
+  findStatsExercices,
+} = useSessionStore()
 const route = useRoute()
 const router = useRouter()
 const { diff } = getErrorMessage(session)
 
 onMounted(async () => {
   if (route.params.id) {
-    const tmp = await getSessionById(route.params.id as string)
-    if (tmp !== undefined) {
-      session.value = tmp
-    }
+    getSessionById(route.params.id as string).then((value) => {
+      if (value !== undefined) {
+        session.value = value
+        findStatsExercices().then((value) => {
+          stats.value = value
+        })
+      }
+    })
   }
 })
 const debouncedUpdate = debounce((value) => {
@@ -40,9 +52,9 @@ watch(
       debouncedUpdate(newValue)
     }
 
-    debouncedUpdate(newValue)
     if (newValue?.ended) {
       dialog.value = true
+      debouncedUpdate(newValue)
     }
   },
   { deep: true },
@@ -116,7 +128,7 @@ const updateExercices = () => {
           poids: 0,
           repetitions: 0,
           checked: false,
-          total:0
+          total: 0,
         })),
       }
     })
@@ -261,7 +273,11 @@ const updateExercices = () => {
           />
         </template>
       </ExerciceCard>
-      <SeriesCard v-model="exercice.series" v-if="openIndexes.has(index)" />
+      <SeriesCard
+        v-model="exercice.series"
+        v-if="openIndexes.has(index)"
+        :last-serie="stats ? stats.get(exercice.id) : undefined"
+      />
     </div>
     <v-card-item class="text-center text-blue">
       <v-btn variant="elevated" @click="dialogExercices = true" class="mt-2 mb-2">
