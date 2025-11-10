@@ -6,6 +6,7 @@ import { StorageService } from '@/services/StorageService.ts'
 import type { StorageConfig } from '@/Storages/StorageAdapter.ts'
 import { z } from 'zod'
 import { getErrorMessage } from '@/composables/Functions.ts'
+import type { Serie } from '@/types/SerieSchema.ts'
 
 const storageName = 'sessions'
 export const useSessionStore = defineStore(storageName, {
@@ -47,13 +48,37 @@ export const useSessionStore = defineStore(storageName, {
       }
     },
 
+    async findStatsExercices() {
+      try {
+        await this.ensureLoaded()
+        const stats = new Map<string, Serie>()
+        this.sessions.forEach((session) => {
+          session.exercices.forEach((exercice) => {
+            if (exercice.series && exercice.max) {
+              if (stats.has(exercice.id)) {
+                const last = stats.get(exercice.id)
+                if(last && last.total < exercice.max.total) {
+                  stats.set(exercice.id, exercice.max)
+                }
+              } else {
+                stats.set(exercice.id, exercice.max)
+              }
+            }
+          })
+        })
+        return stats;
+      } catch (error) {
+        this.error = `Erreur lors de la recherche de stats: ${getErrorMessage(error)}`
+        throw error
+      }
+    },
+
     async createSession(training: Training, options?: { name?: string }) {
       try {
         await this.ensureLoaded()
 
         const session = SessionService.createFromTraining(training, options)
         const validatedSession = SessionSchema.parse(session)
-
 
         this.sessions.push(validatedSession)
         await this.persistSessions()
@@ -165,7 +190,9 @@ export const useSessionStore = defineStore(storageName, {
           this.sessions = []
         }
 
-        this.sessions.sort((a, b) => new Date(b.dateDebut).getTime() - new Date(a.dateDebut).getTime())
+        this.sessions.sort(
+          (a, b) => new Date(b.dateDebut).getTime() - new Date(a.dateDebut).getTime(),
+        )
 
         this.loaded = true
         this.storage.enableRealtimeSync((data) => {
@@ -181,8 +208,6 @@ export const useSessionStore = defineStore(storageName, {
             )
           }
         })
-
-
       } catch (error) {
         this.error = `Erreur lors du chargement: ${getErrorMessage(error)}`
         console.error('Erreur lors du chargement des sessions:', error)

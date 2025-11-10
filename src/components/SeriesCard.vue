@@ -3,17 +3,19 @@ import { type Serie } from '@/types/SerieSchema.ts'
 import InputNumberSerie from '@/components/InputNumberSerie.vue'
 
 const series = defineModel({ type: Array<Serie> })
+const props = defineProps<{ lastSerie?: Serie }>()
 const remove = (index: number) => {
   if (series.value) series.value.splice(index, 1)
 }
 
+const lastSerie = props.lastSerie
 const add = () => {
   if (series.value) {
     series.value.push({
       poids: 0,
       repetitions: 0,
       checked: false,
-      total:0
+      total: 0,
     })
   }
 }
@@ -23,6 +25,11 @@ const autoCheck = (index: number) => {
     const serie = series.value[index] as Serie
     serie.checked = (serie.poids || 0) > 0 && (serie.repetitions || 0) > 0
   }
+}
+
+const validCheck = (serie: Serie) => {
+  serie.repetitions ||= lastSerie?.repetitions
+  serie.poids ||= lastSerie?.poids
 }
 </script>
 
@@ -41,9 +48,15 @@ const autoCheck = (index: number) => {
         class="mr-2 rounded-checkbox"
         inset
         v-model="serie.checked"
+        @change="validCheck(serie)"
       ></v-checkbox>
-      <InputNumberSerie v-model="serie.poids" unit="KG" />
-      <InputNumberSerie v-model="serie.repetitions" unit="Rép ." @focusout="autoCheck(index)" />
+      <InputNumberSerie v-model="serie.poids" unit="KG" :placeholder="lastSerie?.poids ?? 0" />
+      <InputNumberSerie
+        v-model="serie.repetitions"
+        unit="Rép ."
+        @focusout="autoCheck(index)"
+        :placeholder="lastSerie?.repetitions ?? 0"
+      />
       <v-btn icon="mdi-delete" variant="text" @click="remove(index)" class="ml-auto"></v-btn>
     </div>
   </v-card>

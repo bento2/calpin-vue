@@ -17,6 +17,11 @@ export const ExerciceSeriesSchema = BaseExerciceSchema.extend({
       return data.series.filter((serie) => serie.checked).length
     },
 
+    get max() {
+      if (!data.series || data.series.length === 0) return null
+      return [...data.series].sort((a, b) => b.total - a.total)[0]
+    },
+
     get total() {
       if (data.series)
         return data.series.reduce(

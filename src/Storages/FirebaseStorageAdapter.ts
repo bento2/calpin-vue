@@ -72,45 +72,91 @@ export class FirebaseStorageAdapter<T> implements StorageAdapter<T> {
     return `users/${userId}/storage/${key}`
   }
 
-  // GET - Récupérer avec fallback local
+  // GET - Récupérer avec localStorage PRIORITAIRE
   async get(key: string): Promise<T | null> {
     try {
       await this.waitForAuth()
 
-      const userId = this.getUserId()
-      if (!userId) return this.getFromLocalStorage(key)
-
-      // 1. Vérifier le cache local d'abord
+      // 1. Vérifier le cache mémoire d'abord (le plus rapide)
       if (this.localCache.has(key)) {
+        console.log(`💾 [${key}] Récupéré depuis cache mémoire`)
         return this.localCache.get(key)!
       }
 
-      // 2. Si hors ligne, utiliser localStorage
-      if (!this.isOnline) {
-        return this.getFromLocalStorage(key)
+      // 2. Vérifier localStorage AVANT Firebase (priorisé)
+      const localData = this.getFromLocalStorage(key)
+      if (localData !== null) {
+        console.log(`📦 [${key}] Récupéré depuis localStorage`)
+        // Mettre à jour le cache mémoire
+        this.localCache.set(key, localData)
+
+        // En arrière-plan, synchroniser avec Firebase si en ligne et authentifié
+        const userId = this.getUserId()
+        if (this.isOnline && userId) {
+          this.syncFromFirebaseInBackground(key).catch(err =>
+            console.warn(`Sync background échouée pour [${key}]:`, err)
+          )
+        }
+
+        return localData
       }
 
-      // 3. Récupérer depuis Firestore
+      // 3. Si pas de données locales, essayer Firebase (fallback uniquement)
+      const userId = this.getUserId()
+      if (userId && this.isOnline) {
+        const docRef = doc(this.db, this.getDocPath(key))
+        const docSnap = await getDoc(docRef)
+
+        if (docSnap.exists()) {
+          const firebaseData = docSnap.data() as FirebaseData<T>
+          const data = firebaseData.data
+
+          console.log(`☁️ [${key}] Récupéré depuis Firebase (fallback)`)
+
+          // Mettre à jour les caches
+          this.localCache.set(key, data)
+          this.saveToLocalStorage(key, data)
+
+          return data
+        }
+      }
+
+      // 4. Aucune donnée trouvée
+      return null
+    } catch (error) {
+      console.error('Erreur get Firebase:', error)
+      // Fallback sur localStorage en cas d'erreur
+      return this.getFromLocalStorage(key)
+    }
+  }
+
+  // Synchronisation en arrière-plan depuis Firebase (optionnel)
+  private async syncFromFirebaseInBackground(key: string): Promise<void> {
+    try {
       const docRef = doc(this.db, this.getDocPath(key))
       const docSnap = await getDoc(docRef)
 
       if (docSnap.exists()) {
         const firebaseData = docSnap.data() as FirebaseData<T>
-        const data = firebaseData.data
+        const remoteData = firebaseData.data
+        const localData = this.localCache.get(key)
 
-        // Mettre à jour le cache
-        this.localCache.set(key, data)
-        this.saveToLocalStorage(key, data)
+        // Ne mettre à jour que si les données distantes sont différentes
+        if (JSON.stringify(localData) !== JSON.stringify(remoteData)) {
+          console.log(`🔄 [${key}] Mise à jour depuis Firebase (background)`)
+          this.localCache.set(key, remoteData)
+          this.saveToLocalStorage(key, remoteData)
 
-        return data
+          // Émettre un événement de mise à jour
+          window.dispatchEvent(
+            new CustomEvent(`storage:${key}:synced`, {
+              detail: remoteData,
+            }),
+          )
+        }
       }
-
-      // 4. Si pas de données Firestore, vérifier localStorage
-      return this.getFromLocalStorage(key)
     } catch (error) {
-      console.error('Erreur get Firebase:', error)
-      // Fallback sur localStorage en cas d'erreur
-      return this.getFromLocalStorage(key)
+      console.warn('Erreur sync background:', error)
     }
   }
 
@@ -124,9 +170,10 @@ export class FirebaseStorageAdapter<T> implements StorageAdapter<T> {
         throw new Error('Utilisateur non authentifié')
       }
 
-      // 1. Toujours sauvegarder en local d'abord (rapide)
+      // 1. Toujours sauvegarder en local d'abord (rapide et prioritaire)
       this.localCache.set(key, value)
       this.saveToLocalStorage(key, value)
+      console.log(`💾 [${key}] Sauvegardé en local`)
 
       // 2. Si en ligne, sauvegarder sur Firestore
       if (this.isOnline) {
@@ -161,6 +208,7 @@ export class FirebaseStorageAdapter<T> implements StorageAdapter<T> {
       // 1. Supprimer du cache
       this.localCache.delete(key)
       this.removeFromLocalStorage(key)
+      console.log(`🗑️ [${key}] Supprimé en local`)
 
       // 2. Si en ligne, supprimer de Firestore
       if (this.isOnline) {
@@ -188,11 +236,11 @@ export class FirebaseStorageAdapter<T> implements StorageAdapter<T> {
       // Vérifier le cache d'abord
       if (this.localCache.has(key)) return true
 
-      // Vérifier localStorage
+      // Vérifier localStorage (prioritaire)
       const localData = this.getFromLocalStorage(key)
       if (localData !== null) return true
 
-      // Si en ligne, vérifier Firestore
+      // Si en ligne, vérifier Firestore (fallback)
       if (this.isOnline) {
         const userId = this.getUserId()
         if (!userId) return false
