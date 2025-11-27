@@ -1,131 +1,93 @@
 import { defineStore } from 'pinia'
-import { type Session, SessionSchema } from '@/types/SessionSchema.ts'
+import { type Session, SessionSchema, SessionStatusSchema } from '@/types/SessionSchema.ts'
 import type { Training } from '@/types/TrainingSchema.ts'
 import SessionService from '@/services/SessionService.ts'
-import { StorageService } from '@/services/StorageService.ts'
-import type { StorageConfig } from '@/Storages/StorageAdapter.ts'
-import { z } from 'zod'
-import { getErrorMessage } from '@/composables/Functions.ts'
+import { useBaseStore } from '@/composables/useBaseStore.ts'
 import type { Serie } from '@/types/SerieSchema.ts'
+import { computed } from 'vue'
+import { getErrorMessage } from '@/composables/Functions.ts'
 
 const storageName = 'sessions'
-export const useSessionStore = defineStore(storageName, {
-  state: () => ({
-    sessions: [] as Session[],
-    loaded: false,
-    loading: false,
-    error: null as string | null,
-    // Service de stockage configurable
-    storage: new StorageService<Session[]>(storageName, {
-      adapter: 'firebase', // Facile à changer ici
-    }),
-    lastSync: null as Date | null,
-  }),
 
-  getters: {
-    sessionsSortedByDate: (state) =>
-      [...state.sessions].sort(
-        (a, b) => new Date(b.dateDebut).getTime() - new Date(a.dateDebut).getTime(),
-      ),
+export const useSessionStore = defineStore(storageName, () => {
+  const baseStore = useBaseStore<Session>(storageName, SessionSchema)
 
-    activeSessions: (state) => state.sessions.filter((session) => session.status === 'en_cours'),
+  // Getters
+  const sessionsSortedByDate = computed(() =>
+    [...baseStore.items.value].sort(
+      (a, b) => new Date(b.dateDebut).getTime() - new Date(a.dateDebut).getTime(),
+    ),
+  )
+  const activeSessions = computed(() =>
+    baseStore.items.value.filter((session) => session.status === 'en_cours'),
+  )
+  const sessionsCount = computed(() => baseStore.items.value.length)
 
-    sessionsCount: (state) => state.sessions.length,
-  },
-
-  actions: {
-    // Changer le mode de stockage
-    switchStorageMode(config: StorageConfig) {
-      this.storage.switchAdapter(config)
-      // Recharger avec le nouveau stockage
-      this.loaded = false
-      return this.ensureLoaded()
-    },
-
-    async ensureLoaded() {
-      if (!this.loaded && !this.loading) {
-        await this.loadSessions()
-      }
-    },
-
-    async findStatsExercices() {
-      try {
-        await this.ensureLoaded()
-        const stats = new Map<string, Serie>()
-        this.sessions.forEach((session) => {
-          session.exercices.forEach((exercice) => {
-            if (exercice.series && exercice.max) {
-              if (stats.has(exercice.id)) {
-                const last = stats.get(exercice.id)
-                if(last && last.total < exercice.max.total) {
-                  stats.set(exercice.id, exercice.max)
-                }
-              } else {
+  // Actions
+  async function findStatsExercices() {
+    try {
+      await baseStore.ensureLoaded()
+      const stats = new Map<string, Serie>()
+      baseStore.items.value.forEach((session) => {
+        session.exercices.forEach((exercice) => {
+          if (exercice.series && exercice.max) {
+            if (stats.has(exercice.id)) {
+              const last = stats.get(exercice.id)
+              if (last && last.total < exercice.max.total) {
                 stats.set(exercice.id, exercice.max)
               }
+            } else {
+              stats.set(exercice.id, exercice.max)
             }
-          })
+          }
         })
-        return stats;
-      } catch (error) {
-        this.error = `Erreur lors de la recherche de stats: ${getErrorMessage(error)}`
-        throw error
-      }
-    },
+      })
+      return stats
+    } catch (error) {
+      baseStore.error.value = `Erreur lors de la recherche de stats: ${getErrorMessage(error)}`
+      throw error
+    }
+  }
 
-    async createSession(training: Training, options?: { name?: string }) {
+  async function createSession(training: Training, options?: { name?: string }) {
+    try {
+      await baseStore.ensureLoaded()
+
+      const session = SessionService.createFromTraining(training, options)
+      const validatedSession = SessionSchema.parse(session)
+
+      // We use baseStore.items.push directly in the original, but here we should use saveItem or similar?
+      // Original: this.sessions.push(validatedSession); await this.persistSessions()
+      // baseStore.saveItem handles push or update.
+      return baseStore.saveItem(validatedSession)
+    } catch (error) {
+      baseStore.error.value = `Erreur lors de la création: ${getErrorMessage(error)}`
+      throw error
+    }
+  }
+
+  async function updateSession(updatedSession: Session) {
+      // Original checked if index exists. baseStore.saveItem checks if it exists (update) or not (push).
+      // But original threw error if not found.
+      // "Session ${updatedSession.id} non trouvée"
+      // baseStore.saveItem will just push it if not found.
+      // We should enforce existence if that's the desired behavior.
       try {
-        await this.ensureLoaded()
-
-        const session = SessionService.createFromTraining(training, options)
-        const validatedSession = SessionSchema.parse(session)
-
-        this.sessions.push(validatedSession)
-        await this.persistSessions()
-
-        return validatedSession
+          await baseStore.ensureLoaded()
+          const index = baseStore.items.value.findIndex((s) => s.id === updatedSession.id)
+          if (index === -1) {
+              throw new Error(`Session ${updatedSession.id} non trouvée`)
+          }
+          // Validate
+          const validatedSession = SessionSchema.parse(updatedSession)
+          return baseStore.saveItem(validatedSession)
       } catch (error) {
-        this.error = `Erreur lors de la création: ${getErrorMessage(error)}`
-        throw error
+          baseStore.error.value = `Erreur lors de la mise à jour: ${getErrorMessage(error)}`
+          throw error
       }
-    },
+  }
 
-    async getSessionActive(): Promise<Session | undefined> {
-      await this.ensureLoaded()
-      return this.sessions.find((session: Session) => session.status === 'en_cours')
-    },
-
-    async getSessionById(id: string): Promise<Session | undefined> {
-      await this.ensureLoaded()
-      return this.sessions.find((session: Session) => session.id === id)
-    },
-
-    async getSessions(): Promise<Session[]> {
-      await this.ensureLoaded()
-      return this.sessions
-    },
-
-    async updateSession(updatedSession: Session) {
-      try {
-        await this.ensureLoaded()
-
-        const index = this.sessions.findIndex((s) => s.id === updatedSession.id)
-        if (index === -1) {
-          throw new Error(`Session ${updatedSession.id} non trouvée`)
-        }
-
-        const validatedSession = SessionSchema.parse(updatedSession)
-        this.sessions[index] = validatedSession
-        await this.persistSessions()
-
-        return validatedSession
-      } catch (error) {
-        this.error = `Erreur lors de la mise à jour: ${getErrorMessage(error)}`
-        throw error
-      }
-    },
-
-    async restartSession(session: Session) {
+  async function restartSession(session: Session) {
       try {
         //remise à zéro des informations
         session.dateDebut = new Date()
@@ -136,32 +98,15 @@ export const useSessionStore = defineStore(storageName, {
             serie.repetitions = 0
           })
         })
-        this.updateSession(session)
+        return updateSession(session)
       } catch (error) {
-        this.error = `Erreur lors du restart: ${getErrorMessage(error)}`
+        baseStore.error.value = `Erreur lors du restart: ${getErrorMessage(error)}`
         throw error
       }
-    },
+  }
 
-    async deleteSession(id: string) {
-      try {
-        await this.ensureLoaded()
-
-        const index = this.sessions.findIndex((s) => s.id === id)
-        if (index === -1) {
-          throw new Error(`Session ${id} non trouvée`)
-        }
-
-        this.sessions.splice(index, 1)
-        await this.persistSessions()
-      } catch (error) {
-        this.error = `Erreur lors de la suppression: ${getErrorMessage(error)}`
-        throw error
-      }
-    },
-
-    async finishSession(id: string) {
-      const session = await this.getSessionById(id)
+  async function finishSession(id: string) {
+      const session = await baseStore.getItemById(id)
       if (!session) {
         throw new Error(`Session ${id} non trouvée`)
       }
@@ -169,72 +114,48 @@ export const useSessionStore = defineStore(storageName, {
       const updatedSession = {
         ...session,
         dateFin: new Date(),
-        status: 'terminee' as const,
+        status: SessionStatusSchema.enum.terminee,
       }
 
-      return await this.updateSession(updatedSession)
+      return await updateSession(updatedSession)
+  }
+
+  return {
+    ...baseStore,
+    sessions: baseStore.items, // Alias
+    sessionsSortedByDate,
+    activeSessions,
+    sessionsCount,
+    findStatsExercices,
+    createSession,
+    updateSession,
+    restartSession,
+    finishSession,
+    getSessionActive: async () => {
+        await baseStore.ensureLoaded()
+        return activeSessions.value[0] // Original logic: find first 'en_cours'. activeSessions is filtered.
+        // Original: return this.sessions.find((session: Session) => session.status === 'en_cours')
+        // activeSessions returns all active sessions.
+        // So activeSessions.value[0] is correct if we assume one active session, or we can use find on items.
+        // Let's stick to original logic to be safe.
+        // return baseStore.items.value.find((session: Session) => session.status === 'en_cours')
     },
-
-    async loadSessions() {
-      if (this.loading) return
-
-      this.loading = true
-      this.error = null
-
-      try {
-        const data = await this.storage.load()
-
-        if (data) {
-          this.sessions = z.array(SessionSchema).parse(data)
-        } else {
-          this.sessions = []
-        }
-
-        this.sessions.sort(
-          (a, b) => new Date(b.dateDebut).getTime() - new Date(a.dateDebut).getTime(),
-        )
-
-        this.loaded = true
-        this.storage.enableRealtimeSync((data) => {
-          if (data) {
-            console.log('🔄 Préférences synchronisées depuis un autre appareil')
-            this.sessions = data
-            this.lastSync = new Date()
-            // Émettre un événement pour notifier l'UI
-            window.dispatchEvent(
-              new CustomEvent('preferences:synced', {
-                detail: data,
-              }),
-            )
-          }
-        })
-      } catch (error) {
-        this.error = `Erreur lors du chargement: ${getErrorMessage(error)}`
-        console.error('Erreur lors du chargement des sessions:', error)
-        this.sessions = []
-        this.loaded = true
-      } finally {
-        this.loading = false
-      }
+    getSessionById: baseStore.getItemById,
+    getSessions: async () => {
+        await baseStore.ensureLoaded()
+        return baseStore.items.value
     },
-
-    async persistSessions() {
-      try {
-        await this.storage.save(this.sessions)
-      } catch (error) {
-        this.error = `Erreur lors de la sauvegarde: ${getErrorMessage(error)}`
-        throw error
-      }
+    deleteSession: baseStore.deleteItem,
+    loadSessions: async () => {
+        await baseStore.loadItems()
+        // Original sort:
+        // this.sessions.sort((a, b) => new Date(b.dateDebut).getTime() - new Date(a.dateDebut).getTime())
+        // baseStore.loadItems does not sort.
+        // We can sort after loading.
+        baseStore.items.value.sort((a, b) => new Date(b.dateDebut).getTime() - new Date(a.dateDebut).getTime())
     },
-
-    async clearAllSessions() {
-      this.sessions = []
-      await this.storage.delete()
-      this.error = null
-    },
-
-    clearError() {
-      this.error = null
-    },
-  },
+    persistSessions: baseStore.persistItems,
+    clearAllSessions: baseStore.clearAll,
+  }
 })
+

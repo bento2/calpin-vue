@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
+import { onMounted, ref, watch, computed } from 'vue'
 import { useSessionStore } from '@/stores/useSessionStore.ts'
 import { useRoute, useRouter } from 'vue-router'
 import type { Session } from '@/types/SessionSchema.ts'
@@ -25,6 +25,7 @@ const {
 const route = useRoute()
 const router = useRouter()
 const { diff } = getErrorMessage(session)
+const ended = computed(() => session.value?.ended ?? false)
 
 onMounted(async () => {
   if (route.params.id) {
@@ -157,7 +158,7 @@ const updateExercices = () => {
             @click="restart"
             class="text-white bg-blue-accent-4 opacity-100 px-15"
             elevation="2"
-            outline
+            outline v-if="!ended"
           >
             Recommencer
           </v-btn>
@@ -174,7 +175,7 @@ const updateExercices = () => {
             @click="close"
             class="text-blue-accent-2 bg-white opacity-100 px-15"
             elevation="2"
-            outline
+            outline v-if="!ended"
           >
             Reprendre
           </v-btn>
@@ -183,7 +184,7 @@ const updateExercices = () => {
             @click="cancel"
             class="text-white bg-red-accent-4 opacity-100 px-15"
             elevation="2"
-            outline
+            outline v-if="!ended"
           >
             Supprimer l'entrainement
           </v-btn>
@@ -232,7 +233,7 @@ const updateExercices = () => {
         <v-btn icon="mdi-arrow-left" variant="text" @click="dialog = true"></v-btn>
       </v-app-bar-nav-icon>
       <v-app-bar-title class="d-flex flex-column justify-start">
-        <div v-if="diff !== ''">{{ diff }}</div>
+        <div v-if="diff !== '' && !ended">{{ diff }}</div>
         <div class="text-body-2">{{ session.name }}</div>
       </v-app-bar-title>
     </v-app-bar>
