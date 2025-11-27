@@ -16,3 +16,15 @@ const firebaseConfig = {
 export const firebaseApp = initializeApp(firebaseConfig)
 export const auth = getAuth(firebaseApp)
 export const googleProvider = new GoogleAuthProvider()
+
+import { getFirestore, enableIndexedDbPersistence } from "firebase/firestore"
+
+export const db = getFirestore(firebaseApp)
+
+enableIndexedDbPersistence(db).catch((err) => {
+  if (err.code == 'failed-precondition') {
+    console.warn('Persistence failed: Multiple tabs open')
+  } else if (err.code == 'unimplemented') {
+    console.warn('Persistence failed: Browser not supported')
+  }
+})

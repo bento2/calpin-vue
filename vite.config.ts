@@ -14,7 +14,7 @@ export default defineConfig({
     vuetify({ autoImport: true }),
     VitePWA({
       registerType: 'autoUpdate', // service worker auto-màj
-      includeAssets: ['favicon.svg', 'robots.txt'], // tes assets
+      includeAssets: ['favicon.svg', 'robots.txt','exercise_icons/*.png','assets/*.ttf','assets/*.woff2','assets/*.woff'], // tes assets
       manifest: {
         id: '/?homescreen=1',
         name: 'Carnet Muscu',
