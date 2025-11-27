@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { type Session, SessionSchema } from '@/types/SessionSchema.ts'
+import { type Session, SessionSchema, SessionStatusSchema } from '@/types/SessionSchema.ts'
 import type { Training } from '@/types/TrainingSchema.ts'
 import SessionService from '@/services/SessionService.ts'
 import { useBaseStore } from '@/composables/useBaseStore.ts'
@@ -114,7 +114,7 @@ export const useSessionStore = defineStore(storageName, () => {
       const updatedSession = {
         ...session,
         dateFin: new Date(),
-        status: 'terminee' as const,
+        status: SessionStatusSchema.enum.terminee,
       }
 
       return await updateSession(updatedSession)
