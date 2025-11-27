@@ -2,7 +2,7 @@
 import { onMounted, ref, watch, computed } from 'vue'
 import { useSessionStore } from '@/stores/useSessionStore.ts'
 import { useRoute, useRouter } from 'vue-router'
-import type { Session } from '@/types/SessionSchema.ts'
+import { type Session, SessionSchema } from '@/types/SessionSchema.ts'
 import ExerciceCard from '@/components/ExerciceCard.vue'
 import SeriesCard from '@/components/SeriesCard.vue'
 import { getErrorMessage } from '@/composables/getErrorMessage.ts'
@@ -27,16 +27,40 @@ const router = useRouter()
 const { diff } = getErrorMessage(session)
 const ended = computed(() => session.value?.ended ?? false)
 
+const saveLocal = (s: Session) => {
+  localStorage.setItem(`calpin_session_${s.id}`, JSON.stringify(s))
+}
+
+const clearLocal = (id: string) => {
+  localStorage.removeItem(`calpin_session_${id}`)
+}
+
 onMounted(async () => {
   if (route.params.id) {
-    getSessionById(route.params.id as string).then((value) => {
-      if (value !== undefined) {
-        session.value = value
-        findStatsExercices().then((value) => {
-          stats.value = value
-        })
+    const id = route.params.id as string
+    const local = localStorage.getItem(`calpin_session_${id}`)
+    let loadedSession: Session | undefined
+
+    if (local) {
+      try {
+        loadedSession = SessionSchema.parse(JSON.parse(local))
+        // Sync local changes to store/server
+        updateSession(loadedSession)
+      } catch (e) {
+        console.error('Erreur chargement local', e)
       }
-    })
+    }
+
+    if (!loadedSession) {
+      loadedSession = await getSessionById(id)
+    }
+
+    if (loadedSession) {
+      session.value = loadedSession
+      findStatsExercices().then((value) => {
+        stats.value = value
+      })
+    }
   }
 })
 const debouncedUpdate = debounce((value) => {
@@ -47,6 +71,8 @@ watch(
   () => JSON.parse(JSON.stringify(session.value)),
   (newValue, oldValue) => {
     if (!newValue || !oldValue) return
+
+    saveLocal(newValue)
 
     //on regarde si il y une serie de terminée
     if (newValue.nbChecked !== oldValue.nbChecked) {
@@ -71,6 +97,7 @@ const close = () => {
 const cancel = () => {
   if (session.value !== null) {
     deleteSession(session.value.id)
+    clearLocal(session.value.id)
   }
   goHome()
 }
@@ -89,6 +116,7 @@ const restart = () => {
 const end = () => {
   if (session.value !== null) {
     finishSession(session.value.id)
+    clearLocal(session.value.id)
   }
   goHome()
 }
