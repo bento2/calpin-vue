@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { getErrorMessage } from '../composables/Functions'
+import { getErrorMessage } from '@/composables/Functions'
 
 describe('Functions', () => {
   describe('getErrorMessage', () => {

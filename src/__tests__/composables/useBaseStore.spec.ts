@@ -1,20 +1,20 @@
 import { describe, it, expect, vi, beforeEach, type Mock } from 'vitest'
-import { useBaseStore } from '../composables/useBaseStore'
+import { useBaseStore } from '@/composables/useBaseStore'
 import { z } from 'zod'
 
 // Mock StorageService
+// Mock StorageService
 vi.mock('@/services/StorageService', () => {
-  return {
-    StorageService: vi.fn().mockImplementation(() => ({
-      load: vi.fn(),
-      save: vi.fn(),
-      delete: vi.fn(),
-      exists: vi.fn(),
-      clear: vi.fn(),
-      enableRealtimeSync: vi.fn(),
-      switchAdapter: vi.fn(),
-    })),
-  }
+  const StorageService = vi.fn()
+  StorageService.prototype.load = vi.fn()
+  StorageService.prototype.save = vi.fn()
+  StorageService.prototype.delete = vi.fn()
+  StorageService.prototype.exists = vi.fn()
+  StorageService.prototype.clear = vi.fn()
+  StorageService.prototype.enableRealtimeSync = vi.fn()
+  StorageService.prototype.switchAdapter = vi.fn()
+
+  return { StorageService }
 })
 
 describe('useBaseStore', () => {

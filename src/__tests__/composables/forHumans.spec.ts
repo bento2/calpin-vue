@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { forHumans } from '../composables/forHumans'
+import { forHumans } from '@/composables/forHumans'
 
 describe('forHumans', () => {
   it('should format seconds correctly', () => {

@@ -6,6 +6,9 @@ export default defineConfig({
   plugins: [vue()],
   test: {
     environment: 'jsdom',
+    coverage: {
+      provider: 'v8',
+    },
     setupFiles: ['./test/setup.ts'],
     globals: true,
     server: {
@@ -22,7 +25,9 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
       // Mock CSS files
-      '\\.(css|less|scss|sass)$': fileURLToPath(new URL('./test/mocks/fileMock.js', import.meta.url)),
+      '\\.(css|less|scss|sass)$': fileURLToPath(
+        new URL('./test/mocks/fileMock.js', import.meta.url),
+      ),
     },
   },
 })
