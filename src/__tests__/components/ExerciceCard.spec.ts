@@ -9,15 +9,24 @@ const exerciceMock: Exercice = {
   name: 'Pompes',
   icon: '/icons/push-up.png',
   difficulty: 'débutant',
-  hasEquipment: true
+  hasEquipment: false,
+}
+
+const exerciceMockWithEquipment: Exercice = {
+  id: '1',
+  name: 'Pompes',
+  icon: '/icons/push-up.png',
+  difficulty: 'débutant',
+  hasEquipment: true,
+  equipment: ' haltères',
 }
 
 describe('ExerciceCard', () => {
   it('Render ExerciceCard', () => {
     const wrapper = mount(ExerciceCard, {
       props: {
-        exercice: exerciceMock
-      }
+        exercice: exerciceMock,
+      },
     })
     expect(wrapper.text()).toContain(exerciceMock.name)
   })
@@ -25,9 +34,33 @@ describe('ExerciceCard', () => {
   it('Check snapshot', () => {
     const wrapper = mount(ExerciceCard, {
       props: {
-        exercice: exerciceMock
+        exercice: exerciceMock,
       },
-      global: { stubs: { 'n-image': true } }
+      global: { stubs: { 'n-image': true } },
+    })
+
+    // Snapshot test
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+})
+
+describe('ExerciceCard with equipment', () => {
+  it('Render ExerciceCard', () => {
+    const wrapper = mount(ExerciceCard, {
+      props: {
+        exercice: exerciceMockWithEquipment,
+      },
+    })
+    expect(wrapper.text()).toContain(exerciceMockWithEquipment.name)
+    expect(wrapper.text()).toContain(exerciceMockWithEquipment.equipment)
+  })
+
+  it('Check snapshot', () => {
+    const wrapper = mount(ExerciceCard, {
+      props: {
+        exercice: exerciceMock,
+      },
+      global: { stubs: { 'n-image': true } },
     })
 
     // Snapshot test

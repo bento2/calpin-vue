@@ -51,7 +51,6 @@ describe('UserAvatar', () => {
   it('displays anonymous icon when not authenticated', () => {
     const wrapper = createWrapper()
     const authStore = useAuthStore()
-    authStore.isAuthenticated = false
     authStore.user = null
 
     expect(wrapper.html()).toContain('mdi-account')

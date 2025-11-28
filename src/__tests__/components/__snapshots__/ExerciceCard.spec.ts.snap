@@ -29,7 +29,47 @@ exports[`ExerciceCard > Check snapshot 1`] = `
       </div>
       <!----><span class="v-avatar__underlay"></span>
     </div>
-    <div class="font-bold flex-grow-1 d-flex flex-column">Pompes <span class="text-caption"></span></div>
+    <div class="font-bold flex-grow-1 d-flex flex-column">Pompes
+      <!--v-if-->
+    </div>
+  </div>
+  <!---->
+  <!----><span class="v-card__underlay"></span>
+</div>"
+`;
+
+exports[`ExerciceCard with equipment > Check snapshot 1`] = `
+"<div class="v-card v-theme--light v-card--density-default elevation-2 v-card--variant-elevated bg-blue-accent-2" outline="">
+  <!---->
+  <div class="v-card__loader">
+    <div class="v-progress-linear v-theme--light v-locale--is-ltr" style="top: 0px; height: 0px; --v-progress-linear-height: 2px;" role="progressbar" aria-hidden="true" aria-valuemin="0" aria-valuemax="100">
+      <!---->
+      <div class="v-progress-linear__background"></div>
+      <div class="v-progress-linear__buffer" style="width: 0%;"></div>
+      <div class="v-progress-linear__indeterminate">
+        <div class="v-progress-linear__indeterminate long"></div>
+        <div class="v-progress-linear__indeterminate short"></div>
+      </div>
+      <!---->
+    </div>
+  </div>
+  <!---->
+  <!---->
+  <div class="v-card-text d-flex align-center font-bold mb-1 ga-1">
+    <div data-v-18f349dd="" class="v-avatar v-theme--light bg-transparent v-avatar--density-default v-avatar--variant-flat border" style="width: 56px; height: 56px; border: 2px solid black;">
+      <div data-v-18f349dd="" class="v-responsive v-img v-img--booting" aria-label="Pompes" role="img">
+        <div class="v-responsive__sizer"></div><img class="v-img__img v-img__img--cover fade-transition-enter-from fade-transition-enter-active" src="/icons/push-up.png" alt="Pompes" style="display: none;">
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+        <!---->
+      </div>
+      <!----><span class="v-avatar__underlay"></span>
+    </div>
+    <div class="font-bold flex-grow-1 d-flex flex-column">Pompes
+      <!--v-if-->
+    </div>
   </div>
   <!---->
   <!----><span class="v-card__underlay"></span>
