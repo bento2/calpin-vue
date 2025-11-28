@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { isCompleted, nbChecked } from '../composables/useExerciceSeries'
+import { isCompleted, nbChecked } from '@/composables/useExerciceSeries'
 import { ExerciceSeriesSchema, type ExerciceSeries } from '@/types/ExerciceSeriesSchema'
 
 describe('useExerciceSeries', () => {

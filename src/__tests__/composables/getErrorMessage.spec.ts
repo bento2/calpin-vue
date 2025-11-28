@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
-import { getErrorMessage } from '../composables/getErrorMessage'
+import { getErrorMessage } from '@/composables/getErrorMessage'
 import { ref } from 'vue'
 import { SessionSchema, type Session } from '@/types/SessionSchema'
 

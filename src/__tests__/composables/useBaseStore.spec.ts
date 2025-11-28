@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, type Mock } from 'vitest'
-import { useBaseStore } from '../composables/useBaseStore'
+import { useBaseStore } from '@/composables/useBaseStore'
 import { z } from 'zod'
 
 // Mock StorageService

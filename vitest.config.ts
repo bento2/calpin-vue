@@ -9,7 +9,6 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
     },
-    reporters: ['html'],
     setupFiles: ['./test/setup.ts'],
     globals: true,
     server: {
