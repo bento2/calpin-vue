@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import ExerciceIcon from '@/components/ExerciceIcon.vue'
-import type { Exercice } from '@/types/ExerciceSchema.ts'
+import type { Exercice } from '@/types/ExerciceSchema'
 
 describe('ExerciceIcon', () => {
   const mockExercice: Exercice = {

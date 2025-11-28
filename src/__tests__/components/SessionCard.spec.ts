@@ -10,8 +10,10 @@ describe('SessionCard', () => {
     nbChecked: 5,
     total: 250,
     exercices: [],
-    ctime: new Date(),
-    mtime: new Date(),
+    ended: false,
+    dateDebut: new Date(),
+    trainingId: 'training-1',
+    status: 'en_cours',
   }
 
   it('renders the session name', () => {

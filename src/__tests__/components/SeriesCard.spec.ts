@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import SeriesCard from '@/components/SeriesCard.vue'
-import type { Serie } from '@/types/SerieSchema.ts'
+import type { Serie } from '@/types/SerieSchema'
 
 describe('SeriesCard', () => {
   const mockSeries: Serie[] = [

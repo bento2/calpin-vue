@@ -2,8 +2,8 @@ import { describe, it, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { createTestingPinia } from '@pinia/testing'
 import TrainingCard from '@/components/TrainingCard.vue'
-import type { Training } from '@/types/TrainingSchema.ts'
-import type { Exercice } from '@/types/ExerciceSchema.ts'
+import type { Training } from '@/types/TrainingSchema'
+import type { Exercice } from '@/types/ExerciceSchema'
 
 describe('TrainingCard', () => {
   const mockExercice: Exercice = {
@@ -69,7 +69,7 @@ describe('TrainingCard', () => {
   it('renders when training is undefined', () => {
     const wrapper = mount(TrainingCard, {
       props: {
-        training: undefined as any,
+        training: undefined as unknown as Training,
       },
     })
     expect(wrapper.html()).toContain("n'existe pas")
