@@ -20,6 +20,7 @@ const {
   finishSession,
   restartSession,
   updateSession,
+  saveSession,
   findStatsExercices,
 } = useSessionStore()
 const route = useRoute()
@@ -113,6 +114,13 @@ const restart = () => {
   close()
 }
 
+const save = () => {
+  if (session.value !== null) {
+      saveSession(session.value)
+  }
+  close()
+}
+
 const end = () => {
   if (session.value !== null) {
     finishSession(session.value.id)
@@ -197,6 +205,15 @@ const updateExercices = () => {
             outline
           >
             Terminer et enregistrer
+          </v-btn>
+
+          <v-btn
+            @click="save"
+            class="text-white bg-green-accent-4 opacity-100 px-15"
+            elevation="2"
+            outline v-if="!ended"
+          >
+            Sauvegarder
           </v-btn>
 
           <v-btn
