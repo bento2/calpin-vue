@@ -11,6 +11,7 @@ import AppBtn from '@/components/ui/AppBtn.vue'
 import SessionPauseDialog from '@/components/SessionPauseDialog.vue'
 import { debounce } from 'lodash-es'
 import type { Serie } from '@/types/SerieSchema.ts'
+import { useSessionTimer } from '@/composables/useSessionTimer'
 
 const session = ref<Session | null>(null)
 const stats = ref<Map<string, Serie> | null>(null)
@@ -68,7 +69,7 @@ const debouncedUpdate = debounce((value) => {
 }, 2000)
 
 const menu = ref(false)
-const timerDisplay = ref('00:00:00') // Placeholder
+const timerDisplay = useSessionTimer(session)
 
 watch(
   () => JSON.parse(JSON.stringify(session.value)),
@@ -158,7 +159,7 @@ const addSerie = (exerciceIndex: number) => {
       <div class="text-h6 font-weight-bold">{{ session.name }}</div>
       <div class="text-h6 d-flex align-center">
         <!-- Timer component could be extracted too -->
-        <div class="mr-4">{{ timerDisplay }}</div>
+        <div class="mr-4">{{ timerDisplay.diff }}</div>
 
         <AppBtn variant="icon" icon="mdi-pause" @click="menu = true" class="bg-white text-blue-accent-2" />
       </div>

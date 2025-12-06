@@ -1,6 +1,6 @@
 import { ref, type Ref } from 'vue'
 import { StorageService } from '@/services/StorageService.ts'
-import { getErrorMessage } from '@/composables/Functions.ts'
+import { getErrorMessage } from '@/composables/getErrorMessage.ts'
 import type { StorageConfig } from '@/Storages/StorageAdapter.ts'
 import { z } from 'zod'
 
@@ -12,6 +12,7 @@ export function useBaseStore<T extends Identifiable>(
   storageName: string,
   itemSchema: z.ZodType<T>,
   defaultAdapter: StorageConfig['adapter'] = 'firebase',
+  storageKey?: string,
 ) {
   // State
   const items: Ref<T[]> = ref([])
@@ -20,7 +21,7 @@ export function useBaseStore<T extends Identifiable>(
   const error: Ref<string | null> = ref(null)
   const lastSync: Ref<Date | null> = ref(null)
 
-  const storage = new StorageService<T[]>(storageName, {
+  const storage = new StorageService<T[]>(storageKey || storageName, {
     adapter: defaultAdapter,
   })
 
