@@ -1,6 +1,6 @@
 import { ref, type Ref } from 'vue'
 import { StorageService } from '@/services/StorageService.ts'
-import { getErrorMessage } from '@/composables/Functions.ts'
+import { getErrorMessage } from '@/composables/getErrorMessage.ts'
 import type { StorageConfig } from '@/Storages/StorageAdapter.ts'
 import { z } from 'zod'
 

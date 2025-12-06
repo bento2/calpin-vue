@@ -6,7 +6,7 @@ import { StorageService } from '@/services/StorageService.ts'
 import { useBaseStore } from '@/composables/useBaseStore.ts'
 import type { Serie } from '@/types/SerieSchema.ts'
 import { computed } from 'vue'
-import { getErrorMessage } from '@/composables/Functions.ts'
+import { getErrorMessage } from '@/composables/getErrorMessage.ts'
 
 const storageName = 'sessions'
 
