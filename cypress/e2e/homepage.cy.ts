@@ -9,18 +9,19 @@ describe('Homepage Navigation', () => {
   })
 
   it('should display navigation menu', () => {
-    // Check for navigation drawer or menu button
-    cy.get('nav').should('exist')
+    // Check for bottom navigation
+    cy.get('.v-bottom-navigation').should('exist')
   })
 
   it('should navigate to Exercices page from menu', () => {
-    // Click on exercices link/button
+    // Click on exercices button in bottom nav
     cy.contains('Exercices').click()
     cy.url().should('include', '/exercices')
   })
 
   it('should navigate to Trainings page from menu', () => {
-    cy.contains('Entrainements').click()
+    // Click on trainings button
+    cy.contains('Entraînements').click()
     cy.url().should('include', '/trainings')
   })
 
@@ -29,8 +30,10 @@ describe('Homepage Navigation', () => {
     cy.url().should('include', '/history')
   })
 
-  it('should display welcome content on homepage', () => {
-    // Check for main content elements
-    cy.get('h1, h2, h3').should('exist')
+  it('should display homepage content', () => {
+    // Check that the main content area exists
+    cy.get('.v-main').should('exist')
+    // Check for bottom navigation with buttons
+    cy.get('.v-bottom-navigation .v-btn').should('have.length.greaterThan', 0)
   })
 })
