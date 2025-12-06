@@ -29,7 +29,9 @@ describe('Complete User Journey', () => {
           .first()
           .then(($input) => {
             if ($input.length > 0) {
-              cy.wrap($input).clear().type('10')
+              // Split chain to avoid unsafe chaining
+              cy.get('input[type="number"]').first().clear()
+              cy.get('input[type="number"]').first().type('10')
             }
           })
 

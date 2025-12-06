@@ -35,12 +35,8 @@ describe('History Page', () => {
   })
 
   it('should allow filtering or sorting history', () => {
-    // Look for filter or sort controls
-    cy.get('body').then(($body) => {
-      // Check if there are any filter/sort buttons or dropdowns
-      const hasFilters = $body.find('button, select, .v-select').length > 0
-      expect(hasFilters).to.be.true
-    })
+    // Look for filter or sort controls - check that UI elements exist
+    cy.get('button, select, .v-select').should('have.length.greaterThan', 0)
   })
 
   it('should display session details when clicking on a session', () => {

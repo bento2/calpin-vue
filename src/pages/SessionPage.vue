@@ -133,6 +133,7 @@ const end = () => {
 const dialogExercices = ref(false)
 
 const getLastVal = (_exerciceId: string, _serieIndex: number): Serie | undefined => {
+  // TODO: Implement actual logic to fetch last value
   return undefined
 }
 

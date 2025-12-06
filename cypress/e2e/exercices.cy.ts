@@ -28,11 +28,8 @@ describe('Exercices Page', () => {
       .first()
       .type(searchTerm)
 
-    // Wait for debounce and filtering
-    cy.wait(500)
-
-    // Should show filtered results
-    cy.get('[data-testid="exercice-card"], .v-card').should('exist')
+    // Should show filtered results (Cypress will wait automatically)
+    cy.get('[data-testid="exercice-card"], .v-card', { timeout: 1000 }).should('exist')
   })
 
   it('should clear search when clear button is clicked', () => {
@@ -67,12 +64,14 @@ describe('Exercices Page', () => {
     cy.get('[data-testid="exercice-card"], .v-card').then(($cards) => {
       const initialCount = $cards.length
 
-      // Scroll to bottom
+      // Scroll to bottom and wait for potential new items to load
       cy.scrollTo('bottom')
-      cy.wait(1000)
 
-      // Should load more or stay the same
-      cy.get('[data-testid="exercice-card"], .v-card').should('have.length.gte', initialCount)
+      // Should load more or stay the same (with timeout for async loading)
+      cy.get('[data-testid="exercice-card"], .v-card', { timeout: 2000 }).should(
+        'have.length.gte',
+        initialCount,
+      )
     })
   })
 })

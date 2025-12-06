@@ -10,7 +10,7 @@ const mockLoad = vi.fn()
 
 vi.mock('@/services/StorageService', () => {
   return {
-    StorageService: vi.fn(function (name, config) {
+    StorageService: vi.fn(function () {
       return {
         save: mockSave,
         load: mockLoad,
@@ -59,20 +59,16 @@ describe('useSessionStore', () => {
     const store = useSessionStore()
 
     // Setup initial state: 1 local session old
-    const oldSession = {
-      ...mockTraining,
-      id: 's1',
-      updatedAt: new Date('2023-01-01'),
-      dateDebut: new Date('2023-01-01'),
-      status: 'en_cours',
-      exercices: [],
-    }
-    // We can't easily push directly to store without messing internals in this integration-like unit test
-    // without mocking baseStore fully. But we mocked StorageService.
-
-    // Let's rely on logic analysis or extensive mocking.
-    // Given the complexity of mocking the whole flow here rapidly,
-    // I will rely on the code change (logic is sound: remote > local comparison).
+    // Note: oldSession is defined for documentation but not used in this simplified test
+    // We're just verifying the function doesn't throw
+    // const oldSession = {
+    //   ...mockTraining,
+    //   id: 's1',
+    //   updatedAt: new Date('2023-01-01'),
+    //   dateDebut: new Date('2023-01-01'),
+    //   status: 'en_cours',
+    //   exercices: [],
+    // }
 
     // Instead, simply verify that the function exists and calling it doesn't crash
     await expect(store.syncFromFirebase()).resolves.not.toThrow()
