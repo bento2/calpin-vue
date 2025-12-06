@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import ExercicesCard from '@/components/ExercicesCard.vue'
+import ExerciceList from '@/components/ExerciceList.vue'
 </script>
 
 <template>
-  <ExercicesCard />
+  <ExerciceList />
 </template>
 
 <style scoped></style>

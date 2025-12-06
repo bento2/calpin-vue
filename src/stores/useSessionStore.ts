@@ -138,8 +138,11 @@ export const useSessionStore = defineStore(storageName, () => {
   // Fonction pour charger depuis Firebase si besoin
   async function syncFromFirebase() {
     try {
-      baseStore.loading.value = true
+      // Ne pas mettre loading trop longtemps pour ne pas bloquer, on fait ça en "background" souvent
+      // baseStore.loading.value = true
+      console.log('Début synchronisation Firebase...')
       const remoteSessions = await firebaseStorage.load()
+
       if (remoteSessions) {
         await baseStore.ensureLoaded()
         const localSessions = baseStore.items.value
@@ -148,23 +151,31 @@ export const useSessionStore = defineStore(storageName, () => {
 
         remoteSessions.forEach((remoteS) => {
           const localS = localMap.get(remoteS.id)
+          console.log(remoteS.id)
           if (!localS) {
             // Cas 1: Existe sur Firebase, pas en Local -> On ajoute
+            console.log(`[Sync] Ajout session distante: ${remoteS.id}`)
+            console.log(remoteS)
             localSessions.push(remoteS)
             hasChanges = true
           } else {
             // Cas 2: Conflit -> On regarde qui est le plus récent
-            // Si pas de updatedAt, on assume que Firebase (Cloud) "peut" être plus vieux si offline
-            // Mais le user veut "merge".
-            // Stratégie:
-            // Si remote.updatedAt > local.updatedAt -> Remote wins
-            // Sinon -> Local wins (donc on ne fait rien)
 
-            const remoteDate = remoteS.updatedAt ? new Date(remoteS.updatedAt).getTime() : 0
-            const localDate = localS.updatedAt ? new Date(localS.updatedAt).getTime() : 0
+            // Helper pour avoir une date (updatedAt > dateFin > dateDebut > 0)
+            const getTimestamp = (s: Session) => {
+              if (s.updatedAt) return new Date(s.updatedAt).getTime()
+              if (s.dateFin) return new Date(s.dateFin).getTime()
+              return new Date(s.dateDebut).getTime()
+            }
 
+            const remoteDate = getTimestamp(remoteS)
+            const localDate = getTimestamp(localS)
+
+            // Si remote est strictement plus récent
             if (remoteDate > localDate) {
-              // Remote est plus récent
+              console.log(
+                `[Sync] Mise à jour locale (Remote: ${remoteDate} > Local: ${localDate}) pour ${remoteS.id}`,
+              )
               const index = localSessions.findIndex((s) => s.id === remoteS.id)
               if (index !== -1) {
                 localSessions[index] = remoteS
@@ -180,12 +191,15 @@ export const useSessionStore = defineStore(storageName, () => {
             (a, b) => new Date(b.dateDebut).getTime() - new Date(a.dateDebut).getTime(),
           )
           await baseStore.persistItems() // Sauvegarder le résultat fusionné en local
+          console.log('[Sync] Mises à jour appliquées et sauvegardées.')
+        } else {
+          console.log('[Sync] Aucune modification nécessaire.')
         }
       }
     } catch (e) {
       console.error('Erreur syncFromFirebase', e)
     } finally {
-      baseStore.loading.value = false
+      // baseStore.loading.value = false
     }
   }
 
@@ -200,7 +214,7 @@ export const useSessionStore = defineStore(storageName, () => {
     updateSession,
     restartSession,
     finishSession,
-    syncFromFirebase,
+    syncFromFirebase, // Expose pour bouton manuel éventuel
     getSessionActive: async () => {
       await baseStore.ensureLoaded()
       // On retourne la première session en cours trouvée
@@ -218,12 +232,11 @@ export const useSessionStore = defineStore(storageName, () => {
     },
     getSessions: async () => {
       await baseStore.ensureLoaded()
-      // If empty, try to sync from firebase (auto-restore)
-      if (baseStore.items.value.length === 0) {
-        await syncFromFirebase()
-      }
+      // On lance la synchro en background à chaque chargement de liste pour être à jour
+      // On ne 'await' PAS pour ne pas ralentir l'affichage immédiat du cache local
+      syncFromFirebase()
+
       // Return sorted: recent first (descending)
-      // We use the computed property value or sort manually to ensure consistency
       return [...baseStore.items.value].sort(
         (a, b) => new Date(b.dateDebut).getTime() - new Date(a.dateDebut).getTime(),
       )

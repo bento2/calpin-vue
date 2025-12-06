@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { createTestingPinia } from '@pinia/testing'
 import { nextTick } from 'vue'
-import Exercices from '@/components/ExercicesCard.vue'
+import ExerciceList from '@/components/ExerciceList.vue'
 import ExerciceCard from '@/components/ExerciceCard.vue'
 import type { Exercice } from '@/types/ExerciceSchema.ts'
 
@@ -50,7 +50,7 @@ vi.mock('@/services/ExerciceUtils.ts', () => {
 
 describe('Exercices Component', () => {
   const createWrapper = (props = {}) => {
-    return mount(Exercices, {
+    return mount(ExerciceList, {
       props: {
         selectable: false,
         selected: [],

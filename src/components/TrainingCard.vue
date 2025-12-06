@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { type Training } from '@/types/TrainingSchema.ts'
 import ExerciceIcon from '@/components/ExerciceIcon.vue'
+import AppCard from '@/components/ui/AppCard.vue'
+import AppBtn from '@/components/ui/AppBtn.vue'
 import { useSessionStore } from '@/stores/useSessionStore.ts'
 
 import { useRouter } from 'vue-router'
@@ -25,29 +27,18 @@ const remove = () => {
 
 <template>
   <div v-if="training === undefined">Cette entrainement n'existe pas</div>
-  <v-card v-else class="mb-1" hover>
-    <v-card-title class="d-flex justify-space-between align-center">
-      <div class="text-medium-emphasis ps-2">{{ training.name }}</div>
-      <div>
-        <v-btn icon="mdi-play" variant="text" @click="run"></v-btn>
-        <v-btn
-          icon="mdi-note-edit"
-          variant="text"
-          :to="{ name: 'training', params: { id: training.id } }"
-        ></v-btn>
-        <v-btn icon="mdi-delete" variant="text" @click="remove" v-if="showDelete"></v-btn>
-      </div>
-    </v-card-title>
+  <AppCard v-else hover :title="training.name">
+    <template #headerActions>
+      <AppBtn variant="icon" icon="mdi-play" @click="run" color="blue-accent-2" />
+      <AppBtn variant="icon" icon="mdi-note-edit" :to="{ name: 'training', params: { id: training.id } }"
+        color="grey" />
+      <AppBtn v-if="showDelete" variant="icon" icon="mdi-delete" @click="remove" color="red-lighten-2" />
+    </template>
 
-    <v-card-text>
-      <ExerciceIcon
-        v-for="exercice in training.exercices"
-        :exercice="exercice"
-        :key="exercice.id"
-        class="mr-2"
-      />
-    </v-card-text>
-  </v-card>
+    <div class="d-flex flex-wrap">
+      <ExerciceIcon v-for="exercice in training.exercices" :exercice="exercice" :key="exercice.id" class="mr-2 mb-2" />
+    </div>
+  </AppCard>
 </template>
 
 <style scoped></style>

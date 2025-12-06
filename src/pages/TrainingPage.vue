@@ -2,7 +2,7 @@
 import { type Training } from '@/types/TrainingSchema.ts'
 import { computed, onMounted, ref } from 'vue'
 import ExerciceCard from '@/components/ExerciceCard.vue'
-import Exercices from '@/components/ExercicesCard.vue'
+
 import { useTrainingStore } from '@/stores/useTrainingStore.ts'
 import { useRoute } from 'vue-router'
 import draggable from 'vuedraggable'
@@ -70,21 +70,12 @@ const save = () => {
 <template>
   <v-card v-if="training" class="d-flex flex-column" style="height: 100%">
     <v-card-title class="bg-blue mb-1">
-      <v-text-field
-        label="Titre de l'entrainement"
-        v-model="training.name"
-        hide-details="auto"
-        clearable
-        @click:clear="() => (training!.name = '')"
-      ></v-text-field>
+      <v-text-field label="Titre de l'entrainement" v-model="training.name" hide-details="auto" clearable
+        @click:clear="() => (training!.name = '')"></v-text-field>
     </v-card-title>
 
-    <draggable
-      v-model="training.exercices"
-      item-key="id"
-      :animation="200"
-      v-if="training.exercices && training.exercices.length > 0"
-    >
+    <draggable v-model="training.exercices" item-key="id" :animation="200"
+      v-if="training.exercices && training.exercices.length > 0">
       <template #item="{ element: exercice, index: idx }">
         <ExerciceCard :key="exercice.id" :exercice="exercice" class="w-100 mb-1">
           <template #actions>
@@ -132,15 +123,8 @@ const save = () => {
     <v-progress-circular indeterminate color="primary"></v-progress-circular>
   </v-card>
 
-  <v-dialog
-    v-model="dialog"
-    transition="dialog-bottom-transition"
-    width="95%"
-    height="90vh"
-    border
-    rounded
-    elevation="4"
-  >
+  <v-dialog v-model="dialog" transition="dialog-bottom-transition" width="95%" height="90vh" border rounded
+    elevation="4">
     <v-card v-if="training">
       <v-card-title class="d-flex justify-space-between align-center">
         <div class="text-h5 text-medium-emphasis ps-2">Ajouter des exercices</div>
