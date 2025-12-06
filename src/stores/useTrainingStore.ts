@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid'
 const storageName = 'trainings'
 
 export const useTrainingStore = defineStore(storageName, () => {
-  const baseStore = useBaseStore<Training>(storageName, TrainingSchema)
+  const baseStore = useBaseStore<Training>(storageName, TrainingSchema, 'localStorage')
 
   // Getters
   const trainingsSortedByDate = computed(() =>
@@ -44,12 +44,11 @@ export const useTrainingStore = defineStore(storageName, () => {
     getTrainingById: baseStore.getItemById,
     deleteTrainingById: baseStore.deleteItem,
     getTrainings: async () => {
-        await baseStore.ensureLoaded()
-        return trainingsSortedByDate.value
+      await baseStore.ensureLoaded()
+      return trainingsSortedByDate.value
     },
     loadTrainings: baseStore.loadItems,
     persistTrainings: baseStore.persistItems,
     clearAllSessions: baseStore.clearAll, // The original name was clearAllSessions in TrainingStore? Yes.
   }
 })
-

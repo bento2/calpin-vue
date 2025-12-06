@@ -6,16 +6,12 @@ This directory contains end-to-end (E2E) tests for the Calpin Vue application us
 
 ## Test Files
 
-### 1. `example.cy.ts` - Smoke Tests
-
-Basic smoke tests to verify the application loads and has working navigation.
-
 **Tests:**
 
 - Application loads successfully
 - Navigation is present and functional
 
-### 2. `homepage.cy.ts` - Homepage Navigation
+### Homepage Navigation
 
 Tests for the homepage and main navigation functionality.
 
@@ -26,7 +22,7 @@ Tests for the homepage and main navigation functionality.
 - Navigation to Exercices, Trainings, and History pages
 - Welcome content is visible
 
-### 3. `exercices.cy.ts` - Exercices Page
+### Exercices Page
 
 Tests for the exercices listing and search functionality.
 
@@ -40,7 +36,7 @@ Tests for the exercices listing and search functionality.
 - Exercice details are displayed
 - Infinite scroll for loading more exercices
 
-### 4. `trainings.cy.ts` - Trainings Flow
+### Trainings Flow
 
 Tests for trainings list, creation, and viewing functionality.
 
@@ -54,7 +50,7 @@ Tests for trainings list, creation, and viewing functionality.
 - Training detail page displays information
 - Start session from training
 
-### 5. `sessions.cy.ts` - Session Flow
+### Session Flow
 
 Tests for active training session functionality.
 
@@ -67,7 +63,7 @@ Tests for active training session functionality.
 - Navigation controls (next/previous)
 - Session completion
 
-### 6. `history.cy.ts` - History Page
+### History Page
 
 Tests for viewing past training sessions.
 
@@ -81,7 +77,7 @@ Tests for viewing past training sessions.
 - Statistics display
 - Delete session functionality
 
-### 7. `user-journey.cy.ts` - Complete User Journey
+### Complete User Journey
 
 End-to-end tests simulating complete user workflows.
 

@@ -6,7 +6,7 @@ describe('Complete User Journey', () => {
     cy.url().should('eq', Cypress.config().baseUrl + '/')
 
     // Step 2: Navigate to trainings
-    cy.contains('Entrainements').click()
+    cy.contains('Entraînements').click()
     cy.url().should('include', '/trainings')
 
     // Step 3: Check if trainings exist or create one
@@ -69,7 +69,7 @@ describe('Complete User Journey', () => {
     const pages = [
       { name: 'Home', url: '/', linkText: null },
       { name: 'Exercices', url: '/exercices', linkText: 'Exercices' },
-      { name: 'Trainings', url: '/trainings', linkText: 'Entrainements' },
+      { name: 'Trainings', url: '/trainings', linkText: 'Entraînements' },
       { name: 'History', url: '/history', linkText: 'Historiques' },
     ]
 
