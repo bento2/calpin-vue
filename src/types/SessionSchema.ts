@@ -13,6 +13,7 @@ export const SessionSchema = z
     dateFin: dateWithDefault().optional(),
     exercices: z.array(ExerciceSeriesSchema),
     status: SessionStatusSchema,
+    updatedAt: dateWithDefault().optional(),
   })
   .transform((data) => ({
     ...data,
