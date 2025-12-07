@@ -28,12 +28,8 @@ watch(trainings, () => {
 <template>
   <v-btn @click="newTraining" class="mb-4">Nouvel entrainement</v-btn>
   <div :key="update">
-    <TrainingCard
-      v-for="training in trainings"
-      :key="training.id"
-      :training="training"
-      :showDelete="true"
-    />
+    <TrainingCard v-for="training in trainings" :key="training.id" :training="training" :showDelete="true"
+      class="mb-2" />
   </div>
 </template>
 

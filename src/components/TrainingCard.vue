@@ -35,7 +35,7 @@ const remove = () => {
       <AppBtn v-if="showDelete" variant="icon" icon="mdi-delete" @click="remove" color="red-lighten-2" />
     </template>
 
-    <div class="d-flex flex-wrap">
+    <div class="d-flex flex-start ga-2">
       <ExerciceIcon v-for="exercice in training.exercices" :exercice="exercice" :key="exercice.id" class="mr-2 mb-2" />
     </div>
   </AppCard>

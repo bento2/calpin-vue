@@ -26,7 +26,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <v-main class="d-flex flex-column" style="flex: 1 1 auto; min-height: calc(100vh - 100px)">
+  <v-main class="d-flex flex-column justify-start ga-2" style="flex: 1 1 auto; min-height: calc(100vh - 100px)">
     <v-card v-if="activeSession !== null"
       class="bg-green-darken-1 pa-2 d-flex justify-space-between align-center flex-row">
       <div class="text-left">

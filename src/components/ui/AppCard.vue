@@ -13,11 +13,11 @@ withDefaults(defineProps<{
 
 <template>
   <v-card :color="color" :elevation="elevation" :loading="loading">
-    <v-card-title v-if="title || $slots.title" class="d-flex">
+    <v-card-title v-if="title || $slots.title" class="d-flex justify-space-between align-center">
       <slot name="title">
         <span class="text-h6">{{ title }}</span>
       </slot>
-      <div v-if="$slots.headerActions">
+      <div v-if="$slots.headerActions" class="align-self-end">
         <slot name="headerActions"></slot>
       </div>
     </v-card-title>
