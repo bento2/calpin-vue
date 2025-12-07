@@ -23,6 +23,8 @@ describe('SeriesCard', () => {
     const wrapper = mount(SeriesCard, {
       props: {
         modelValue: mockSeries,
+        exerciceId: '1',
+        stats: null,
       },
       global: {
         stubs: {

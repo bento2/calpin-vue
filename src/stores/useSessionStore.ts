@@ -35,6 +35,7 @@ export const useSessionStore = defineStore(storageName, () => {
     try {
       await baseStore.ensureLoaded()
       const stats = new Map<string, Serie>()
+
       baseStore.items.value.forEach((session) => {
         session.exercices.forEach((exercice) => {
           if (exercice.series && exercice.max) {
@@ -49,6 +50,7 @@ export const useSessionStore = defineStore(storageName, () => {
           }
         })
       })
+
       return stats
     } catch (error) {
       baseStore.error.value = `Erreur lors de la recherche de stats: ${getErrorMessage(error)}`

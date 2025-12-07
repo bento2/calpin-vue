@@ -2,7 +2,7 @@
 import { type Training } from '@/types/TrainingSchema.ts'
 import { computed, onMounted, ref } from 'vue'
 import ExerciceCard from '@/components/ExerciceCard.vue'
-
+import Exercices from '@/components/ExerciceList.vue'
 import { useTrainingStore } from '@/stores/useTrainingStore.ts'
 import { useRoute } from 'vue-router'
 import draggable from 'vuedraggable'
@@ -65,6 +65,7 @@ const save = () => {
     saveTraining(training.value)
   }
 }
+
 </script>
 
 <template>
@@ -77,31 +78,36 @@ const save = () => {
     <draggable v-model="training.exercices" item-key="id" :animation="200"
       v-if="training.exercices && training.exercices.length > 0">
       <template #item="{ element: exercice, index: idx }">
-        <ExerciceCard :key="exercice.id" :exercice="exercice" class="w-100 mb-1">
+        <ExerciceCard :key="exercice.id" :exercice="exercice"
+          class="d-flex flex-row justify-space-between align-center">
           <template #actions>
-            <v-menu>
-              <template v-slot:activator="{ props }">
-                <v-btn icon="mdi-dots-vertical" variant="outlined" v-bind="props"></v-btn>
-              </template>
-              <v-list>
-                <v-list-item @click="moveUp(idx)" v-if="idx > 0">
-                  <v-list-item-title>Monter</v-list-item-title>
-                </v-list-item>
-                <v-list-item @click="moveDown(idx)" v-if="idx < training.exercices.length - 1">
-                  <v-list-item-title>Descendre</v-list-item-title>
-                </v-list-item>
-                <v-list-item @click="remove(exercice.id)">
-                  <v-list-item-title>
-                    <v-icon>mdi-delete</v-icon>
-                    Supprimer
-                  </v-list-item-title>
-                </v-list-item>
-              </v-list>
-            </v-menu>
-            <v-btn icon variant="text" class="drag-handle" title="Déplacer">
-              <v-icon>mdi-drag</v-icon>
-            </v-btn>
+            <div>
+              <v-menu>
+                <template v-slot:activator="{ props }">
+                  <v-btn icon="mdi-dots-vertical" variant="outlined" v-bind="props"></v-btn>
+                </template>
+                <v-list>
+                  <v-list-item @click="moveUp(idx)" v-if="idx > 0">
+                    <v-list-item-title>Monter</v-list-item-title>
+                  </v-list-item>
+                  <v-list-item @click="moveDown(idx)" v-if="idx < training.exercices.length - 1">
+                    <v-list-item-title>Descendre</v-list-item-title>
+                  </v-list-item>
+                  <v-list-item @click="remove(exercice.id)">
+                    <v-list-item-title>
+                      <v-icon>mdi-delete</v-icon>
+                      Supprimer
+                    </v-list-item-title>
+                  </v-list-item>
+                </v-list>
+              </v-menu>
+
+              <v-btn icon variant="text" class="drag-handle" title="Déplacer">
+                <v-icon>mdi-drag</v-icon>
+              </v-btn>
+            </div>
           </template>
+
         </ExerciceCard>
       </template>
     </draggable>
@@ -123,8 +129,7 @@ const save = () => {
     <v-progress-circular indeterminate color="primary"></v-progress-circular>
   </v-card>
 
-  <v-dialog v-model="dialog" transition="dialog-bottom-transition" width="95%" height="90vh" border rounded
-    elevation="4">
+  <v-dialog v-model="dialog" transition="dialog-bottom-transition" width="95%" height="90vh" rounded elevation="4">
     <v-card v-if="training">
       <v-card-title class="d-flex justify-space-between align-center">
         <div class="text-h5 text-medium-emphasis ps-2">Ajouter des exercices</div>
@@ -132,9 +137,7 @@ const save = () => {
       </v-card-title>
 
       <v-card-item>
-        <KeepAlive>
-          <Exercices selectable v-model:selected="training.exercices" />
-        </KeepAlive>
+        <Exercices selectable v-model:selected="training.exercices" />
       </v-card-item>
 
       <v-card-actions class="mt-auto align-self-end">

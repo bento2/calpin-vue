@@ -3,12 +3,23 @@ import { type Serie } from '@/types/SerieSchema.ts'
 import InputNumberSerie from '@/components/InputNumberSerie.vue'
 
 const series = defineModel({ type: Array<Serie> })
-const props = defineProps<{ lastSerie?: Serie }>()
+import type { Ref } from 'vue'
+import { computed } from 'vue'
+
+const props = defineProps<{
+  exerciceId: string,
+  stats: Ref<Map<string, Serie>> | null
+}>()
+
 const remove = (index: number) => {
   if (series.value) series.value.splice(index, 1)
 }
 
-const lastSerie = props.lastSerie
+const lastSerie = computed(() => {
+  if (!props.stats || !props.stats.value || !props.stats.value.has(props.exerciceId)) return undefined
+  return props.stats.value.get(props.exerciceId)
+})
+
 const add = () => {
   if (series.value) {
     series.value.push({
@@ -28,39 +39,23 @@ const autoCheck = (index: number) => {
 }
 
 const validCheck = (serie: Serie) => {
-  serie.repetitions ||= lastSerie?.repetitions
-  serie.poids ||= lastSerie?.poids
+  serie.repetitions ||= lastSerie.value?.repetitions
+  serie.poids ||= lastSerie.value?.poids
 }
 </script>
 
 <template>
-  <v-card
-    v-for="(serie, index) in series"
-    :key="index"
-    hover
-    :color="serie.checked ? 'success' : ''"
-  >
+  <v-card v-for="(serie, index) in series" :key="index" hover :color="serie.checked ? 'success' : ''">
     <div class="d-flex flex-row align-center pa-2 justify-start" style="min-width: 320px">
-      <v-checkbox
-        :label="(index + 1).toString()"
-        color="primary"
-        hide-details
-        class="mr-2 rounded-checkbox"
-        inset
-        v-model="serie.checked"
-        @change="validCheck(serie)"
-      ></v-checkbox>
+      <v-checkbox :label="(index + 1).toString()" color="primary" hide-details class="mr-2 rounded-checkbox" inset
+        v-model="serie.checked" @change="validCheck(serie)"></v-checkbox>
       <InputNumberSerie v-model="serie.poids" unit="KG" :placeholder="lastSerie?.poids ?? 0" />
-      <InputNumberSerie
-        v-model="serie.repetitions"
-        unit="Rép ."
-        @focusout="autoCheck(index)"
-        :placeholder="lastSerie?.repetitions ?? 0"
-      />
+      <InputNumberSerie v-model="serie.repetitions" unit="Rép ." @focusout="autoCheck(index)"
+        :placeholder="lastSerie?.repetitions ?? 0" />
       <v-btn icon="mdi-delete" variant="text" @click="remove(index)" class="ml-auto"></v-btn>
     </div>
   </v-card>
-  <v-btn @click="add">+ Ajouter une serie</v-btn>
+  <v-btn @click="add" class="bg-blue-accent-4">+ Ajouter une serie</v-btn>
 </template>
 
 <style scoped>
