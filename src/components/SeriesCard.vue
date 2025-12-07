@@ -21,14 +21,18 @@ const lastSerie = computed(() => {
 })
 
 const add = () => {
-  if (series.value) {
-    series.value.push({
-      poids: 0,
-      repetitions: 0,
-      checked: false,
-      total: 0,
-    })
+  if (series.value === undefined) {
+    series.value = []
   }
+
+
+  series.value.push({
+    poids: 0,
+    repetitions: 0,
+    checked: false,
+    total: 0,
+  })
+
 }
 
 const autoCheck = (index: number) => {
@@ -45,7 +49,8 @@ const validCheck = (serie: Serie) => {
 </script>
 
 <template>
-  <v-card v-for="(serie, index) in series" :key="index" hover :color="serie.checked ? 'success' : ''">
+  <v-card v-for="(serie, index) in series" :key="index" hover :color="serie.checked ? 'success' : ''"
+    class="align-center">
     <div class="d-flex flex-row align-center pa-2 justify-start" style="min-width: 320px">
       <v-checkbox :label="(index + 1).toString()" color="primary" hide-details class="mr-2 rounded-checkbox" inset
         v-model="serie.checked" @change="validCheck(serie)"></v-checkbox>
@@ -55,7 +60,8 @@ const validCheck = (serie: Serie) => {
       <v-btn icon="mdi-delete" variant="text" @click="remove(index)" class="ml-auto"></v-btn>
     </div>
   </v-card>
-  <v-btn @click="add" class="bg-blue-accent-4">+ Ajouter une serie</v-btn>
+  <v-btn @click="add" class="bg-blue-accent-4 mt-2 mb-2 mr-auto ml-auto">+ Ajouter une serie</v-btn>
+
 </template>
 
 <style scoped>
