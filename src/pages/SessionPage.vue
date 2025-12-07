@@ -170,7 +170,7 @@ const dialogExercices = ref(false)
     </div>
 
     <!-- Main Content -->
-    <div class="overflow-y-auto flex-grow-1 px-2 pt-2 pb-14 bg-blue-accent-4">
+    <div class="overflow-y-auto flex-grow-1 px-2 pt-2 pb-14 bg-blue-accent-4 mb-2">
       <template v-for="(exercice, index) in session.exercices" :key="exercice.id">
         <ExerciceCard :exercice="exercice" class="d-flex flex-row space-between align-center ga-2">
           <template #subtitle>
@@ -204,9 +204,9 @@ const dialogExercices = ref(false)
     </div>
 
     <!-- Footer/Finish -->
-    <div class="pa-2 bg-white border-t" style="position: fixed; bottom: 0; left: 0; right: 0; z-index: 10;">
+    <div class="pa-2 bg-white border-t ga-2" style="position: fixed; bottom: 0; left: 0; right: 0; z-index: 10;">
       <AppBtn block size="large" @click="dialogExercices = !dialogExercices" :variant="ended ? 'secondary' : 'primary'"
-        :if='!ended'>
+        class="mb-2" :if='!ended'>
         Ajout un Exercice
       </AppBtn>
       <AppBtn block size="large" @click="end" :variant="ended ? 'secondary' : 'primary'">
@@ -223,7 +223,7 @@ const dialogExercices = ref(false)
         <v-btn icon="mdi-close" @click="dialogExercices = false"></v-btn>
         <v-toolbar-title>Ajouter un exercice</v-toolbar-title>
         <v-toolbar-items>
-          <v-btn text="Enregistrer" variant="text" @click="dialogExercices = false"></v-btn>
+          <v-btn text="Fermer" variant="text" @click="dialogExercices = false" class="bg-blue-accent-2"></v-btn>
         </v-toolbar-items>
       </v-toolbar>
       <ExerciceList selectable v-model:selected="session!.exercices" />
