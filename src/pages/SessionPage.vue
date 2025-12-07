@@ -1,16 +1,16 @@
-```vue
 <script setup lang="ts">
 import { onMounted, ref, watch, computed } from 'vue'
 import { useSessionStore } from '@/stores/useSessionStore.ts'
 import { useRoute, useRouter } from 'vue-router'
 import { type Session, SessionSchema } from '@/types/SessionSchema.ts'
 import ExerciceCard from '@/components/ExerciceCard.vue'
-import InputNumberSerie from '@/components/InputNumberSerie.vue'
+import SeriesCard from '@/components/SeriesCard.vue'
 import ExerciceList from '@/components/ExerciceList.vue'
 import AppBtn from '@/components/ui/AppBtn.vue'
 import SessionPauseDialog from '@/components/SessionPauseDialog.vue'
 import { debounce } from 'lodash-es'
 import type { Serie } from '@/types/SerieSchema.ts'
+
 import { useSessionTimer } from '@/composables/useSessionTimer'
 
 const session = ref<Session | null>(null)
@@ -103,6 +103,16 @@ const cancel = () => {
   goHome()
 }
 
+const remove = (id: string) => {
+  if (!session.value?.exercices) return
+
+  const index = session.value.exercices.findIndex((e) => e.id === id)
+  if (index !== -1) {
+    session.value.exercices.splice(index, 1)
+  }
+}
+
+
 const goHome = () => {
   router.push({ name: 'Home' })
 }
@@ -129,25 +139,19 @@ const end = () => {
   goHome()
 }
 
-// unused functions removed
+const openIndexes = ref<Set<number>>(new Set())
 
-const dialogExercices = ref(false)
-
-const getLastVal = (_exerciceId: string, _serieIndex: number): Serie | undefined => {
-  // TODO: Implement actual logic to fetch last value
-  return undefined
-}
-
-const addSerie = (exerciceIndex: number) => {
-  if (session.value && session.value.exercices[exerciceIndex]?.series) {
-    session.value.exercices[exerciceIndex].series?.push({
-      poids: 0,
-      repetitions: 0,
-      checked: false,
-      total: 0,
-    });
+const toggle = (index: number) => {
+  if (openIndexes.value.has(index)) {
+    openIndexes.value.delete(index)
+  } else {
+    openIndexes.value.add(index)
   }
 }
+
+const isOpen = (index: number) => openIndexes.value.has(index)
+
+const dialogExercices = ref(false)
 </script>
 
 <template>
@@ -166,50 +170,45 @@ const addSerie = (exerciceIndex: number) => {
     </div>
 
     <!-- Main Content -->
-    <div class="overflow-y-auto flex-grow-1 px-2 pt-2 pb-14 bg-grey-lighten-4">
-      <div v-for="(exercice, index) in session.exercices" :key="exercice.id" class="mb-4">
-        <ExerciceCard :exercice="exercice">
+    <div class="overflow-y-auto flex-grow-1 px-2 pt-2 pb-14 bg-blue-accent-4">
+      <template v-for="(exercice, index) in session.exercices" :key="exercice.id">
+        <ExerciceCard :exercice="exercice" class="d-flex flex-row space-between align-center ga-2">
           <template #subtitle>
-            <div class="d-flex ga-2 mt-1">
-              <v-chip size="x-small" label color="blue-accent-2" class="font-weight-bold">
-                {{ exercice.series?.length ?? 0 }} séries
-              </v-chip>
-            </div>
+            <v-chip size="x-small" label color="white" class="font-weight-bold">
+              {{ exercice.nbChecked ?? 0 }} / {{ exercice.series?.length ?? 0 }} séries
+            </v-chip>
           </template>
 
           <template #actions>
-            <div class="d-flex flex-column ga-2 mt-2 w-100">
-              <div v-for="(serie, sIndex) in exercice.series" :key="sIndex"
-                class="d-flex align-center justify-space-between bg-white rounded pa-2 border-sm border-opacity-25"
-                :class="serie.checked ? 'border-success' : 'border-grey'">
-                <div class="d-flex align-center ga-3">
-                  <span class="text-body-2 font-weight-bold text-grey-darken-1" style="min-width: 20px">#{{ sIndex + 1
-                    }}</span>
-                  <!-- InputNumberSerie component is not defined in the provided context, assuming it's a custom component -->
-                  <!-- For now, using basic input elements -->
-                  <InputNumberSerie v-model="serie.poids" unit="kg"
-                    :placeholder="getLastVal(exercice.id, sIndex)?.poids ?? undefined" @focusout="debouncedUpdate" />
-                  <InputNumberSerie v-model="serie.repetitions" unit="reps"
-                    :placeholder="getLastVal(exercice.id, sIndex)?.repetitions ?? undefined"
-                    @focusout="debouncedUpdate" />
-                </div>
-                <v-checkbox-btn v-model="serie.checked" color="success" density="compact" class="ma-0 pa-0"
-                  @update:model-value="saveLocal(session)"></v-checkbox-btn>
-              </div>
-            </div>
-            <!-- Add Series Button -->
-            <div class="d-flex justify-center mt-2">
-              <AppBtn variant="secondary" size="small" @click="addSerie(index)" class="px-6">
-                <v-icon start>mdi-plus</v-icon> Ajouter une série
-              </AppBtn>
+            <div class="d-flex flex-row ga-2 mt-2">
+              <v-menu>
+                <template v-slot:activator="{ props }">
+                  <v-btn icon="mdi-dots-vertical" variant="outlined" v-bind="props"></v-btn>
+                </template>
+                <v-list>
+                  <v-list-item @click="remove(exercice.id)">
+                    <v-list-item-title>
+                      <v-icon>mdi-delete</v-icon>
+                      Supprimer
+                    </v-list-item-title>
+                  </v-list-item>
+                </v-list>
+              </v-menu>
+              <v-btn :icon="isOpen(index) ? 'mdi-chevron-up' : 'mdi-chevron-down'"
+                :title="isOpen(index) ? 'Fermer' : 'Ouvrir'" variant="text" @click="toggle(index)" />
             </div>
           </template>
         </ExerciceCard>
-      </div>
+        <SeriesCard v-model="exercice.series" :exerciceId="exercice.id" :stats="null" v-if="openIndexes.has(index)" />
+      </template>
     </div>
 
     <!-- Footer/Finish -->
     <div class="pa-2 bg-white border-t" style="position: fixed; bottom: 0; left: 0; right: 0; z-index: 10;">
+      <AppBtn block size="large" @click="dialogExercices = !dialogExercices" :variant="ended ? 'secondary' : 'primary'"
+        :if='!ended'>
+        Ajout un Exercice
+      </AppBtn>
       <AppBtn block size="large" @click="end" :variant="ended ? 'secondary' : 'primary'">
         {{ ended ? 'Terminé' : 'Terminer la séance' }}
       </AppBtn>
@@ -218,7 +217,7 @@ const addSerie = (exerciceIndex: number) => {
     <!-- Pause Menu Dialog -->
     <SessionPauseDialog v-model="menu" :session="session" @restart="restart" @save="save" @end="end" @cancel="cancel" />
   </div>
-  <v-dialog v-model="dialogExercices" transition="dialog-bottom-transition" fullscreen>
+  <v-dialog v-model="dialogExercices" transition="dialog-bottom-transition" class="w-90 p-4">
     <v-card v-if="session">
       <v-toolbar color="primary">
         <v-btn icon="mdi-close" @click="dialogExercices = false"></v-btn>

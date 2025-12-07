@@ -29,7 +29,7 @@ const close = () => {
 </script>
 
 <template>
-  <v-dialog v-model="isOpen" width="500">
+  <v-dialog v-model="isOpen" transition="dialog-bottom-transition" class="opacity-90">
     <template v-slot:default>
       <v-card title="Pause">
         <v-card-text class="d-flex flex-column ga-3">

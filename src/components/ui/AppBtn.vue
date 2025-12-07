@@ -68,10 +68,13 @@ const btnProps = computed(() => {
       return base
   }
 })
+const icon = computed(() => props.variant === 'icon' ? (props.icon ?? true) : false)
+
 </script>
 
 <template>
-  <v-btn v-bind="btnProps" :icon="props.variant === 'icon' ? (icon ?? true) : undefined">
+  <v-btn v-bind="btnProps">
+    <v-icon v-if="icon">{{ icon }}</v-icon>
     <slot></slot>
   </v-btn>
 </template>

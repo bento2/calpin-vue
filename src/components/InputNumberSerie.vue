@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 
 const value = defineModel<number | undefined | null>()
-const { unit, placeholder } = defineProps<{ unit: string, placeholder?: number }>()
+const { unit, placeholder } = defineProps<{ unit: string, placeholder?: number | undefined }>()
 
 // Déclarez seulement focusout, pas update:modelValue
 const emit = defineEmits<{
@@ -27,21 +27,9 @@ const displayValue = computed({
 
 <template>
   <div class="d-inline-flex align-center">
-    <v-number-input
-      hide-details="auto"
-      :reverse="false"
-      controlVariant="hidden"
-      label=""
-      :hideInput="false"
-      inset
-      :placeholder="placeholder !== undefined ? `${placeholder}` : '0'"
-      variant="solo-filled"
-      v-model="displayValue"
-      class="mx-2"
-      style="max-width: 70px"
-      @focus="onFocus"
-      @focusout="handleFocusout"
-    ></v-number-input>
+    <v-number-input hide-details="auto" :reverse="false" controlVariant="hidden" label="" :hideInput="false" inset
+      :placeholder="placeholder !== undefined ? `${placeholder}` : '0'" variant="solo-filled" v-model="displayValue"
+      class="mx-2" style="max-width: 70px" @focus="onFocus" @focusout="handleFocusout"></v-number-input>
     <span>{{ unit }}</span>
   </div>
 </template>
