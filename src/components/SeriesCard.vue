@@ -1,25 +1,31 @@
 <script setup lang="ts">
 import { type Serie } from '@/types/SerieSchema.ts'
 import InputNumberSerie from '@/components/InputNumberSerie.vue'
-
+import { useSessionStore } from '@/stores/useSessionStore.ts'
 const series = defineModel({ type: Array<Serie> })
-import type { Ref } from 'vue'
-import { computed } from 'vue'
+import { onMounted, ref } from 'vue'
+
+
 
 const props = defineProps<{
-  exerciceId: string,
-  stats: Ref<Map<string, Serie>> | null
+  exerciceId: string
 }>()
 
-const remove = (index: number) => {
-  if (series.value) series.value.splice(index, 1)
-}
+const {
+  findStatsExercices
+} = useSessionStore()
 
-const lastSerie = computed(() => {
-  if (!props.stats || !props.stats.value || !props.stats.value.has(props.exerciceId)) return undefined
-  return props.stats.value.get(props.exerciceId)
+
+const lastSerie = ref<Serie | undefined>(undefined)
+
+onMounted(async () => {
+  findStatsExercices().then((stats => {
+    lastSerie.value = stats.get(props.exerciceId)
+  }))
 })
 
+
+const remove = (index: number) => { if (series.value) series.value.splice(index, 1) }
 const add = () => {
   if (series.value === undefined) {
     series.value = []
