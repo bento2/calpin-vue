@@ -226,7 +226,7 @@ const dialogExercices = ref(false)
           </template>
         </ExerciceCard>
         <KeepAlive>
-          <SeriesCard v-model="exercice.series" :exerciceId="exercice.id" :stats="null" v-if="openIndexes.has(index)" />
+          <SeriesCard v-model="exercice.series" :exerciceId="exercice.id" v-if="openIndexes.has(index)" />
         </KeepAlive>
       </template>
     </div>
