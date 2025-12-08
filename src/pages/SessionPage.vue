@@ -112,6 +112,24 @@ const remove = (id: string) => {
   }
 }
 
+const moveDown = (index: number) => {
+  return move(index, 1)
+}
+
+const moveUp = (index: number) => {
+  return move(index, -1)
+}
+
+const move = (index: number, step: number) => {
+  if (!session.value?.exercices) return
+  if (index < 0 || index >= session.value.exercices.length - 1) return
+
+  const exercices = session.value.exercices
+  const tmp = exercices[index]
+  exercices[index] = exercices[index + step]
+  exercices[index + step] = tmp
+}
+
 
 const goHome = () => {
   router.push({ name: 'Home' })
@@ -187,6 +205,18 @@ const dialogExercices = ref(false)
                   <v-btn icon="mdi-dots-vertical" variant="outlined" v-bind="props"></v-btn>
                 </template>
                 <v-list>
+                  <v-list-item @click="moveUp(index)" v-if='index > 0'>
+                    <v-list-item-title>
+                      <v-icon>mdi-arrow-up</v-icon>
+                      Monter
+                    </v-list-item-title>
+                  </v-list-item>
+                  <v-list-item @click="moveDown(index)" v-if='index < session.exercices.length - 1'>
+                    <v-list-item-title>
+                      <v-icon>mdi-arrow-down</v-icon>
+                      Déscendre
+                    </v-list-item-title>
+                  </v-list-item>
                   <v-list-item @click="remove(exercice.id)">
                     <v-list-item-title>
                       <v-icon>mdi-delete</v-icon>
