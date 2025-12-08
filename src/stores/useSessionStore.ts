@@ -5,7 +5,7 @@ import SessionService from '@/services/SessionService.ts'
 import { StorageService } from '@/services/StorageService.ts'
 import { useBaseStore } from '@/composables/useBaseStore.ts'
 import type { Serie } from '@/types/SerieSchema.ts'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { getErrorMessage } from '@/composables/getErrorMessage.ts'
 
 const storageName = 'sessions'
@@ -18,6 +18,9 @@ export const useSessionStore = defineStore(storageName, () => {
   const firebaseStorage = new StorageService<Session[]>(storageName, {
     adapter: 'firebase',
   })
+
+  const statsExercices = ref<Map<string, Serie>>(new Map<string, Serie>())
+  const statsLoaded = ref(false)
 
   // Getters
   const sessionsSortedByDate = computed(() =>
@@ -33,25 +36,27 @@ export const useSessionStore = defineStore(storageName, () => {
   // Actions
   async function findStatsExercices() {
     try {
-      await baseStore.ensureLoaded()
-      const stats = new Map<string, Serie>()
+      if (!statsLoaded.value) {
+        await baseStore.ensureLoaded()
 
-      baseStore.items.value.forEach((session) => {
-        session.exercices.forEach((exercice) => {
-          if (exercice.series && exercice.max) {
-            if (stats.has(exercice.id)) {
-              const last = stats.get(exercice.id)
-              if (last && last.total < exercice.max.total) {
-                stats.set(exercice.id, exercice.max)
+        baseStore.items.value.forEach((session) => {
+          session.exercices.forEach((exercice) => {
+            if (exercice.series && exercice.max) {
+              if (statsExercices.value.has(exercice.id)) {
+                const last = statsExercices.value.get(exercice.id)
+                if (last && last.total < exercice.max.total) {
+                  statsExercices.value.set(exercice.id, exercice.max)
+                }
+              } else {
+                statsExercices.value.set(exercice.id, exercice.max)
               }
-            } else {
-              stats.set(exercice.id, exercice.max)
             }
-          }
+          })
         })
-      })
+        statsLoaded.value = true
+      }
 
-      return stats
+      return statsExercices.value
     } catch (error) {
       baseStore.error.value = `Erreur lors de la recherche de stats: ${getErrorMessage(error)}`
       throw error

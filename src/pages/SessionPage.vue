@@ -9,12 +9,11 @@ import ExerciceList from '@/components/ExerciceList.vue'
 import AppBtn from '@/components/ui/AppBtn.vue'
 import SessionPauseDialog from '@/components/SessionPauseDialog.vue'
 import { debounce } from 'lodash-es'
-import type { Serie } from '@/types/SerieSchema.ts'
 
 import { useSessionTimer } from '@/composables/useSessionTimer'
 
 const session = ref<Session | null>(null)
-const stats = ref<Map<string, Serie> | null>(null)
+
 const {
   getSessionById,
   deleteSession,
@@ -22,7 +21,6 @@ const {
   restartSession,
   updateSession,
   saveSession,
-  findStatsExercices,
 } = useSessionStore()
 const route = useRoute()
 const router = useRouter()
@@ -58,9 +56,6 @@ onMounted(async () => {
 
     if (loadedSession) {
       session.value = loadedSession
-      findStatsExercices().then((value) => {
-        stats.value = value
-      })
     }
   }
 })
@@ -230,7 +225,9 @@ const dialogExercices = ref(false)
             </div>
           </template>
         </ExerciceCard>
-        <SeriesCard v-model="exercice.series" :exerciceId="exercice.id" :stats="null" v-if="openIndexes.has(index)" />
+        <KeepAlive>
+          <SeriesCard v-model="exercice.series" :exerciceId="exercice.id" :stats="null" v-if="openIndexes.has(index)" />
+        </KeepAlive>
       </template>
     </div>
 

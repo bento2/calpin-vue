@@ -4,61 +4,52 @@ import { FirebaseStorageAdapter } from '@/Storages/FirebaseStorageAdapter.ts'
 import type { Unsubscribe } from 'firebase/firestore'
 
 export class StorageService<T> {
-  private adapter: StorageAdapter<T>;
-  private key: string;
-  private realtimeUnsubscribe?: Unsubscribe;
+  private adapter: StorageAdapter<T>
+  private key: string
+  private realtimeUnsubscribe?: Unsubscribe
 
   constructor(key: string, config: StorageConfig = { adapter: 'localStorage' }) {
-    this.key = key;
-    this.adapter = this.createAdapter(config);
+    this.key = key
+    this.adapter = this.createAdapter(config)
   }
 
   private createAdapter(config: StorageConfig): StorageAdapter<T> {
     switch (config.adapter) {
       case 'localStorage':
-        return new LocalStorageAdapter<T>();
+        return new LocalStorageAdapter<T>()
 
       case 'firebase':
-        return new FirebaseStorageAdapter<T>();
-
-      /**case 'indexedDB':
-        return new IndexedDBAdapter<T>(
-          config.dbName || 'AppStorage',
-          config.version || 1
-        );
-
-      case 'memory':
-        return new MemoryStorageAdapter<T>();**/
+        return new FirebaseStorageAdapter<T>()
 
       default:
-        throw new Error(`Adapter non supporté: ${config.adapter}`);
+        throw new Error(`Adapter non supporté: ${config.adapter}`)
     }
   }
 
   // Méthodes publiques simplifiées
   async load(): Promise<T | null> {
-    return await this.adapter.get(this.key);
+    return await this.adapter.get(this.key)
   }
 
   async save(data: T): Promise<void> {
-    return await this.adapter.set(this.key, data);
+    return await this.adapter.set(this.key, data)
   }
 
   async delete(): Promise<void> {
-    return await this.adapter.remove(this.key);
+    return await this.adapter.remove(this.key)
   }
 
   async exists(): Promise<boolean> {
-    return await this.adapter.exists(this.key);
+    return await this.adapter.exists(this.key)
   }
 
   async clear(): Promise<void> {
-    return await this.adapter.clear();
+    return await this.adapter.clear()
   }
 
   // Changer d'adapter à la volée
   switchAdapter(config: StorageConfig): void {
-    this.adapter = this.createAdapter(config);
+    this.adapter = this.createAdapter(config)
   }
 
   // NOUVELLES MÉTHODES POUR FIREBASE
@@ -70,11 +61,11 @@ export class StorageService<T> {
    */
   async enableRealtimeSync(callback?: (data: T | null) => void): Promise<Unsubscribe | null> {
     if (this.adapter instanceof FirebaseStorageAdapter) {
-      this.realtimeUnsubscribe = await this.adapter.setupRealtimeSync(this.key, callback);
-      return this.realtimeUnsubscribe;
+      this.realtimeUnsubscribe = await this.adapter.setupRealtimeSync(this.key, callback)
+      return this.realtimeUnsubscribe
     }
-    console.warn('La synchronisation temps réel nécessite FirebaseStorageAdapter');
-    return null;
+    console.warn('La synchronisation temps réel nécessite FirebaseStorageAdapter')
+    return null
   }
 
   /**
@@ -82,8 +73,8 @@ export class StorageService<T> {
    */
   disableRealtimeSync(): void {
     if (this.realtimeUnsubscribe) {
-      this.realtimeUnsubscribe();
-      this.realtimeUnsubscribe = undefined;
+      this.realtimeUnsubscribe()
+      this.realtimeUnsubscribe = undefined
     }
   }
 
@@ -92,43 +83,43 @@ export class StorageService<T> {
    * Utilise les événements du navigateur
    */
   onUpdate(callback: (data: T) => void): () => void {
-    const eventName = `storage:${this.key}:updated`;
+    const eventName = `storage:${this.key}:updated`
     const handler = (event: Event) => {
-      const customEvent = event as CustomEvent<T>;
-      callback(customEvent.detail);
-    };
+      const customEvent = event as CustomEvent<T>
+      callback(customEvent.detail)
+    }
 
-    window.addEventListener(eventName, handler);
+    window.addEventListener(eventName, handler)
 
     // Retourner la fonction de nettoyage
-    return () => window.removeEventListener(eventName, handler);
+    return () => window.removeEventListener(eventName, handler)
   }
 
   /**
    * Écoute les événements de suppression
    */
   onDelete(callback: () => void): () => void {
-    const eventName = `storage:${this.key}:deleted`;
-    window.addEventListener(eventName, callback);
+    const eventName = `storage:${this.key}:deleted`
+    window.addEventListener(eventName, callback)
 
-    return () => window.removeEventListener(eventName, callback);
+    return () => window.removeEventListener(eventName, callback)
   }
 
   /**
    * Vérifie si l'adapter actuel est Firebase
    */
   isFirebaseAdapter(): boolean {
-    return this.adapter instanceof FirebaseStorageAdapter;
+    return this.adapter instanceof FirebaseStorageAdapter
   }
 
   /**
    * Nettoie les ressources
    */
   cleanup(): void {
-    this.disableRealtimeSync();
+    this.disableRealtimeSync()
 
     if (this.adapter instanceof FirebaseStorageAdapter) {
-      this.adapter.destroy();
+      this.adapter.destroy()
     }
   }
 }
