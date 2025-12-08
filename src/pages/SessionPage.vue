@@ -206,11 +206,8 @@ const dialogExercices = ref(false)
     <!-- Footer/Finish -->
     <div class="pa-2 bg-white border-t ga-2" style="position: fixed; bottom: 0; left: 0; right: 0; z-index: 10;">
       <AppBtn block size="large" @click="dialogExercices = !dialogExercices" :variant="ended ? 'secondary' : 'primary'"
-        class="mb-2" :if='!ended'>
+        :if='!ended'>
         Ajout un Exercice
-      </AppBtn>
-      <AppBtn block size="large" @click="end" :variant="ended ? 'secondary' : 'primary'">
-        {{ ended ? 'Terminé' : 'Terminer la séance' }}
       </AppBtn>
     </div>
 
