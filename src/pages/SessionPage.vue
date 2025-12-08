@@ -174,7 +174,8 @@ const dialogExercices = ref(false)
       <template v-for="(exercice, index) in session.exercices" :key="exercice.id">
         <ExerciceCard :exercice="exercice" class="d-flex flex-row space-between align-center ga-2">
           <template #subtitle>
-            <v-chip size="x-small" label color="white" class="font-weight-bold">
+            <v-chip size="x-small" label :color="exercice.nbChecked === exercice.series?.length ? 'success' : 'white'"
+              class="font-weight-bold ml-auto">
               {{ exercice.nbChecked ?? 0 }} / {{ exercice.series?.length ?? 0 }} séries
             </v-chip>
           </template>
