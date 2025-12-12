@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type Training } from '@/types/TrainingSchema.ts'
 import { computed, onMounted, ref } from 'vue'
-import ExerciceCard from '@/components/ExerciceCard.vue'
+import TrainingExerciceItem from '@/components/TrainingExerciceItem.vue'
 import Exercices from '@/components/ExerciceList.vue'
 import { useTrainingStore } from '@/stores/useTrainingStore.ts'
 import { useRoute } from 'vue-router'
@@ -83,37 +83,8 @@ const save = () => {
     <draggable v-model="training.exercices" item-key="id" :animation="200"
       v-if="training.exercices && training.exercices.length > 0">
       <template #item="{ element: exercice, index: idx }">
-        <ExerciceCard :key="exercice.id" :exercice="exercice"
-          class="d-flex flex-row justify-space-between align-center">
-          <template #actions>
-            <div>
-              <v-menu>
-                <template v-slot:activator="{ props }">
-                  <v-btn icon="mdi-dots-vertical" variant="outlined" v-bind="props"></v-btn>
-                </template>
-                <v-list>
-                  <v-list-item @click="moveUp(idx)" v-if="idx > 0">
-                    <v-list-item-title>Monter</v-list-item-title>
-                  </v-list-item>
-                  <v-list-item @click="moveDown(idx)" v-if="idx < training.exercices.length - 1">
-                    <v-list-item-title>Descendre</v-list-item-title>
-                  </v-list-item>
-                  <v-list-item @click="remove(exercice.id)">
-                    <v-list-item-title>
-                      <v-icon>mdi-delete</v-icon>
-                      Supprimer
-                    </v-list-item-title>
-                  </v-list-item>
-                </v-list>
-              </v-menu>
-
-              <v-btn icon variant="text" class="drag-handle" title="Déplacer">
-                <v-icon>mdi-drag</v-icon>
-              </v-btn>
-            </div>
-          </template>
-
-        </ExerciceCard>
+        <TrainingExerciceItem :exercice="exercice" :index="idx" :is-last="idx === training.exercices.length - 1"
+          @move-up="moveUp" @move-down="moveDown" @remove="remove" />
       </template>
     </draggable>
 
