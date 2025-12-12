@@ -2,18 +2,9 @@
   <v-tooltip v-if="auth.isAuthenticated" :text="auth.user?.displayName ?? ''">
     <template #activator="{ props: activatorProps }">
       <v-btn icon v-bind="activatorProps">
-        <v-avatar
-          :size="size"
-          :class="['user-avatar', roundedClass]"
-          :style="avatarStyle"
-        >
-          <v-img
-            v-if="!!auth.user?.photoURL && !imageError"
-            :src="auth.user.photoURL"
-            :alt="auth.user.displayName || 'Utilisateur'"
-            cover
-            @error="onImageError"
-          />
+        <v-avatar :size="size" :class="['user-avatar', roundedClass]" :style="avatarStyle">
+          <v-img v-if="!!auth.user?.photoURL && !imageError" :src="auth.user.photoURL"
+            :alt="auth.user.displayName || 'Utilisateur'" cover @error="onImageError" />
           <template v-else>
             <span v-if="initials" class="initials">{{ initials }}</span>
             <v-icon v-else class="anon-icon" size="20">mdi-account</v-icon>
@@ -24,13 +15,7 @@
   </v-tooltip>
   <v-btn v-else>
     <v-avatar :size="size" :class="['user-avatar', roundedClass]" :style="avatarStyle">
-      <v-img
-        v-if="hasImage && !imageError"
-        :src="avatarUrl"
-        :alt="altText"
-        @error="onImageError"
-        cover
-      />
+      <v-img v-if="hasImage && !imageError" :src="avatarUrl" :alt="altText" @error="onImageError" cover />
       <template v-else>
         <v-btn @click="auth.login()">
           <span v-if="initials" class="initials">{{ initials }}</span>
@@ -45,6 +30,8 @@
 import { ref, computed } from 'vue'
 import type { PropType } from 'vue'
 import { useAuthStore } from '@/stores/useAuthStore.ts'
+
+const auth = useAuthStore()
 
 interface User {
   id?: string
@@ -119,7 +106,7 @@ const avatarStyle = computed(() => {
   }
 })
 
-const auth = useAuthStore()
+
 </script>
 
 <style scoped>
