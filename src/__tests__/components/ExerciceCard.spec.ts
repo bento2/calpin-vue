@@ -22,7 +22,7 @@ const exerciceMockWithEquipment: Exercice = {
 }
 
 describe('ExerciceCard', () => {
-  it('Render ExerciceCard', () => {
+  it('Affiche le composant ExerciceCard', () => {
     const wrapper = mount(ExerciceCard, {
       props: {
         exercice: exerciceMock,
@@ -31,7 +31,7 @@ describe('ExerciceCard', () => {
     expect(wrapper.text()).toContain(exerciceMock.name)
   })
 
-  it('Check snapshot', () => {
+  it('Vérifie le snapshot', () => {
     const wrapper = mount(ExerciceCard, {
       props: {
         exercice: exerciceMock,
@@ -44,8 +44,8 @@ describe('ExerciceCard', () => {
   })
 })
 
-describe('ExerciceCard with equipment', () => {
-  it('Render ExerciceCard', () => {
+describe('ExerciceCard avec équipement', () => {
+  it('Affiche le composant ExerciceCard', () => {
     const wrapper = mount(ExerciceCard, {
       props: {
         exercice: exerciceMockWithEquipment,
@@ -55,7 +55,7 @@ describe('ExerciceCard with equipment', () => {
     expect(wrapper.text()).toContain(exerciceMockWithEquipment.equipment)
   })
 
-  it('Check snapshot', () => {
+  it('Vérifie le snapshot', () => {
     const wrapper = mount(ExerciceCard, {
       props: {
         exercice: exerciceMock,
