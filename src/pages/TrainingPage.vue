@@ -36,6 +36,8 @@ const moveDown = (index: number) => {
 
 const { saveTraining, getTrainingById, createTraining } = useTrainingStore()
 
+const error = ref<string | null>(null)
+
 onMounted(async () => {
   try {
     if (route.params.id) {
@@ -46,6 +48,9 @@ onMounted(async () => {
     } else if (!props.training) {
       training.value = await createTraining()
     }
+  } catch (e) {
+    error.value = 'Erreur lors du chargement'
+    console.error(e)
   } finally {
     isLoading.value = false
   }
@@ -127,6 +132,10 @@ const save = () => {
 
   <v-card v-else-if="isLoading" class="d-flex justify-center align-center" style="height: 100%">
     <v-progress-circular indeterminate color="primary"></v-progress-circular>
+  </v-card>
+
+  <v-card v-else-if="error" class="d-flex justify-center align-center h-100">
+    <div class="text-red">{{ error }}</div>
   </v-card>
 
   <v-dialog v-model="dialog" transition="dialog-bottom-transition" width="95%" height="90vh" rounded elevation="4">
