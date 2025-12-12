@@ -1,0 +1,468 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Page Session (SessionPage) > affiche le titre de la session 1`] = `
+"<div class="h-100 d-flex flex-column">
+  <div class="pa-2 d-flex align-center justify-space-between text-white bg-blue-accent-2 elevation-2">
+    <div class="text-h6 font-weight-bold"></div>
+    <div class="text-h6 d-flex align-center">
+      <!-- Timer component could be extracted too -->
+      <div class="mr-4">0:00:00</div><button block="false" loading="false" variant="text" icon="mdi-pause" class="bg-white text-blue-accent-2">
+        <v-icon-stub></v-icon-stub>
+      </button>
+    </div>
+  </div><!-- Main Content -->
+  <div class="overflow-y-auto flex-grow-1 px-2 pt-2 pb-14 bg-blue-accent-4 mb-2"></div><!-- Footer/Finish -->
+  <div class="pa-2 bg-white border-t ga-2" style="position: fixed; bottom: 0px; left: 0px; right: 0px; z-index: 10;"><button block="true" loading="false" color="blue-accent-2" variant="flat" class="text-white font-weight-bold" size="large" if="true">
+      <!--v-if--> Ajout un Exercice
+    </button></div><!-- Pause Menu Dialog -->
+  <div modelvalue="false" transition="dialog-bottom-transition" class="opacity-90">
+    <div title="Pause">
+      <div class="d-flex flex-column ga-3"><button block="true" loading="false" color="blue-accent-2" variant="outlined" class="bg-white">
+          <!--v-if--> Recommencer
+        </button><!-- TODO: Check behavior of this button in original UI. It was 'Terminer et enregistrer' --><button block="true" loading="false" color="blue-accent-2" variant="flat" class="text-white font-weight-bold">
+          <!--v-if--> Terminer et enregistrer
+        </button><button block="true" loading="false" color="green-accent-4" variant="flat" class="text-white">
+          <!--v-if-->
+          <!-- Note: AppBtn variant doesn't have 'success' preset yet, passing direct color/class works due to v-bind but verify --> Sauvegarder
+        </button><button block="true" loading="false" color="blue-accent-2" variant="outlined" class="bg-white">
+          <!--v-if--> Reprendre
+        </button><button block="true" loading="false" color="red-accent-4" variant="flat" class="text-white">
+          <!--v-if--> Supprimer l'entrainement
+        </button></div>
+      <div><button block="false" loading="false" variant="text">
+          <!--v-if-->Fermer
+        </button></div>
+    </div>
+  </div>
+</div>
+<div modelvalue="false" transition="dialog-bottom-transition" class="w-90 p-4">
+  <div>
+    <div color="primary"><button icon="mdi-close"></button>
+      <div>Ajouter un exercice</div>
+      <div class="v-toolbar-items"><button text="Fermer" variant="text" class="bg-blue-accent-2"></button></div>
+    </div>
+    <div class="mt-2">
+      <div class="v-input v-input--horizontal v-input--center-affix v-input--density-compact v-theme--light v-locale--is-ltr v-text-field">
+        <!---->
+        <div class="v-input__control">
+          <div class="v-field v-field--appended v-field--center-affix v-field--variant-outlined v-theme--light v-locale--is-ltr">
+            <div class="v-field__overlay"></div>
+            <div class="v-field__loader">
+              <div class="v-progress-linear v-theme--light v-locale--is-ltr" style="top: 0px; height: 0px; --v-progress-linear-height: 2px;" role="progressbar" aria-hidden="true" aria-valuemin="0" aria-valuemax="100">
+                <!---->
+                <div class="v-progress-linear__background"></div>
+                <div class="v-progress-linear__buffer" style="width: 0%;"></div>
+                <div class="v-progress-linear__indeterminate">
+                  <div class="v-progress-linear__indeterminate long"></div>
+                  <div class="v-progress-linear__indeterminate short"></div>
+                </div>
+                <!---->
+              </div>
+            </div>
+            <!---->
+            <div class="v-field__field" data-no-activator="">
+              <!----><label class="v-label v-field-label" for="input-v-1">
+                <!---->Recherche
+              </label>
+              <!----><input placeholder="Nom d'un exercice" size="1" type="text" id="input-v-1" class="v-field__input" value="">
+              <!---->
+            </div>
+            <div class="v-field__clearable" style="display: none;">
+              <v-icon-stub icon="$clear" disabled="false" start="false" end="false" size="default" tag="i" aria-label="Clear Recherche" tabindex="-1"></v-icon-stub>
+            </div>
+            <div class="v-field__append-inner">
+              <!---->
+              <v-icon-stub icon="mdi-magnify" disabled="false" start="false" end="false" size="default" tag="i"></v-icon-stub>
+            </div>
+            <div class="v-field__outline">
+              <div class="v-field__outline__start"></div>
+              <div class="v-field__outline__notch"><label class="v-label v-field-label v-field-label--floating" for="input-v-1" aria-hidden="true">
+                  <!---->Recherche
+                </label></div>
+              <div class="v-field__outline__end"></div>
+              <!---->
+            </div>
+          </div>
+        </div>
+        <!---->
+        <!---->
+      </div>
+      <div class="v-infinite-scroll v-infinite-scroll--vertical v-infinite-scroll--end" items="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]">
+        <div class="v-infinite-scroll__side">
+          <!---->
+        </div>
+        <!---->
+        <div color="blue-accent-2" outline="" class="d-flex flex-row justify-space-between">
+          <div class="d-flex align-center font-bold ga-1 w-100">
+            <div data-v-18f349dd="" class="v-avatar v-theme--light bg-transparent v-avatar--density-default v-avatar--variant-flat border ml-1" style="width: 56px; height: 56px; border: 2px solid black;">
+              <div data-v-18f349dd="" class="v-responsive v-img v-img--booting" aria-label="AB Coaster" role="img">
+                <div class="v-responsive__sizer"></div><img class="v-img__img v-img__img--cover fade-transition-enter-from fade-transition-enter-active" src="/exercise_icons/ab-coaster.png" alt="AB Coaster" style="display: none;">
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+              </div>
+              <!----><span class="v-avatar__underlay"></span>
+            </div>
+            <div class="font-bold flex-grow-1 d-flex flex-column">AB Coaster
+              <!--v-if-->
+            </div>
+          </div>
+          <div class="d-flex align-center justify-end">
+            <div class="v-input v-input--horizontal v-input--center-affix v-input--density-default v-theme--light v-locale--is-ltr v-input--dirty v-checkbox align-self-end">
+              <!---->
+              <div class="v-input__control">
+                <div class="v-selection-control v-selection-control--density-default v-checkbox-btn">
+                  <div class="v-selection-control__wrapper">
+                    <!---->
+                    <div class="v-selection-control__input">
+                      <v-icon-stub icon="$checkboxOff" disabled="false" start="false" end="false" size="default" tag="i"></v-icon-stub><input id="checkbox-v-3" aria-disabled="false" type="checkbox" value="true">
+                    </div>
+                  </div>
+                  <!---->
+                </div>
+              </div>
+              <!---->
+              <!---->
+            </div>
+          </div>
+        </div>
+        <div color="blue-accent-2" outline="" class="d-flex flex-row justify-space-between">
+          <div class="d-flex align-center font-bold ga-1 w-100">
+            <div data-v-18f349dd="" class="v-avatar v-theme--light bg-transparent v-avatar--density-default v-avatar--variant-flat border ml-1" style="width: 56px; height: 56px; border: 2px solid black;">
+              <div data-v-18f349dd="" class="v-responsive v-img v-img--booting" aria-label="Air Squat" role="img">
+                <div class="v-responsive__sizer"></div><img class="v-img__img v-img__img--cover fade-transition-enter-from fade-transition-enter-active" src="/exercise_icons/air-squat.png" alt="Air Squat" style="display: none;">
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+              </div>
+              <!----><span class="v-avatar__underlay"></span>
+            </div>
+            <div class="font-bold flex-grow-1 d-flex flex-column">Air Squat
+              <!--v-if-->
+            </div>
+          </div>
+          <div class="d-flex align-center justify-end">
+            <div class="v-input v-input--horizontal v-input--center-affix v-input--density-default v-theme--light v-locale--is-ltr v-input--dirty v-checkbox align-self-end">
+              <!---->
+              <div class="v-input__control">
+                <div class="v-selection-control v-selection-control--density-default v-checkbox-btn">
+                  <div class="v-selection-control__wrapper">
+                    <!---->
+                    <div class="v-selection-control__input">
+                      <v-icon-stub icon="$checkboxOff" disabled="false" start="false" end="false" size="default" tag="i"></v-icon-stub><input id="checkbox-v-6" aria-disabled="false" type="checkbox" value="true">
+                    </div>
+                  </div>
+                  <!---->
+                </div>
+              </div>
+              <!---->
+              <!---->
+            </div>
+          </div>
+        </div>
+        <div color="blue-accent-2" outline="" class="d-flex flex-row justify-space-between">
+          <div class="d-flex align-center font-bold ga-1 w-100">
+            <div data-v-18f349dd="" class="v-avatar v-theme--light bg-transparent v-avatar--density-default v-avatar--variant-flat border ml-1" style="width: 56px; height: 56px; border: 2px solid black;">
+              <div data-v-18f349dd="" class="v-responsive v-img v-img--booting" aria-label="Barre front" role="img">
+                <div class="v-responsive__sizer"></div><img class="v-img__img v-img__img--cover fade-transition-enter-from fade-transition-enter-active" src="/exercise_icons/barre-front.png" alt="Barre front" style="display: none;">
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+              </div>
+              <!----><span class="v-avatar__underlay"></span>
+            </div>
+            <div class="font-bold flex-grow-1 d-flex flex-column">Barre front
+              <!--v-if-->
+            </div>
+          </div>
+          <div class="d-flex align-center justify-end">
+            <div class="v-input v-input--horizontal v-input--center-affix v-input--density-default v-theme--light v-locale--is-ltr v-input--dirty v-checkbox align-self-end">
+              <!---->
+              <div class="v-input__control">
+                <div class="v-selection-control v-selection-control--density-default v-checkbox-btn">
+                  <div class="v-selection-control__wrapper">
+                    <!---->
+                    <div class="v-selection-control__input">
+                      <v-icon-stub icon="$checkboxOff" disabled="false" start="false" end="false" size="default" tag="i"></v-icon-stub><input id="checkbox-v-9" aria-disabled="false" type="checkbox" value="true">
+                    </div>
+                  </div>
+                  <!---->
+                </div>
+              </div>
+              <!---->
+              <!---->
+            </div>
+          </div>
+        </div>
+        <div color="blue-accent-2" outline="" class="d-flex flex-row justify-space-between">
+          <div class="d-flex align-center font-bold ga-1 w-100">
+            <div data-v-18f349dd="" class="v-avatar v-theme--light bg-transparent v-avatar--density-default v-avatar--variant-flat border ml-1" style="width: 56px; height: 56px; border: 2px solid black;">
+              <div data-v-18f349dd="" class="v-responsive v-img v-img--booting" aria-label="Belt squat" role="img">
+                <div class="v-responsive__sizer"></div><img class="v-img__img v-img__img--cover fade-transition-enter-from fade-transition-enter-active" src="/exercise_icons/belt-squat.png" alt="Belt squat" style="display: none;">
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+              </div>
+              <!----><span class="v-avatar__underlay"></span>
+            </div>
+            <div class="font-bold flex-grow-1 d-flex flex-column">Belt squat
+              <!--v-if-->
+            </div>
+          </div>
+          <div class="d-flex align-center justify-end">
+            <div class="v-input v-input--horizontal v-input--center-affix v-input--density-default v-theme--light v-locale--is-ltr v-input--dirty v-checkbox align-self-end">
+              <!---->
+              <div class="v-input__control">
+                <div class="v-selection-control v-selection-control--density-default v-checkbox-btn">
+                  <div class="v-selection-control__wrapper">
+                    <!---->
+                    <div class="v-selection-control__input">
+                      <v-icon-stub icon="$checkboxOff" disabled="false" start="false" end="false" size="default" tag="i"></v-icon-stub><input id="checkbox-v-12" aria-disabled="false" type="checkbox" value="true">
+                    </div>
+                  </div>
+                  <!---->
+                </div>
+              </div>
+              <!---->
+              <!---->
+            </div>
+          </div>
+        </div>
+        <div color="blue-accent-2" outline="" class="d-flex flex-row justify-space-between">
+          <div class="d-flex align-center font-bold ga-1 w-100">
+            <div data-v-18f349dd="" class="v-avatar v-theme--light bg-transparent v-avatar--density-default v-avatar--variant-flat border ml-1" style="width: 56px; height: 56px; border: 2px solid black;">
+              <div data-v-18f349dd="" class="v-responsive v-img v-img--booting" aria-label="Bent over row prise disque" role="img">
+                <div class="v-responsive__sizer"></div><img class="v-img__img v-img__img--cover fade-transition-enter-from fade-transition-enter-active" src="/exercise_icons/bent-over-row-prise-disque.png" alt="Bent over row prise disque" style="display: none;">
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+              </div>
+              <!----><span class="v-avatar__underlay"></span>
+            </div>
+            <div class="font-bold flex-grow-1 d-flex flex-column">Bent over row prise disque
+              <!--v-if-->
+            </div>
+          </div>
+          <div class="d-flex align-center justify-end">
+            <div class="v-input v-input--horizontal v-input--center-affix v-input--density-default v-theme--light v-locale--is-ltr v-input--dirty v-checkbox align-self-end">
+              <!---->
+              <div class="v-input__control">
+                <div class="v-selection-control v-selection-control--density-default v-checkbox-btn">
+                  <div class="v-selection-control__wrapper">
+                    <!---->
+                    <div class="v-selection-control__input">
+                      <v-icon-stub icon="$checkboxOff" disabled="false" start="false" end="false" size="default" tag="i"></v-icon-stub><input id="checkbox-v-15" aria-disabled="false" type="checkbox" value="true">
+                    </div>
+                  </div>
+                  <!---->
+                </div>
+              </div>
+              <!---->
+              <!---->
+            </div>
+          </div>
+        </div>
+        <div color="blue-accent-2" outline="" class="d-flex flex-row justify-space-between">
+          <div class="d-flex align-center font-bold ga-1 w-100">
+            <div data-v-18f349dd="" class="v-avatar v-theme--light bg-transparent v-avatar--density-default v-avatar--variant-flat border ml-1" style="width: 56px; height: 56px; border: 2px solid black;">
+              <div data-v-18f349dd="" class="v-responsive v-img v-img--booting" aria-label="Bird dog" role="img">
+                <div class="v-responsive__sizer"></div><img class="v-img__img v-img__img--cover fade-transition-enter-from fade-transition-enter-active" src="/exercise_icons/bird-dog.png" alt="Bird dog" style="display: none;">
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+              </div>
+              <!----><span class="v-avatar__underlay"></span>
+            </div>
+            <div class="font-bold flex-grow-1 d-flex flex-column">Bird dog
+              <!--v-if-->
+            </div>
+          </div>
+          <div class="d-flex align-center justify-end">
+            <div class="v-input v-input--horizontal v-input--center-affix v-input--density-default v-theme--light v-locale--is-ltr v-input--dirty v-checkbox align-self-end">
+              <!---->
+              <div class="v-input__control">
+                <div class="v-selection-control v-selection-control--density-default v-checkbox-btn">
+                  <div class="v-selection-control__wrapper">
+                    <!---->
+                    <div class="v-selection-control__input">
+                      <v-icon-stub icon="$checkboxOff" disabled="false" start="false" end="false" size="default" tag="i"></v-icon-stub><input id="checkbox-v-18" aria-disabled="false" type="checkbox" value="true">
+                    </div>
+                  </div>
+                  <!---->
+                </div>
+              </div>
+              <!---->
+              <!---->
+            </div>
+          </div>
+        </div>
+        <div color="blue-accent-2" outline="" class="d-flex flex-row justify-space-between">
+          <div class="d-flex align-center font-bold ga-1 w-100">
+            <div data-v-18f349dd="" class="v-avatar v-theme--light bg-transparent v-avatar--density-default v-avatar--variant-flat border ml-1" style="width: 56px; height: 56px; border: 2px solid black;">
+              <div data-v-18f349dd="" class="v-responsive v-img v-img--booting" aria-label="Cercles jambes tendues" role="img">
+                <div class="v-responsive__sizer"></div><img class="v-img__img v-img__img--cover fade-transition-enter-from fade-transition-enter-active" src="/exercise_icons/cercles-jambes-tendues.png" alt="Cercles jambes tendues" style="display: none;">
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+              </div>
+              <!----><span class="v-avatar__underlay"></span>
+            </div>
+            <div class="font-bold flex-grow-1 d-flex flex-column">Cercles jambes tendues
+              <!--v-if-->
+            </div>
+          </div>
+          <div class="d-flex align-center justify-end">
+            <div class="v-input v-input--horizontal v-input--center-affix v-input--density-default v-theme--light v-locale--is-ltr v-input--dirty v-checkbox align-self-end">
+              <!---->
+              <div class="v-input__control">
+                <div class="v-selection-control v-selection-control--density-default v-checkbox-btn">
+                  <div class="v-selection-control__wrapper">
+                    <!---->
+                    <div class="v-selection-control__input">
+                      <v-icon-stub icon="$checkboxOff" disabled="false" start="false" end="false" size="default" tag="i"></v-icon-stub><input id="checkbox-v-21" aria-disabled="false" type="checkbox" value="true">
+                    </div>
+                  </div>
+                  <!---->
+                </div>
+              </div>
+              <!---->
+              <!---->
+            </div>
+          </div>
+        </div>
+        <div color="blue-accent-2" outline="" class="d-flex flex-row justify-space-between">
+          <div class="d-flex align-center font-bold ga-1 w-100">
+            <div data-v-18f349dd="" class="v-avatar v-theme--light bg-transparent v-avatar--density-default v-avatar--variant-flat border ml-1" style="width: 56px; height: 56px; border: 2px solid black;">
+              <div data-v-18f349dd="" class="v-responsive v-img v-img--booting" aria-label="Chest press avec sangles de suspension" role="img">
+                <div class="v-responsive__sizer"></div><img class="v-img__img v-img__img--cover fade-transition-enter-from fade-transition-enter-active" src="/exercise_icons/chest-press-avec-sangles-de-suspension.png" alt="Chest press avec sangles de suspension" style="display: none;">
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+              </div>
+              <!----><span class="v-avatar__underlay"></span>
+            </div>
+            <div class="font-bold flex-grow-1 d-flex flex-column">Chest press avec sangles de suspension
+              <!--v-if-->
+            </div>
+          </div>
+          <div class="d-flex align-center justify-end">
+            <div class="v-input v-input--horizontal v-input--center-affix v-input--density-default v-theme--light v-locale--is-ltr v-input--dirty v-checkbox align-self-end">
+              <!---->
+              <div class="v-input__control">
+                <div class="v-selection-control v-selection-control--density-default v-checkbox-btn">
+                  <div class="v-selection-control__wrapper">
+                    <!---->
+                    <div class="v-selection-control__input">
+                      <v-icon-stub icon="$checkboxOff" disabled="false" start="false" end="false" size="default" tag="i"></v-icon-stub><input id="checkbox-v-24" aria-disabled="false" type="checkbox" value="true">
+                    </div>
+                  </div>
+                  <!---->
+                </div>
+              </div>
+              <!---->
+              <!---->
+            </div>
+          </div>
+        </div>
+        <div color="blue-accent-2" outline="" class="d-flex flex-row justify-space-between">
+          <div class="d-flex align-center font-bold ga-1 w-100">
+            <div data-v-18f349dd="" class="v-avatar v-theme--light bg-transparent v-avatar--density-default v-avatar--variant-flat border ml-1" style="width: 56px; height: 56px; border: 2px solid black;">
+              <div data-v-18f349dd="" class="v-responsive v-img v-img--booting" aria-label="Ciseaux" role="img">
+                <div class="v-responsive__sizer"></div><img class="v-img__img v-img__img--cover fade-transition-enter-from fade-transition-enter-active" src="/exercise_icons/ciseaux.png" alt="Ciseaux" style="display: none;">
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+              </div>
+              <!----><span class="v-avatar__underlay"></span>
+            </div>
+            <div class="font-bold flex-grow-1 d-flex flex-column">Ciseaux
+              <!--v-if-->
+            </div>
+          </div>
+          <div class="d-flex align-center justify-end">
+            <div class="v-input v-input--horizontal v-input--center-affix v-input--density-default v-theme--light v-locale--is-ltr v-input--dirty v-checkbox align-self-end">
+              <!---->
+              <div class="v-input__control">
+                <div class="v-selection-control v-selection-control--density-default v-checkbox-btn">
+                  <div class="v-selection-control__wrapper">
+                    <!---->
+                    <div class="v-selection-control__input">
+                      <v-icon-stub icon="$checkboxOff" disabled="false" start="false" end="false" size="default" tag="i"></v-icon-stub><input id="checkbox-v-27" aria-disabled="false" type="checkbox" value="true">
+                    </div>
+                  </div>
+                  <!---->
+                </div>
+              </div>
+              <!---->
+              <!---->
+            </div>
+          </div>
+        </div>
+        <div color="blue-accent-2" outline="" class="d-flex flex-row justify-space-between">
+          <div class="d-flex align-center font-bold ga-1 w-100">
+            <div data-v-18f349dd="" class="v-avatar v-theme--light bg-transparent v-avatar--density-default v-avatar--variant-flat border ml-1" style="width: 56px; height: 56px; border: 2px solid black;">
+              <div data-v-18f349dd="" class="v-responsive v-img v-img--booting" aria-label="Clean and jerk (épaulé-jeté)" role="img">
+                <div class="v-responsive__sizer"></div><img class="v-img__img v-img__img--cover fade-transition-enter-from fade-transition-enter-active" src="/exercise_icons/clean-and-jerk-épaulé-jeté.png" alt="Clean and jerk (épaulé-jeté)" style="display: none;">
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+              </div>
+              <!----><span class="v-avatar__underlay"></span>
+            </div>
+            <div class="font-bold flex-grow-1 d-flex flex-column">Clean and jerk (épaulé-jeté)
+              <!--v-if-->
+            </div>
+          </div>
+          <div class="d-flex align-center justify-end">
+            <div class="v-input v-input--horizontal v-input--center-affix v-input--density-default v-theme--light v-locale--is-ltr v-input--dirty v-checkbox align-self-end">
+              <!---->
+              <div class="v-input__control">
+                <div class="v-selection-control v-selection-control--density-default v-checkbox-btn">
+                  <div class="v-selection-control__wrapper">
+                    <!---->
+                    <div class="v-selection-control__input">
+                      <v-icon-stub icon="$checkboxOff" disabled="false" start="false" end="false" size="default" tag="i"></v-icon-stub><input id="checkbox-v-30" aria-disabled="false" type="checkbox" value="true">
+                    </div>
+                  </div>
+                  <!---->
+                </div>
+              </div>
+              <!---->
+              <!---->
+            </div>
+          </div>
+        </div>
+        <div class="v-infinite-scroll-intersect">&nbsp;</div>
+        <div class="v-infinite-scroll__side">
+          <div class="v-progress-circular v-progress-circular--indeterminate v-theme--light v-progress-circular--size-default" role="progressbar" aria-valuemin="0" aria-valuemax="100"><svg style="transform: rotate(calc(-90deg + 0deg));" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.714285714285715 45.714285714285715">
+              <circle class="v-progress-circular__underlay" fill="transparent" cx="50%" cy="50%" r="20" stroke-width="5.714285714285714" stroke-dasharray="125.66370614359172" stroke-dashoffset="0"></circle>
+              <circle class="v-progress-circular__overlay" fill="transparent" cx="50%" cy="50%" r="20" stroke-width="5.714285714285714" stroke-dasharray="125.66370614359172" stroke-dashoffset="125.66370614359172px"></circle>
+            </svg>
+            <!---->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>"
+`;

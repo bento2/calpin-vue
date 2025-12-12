@@ -1,0 +1,17 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Composant SeriesCard > affiche le composant 1`] = `
+"<div data-v-0f1753ef="" class="v-card align-center" hover="" color="success">
+  <div data-v-0f1753ef="" class="d-flex flex-row align-center pa-2 justify-start" style="min-width: 320px;"><input data-v-0f1753ef="" type="checkbox" label="1" color="primary" hide-details="" class="mr-2 rounded-checkbox" inset="" modelvalue="true">
+    <div data-v-0f1753ef="" class="input-number-serie" modelvalue="50" unit="KG" placeholder="0"></div>
+    <div data-v-0f1753ef="" class="input-number-serie" modelvalue="10" unit="Rép ." placeholder="0"></div><button data-v-0f1753ef="" icon="mdi-delete" variant="text" class="ml-auto"></button>
+  </div>
+</div>
+<div data-v-0f1753ef="" class="v-card align-center" hover="" color="">
+  <div data-v-0f1753ef="" class="d-flex flex-row align-center pa-2 justify-start" style="min-width: 320px;"><input data-v-0f1753ef="" type="checkbox" label="2" color="primary" hide-details="" class="mr-2 rounded-checkbox" inset="" modelvalue="false">
+    <div data-v-0f1753ef="" class="input-number-serie" modelvalue="60" unit="KG" placeholder="0"></div>
+    <div data-v-0f1753ef="" class="input-number-serie" modelvalue="8" unit="Rép ." placeholder="0"></div><button data-v-0f1753ef="" icon="mdi-delete" variant="text" class="ml-auto"></button>
+  </div>
+</div>
+<button data-v-0f1753ef="" class="bg-blue-accent-4 mt-2 mb-2 mr-auto ml-auto">+ Ajouter une serie</button>"
+`;

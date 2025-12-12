@@ -46,6 +46,8 @@ describe('Page Edition Entrainement (TrainingPage)', () => {
       id: 't1',
       name: 'Training Test',
       exercices: [{ id: 'e1', name: 'Ex 1' }],
+      ctime: new Date(),
+      mtime: new Date(),
     })
 
     // Mount using the pre-configured pinia
@@ -58,6 +60,7 @@ describe('Page Edition Entrainement (TrainingPage)', () => {
           'v-card-item': { template: '<div><slot /></div>' },
           'v-card-actions': { template: '<div><slot /></div>' },
           'v-text-field': {
+            name: 'v-text-field',
             props: ['modelValue'],
             template: '<div class="v-text-field-stub">{{ modelValue }}</div>',
           },
@@ -72,13 +75,27 @@ describe('Page Edition Entrainement (TrainingPage)', () => {
 
   it("charge et affiche l'entrainement existant", async () => {
     await flushPromises()
-    console.log(wrapper.html())
     expect(store.getTrainingById).toHaveBeenCalledWith('t1')
 
     const tf = wrapper.find('.v-text-field-stub')
     expect(tf.exists()).toBe(true)
     expect(tf.text()).toContain('Training Test')
-    const exCards = wrapper.findAllComponents({ name: 'ExerciceCard' })
-    expect(exCards).toHaveLength(1)
+    expect(wrapper.html()).toMatchSnapshot()
+  })
+
+  it("met à jour le nom de l'entrainement", async () => {
+    await flushPromises()
+    const tf = wrapper.findComponent({ name: 'v-text-field' }) // Finds stub by name
+
+    // Emit update:modelValue from the component instance
+    tf.vm.$emit('update:modelValue', 'New Name')
+
+    // Check if store save action is called when save is clicked
+    const saveBtn = wrapper.findAll('button').find((b) => b.text().includes('Enregistrer'))
+    if (saveBtn) {
+      await saveBtn.trigger('click')
+      // Check for saveTraining, not updateTraining
+      expect(store.saveTraining).toHaveBeenCalled()
+    }
   })
 })

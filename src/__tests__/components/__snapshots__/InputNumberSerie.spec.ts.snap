@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`InputNumberSerie.vue > affiche le composant correctement 1`] = `"<div class="d-inline-flex align-center"><input class="v-number-input-stub mx-2" hide-details="auto" reverse="false" controlvariant="hidden" label="" hideinput="false" inset="" variant="solo-filled" style="max-width: 70px;" value="10"><span>KG</span></div>"`;
