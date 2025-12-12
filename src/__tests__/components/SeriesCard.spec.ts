@@ -1,7 +1,9 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { createTestingPinia } from '@pinia/testing'
 import SeriesCard from '@/components/SeriesCard.vue'
 import type { Serie } from '@/types/SerieSchema'
+import { useSessionStore } from '@/stores/useSessionStore'
 
 describe('SeriesCard', () => {
   const mockSeries: Serie[] = [
@@ -19,14 +21,21 @@ describe('SeriesCard', () => {
     },
   ]
 
-  it('renders component', () => {
+  it('renders component', async () => {
+    const pinia = createTestingPinia({
+      createSpy: vi.fn,
+    })
+    const store = useSessionStore(pinia)
+    // @ts-expect-error - vitest mock method
+    store.findStatsExercices.mockResolvedValue(new Map())
+
     const wrapper = mount(SeriesCard, {
       props: {
         modelValue: mockSeries,
         exerciceId: '1',
-        stats: null,
       },
       global: {
+        plugins: [pinia],
         stubs: {
           'v-card': {
             template: '<div class="v-card"><slot /></div>',
@@ -43,6 +52,10 @@ describe('SeriesCard', () => {
         },
       },
     })
+
+    // Wait for promises to resolve
+    await wrapper.vm.$nextTick()
+
     expect(wrapper.exists()).toBe(true)
   })
 })
