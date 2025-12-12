@@ -58,20 +58,71 @@ describe('useSessionStore', () => {
 
   describe('syncFromFirebase', () => {
     it('devrait ajouter une session distante si non présente localement', async () => {
-      // ... (code inchangé)
+      const store = useSessionStore()
+      const remoteSession = {
+        ...mockTraining,
+        id: 's_remote',
+        dateDebut: new Date().toISOString(),
+        status: 'en_cours',
+      }
+      mockLoad.mockResolvedValue([remoteSession])
+
+      await store.syncFromFirebase()
+
+      expect(store.sessions).toHaveLength(1)
+      expect(store.sessions[0].id).toBe('s_remote')
     })
 
     it('devrait mettre à jour la session locale si distante plus récente', async () => {
-      // ...
+      const store = useSessionStore()
+      const localSession = await store.createSession(mockTraining)
+      // Remote session updated later
+      const remoteSession = {
+        ...localSession,
+        updatedAt: new Date(Date.now() + 10000).toISOString(),
+        status: 'terminee',
+      }
+      mockLoad.mockResolvedValue([remoteSession])
+
+      await store.syncFromFirebase()
+
+      expect(store.sessions[0].status).toBe('terminee')
     })
 
     it('devrait garder la session locale si locale plus récente', async () => {
-      // ...
+      const store = useSessionStore()
+
+      // Create and setup local session
+      const s = await store.createSession(mockTraining)
+      s.updatedAt = new Date(Date.now() + 10000) // Future (newer)
+      s.status = 'en_cours'
+      await store.updateSession(s)
+
+      // Remote is older and has different status
+      const remoteSession = {
+        ...s,
+        updatedAt: new Date(Date.now() - 5000).toISOString(),
+        status: 'terminee',
+      }
+      mockLoad.mockResolvedValue([remoteSession])
+
+      await store.syncFromFirebase()
+
+      const current = await store.getSessionById(s.id)
+      expect(current?.status).toBe('en_cours')
     })
   })
 
   it('finishSession devrait mettre à jour le statut local et sync sur Firebase', async () => {
-    // ...
+    const store = useSessionStore()
+    const session = await store.createSession(mockTraining)
+
+    await store.finishSession(session.id)
+
+    const updated = await store.getSessionById(session.id)
+    expect(updated?.status).toBe('terminee')
+    expect(updated?.dateFin).toBeDefined()
+    expect(mockSave).toHaveBeenCalled()
   })
 
   it('getSessionActive devrait retourner la session en cours', async () => {
