@@ -77,8 +77,9 @@ describe('Composant SeriesCard', () => {
     expect(addBtn).toBeDefined()
     await addBtn!.trigger('click')
 
-    expect(wrapper.props('modelValue')).toHaveLength(1)
-    expect(wrapper.props('modelValue')[0]).toEqual(
+    const props = wrapper.props('modelValue')
+    expect(props).toHaveLength(1)
+    expect(props![0]).toEqual(
       expect.objectContaining({
         poids: 0,
         repetitions: 0,
@@ -94,7 +95,8 @@ describe('Composant SeriesCard', () => {
     // Fix: Mock findStatsExercices
     ;(store.findStatsExercices as Mock).mockResolvedValue(new Map())
 
-    const series = [{ poids: 10, repetitions: 10, checked: false, total: 100 }]
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const series = [{ poids: 10, repetitions: 10, checked: false, total: 100 }] as any
 
     const wrapper = mount(SeriesCard, {
       props: { modelValue: series, exerciceId: '1' },
@@ -159,7 +161,8 @@ describe('Composant SeriesCard', () => {
 
     const series = [{ poids: 0, repetitions: 0, checked: false }]
     const wrapper = mount(SeriesCard, {
-      props: { modelValue: series, exerciceId: '1' },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      props: { modelValue: series as any, exerciceId: '1' },
       global: {
         plugins: [pinia],
         stubs: {

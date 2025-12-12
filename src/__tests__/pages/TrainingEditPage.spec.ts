@@ -3,6 +3,7 @@ import { mount, type VueWrapper, flushPromises } from '@vue/test-utils'
 import { createTestingPinia } from '@pinia/testing'
 import TrainingPage from '@/pages/TrainingPage.vue'
 import { useTrainingStore } from '@/stores/useTrainingStore'
+import type { Training } from '@/types/TrainingSchema'
 
 vi.mock('@/components/ExerciceCard.vue', () => ({
   default: {
