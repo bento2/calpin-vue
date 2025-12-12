@@ -3,7 +3,7 @@ import { mount } from '@vue/test-utils'
 import InputNumberSerie from '@/components/InputNumberSerie.vue'
 
 describe('InputNumberSerie', () => {
-  it('renders component', () => {
+  it('affiche le composant', () => {
     const wrapper = mount(InputNumberSerie, {
       props: {
         unit: 'kg',
@@ -19,7 +19,7 @@ describe('InputNumberSerie', () => {
     expect(wrapper.exists()).toBe(true)
   })
 
-  it('displays the correct unit', () => {
+  it("affiche l'unité correcte", () => {
     const wrapper = mount(InputNumberSerie, {
       props: {
         unit: 'reps',

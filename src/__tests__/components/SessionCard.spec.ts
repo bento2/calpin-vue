@@ -16,7 +16,7 @@ describe('SessionCard', () => {
     status: 'en_cours',
   }
 
-  it('renders the session name', () => {
+  it('affiche le nom de la session', () => {
     const wrapper = mount(SessionCard, {
       props: {
         modelValue: mockSession,

@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ExerciceCard > Check snapshot 1`] = `
+exports[`ExerciceCard > Vérifie le snapshot 1`] = `
 "<div class="v-card v-theme--light bg-blue-accent-2 v-card--density-default v-card--variant-elevated d-flex flex-row justify-space-between" outline="">
   <!---->
   <div class="v-card__loader">
@@ -39,7 +39,7 @@ exports[`ExerciceCard > Check snapshot 1`] = `
 </div>"
 `;
 
-exports[`ExerciceCard with equipment > Check snapshot 1`] = `
+exports[`ExerciceCard avec équipement > Vérifie le snapshot 1`] = `
 "<div class="v-card v-theme--light bg-blue-accent-2 v-card--density-default v-card--variant-elevated d-flex flex-row justify-space-between" outline="">
   <!---->
   <div class="v-card__loader">

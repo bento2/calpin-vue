@@ -5,7 +5,7 @@ import SeriesCard from '@/components/SeriesCard.vue'
 import type { Serie } from '@/types/SerieSchema'
 import { useSessionStore } from '@/stores/useSessionStore'
 
-describe('SeriesCard', () => {
+describe('Composant SeriesCard', () => {
   const mockSeries: Serie[] = [
     {
       poids: 50,
@@ -21,7 +21,7 @@ describe('SeriesCard', () => {
     },
   ]
 
-  it('renders component', async () => {
+  it('affiche le composant', async () => {
     const pinia = createTestingPinia({
       createSpy: vi.fn,
     })
@@ -53,7 +53,7 @@ describe('SeriesCard', () => {
       },
     })
 
-    // Wait for promises to resolve
+    // Attendre la résolution des promesses
     await wrapper.vm.$nextTick()
 
     expect(wrapper.exists()).toBe(true)

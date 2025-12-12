@@ -51,6 +51,7 @@
     "eslint-plugin-cypress": "^5.1.0",
     "eslint-plugin-vue": "~10.3.0",
     "husky": "^8.0.0",
+    "intersection-observer": "^0.12.2",
     "jiti": "^2.4.2",
     "jsdom": "^26.1.0",
     "npm-run-all2": "^8.0.4",
