@@ -7,6 +7,7 @@ import { useBaseStore } from '@/composables/useBaseStore.ts'
 import type { Serie } from '@/types/SerieSchema.ts'
 import { computed, ref } from 'vue'
 import { getErrorMessage } from '@/composables/getErrorMessage.ts'
+import { calculateExerciseStats, type StatsCriteria } from '@/utils/statsUtils'
 
 const storageName = 'sessions'
 
@@ -31,26 +32,40 @@ export const useSessionStore = defineStore(storageName, () => {
   const sessionsCount = computed(() => baseStore.items.value.length)
 
   // Actions
-  async function findStatsExercices() {
+  async function findStatsExercices(criteria: StatsCriteria = 'MAX_TOTAL') {
     try {
       if (!statsLoaded.value) {
         await baseStore.ensureLoaded()
-
-        baseStore.items.value.forEach((session) => {
-          session.exercices.forEach((exercice) => {
-            if (exercice.series && exercice.max) {
-              if (statsExercices.value.has(exercice.id)) {
-                const last = statsExercices.value.get(exercice.id)
-                if (last && last.total < exercice.max.total) {
-                  statsExercices.value.set(exercice.id, exercice.max)
-                }
-              } else {
-                statsExercices.value.set(exercice.id, exercice.max)
-              }
-            }
-          })
-        })
+        const stats = calculateExerciseStats(baseStore.items.value, criteria)
+        // Update the ref map with the result
+        statsExercices.value = stats
         statsLoaded.value = true
+      } else {
+        // If loaded, we might want to refresh if criteria changed?
+        // For now, let's assume if called with different criteria we should re-calc?
+        // But statsLoaded is simple boolean.
+        // Let's FORCE re-calc if criteria implies we need to check everything again?
+        // Actually, the user might call this multiple times properly.
+        // Given the simplistic caching 'statsLoaded', if we change criteria, we probably need to re-compute.
+        // But the previous implementation only computed ONCE.
+        // To support dynamic criteria, we should probably remove the strict `statsLoaded` check OR
+        // make `statsExercices` a computed or just re-run calculation.
+        // Since it returns `statsExercices.value`, let's clear cache if we want to force update?
+        // Or better: just recalculate every time if we want flexibility, or cache by criteria.
+        // Let's stay safe: simple refactor.
+        // BUT, if criteria changes, we MUST recalculate.
+        // So I'll remove the `if (!statsLoaded.value)` check around the CALCULATION part,
+        // or check if it's already calculated.
+        // Actually, for performance, recalculating on every call might be fine if N is small.
+        // Let's improve: always calculate and return?
+        // The original code cached it.
+        // "findStatsExercices" sounds like an action.
+
+        // I will re-implement to: ensure loaded, then calculate.
+        // I will remove `statsLoaded` check for the CALCULATION itself to support criteria changes,
+        // BUT keep `baseStore.ensureLoaded` check.
+
+        statsExercices.value = calculateExerciseStats(baseStore.items.value, criteria)
       }
 
       return statsExercices.value

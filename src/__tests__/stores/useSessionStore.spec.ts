@@ -169,4 +169,52 @@ describe('useSessionStore', () => {
     expect(active).toBeDefined()
     expect(active?.status).toBe('en_cours')
   })
+
+  it('findStatsExercices should correctly aggregate stats using different criteria', async () => {
+    const store = useSessionStore()
+
+    // Create a past session with stats
+    const pastTraining: Training = {
+      ...mockTraining,
+      id: 't_past',
+      exercices: [
+        addExerciceGetters({
+          id: 'e1',
+          name: 'Ex 1',
+          max: { poids: 100, repetitions: 1, checked: true },
+          series: [{ poids: 100, repetitions: 1, checked: true }],
+        }),
+      ],
+    }
+
+    // We need to bypass createSession because it sets date to now.
+    // Or just manually insert into store items for test speed/simplicity
+    // Since we mock load, we can set load return value
+
+    const s1 = {
+      id: 's1',
+      trainingId: 't_past',
+      name: 'S1',
+      status: 'terminee',
+      dateDebut: new Date('2023-01-01'),
+      exercices: pastTraining.exercices,
+      updatedAt: new Date(),
+    }
+
+    // Mock load to return our session
+    mockLoad.mockResolvedValue([s1])
+
+    // Trigger load
+    await store.loadSessions()
+    expect(store.sessions).toHaveLength(1)
+
+    // 1. Defaut (MAX_TOTAL)
+    const statsTotal = await store.findStatsExercices()
+    expect(statsTotal.get('e1')).toBeDefined()
+    expect(statsTotal.get('e1')?.poids).toBe(100)
+
+    // 2. MAX_WEIGHT check (same result here but verify call works)
+    const statsWeight = await store.findStatsExercices('MAX_WEIGHT')
+    expect(statsWeight.get('e1')).toBeDefined()
+  })
 })
