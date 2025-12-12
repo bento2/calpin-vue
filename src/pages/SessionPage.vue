@@ -3,7 +3,7 @@ import { onMounted, ref, watch, computed } from 'vue'
 import { useSessionStore } from '@/stores/useSessionStore.ts'
 import { useRoute, useRouter } from 'vue-router'
 import { type Session, SessionSchema } from '@/types/SessionSchema.ts'
-import ExerciceCard from '@/components/ExerciceCard.vue'
+import SessionExerciceItem from '@/components/SessionExerciceItem.vue'
 import SeriesCard from '@/components/SeriesCard.vue'
 import ExerciceList from '@/components/ExerciceList.vue'
 import AppBtn from '@/components/ui/AppBtn.vue'
@@ -115,10 +115,10 @@ const moveUp = (index: number) => {
   return move(index, -1)
 }
 
-  const move = (index: number, step: number) => {
+const move = (index: number, step: number) => {
   if (!session.value?.exercices) return
   const len = session.value.exercices.length
-  
+
   if (step > 0 && index >= len - 1) return
   if (step < 0 && index <= 0) return
 
@@ -188,46 +188,9 @@ const dialogExercices = ref(false)
     <!-- Main Content -->
     <div class="overflow-y-auto flex-grow-1 px-2 pt-2 pb-14 bg-blue-accent-4 mb-2">
       <template v-for="(exercice, index) in session.exercices" :key="exercice.id">
-        <ExerciceCard :exercice="exercice" class="d-flex flex-row space-between align-center ga-2">
-          <template #subtitle>
-            <v-chip size="x-small" label :color="exercice.nbChecked === exercice.series?.length ? 'success' : 'white'"
-              class="font-weight-bold ml-auto">
-              {{ exercice.nbChecked ?? 0 }} / {{ exercice.series?.length ?? 0 }} séries
-            </v-chip>
-          </template>
-
-          <template #actions>
-            <div class="d-flex flex-row ga-2 mt-2">
-              <v-menu>
-                <template v-slot:activator="{ props }">
-                  <v-btn icon="mdi-dots-vertical" variant="outlined" v-bind="props"></v-btn>
-                </template>
-                <v-list>
-                  <v-list-item @click="moveUp(index)" v-if='index > 0'>
-                    <v-list-item-title>
-                      <v-icon>mdi-arrow-up</v-icon>
-                      Monter
-                    </v-list-item-title>
-                  </v-list-item>
-                  <v-list-item @click="moveDown(index)" v-if='index < session.exercices.length - 1'>
-                    <v-list-item-title>
-                      <v-icon>mdi-arrow-down</v-icon>
-                      Déscendre
-                    </v-list-item-title>
-                  </v-list-item>
-                  <v-list-item @click="remove(exercice.id)">
-                    <v-list-item-title>
-                      <v-icon>mdi-delete</v-icon>
-                      Supprimer
-                    </v-list-item-title>
-                  </v-list-item>
-                </v-list>
-              </v-menu>
-              <v-btn :icon="isOpen(index) ? 'mdi-chevron-up' : 'mdi-chevron-down'"
-                :title="isOpen(index) ? 'Fermer' : 'Ouvrir'" variant="text" @click="toggle(index)" />
-            </div>
-          </template>
-        </ExerciceCard>
+        <SessionExerciceItem :exercice="exercice" :index="index" :is-open="isOpen(index)"
+          :is-last="index === session.exercices.length - 1" @move-up="moveUp" @move-down="moveDown" @remove="remove"
+          @toggle="toggle" />
         <KeepAlive>
           <SeriesCard v-model="exercice.series" :exerciceId="exercice.id" v-if="openIndexes.has(index)" />
         </KeepAlive>

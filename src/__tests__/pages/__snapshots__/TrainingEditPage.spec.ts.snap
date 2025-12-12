@@ -6,19 +6,19 @@ exports[`Page Edition Entrainement (TrainingPage) > charge et affiche l'entraine
     <div data-v-d056a584="" class="v-text-field-stub" label="Titre de l'entrainement" hide-details="auto" clearable="">Training Test</div>
   </div>
   <div data-v-d056a584="" item-key="id" animation="200">
-    <div data-v-d056a584="" class="exercice-card d-flex flex-row justify-space-between align-center">Ex 1<div data-v-d056a584="">
-        <div data-v-d056a584="">
-          <div data-v-d056a584="">
+    <div data-v-d056a584="" class="exercice-card d-flex flex-row justify-space-between align-center">Ex 1<div>
+        <div>
+          <div>
             <!--v-if-->
             <!--v-if-->
-            <div data-v-d056a584="" class="v-list-item-stub">
-              <div data-v-d056a584="">
-                <v-icon-stub data-v-d056a584=""></v-icon-stub> Supprimer
+            <div class="v-list-item-stub">
+              <div>
+                <v-icon-stub></v-icon-stub> Supprimer
               </div>
             </div>
-          </div><button data-v-d056a584="" icon="mdi-dots-vertical" variant="outlined"></button>
-        </div><button data-v-d056a584="" icon="" variant="text" class="drag-handle" title="Déplacer">
-          <v-icon-stub data-v-d056a584=""></v-icon-stub>
+          </div><button icon="mdi-dots-vertical" variant="outlined"></button>
+        </div><button icon="" variant="text" class="drag-handle" title="Déplacer">
+          <v-icon-stub></v-icon-stub>
         </button>
       </div>
     </div>
