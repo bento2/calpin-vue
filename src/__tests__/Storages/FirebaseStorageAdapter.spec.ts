@@ -23,13 +23,13 @@ vi.mock('firebase/firestore', () => ({
 }))
 
 describe('FirebaseStorageAdapter', () => {
-  let adapter: FirebaseStorageAdapter<any>
+  let adapter: FirebaseStorageAdapter<unknown>
   const mockUser = { uid: 'user123' }
   const TEST_KEY = 'test_key'
   const TEST_DATA = { foo: 'bar' }
 
   // Variables pour contrôler l'état de l'auth mockée
-  let onAuthCallback: (user: any) => void
+  let onAuthCallback: (user: unknown) => void
 
   beforeEach(async () => {
     vi.clearAllMocks()

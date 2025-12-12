@@ -14,12 +14,6 @@ afterEach(() => {
   vi.useRealTimers()
 })
 
-const mockSession: Session = {
-  id: 's1',
-  trainigId: 't1',
-  dateDebut: new Date('2024-01-01T12:00:00Z'),
-  // ...
-}
 import { mount, type VueWrapper, flushPromises } from '@vue/test-utils'
 import { createTestingPinia } from '@pinia/testing'
 import SessionPage from '@/pages/SessionPage.vue'
@@ -57,6 +51,11 @@ vi.mock('@/components/ui/AppBtn.vue', () => ({
   },
 }))
 
+interface SessionPageInstance {
+  session: Session | null
+  dialogExercices: boolean
+}
+
 describe('Page Session (SessionPage)', () => {
   let wrapper: VueWrapper
   let store: ReturnType<typeof useSessionStore>
@@ -76,6 +75,8 @@ describe('Page Session (SessionPage)', () => {
       ended: false,
       nbChecked: 0,
       total: 0,
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any
 
     vi.useFakeTimers()
@@ -166,7 +167,8 @@ describe('Page Session (SessionPage)', () => {
         max: { weights: 0, reps: 0 },
         completed: false,
         nbChecked: 0,
-        total: 0,
+
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any,
     ]
 
@@ -220,8 +222,8 @@ describe('Page Session (SessionPage)', () => {
 
     await flushPromises()
 
-    if (!(wrapper.vm as any).session) {
-      ;(wrapper.vm as any).session = mockSession
+    if (!(wrapper.vm as unknown as SessionPageInstance).session) {
+      ;(wrapper.vm as unknown as SessionPageInstance).session = mockSession
       await wrapper.vm.$nextTick()
     }
 
@@ -233,8 +235,24 @@ describe('Page Session (SessionPage)', () => {
   })
 
   it('gère le déplacement des exercices', async () => {
-    const e1 = { id: 'e1', name: 'Ex 1', completed: false, nbChecked: 0, total: 0 } as any
-    const e2 = { id: 'e2', name: 'Ex 2', completed: false, nbChecked: 0, total: 0 } as any
+    const e1 = {
+      id: 'e1',
+      name: 'Ex 1',
+      completed: false,
+      nbChecked: 0,
+      total: 0,
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as any
+    const e2 = {
+      id: 'e2',
+      name: 'Ex 2',
+      completed: false,
+      nbChecked: 0,
+      total: 0,
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as any
 
     mockSession.exercices = [e1, e2]
 
@@ -288,20 +306,21 @@ describe('Page Session (SessionPage)', () => {
 
     await flushPromises()
 
-    if (!(wrapper.vm as any).session) {
-      ;(wrapper.vm as any).session = mockSession
+    if (!(wrapper.vm as unknown as SessionPageInstance).session) {
+      ;(wrapper.vm as unknown as SessionPageInstance).session = mockSession
       await wrapper.vm.$nextTick()
     }
 
-    expect((wrapper.vm as any).session.exercices[0].id).toBe('e1')
+    expect((wrapper.vm as unknown as SessionPageInstance).session!.exercices[0].id).toBe('e1')
 
     const listItems = wrapper.findAll('.v-list-item-stub')
     await listItems[0].trigger('click')
 
-    expect((wrapper.vm as any).session.exercices[0].id).toBe('e2')
+    expect((wrapper.vm as unknown as SessionPageInstance).session!.exercices[0].id).toBe('e2')
   })
 
   it("gère la suppression d'un exercice", async () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     mockSession.exercices = [{ id: 'e1', completed: false, nbChecked: 0, total: 0 } as any]
 
     const pinia = createTestingPinia({ createSpy: vi.fn })
@@ -348,19 +367,19 @@ describe('Page Session (SessionPage)', () => {
 
     await flushPromises()
 
-    if (!(wrapper.vm as any).session) {
-      ;(wrapper.vm as any).session = mockSession
+    if (!(wrapper.vm as unknown as SessionPageInstance).session) {
+      ;(wrapper.vm as unknown as SessionPageInstance).session = mockSession
       await wrapper.vm.$nextTick()
     }
 
-    expect((wrapper.vm as any).session.exercices).toHaveLength(1)
+    expect((wrapper.vm as unknown as SessionPageInstance).session!.exercices).toHaveLength(1)
 
     const deleteBtn = wrapper
       .findAll('.v-list-item-stub')
-      .find((item) => item.text().includes('Supprimer'))
+      .find((w) => w.text().includes('Supprimer'))
     await deleteBtn?.trigger('click')
 
-    expect((wrapper.vm as any).session.exercices).toHaveLength(0)
+    expect((wrapper.vm as unknown as SessionPageInstance).session!.exercices).toHaveLength(0)
   })
 
   it("ouvre le dialogue d'ajout d'exercice", async () => {
@@ -394,8 +413,8 @@ describe('Page Session (SessionPage)', () => {
     await flushPromises()
 
     // Fallback force if null
-    if (!(wrapper.vm as any).session) {
-      ;(wrapper.vm as any).session = mockSession
+    if (!(wrapper.vm as unknown as SessionPageInstance).session) {
+      ;(wrapper.vm as unknown as SessionPageInstance).session = mockSession
       await wrapper.vm.$nextTick()
     }
 
@@ -408,7 +427,7 @@ describe('Page Session (SessionPage)', () => {
     // Trigger click on component instance directly
     await addBtn?.vm.$emit('click')
 
-    expect((wrapper.vm as any).dialogExercices).toBe(true)
+    expect((wrapper.vm as unknown as SessionPageInstance).dialogExercices).toBe(true)
   })
 
   it('gère les événements du dialogue de pause', async () => {
@@ -439,8 +458,8 @@ describe('Page Session (SessionPage)', () => {
     await flushPromises()
 
     // Fallback force if null
-    if (!(wrapper.vm as any).session) {
-      ;(wrapper.vm as any).session = mockSession
+    if (!(wrapper.vm as unknown as SessionPageInstance).session) {
+      ;(wrapper.vm as unknown as SessionPageInstance).session = mockSession
       await wrapper.vm.$nextTick()
     }
 

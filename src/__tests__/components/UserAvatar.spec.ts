@@ -8,9 +8,9 @@ describe('UserAvatar.vue', () => {
   it("affiche l'avatar de l'utilisateur connecté avec image", async () => {
     const pinia = createTestingPinia({ createSpy: vi.fn })
     const authStore = useAuthStore(pinia)
-    // @ts-expect-error - mock property
+    // @ts-expect-error - testing mock state
     authStore.isAuthenticated = true
-    // @ts-expect-error
+    // @ts-expect-error - testing mock state
     authStore.user = {
       uid: '123',
       displayName: 'John Doe',
@@ -42,9 +42,9 @@ describe('UserAvatar.vue', () => {
   it("affiche les initiales si pas d'image", async () => {
     const pinia = createTestingPinia({ createSpy: vi.fn })
     const authStore = useAuthStore(pinia)
-    // @ts-expect-error
+    // @ts-expect-error - testing mock state
     authStore.isAuthenticated = true
-    // @ts-expect-error
+    // @ts-expect-error - testing mock state
     authStore.user = {
       uid: '123',
       displayName: 'John Doe',
@@ -71,7 +71,7 @@ describe('UserAvatar.vue', () => {
   it("affiche l'icône anonyme si non connecté", async () => {
     const pinia = createTestingPinia({ createSpy: vi.fn })
     const authStore = useAuthStore(pinia)
-    // @ts-expect-error
+    // @ts-expect-error - testing mock state
     authStore.isAuthenticated = false
     authStore.user = null
     // Explicitly mock login

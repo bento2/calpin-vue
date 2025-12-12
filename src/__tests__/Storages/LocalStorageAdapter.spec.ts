@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { LocalStorageAdapter } from '@/Storages/LocalStorageAdapter'
 
 describe('LocalStorageAdapter', () => {
-  let adapter: LocalStorageAdapter<any>
+  let adapter: LocalStorageAdapter<unknown>
   const TEST_KEY = 'test_key'
   const TEST_VALUE = { foo: 'bar' }
 
@@ -46,7 +46,7 @@ describe('LocalStorageAdapter', () => {
     })
 
     it("devrait lancer une erreur en cas d'échec du setItem", async () => {
-      const errorSpy = vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
+      vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {
         throw new Error('QuotaExceeded')
       })
 
