@@ -12,7 +12,7 @@ describe('ExerciceIcon', () => {
     hasEquipment: false,
   }
 
-  it('renders with exercice prop', () => {
+  it('affiche avec la prop exercice', () => {
     const wrapper = mount(ExerciceIcon, {
       props: {
         exercice: mockExercice,

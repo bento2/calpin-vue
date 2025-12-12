@@ -17,7 +17,7 @@ describe('SessionService', () => {
     mtime: new Date(),
   }
 
-  it('should create session from training with defaults', () => {
+  it('devrait créer une session depuis un entrainement avec les valeurs par défaut', () => {
     const session = SessionService.createFromTraining(mockTraining)
 
     expect(session.id).toBeDefined()
@@ -26,10 +26,10 @@ describe('SessionService', () => {
     expect(session.dateDebut).toBeInstanceOf(Date)
     expect(session.status).toBe('en_cours')
     expect(session.exercices).toHaveLength(1)
-    expect(session.exercices[0].series).toHaveLength(4) // Default series count
+    expect(session.exercices[0].series).toHaveLength(4) // Nombre de séries par défaut
   })
 
-  it('should create session with custom name and start time', () => {
+  it('devrait créer une session avec un nom personnalisé et une date de début', () => {
     const startTime = new Date('2023-01-01')
     const session = SessionService.createFromTraining(mockTraining, {
       name: 'Custom Session',

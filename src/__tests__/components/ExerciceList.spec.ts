@@ -172,8 +172,9 @@ describe('Composant ExerciceList', () => {
     await checkbox.setValue(true)
 
     expect(wrapper.emitted('update:selected')).toBeTruthy()
-    const emitted = wrapper.emitted('update:selected') as any[][]
-    expect(emitted[0][0]).toHaveLength(1)
-    expect(emitted[0][0][0].id).toBe('1') // ID du premier exercice
+    const emitted = wrapper.emitted('update:selected') as unknown[][]
+    const selectedExercices = emitted[0][0] as Exercice[]
+    expect(selectedExercices).toHaveLength(1)
+    expect(selectedExercices[0].id).toBe('1') // ID du premier exercice
   })
 })

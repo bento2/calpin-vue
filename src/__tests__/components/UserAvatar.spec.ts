@@ -43,12 +43,12 @@ describe('UserAvatar', () => {
     vi.clearAllMocks()
   })
 
-  it('renders avatar', () => {
+  it("affiche l'avatar", () => {
     const wrapper = createWrapper()
     expect(wrapper.exists()).toBe(true)
   })
 
-  it('displays anonymous icon when not authenticated', () => {
+  it("affiche l'icône anonyme si non authentifié", () => {
     const wrapper = createWrapper()
     const authStore = useAuthStore()
     authStore.user = null

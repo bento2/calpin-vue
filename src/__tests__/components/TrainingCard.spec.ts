@@ -61,12 +61,12 @@ describe('TrainingCard', () => {
     })
   }
 
-  it('renders the training name', () => {
+  it("affiche le nom de l'entrainement", () => {
     const wrapper = createWrapper()
     expect(wrapper.html()).toContain('Entraînement du jour')
   })
 
-  it('renders when training is undefined', () => {
+  it("affiche quand l'entrainement est indéfini", () => {
     const wrapper = mount(TrainingCard, {
       props: {
         training: undefined as unknown as Training,

@@ -113,4 +113,64 @@ describe('StorageService', () => {
 
     expect(mockFirebaseAdapter.setupRealtimeSync).toHaveBeenCalled()
   })
+
+  it('devrait désactiver la synch temps réel', async () => {
+    const service = new StorageService('test-key', { adapter: 'firebase' })
+    const mockFirebaseAdapter = vi.mocked(FirebaseStorageAdapter).mock.instances[0]
+
+    // Simuler un unsubscribe
+    const mockUnsubscribe = vi.fn()
+    mockFirebaseAdapter.setupRealtimeSync = vi.fn().mockResolvedValue(mockUnsubscribe)
+
+    await service.enableRealtimeSync()
+    service.disableRealtimeSync()
+
+    expect(mockUnsubscribe).toHaveBeenCalled()
+  })
+
+  it("devrait vérifier si l'adapter est firebase", () => {
+    const serviceLocal = new StorageService('test-key', { adapter: 'localStorage' })
+    expect(serviceLocal.isFirebaseAdapter()).toBe(false)
+
+    const serviceFirebase = new StorageService('test-key', { adapter: 'firebase' })
+    expect(serviceFirebase.isFirebaseAdapter()).toBe(true)
+  })
+
+  it('devrait nettoyer les ressources', () => {
+    const service = new StorageService('test-key', { adapter: 'firebase' })
+    const mockFirebaseAdapter = vi.mocked(FirebaseStorageAdapter).mock.instances[0]
+    mockFirebaseAdapter.destroy = vi.fn()
+
+    service.cleanup()
+
+    expect(mockFirebaseAdapter.destroy).toHaveBeenCalled()
+  })
+
+  it('devrait écouter les événements de mise à jour', () => {
+    const service = new StorageService('test-key')
+    const callback = vi.fn()
+    const cleanup = service.onUpdate(callback)
+
+    // Simuler l'événement
+    const event = new CustomEvent(`storage:test-key:updated`, { detail: 'test-data' })
+    window.dispatchEvent(event)
+
+    expect(callback).toHaveBeenCalledWith('test-data')
+
+    cleanup()
+  })
+
+  it('devrait écouter les événements de suppression', () => {
+    const service = new StorageService('test-key')
+    const callback = vi.fn()
+    const cleanup = service.onDelete(callback)
+
+    // Simuler l'événement
+    const event = new Event(`storage:test-key:deleted`)
+    window.dispatchEvent(event)
+
+    expect(callback).toHaveBeenCalled()
+
+    cleanup()
+  })
 })
