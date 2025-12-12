@@ -71,7 +71,7 @@ describe('useBaseStore', () => {
     expect(store.error.value).toContain('Load failed')
   })
 
-  it('should save item (add new)', async () => {
+  it('should create item (add new)', async () => {
     const store = useBaseStore('test-storage', TestItemSchema)
     storageMock = store.storage as unknown as Record<string, Mock>
 
@@ -80,14 +80,14 @@ describe('useBaseStore', () => {
     vi.spyOn(storageMock, 'save').mockResolvedValue(undefined)
 
     const newItem: TestItem = { id: '1', name: 'New Item' }
-    await store.saveItem(newItem)
+    await store.createItem(newItem)
 
     expect(store.items.value).toHaveLength(1)
     expect(store.items.value[0]).toEqual(newItem)
     expect(storageMock.save).toHaveBeenCalledWith([newItem])
   })
 
-  it('should save item (update existing)', async () => {
+  it('should update item (update existing)', async () => {
     const store = useBaseStore('test-storage', TestItemSchema)
     storageMock = store.storage as unknown as Record<string, Mock>
 
@@ -99,7 +99,7 @@ describe('useBaseStore', () => {
     await store.loadItems()
 
     const updatedItem = { id: '1', name: 'New Name' }
-    await store.saveItem(updatedItem)
+    await store.updateItem(updatedItem)
 
     expect(store.items.value).toHaveLength(1)
     expect(store.items.value[0]).toEqual(updatedItem)

@@ -3,16 +3,22 @@ import { StorageService } from '@/services/StorageService.ts'
 import { getErrorMessage } from '@/composables/getErrorMessage.ts'
 import type { StorageConfig } from '@/Storages/StorageAdapter.ts'
 import { z } from 'zod'
+import { v4 as uuidv4 } from 'uuid'
 
 interface Identifiable {
   id: string
+}
+
+type TimestampConfig<T> = {
+  createdAt?: keyof T
+  updatedAt?: keyof T
 }
 
 export function useBaseStore<T extends Identifiable>(
   storageName: string,
   itemSchema: z.ZodType<T>,
   defaultAdapter: StorageConfig['adapter'] = 'firebase',
-  storageKey?: string,
+  timestampConfig?: TimestampConfig<T>,
 ) {
   // State
   const items: Ref<T[]> = ref([])
@@ -21,7 +27,7 @@ export function useBaseStore<T extends Identifiable>(
   const error: Ref<string | null> = ref(null)
   const lastSync: Ref<Date | null> = ref(null)
 
-  const storage = new StorageService<T[]>(storageKey || storageName, {
+  const storage = new StorageService<T[]>(storageName, {
     adapter: defaultAdapter,
   })
 
@@ -97,6 +103,55 @@ export function useBaseStore<T extends Identifiable>(
     }
   }
 
+  async function createItem(partialItem: Partial<T>): Promise<T> {
+    try {
+      await ensureLoaded()
+
+      const id = partialItem.id || uuidv4()
+      const now = new Date()
+
+      // Construction de l'objet avec timestamps
+      const itemData = { ...partialItem, id } as Record<string, unknown>
+
+      if (timestampConfig?.createdAt) {
+        itemData[timestampConfig.createdAt as string] = now
+      }
+      if (timestampConfig?.updatedAt) {
+        itemData[timestampConfig.updatedAt as string] = now
+      }
+
+      // Validation via Zod
+      // On utilise parse pour garantir que partialItem + timestamps correspondent au schema complet T
+      const validatedItem = itemSchema.parse(itemData)
+
+      // Sauvegarde
+      return saveItem(validatedItem)
+    } catch (err) {
+      error.value = `Erreur lors de la création: ${getErrorMessage(err)}`
+      throw err
+    }
+  }
+
+  async function updateItem(item: T): Promise<T> {
+    try {
+      await ensureLoaded()
+
+      if (timestampConfig?.updatedAt) {
+        // Mise à jour du timestamp
+        ;(item as unknown as Record<string, unknown>)[timestampConfig.updatedAt as string] =
+          new Date()
+      }
+
+      // Re-validation pour sûreté
+      const validatedItem = itemSchema.parse(item)
+
+      return saveItem(validatedItem)
+    } catch (err) {
+      error.value = `Erreur lors de la mise à jour: ${getErrorMessage(err)}`
+      throw err
+    }
+  }
+
   async function deleteItem(id: string) {
     try {
       await ensureLoaded()
@@ -141,7 +196,9 @@ export function useBaseStore<T extends Identifiable>(
     loadItems,
     ensureLoaded,
     persistItems,
-    saveItem,
+    // saveItem, // Removed as internal
+    createItem,
+    updateItem,
     deleteItem,
     clearAll,
     switchStorageMode,
