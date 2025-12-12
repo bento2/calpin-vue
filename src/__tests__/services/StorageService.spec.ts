@@ -45,6 +45,24 @@ describe('StorageService', () => {
     expect(mockAdapter.set).toHaveBeenCalledWith('test-key', 'data')
   })
 
+  it('should handle load error gracefully', async () => {
+    const service = new StorageService('test-key')
+    const mockAdapter = vi.mocked(LocalStorageAdapter).mock.instances[0]
+
+    mockAdapter.get = vi.fn().mockRejectedValue(new Error('Load failed'))
+
+    await expect(service.load()).rejects.toThrow('Load failed')
+  })
+
+  it('should handle save error gracefully', async () => {
+    const service = new StorageService('test-key')
+    const mockAdapter = vi.mocked(LocalStorageAdapter).mock.instances[0]
+
+    mockAdapter.set = vi.fn().mockRejectedValue(new Error('Save failed'))
+
+    await expect(service.save('data')).rejects.toThrow('Save failed')
+  })
+
   it('should switch adapter', async () => {
     const service = new StorageService('test-key')
     // @ts-expect-error - accessing private property for test

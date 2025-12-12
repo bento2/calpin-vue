@@ -29,6 +29,7 @@ describe('useSessionStore', () => {
     setActivePinia(createPinia())
     mockSave.mockClear()
     mockLoad.mockClear()
+    mockLoad.mockResolvedValue([]) // Default empty storage
     vi.clearAllMocks()
     localStorage.clear()
   })
@@ -55,23 +56,88 @@ describe('useSessionStore', () => {
     expect(store.sessions[0].id).toBe(session.id)
   })
 
-  it('syncFromFirebase should merge remote sessions correctly', async () => {
-    const store = useSessionStore()
+  describe('syncFromFirebase', () => {
+    it('should add remote session if not present locally', async () => {
+      const store = useSessionStore()
 
-    // Setup initial state: 1 local session old
-    // Note: oldSession is defined for documentation but not used in this simplified test
-    // We're just verifying the function doesn't throw
-    // const oldSession = {
-    //   ...mockTraining,
-    //   id: 's1',
-    //   updatedAt: new Date('2023-01-01'),
-    //   dateDebut: new Date('2023-01-01'),
-    //   status: 'en_cours',
-    //   exercices: [],
-    // }
+      // Setup: 1 local session
+      const _localSession = await store.createSession(mockTraining)
 
-    // Instead, simply verify that the function exists and calling it doesn't crash
-    await expect(store.syncFromFirebase()).resolves.not.toThrow()
+      // Mock remote: local + 1 new. Use createMockSession or manual object with trainingId
+      const remoteSession = {
+        ...mockTraining,
+        id: 's-remote-1',
+        trainingId: mockTraining.id, // FIX: specificy trainingId
+        status: 'terminee' as const,
+        dateDebut: new Date(),
+        updatedAt: new Date(),
+        exercices: [],
+        ended: true,
+        nbChecked: 0,
+        total: 0,
+      }
+
+      mockLoad.mockResolvedValue([
+        { ...store.sessions[0] }, // Existing local
+        remoteSession, // New remote
+      ])
+
+      await store.syncFromFirebase()
+
+      expect(store.sessions).toHaveLength(2)
+      expect(store.sessions.find((s) => s.id === 's-remote-1')).toBeDefined()
+    })
+
+    it('should update local session if remote is newer', async () => {
+      const store = useSessionStore()
+      const session = await store.createSession(mockTraining)
+
+      const oldDate = new Date('2023-01-01')
+      const newDate = new Date('2023-12-31')
+
+      // Force local to be old
+      session.updatedAt = oldDate
+
+      const remoteVersion = {
+        ...session,
+        updatedAt: newDate,
+        status: 'terminee', // Changed status
+      }
+
+      mockLoad.mockResolvedValue([remoteVersion])
+
+      await store.syncFromFirebase()
+
+      const updated = store.sessions.find((s) => s.id === session.id)
+      expect(updated?.updatedAt).toEqual(newDate)
+      expect(updated?.status).toBe('terminee')
+    })
+
+    it('should keep local session if local is newer', async () => {
+      const store = useSessionStore()
+      const session = await store.createSession(mockTraining)
+
+      const oldDate = new Date('2023-01-01')
+      const newDate = new Date('2023-12-31')
+
+      // Force local to be new
+      session.updatedAt = newDate
+      const originalStatus = session.status
+
+      const remoteVersion = {
+        ...session,
+        updatedAt: oldDate,
+        status: 'terminee', // Changed status in old version
+      }
+
+      mockLoad.mockResolvedValue([remoteVersion])
+
+      await store.syncFromFirebase()
+
+      const current = store.sessions.find((s) => s.id === session.id)
+      expect(current?.updatedAt).toEqual(newDate)
+      expect(current?.status).toBe(originalStatus)
+    })
   })
 
   it('finishSession should update local status and sync to Firebase', async () => {
