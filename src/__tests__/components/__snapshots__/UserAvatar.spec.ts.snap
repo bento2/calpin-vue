@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`UserAvatar.vue > affiche l'avatar de l'utilisateur connecté avec image 1`] = `
-"<div data-v-9b599479="" text="John Doe"><button data-v-9b599479="">
+"<div data-v-9b599479="" text="John Doe"><button data-v-9b599479="" icon="">
     <div data-v-9b599479="" class="v-avatar user-avatar rounded-full" size="40" style="background: rgb(224, 224, 224); display: flex; align-items: center; justify-content: center; color: rgb(34, 34, 34);"><img data-v-9b599479="" class="v-img" src="https://example.com/photo.jpg" alt="John Doe" cover=""></div>
   </button></div>"
 `;

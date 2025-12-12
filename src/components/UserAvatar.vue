@@ -1,19 +1,18 @@
 <template>
   <v-tooltip v-if="auth.isAuthenticated" :text="auth.user?.displayName ?? ''">
     <template #activator="{ props: activatorProps }">
-      <v-btn>
+      <v-btn icon v-bind="activatorProps">
         <v-avatar
-          v-bind="activatorProps"
           :size="size"
           :class="['user-avatar', roundedClass]"
           :style="avatarStyle"
         >
           <v-img
-            v-if="auth.user?.photoURL !== null && !imageError"
-            :src="auth.user?.photoURL ?? ''"
-            :alt="altText"
-            @error="onImageError"
+            v-if="!!auth.user?.photoURL && !imageError"
+            :src="auth.user.photoURL"
+            :alt="auth.user.displayName || 'Utilisateur'"
             cover
+            @error="onImageError"
           />
           <template v-else>
             <span v-if="initials" class="initials">{{ initials }}</span>

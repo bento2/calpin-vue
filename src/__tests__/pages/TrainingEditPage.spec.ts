@@ -4,6 +4,7 @@ import { createTestingPinia } from '@pinia/testing'
 import TrainingPage from '@/pages/TrainingPage.vue'
 import { useTrainingStore } from '@/stores/useTrainingStore'
 import type { Training } from '@/types/TrainingSchema'
+import type { Exercice } from '@/types/ExerciceSchema'
 
 vi.mock('@/components/ExerciceCard.vue', () => ({
   default: {
@@ -19,6 +20,7 @@ vi.mock('vuedraggable', () => ({
     template:
       '<div><slot name="item" v-for="(element, index) in modelValue" :element="element" :index="index"></slot></div>',
     props: ['modelValue'],
+    emits: ['update:modelValue'],
   },
 }))
 
@@ -34,6 +36,8 @@ vi.mock('vue-router', () => ({
 interface TrainingPageInstance {
   dialog: boolean
   training: Training
+  error: string | null
+  moveUp: (index: number) => void
 }
 
 describe('Page Edition Entrainement (TrainingPage)', () => {
@@ -165,5 +169,79 @@ describe('Page Edition Entrainement (TrainingPage)', () => {
     await removeBtn?.trigger('click')
 
     expect((wrapper.vm as unknown as TrainingPageInstance).training.exercices).toHaveLength(0)
+  })
+
+  it('gère le déplacement des exercices (Monter/Descendre)', async () => {
+    await flushPromises()
+    // Setup 2 ex with minimal required properties
+    const ex1 = {
+      id: 'e1',
+      name: 'Ex 1',
+      hasEquipment: false,
+      icon: 'icon',
+      difficulty: 'débutant',
+      instructions: 'inst',
+    }
+    const ex2 = {
+      id: 'e2',
+      name: 'Ex 2',
+      hasEquipment: false,
+      icon: 'icon',
+      difficulty: 'débutant',
+      instructions: 'inst',
+    }
+
+    // Use partial casting or satisfy the type to avoid 'any'
+    ;(wrapper.vm as unknown as TrainingPageInstance).training.exercices = [
+      ex1 as unknown as Exercice,
+      ex2 as unknown as Exercice,
+    ]
+    await wrapper.vm.$nextTick()
+
+    // Trigger moveUp directly on VM to avoid UI trigger issues
+    ;(wrapper.vm as unknown as TrainingPageInstance).moveUp(1)
+    await wrapper.vm.$nextTick()
+
+    // Check order
+    const training = (wrapper.vm as unknown as TrainingPageInstance).training
+    expect(training.exercices[0].id).toBe('e2')
+    expect(training.exercices[1].id).toBe('e1')
+  })
+
+  it("met à jour l'ordre via draggable", async () => {
+    await flushPromises()
+    const draggable = wrapper.findComponent({ name: 'draggable' })
+    const newOrder = [
+      { id: 'e2', name: 'Ex 2' },
+      { id: 'e1', name: 'Ex 1' },
+    ]
+
+    draggable.vm.$emit('update:modelValue', newOrder)
+
+    await wrapper.vm.$nextTick()
+    expect((wrapper.vm as unknown as TrainingPageInstance).training.exercices[0].id).toBe('e2')
+  })
+
+  it("gère l'erreur de chargement", async () => {
+    ;(store.getTrainingById as Mock).mockRejectedValue(new Error('Load failed'))
+
+    // Remount to trigger onMounted
+    const pinia = createTestingPinia({ createSpy: vi.fn })
+    store = useTrainingStore(pinia)
+    ;(store.getTrainingById as Mock).mockRejectedValue(new Error('Load failed'))
+
+    wrapper = mount(TrainingPage, {
+      global: { plugins: [pinia], stubs: { 'v-progress-circular': true, draggable: true } },
+    })
+
+    await flushPromises()
+    // Validation: isLoading should be false finally, and maybe error shown?
+    // The component sets isLoading = false in finally.
+    // It doesn't seem to show error message in UI based on code analysis, just stops loading.
+    // We check that loading spinner is gone.
+    // We check that loading spinner is gone and error is present
+    const progress = wrapper.find('v-progress-circular')
+    expect(progress.exists()).toBe(false)
+    expect(wrapper.text()).toContain('Erreur lors du chargement')
   })
 })

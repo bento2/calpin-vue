@@ -68,6 +68,37 @@ describe('UserAvatar.vue', () => {
     expect(wrapper.find('.initials').text()).toBe('JD')
   })
 
+  it('gère les initiales pour un nom unique', async () => {
+    const pinia = createTestingPinia({ createSpy: vi.fn })
+    const authStore = useAuthStore(pinia)
+    // @ts-expect-error - testing mock state
+    authStore.isAuthenticated = true
+    // @ts-expect-error - testing mock state
+    authStore.isAuthenticated = true
+    Object.defineProperty(authStore, 'user', {
+      value: { displayName: 'Admin', photoURL: null },
+      writable: true,
+    })
+
+    const wrapper = mount(UserAvatar, {
+      global: {
+        plugins: [pinia],
+        stubs: {
+          'v-tooltip': { template: '<div><slot name="activator" :props="{}"></slot></div>' },
+          'v-btn': { template: '<button><slot /></button>' },
+          'v-avatar': { template: '<div class="v-avatar"><slot /></div>' }, // slot rendered by v-btn now
+          'v-img': true,
+          'v-icon': true,
+        },
+      },
+    })
+
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.find('.initials').exists()).toBe(true)
+    expect(wrapper.find('.initials').text()).toBe('A')
+  })
+
   it("affiche l'icône anonyme si non connecté", async () => {
     const pinia = createTestingPinia({ createSpy: vi.fn })
     const authStore = useAuthStore(pinia)
