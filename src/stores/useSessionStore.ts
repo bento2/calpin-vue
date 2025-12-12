@@ -12,7 +12,9 @@ const storageName = 'sessions'
 
 export const useSessionStore = defineStore(storageName, () => {
   // Changement ici: on utilise 'localStorage' comme source de vérité par défaut pour la rapidité
-  const baseStore = useBaseStore<Session>(storageName, SessionSchema, 'localStorage')
+  const baseStore = useBaseStore<Session>(storageName, SessionSchema, 'localStorage', {
+    updatedAt: 'updatedAt',
+  })
 
   const statsExercices = ref<Map<string, Serie>>(new Map<string, Serie>())
   const statsLoaded = ref(false)
@@ -59,44 +61,20 @@ export const useSessionStore = defineStore(storageName, () => {
   }
 
   async function createSession(training: Training, options?: { name?: string }) {
-    try {
-      await baseStore.ensureLoaded()
-
-      const session = SessionService.createFromTraining(training, options)
-      session.updatedAt = new Date() // Add timestamp
-      const validatedSession = SessionSchema.parse(session)
-
-      // Sauvegarde uniquement en LocalStorage pour l'instant (rapide)
-      return baseStore.saveItem(validatedSession)
-    } catch (error) {
-      baseStore.error.value = `Erreur lors de la création: ${getErrorMessage(error)}`
-      throw error
-    }
+    // We utilize SessionService for logic, but BaseStore for persistence & validation
+    const sessionTemplate = SessionService.createFromTraining(training, options)
+    return baseStore.createItem(sessionTemplate)
   }
 
   async function updateSession(updatedSession: Session) {
-    try {
-      await baseStore.ensureLoaded()
-      const index = baseStore.items.value.findIndex((s) => s.id === updatedSession.id)
-      if (index === -1) {
-        // Si pas trouvé, on l'ajoute
-      }
-
-      updatedSession.updatedAt = new Date() // Update timestamp
-
-      const validatedSession = SessionSchema.parse(updatedSession)
-      return baseStore.saveItem(validatedSession)
-    } catch (error) {
-      baseStore.error.value = `Erreur lors de la mise à jour: ${getErrorMessage(error)}`
-      throw error
-    }
+    return baseStore.updateItem(updatedSession)
   }
 
   async function restartSession(session: Session) {
     try {
       //remise à zéro des informations
       session.dateDebut = new Date()
-      session.updatedAt = new Date() // Sync date
+      // updatedAt handled by updateSession -> baseStore.updateItem
       session.exercices.map((exercice) => {
         exercice.series?.map((serie) => {
           serie.poids = 0
@@ -120,7 +98,6 @@ export const useSessionStore = defineStore(storageName, () => {
     const updatedSession = {
       ...session,
       dateFin: new Date(),
-      updatedAt: new Date(),
       status: SessionStatusSchema.enum.terminee,
     }
 
