@@ -115,9 +115,12 @@ const moveUp = (index: number) => {
   return move(index, -1)
 }
 
-const move = (index: number, step: number) => {
+  const move = (index: number, step: number) => {
   if (!session.value?.exercices) return
-  if (index < 0 || index >= session.value.exercices.length - 1) return
+  const len = session.value.exercices.length
+  
+  if (step > 0 && index >= len - 1) return
+  if (step < 0 && index <= 0) return
 
   const exercices = session.value.exercices
   const tmp = exercices[index]
@@ -234,7 +237,7 @@ const dialogExercices = ref(false)
     <!-- Footer/Finish -->
     <div class="pa-2 bg-white border-t ga-2" style="position: fixed; bottom: 0; left: 0; right: 0; z-index: 10;">
       <AppBtn block size="large" @click="dialogExercices = !dialogExercices" :variant="ended ? 'secondary' : 'primary'"
-        :if='!ended'>
+        v-if='!ended'>
         Ajout un Exercice
       </AppBtn>
     </div>
