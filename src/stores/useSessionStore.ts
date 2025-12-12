@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { type Session, SessionSchema, SessionStatusSchema } from '@/types/SessionSchema.ts'
 import type { Training } from '@/types/TrainingSchema.ts'
 import SessionService from '@/services/SessionService.ts'
-import { StorageService } from '@/services/StorageService.ts'
+
 import { useBaseStore } from '@/composables/useBaseStore.ts'
 import type { Serie } from '@/types/SerieSchema.ts'
 import { computed, ref } from 'vue'
@@ -13,11 +13,6 @@ const storageName = 'sessions'
 export const useSessionStore = defineStore(storageName, () => {
   // Changement ici: on utilise 'localStorage' comme source de vérité par défaut pour la rapidité
   const baseStore = useBaseStore<Session>(storageName, SessionSchema, 'localStorage')
-
-  // Service séparé pour la synchro Firebase (archive)
-  const firebaseStorage = new StorageService<Session[]>(storageName, {
-    adapter: 'firebase',
-  })
 
   const statsExercices = ref<Map<string, Serie>>(new Map<string, Serie>())
   const statsLoaded = ref(false)
@@ -132,82 +127,7 @@ export const useSessionStore = defineStore(storageName, () => {
     // 1. Mettre à jour localement (termine la session pour l'UI)
     await updateSession(updatedSession)
 
-    // 2. Synchroniser vers Firebase (sauvegarde durable)
-    try {
-      await firebaseStorage.save(baseStore.items.value)
-    } catch (err) {
-      console.error('Erreur sync Firebase après finish:', err)
-    }
-
     return updatedSession
-  }
-
-  // Fonction pour charger depuis Firebase si besoin
-  async function syncFromFirebase() {
-    try {
-      // Ne pas mettre loading trop longtemps pour ne pas bloquer, on fait ça en "background" souvent
-      // baseStore.loading.value = true
-      console.log('Début synchronisation Firebase...')
-      const remoteSessions = await firebaseStorage.load()
-
-      if (remoteSessions) {
-        await baseStore.ensureLoaded()
-        const localSessions = baseStore.items.value
-        const localMap = new Map(localSessions.map((s) => [s.id, s]))
-        let hasChanges = false
-
-        remoteSessions.forEach((remoteS) => {
-          const localS = localMap.get(remoteS.id)
-          console.log(remoteS.id)
-          if (!localS) {
-            // Cas 1: Existe sur Firebase, pas en Local -> On ajoute
-            console.log(`[Sync] Ajout session distante: ${remoteS.id}`)
-            console.log(remoteS)
-            localSessions.push(remoteS)
-            hasChanges = true
-          } else {
-            // Cas 2: Conflit -> On regarde qui est le plus récent
-
-            // Helper pour avoir une date (updatedAt > dateFin > dateDebut > 0)
-            const getTimestamp = (s: Session) => {
-              if (s.updatedAt) return new Date(s.updatedAt).getTime()
-              if (s.dateFin) return new Date(s.dateFin).getTime()
-              return new Date(s.dateDebut).getTime()
-            }
-
-            const remoteDate = getTimestamp(remoteS)
-            const localDate = getTimestamp(localS)
-
-            // Si remote est strictement plus récent
-            if (remoteDate > localDate) {
-              console.log(
-                `[Sync] Mise à jour locale (Remote: ${remoteDate} > Local: ${localDate}) pour ${remoteS.id}`,
-              )
-              const index = localSessions.findIndex((s) => s.id === remoteS.id)
-              if (index !== -1) {
-                localSessions[index] = remoteS
-                hasChanges = true
-              }
-            }
-          }
-        })
-
-        if (hasChanges) {
-          // Tri après merge
-          localSessions.sort(
-            (a, b) => new Date(b.dateDebut).getTime() - new Date(a.dateDebut).getTime(),
-          )
-          await baseStore.persistItems() // Sauvegarder le résultat fusionné en local
-          console.log('[Sync] Mises à jour appliquées et sauvegardées.')
-        } else {
-          console.log('[Sync] Aucune modification nécessaire.')
-        }
-      }
-    } catch (e) {
-      console.error('Erreur syncFromFirebase', e)
-    } finally {
-      // baseStore.loading.value = false
-    }
   }
 
   return {
@@ -221,7 +141,7 @@ export const useSessionStore = defineStore(storageName, () => {
     updateSession,
     restartSession,
     finishSession,
-    syncFromFirebase, // Expose pour bouton manuel éventuel
+
     getSessionActive: async () => {
       await baseStore.ensureLoaded()
       // On retourne la première session en cours trouvée
@@ -231,18 +151,9 @@ export const useSessionStore = defineStore(storageName, () => {
     saveSession: async (session: Session) => {
       // Sauvegarder l'état actuel sans terminer
       await updateSession(session)
-      try {
-        await firebaseStorage.save(baseStore.items.value)
-      } catch (e) {
-        console.error(e)
-      }
     },
     getSessions: async () => {
       await baseStore.ensureLoaded()
-      // On lance la synchro en background à chaque chargement de liste pour être à jour
-      // On ne 'await' PAS pour ne pas ralentir l'affichage immédiat du cache local
-      syncFromFirebase()
-
       // Return sorted: recent first (descending)
       return [...baseStore.items.value].sort(
         (a, b) => new Date(b.dateDebut).getTime() - new Date(a.dateDebut).getTime(),
@@ -250,13 +161,6 @@ export const useSessionStore = defineStore(storageName, () => {
     },
     deleteSession: async (id: string) => {
       await baseStore.deleteItem(id)
-      // Optionnel: supprimer de firebase aussi ?
-      // Pour l'instant on resync tout
-      try {
-        await firebaseStorage.save(baseStore.items.value)
-      } catch (e) {
-        console.error(e)
-      }
     },
     loadSessions: async () => {
       await baseStore.loadItems()
