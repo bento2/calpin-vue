@@ -30,6 +30,7 @@
 import { ref, computed } from 'vue'
 import type { PropType } from 'vue'
 import { useAuthStore } from '@/stores/useAuthStore.ts'
+import { generatePastelColor } from '@/utils/colorUtils'
 
 const auth = useAuthStore()
 
@@ -78,22 +79,10 @@ const roundedClass = computed(() => {
   return `rounded-${props.rounded}`
 })
 
-// generate a background color from name (deterministic)
-function stringToHue(s: string) {
-  let hash = 0
-  for (let i = 0; i < s.length; i++) {
-    hash = s.charCodeAt(i) + ((hash << 5) - hash)
-  }
-  return Math.abs(hash) % 360
-}
-
 const bgColor = computed(() => {
-  const name = displayName.value
-  if (!name) return '#e0e0e0' // neutral grey for anonymous
-  const hue = stringToHue(name)
-  // use HSL for pleasant pastel backgrounds
-  return `hsl(${hue} 60% 75%)`
+  return generatePastelColor(displayName.value)
 })
+
 
 const avatarStyle = computed(() => {
   if (hasImage.value && !imageError.value) return {}
