@@ -5,8 +5,9 @@ import TrainingCard from '@/components/TrainingCard.vue'
 import type { Training } from '@/types/TrainingSchema'
 import type { Exercice } from '@/types/ExerciceSchema'
 import { useSessionStore } from '@/stores/useSessionStore'
+import { type Pinia } from 'pinia'
 import { useTrainingStore } from '@/stores/useTrainingStore'
-import { useRouter } from 'vue-router'
+
 import { flushPromises } from '@vue/test-utils'
 
 // Mock useRouter
@@ -35,7 +36,7 @@ describe('TrainingCard', () => {
     mtime: new Date(),
   }
 
-  const createWrapper = (props = {}, piniaInstance?: any) => {
+  const createWrapper = (props = {}, piniaInstance?: Pinia) => {
     return mount(TrainingCard, {
       props: {
         training: mockTraining,
@@ -43,7 +44,7 @@ describe('TrainingCard', () => {
       },
       global: {
         plugins: [
-          (piniaInstance as any) ||
+          piniaInstance ||
             createTestingPinia({
               createSpy: vi.fn,
             }),
