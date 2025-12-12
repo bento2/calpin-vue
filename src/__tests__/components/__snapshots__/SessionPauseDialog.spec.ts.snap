@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SessionPauseDialog.vue > affiche le dialogue lorsque modelValue est true 1`] = `
+"<div class="v-dialog-stub opacity-90" transition="dialog-bottom-transition">
+  <div title="Pause">
+    <div class="d-flex flex-column ga-3"><button block="" variant="secondary"> Recommencer </button><!-- TODO: Check behavior of this button in original UI. It was 'Terminer et enregistrer' --><button block="" variant="primary"> Terminer et enregistrer </button><button block="" variant="success">
+        <!-- Note: AppBtn variant doesn't have 'success' preset yet, passing direct color/class works due to v-bind but verify --> Sauvegarder
+      </button><button block="" variant="secondary"> Reprendre </button><button block="" variant="danger"> Supprimer l'entrainement </button></div>
+    <div><button variant="ghost">Fermer</button></div>
+  </div>
+</div>"
+`;

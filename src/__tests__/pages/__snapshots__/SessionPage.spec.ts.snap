@@ -1,0 +1,25 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Page Session (SessionPage) > affiche le titre de la session 1`] = `
+"<div class="h-100 d-flex flex-column">
+  <div class="pa-2 d-flex align-center justify-space-between text-white bg-blue-accent-2 elevation-2">
+    <div class="text-h6 font-weight-bold"></div>
+    <div class="text-h6 d-flex align-center">
+      <!-- Timer component could be extracted too -->
+      <div class="mr-4">0:00:00</div><button class="app-btn-stub bg-white text-blue-accent-2 bg-white text-blue-accent-2" variant="icon" icon="mdi-pause"></button>
+    </div>
+  </div><!-- Main Content -->
+  <div class="overflow-y-auto flex-grow-1 px-2 pt-2 pb-14 bg-blue-accent-4 mb-2"></div><!-- Footer/Finish -->
+  <div class="pa-2 bg-white border-t ga-2" style="position: fixed; bottom: 0px; left: 0px; right: 0px; z-index: 10;"><button class="app-btn-stub" block="" size="large" variant="primary"> Ajout un Exercice </button></div><!-- Pause Menu Dialog -->
+  <div class="session-pause-dialog-stub" modelvalue="false" session="[object Object]"></div>
+</div>
+<div modelvalue="false" transition="dialog-bottom-transition" class="w-90 p-4">
+  <div>
+    <div color="primary"><button icon="mdi-close"></button>
+      <div>Ajouter un exercice</div>
+      <div class="v-toolbar-items"><button text="Fermer" variant="text" class="bg-blue-accent-2"></button></div>
+    </div>
+    <exercice-list-stub selectable="true" selected=""></exercice-list-stub>
+  </div>
+</div>"
+`;

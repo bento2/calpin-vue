@@ -62,6 +62,7 @@ describe('useSessionStore', () => {
       const remoteSession = {
         ...mockTraining,
         id: 's_remote',
+        trainingId: 't1',
         dateDebut: new Date().toISOString(),
         status: 'en_cours',
       }
@@ -132,5 +133,75 @@ describe('useSessionStore', () => {
     const active = await store.getSessionActive()
     expect(active).toBeDefined()
     expect(active?.status).toBe('en_cours')
+  })
+  describe('Helpers & Stats', () => {
+    it('findStatsExercices devrait calculer les max par exercice', async () => {
+      const store = useSessionStore()
+      const s1 = await store.createSession(mockTraining)
+      // Add exercise data
+      s1.exercices[0].series = [{ poids: 10, repetitions: 10, checked: true, total: 100 }]
+      // max is computed getter, no need to set
+      await store.updateSession(s1)
+
+      const stats = await store.findStatsExercices()
+      expect(stats.get('e1')).toEqual(expect.objectContaining({ total: 100 }))
+    })
+
+    it('getSessions devrait charger, synchroniser et trier', async () => {
+      const store = useSessionStore()
+      // Mock existing data with VALID Session structure
+      const mockSessionBase = {
+        id: 'base',
+        trainingId: 't1',
+        dateDebut: new Date().toISOString(),
+        status: 'en_cours' as const,
+        exercices: [],
+        updatedAt: new Date().toISOString(),
+        nbChecked: 0,
+        total: 0,
+        ended: false,
+      }
+      const older = {
+        ...mockSessionBase,
+        id: 'old',
+        dateDebut: new Date('2023-01-01').toISOString(),
+      }
+      const newer = {
+        ...mockSessionBase,
+        id: 'new',
+        dateDebut: new Date('2024-01-01').toISOString(),
+      }
+
+      // Mock storage return
+      mockLoad.mockResolvedValue([older, newer])
+
+      const sessions = await store.getSessions()
+
+      expect(sessions).toHaveLength(2)
+      expect(sessions[0].id).toBe('new')
+      expect(mockLoad).toHaveBeenCalled()
+    })
+
+    it('saveSession devrait sauvegarder sans terminer', async () => {
+      const store = useSessionStore()
+      const s = await store.createSession(mockTraining)
+      await store.saveSession(s)
+      // Should trigger update (local) and save (remote)
+      expect(mockSave).toHaveBeenCalled()
+    })
+
+    it('deleteSession devrait supprimer localement et distancement', async () => {
+      const store = useSessionStore()
+      const s = await store.createSession(mockTraining)
+      await store.deleteSession(s.id)
+
+      expect(mockSave).toHaveBeenCalled()
+    })
+
+    it('loadSessions devrait charger les sessions', async () => {
+      const store = useSessionStore()
+      await store.loadSessions()
+      expect(mockLoad).toHaveBeenCalled()
+    })
   })
 })
