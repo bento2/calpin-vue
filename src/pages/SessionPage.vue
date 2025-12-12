@@ -2,7 +2,7 @@
 import { onMounted, ref, watch, computed } from 'vue'
 import { useSessionStore } from '@/stores/useSessionStore.ts'
 import { useRoute, useRouter } from 'vue-router'
-import { type Session, SessionSchema } from '@/types/SessionSchema.ts'
+import { type Session } from '@/types/SessionSchema.ts'
 import SessionExerciceItem from '@/components/SessionExerciceItem.vue'
 import SeriesCard from '@/components/SeriesCard.vue'
 import ExerciceList from '@/components/ExerciceList.vue'
@@ -11,8 +11,10 @@ import SessionPauseDialog from '@/components/SessionPauseDialog.vue'
 import { debounce } from 'lodash-es'
 
 import { useSessionTimer } from '@/composables/useSessionTimer'
+import { useSessionRecovery } from '@/composables/useSessionRecovery'
 
 const session = ref<Session | null>(null)
+const { recoverSession, saveLocal, clearLocal } = useSessionRecovery(session)
 
 const {
   getSessionById,
@@ -26,28 +28,16 @@ const route = useRoute()
 const router = useRouter()
 const ended = computed(() => session.value?.ended ?? false)
 
-const saveLocal = (s: Session) => {
-  localStorage.setItem(`calpin_session_${s.id}`, JSON.stringify(s))
-}
-
-const clearLocal = (id: string) => {
-  localStorage.removeItem(`calpin_session_${id}`)
-}
-
 onMounted(async () => {
   if (route.params.id) {
     const id = route.params.id as string
-    const local = localStorage.getItem(`calpin_session_${id}`)
     let loadedSession: Session | undefined
 
-    if (local) {
-      try {
-        loadedSession = SessionSchema.parse(JSON.parse(local))
-        // Sync local changes to store/server
-        updateSession(loadedSession)
-      } catch (e) {
-        console.error('Erreur chargement local', e)
-      }
+    const localSession = recoverSession(id)
+    if (localSession) {
+      loadedSession = localSession
+      // Sync local changes to store
+      updateSession(loadedSession)
     }
 
     if (!loadedSession) {
@@ -59,6 +49,7 @@ onMounted(async () => {
     }
   }
 })
+
 const debouncedUpdate = debounce((value) => {
   updateSession(value)
 }, 2000)
