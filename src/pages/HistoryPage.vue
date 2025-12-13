@@ -4,7 +4,7 @@ import { onMounted, ref } from 'vue'
 import { type Session } from '@/types/SessionSchema.ts'
 import SessionCard from '@/components/SessionCard.vue'
 
-const { getSessions,deleteSession  } = useSessionStore()
+const { getSessions, deleteSession } = useSessionStore()
 const sessions = ref<Session[] | []>([])
 
 onMounted(async () => {
@@ -32,24 +32,22 @@ onMounted(async () => {
 })
 
 const confirmDelete = (id: string) => {
-  if (confirm("Voulez-vous vraiment supprimer cette session ?")) {
-    deleteSession(id);
+  if (confirm('Voulez-vous vraiment supprimer cette session ?')) {
+    deleteSession(id)
   }
 }
-
 </script>
 
 <template>
-  <SessionCard
-    v-for="session in sessions"
-    :key="session.id"
-    :model-value="session"
-    class="mb-4"
-  >
+  <SessionCard v-for="session in sessions" :key="session.id" :model-value="session" class="mb-4">
     <template #actions>
       <div class="d-flex ml-auto">
-        <v-btn icon="mdi-pencil" variant="text" :to="{ name: 'session', params: { id: session.id } }" ></v-btn>
-        <v-btn icon="mdi-delete" variant="text" @click="confirmDelete(session.id)" ></v-btn>        
+        <v-btn
+          icon="mdi-pencil"
+          variant="text"
+          :to="{ name: 'session', params: { id: session.id } }"
+        ></v-btn>
+        <v-btn icon="mdi-delete" variant="text" @click="confirmDelete(session.id)"></v-btn>
       </div>
     </template>
   </SessionCard>

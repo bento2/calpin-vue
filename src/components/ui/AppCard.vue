@@ -1,14 +1,17 @@
 <script setup lang="ts">
-withDefaults(defineProps<{
-  title?: string
-  subtitle?: string
-  color?: string
-  elevation?: string | number
-  loading?: boolean
-}>(), {
-  elevation: 2,
-  loading: false
-})
+withDefaults(
+  defineProps<{
+    title?: string
+    subtitle?: string
+    color?: string
+    elevation?: string | number
+    loading?: boolean
+  }>(),
+  {
+    elevation: 2,
+    loading: false,
+  },
+)
 </script>
 
 <template>
@@ -31,7 +34,6 @@ withDefaults(defineProps<{
     </v-card-text>
 
     <v-card-actions v-if="$slots.actions">
-
       <slot name="actions"></slot>
     </v-card-actions>
   </v-card>

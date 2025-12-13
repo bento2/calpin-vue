@@ -16,4 +16,3 @@ export const vuetify = createVuetify({
     defaultTheme: 'light',
   },
 })
-

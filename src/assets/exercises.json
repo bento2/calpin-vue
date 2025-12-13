@@ -7,13 +7,8 @@
     "description": "Exercice ciblant les abdominaux.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Abdominaux"
-    ],
-    "muscles_secondaires": [
-      "Obliques",
-      "Transverse"
-    ]
+    "muscles_principaux": ["Abdominaux"],
+    "muscles_secondaires": ["Obliques", "Transverse"]
   },
   {
     "id": "air_squat",
@@ -23,15 +18,8 @@
     "description": "Exercice de base sollicitant les cuisses et les fessiers.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Quadriceps",
-      "Fessiers"
-    ],
-    "muscles_secondaires": [
-      "Ischio-jambiers",
-      "Mollets",
-      "Abdominaux"
-    ]
+    "muscles_principaux": ["Quadriceps", "Fessiers"],
+    "muscles_secondaires": ["Ischio-jambiers", "Mollets", "Abdominaux"]
   },
   {
     "id": "barre_front",
@@ -52,15 +40,8 @@
     "description": "Exercice de base sollicitant les cuisses et les fessiers.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Quadriceps",
-      "Fessiers"
-    ],
-    "muscles_secondaires": [
-      "Ischio-jambiers",
-      "Mollets",
-      "Abdominaux"
-    ]
+    "muscles_principaux": ["Quadriceps", "Fessiers"],
+    "muscles_secondaires": ["Ischio-jambiers", "Mollets", "Abdominaux"]
   },
   {
     "id": "bent_over_row_prise_disque",
@@ -70,16 +51,8 @@
     "description": "Exercice de tirage pour le dos.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Grand dorsal",
-      "Rhomboïdes",
-      "Trapèzes"
-    ],
-    "muscles_secondaires": [
-      "Biceps",
-      "Avant-bras",
-      "Deltoïdes postérieurs"
-    ]
+    "muscles_principaux": ["Grand dorsal", "Rhomboïdes", "Trapèzes"],
+    "muscles_secondaires": ["Biceps", "Avant-bras", "Deltoïdes postérieurs"]
   },
   {
     "id": "bird_dog",
@@ -166,13 +139,8 @@
     "description": "Exercice ciblant les abdominaux.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Abdominaux"
-    ],
-    "muscles_secondaires": [
-      "Obliques",
-      "Transverse"
-    ]
+    "muscles_principaux": ["Abdominaux"],
+    "muscles_secondaires": ["Obliques", "Transverse"]
   },
   {
     "id": "crunch_avec_jambes_verticales",
@@ -182,13 +150,8 @@
     "description": "Exercice ciblant les abdominaux.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Abdominaux"
-    ],
-    "muscles_secondaires": [
-      "Obliques",
-      "Transverse"
-    ]
+    "muscles_principaux": ["Abdominaux"],
+    "muscles_secondaires": ["Obliques", "Transverse"]
   },
   {
     "id": "crunch_bicyclette",
@@ -198,13 +161,8 @@
     "description": "Exercice ciblant les abdominaux.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Abdominaux"
-    ],
-    "muscles_secondaires": [
-      "Obliques",
-      "Transverse"
-    ]
+    "muscles_principaux": ["Abdominaux"],
+    "muscles_secondaires": ["Obliques", "Transverse"]
   },
   {
     "id": "crunch_papillon",
@@ -214,13 +172,8 @@
     "description": "Exercice ciblant les abdominaux.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Abdominaux"
-    ],
-    "muscles_secondaires": [
-      "Obliques",
-      "Transverse"
-    ]
+    "muscles_principaux": ["Abdominaux"],
+    "muscles_secondaires": ["Obliques", "Transverse"]
   },
   {
     "id": "crunch_a_la_machine",
@@ -230,13 +183,8 @@
     "description": "Exercice ciblant les abdominaux.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Abdominaux"
-    ],
-    "muscles_secondaires": [
-      "Obliques",
-      "Transverse"
-    ]
+    "muscles_principaux": ["Abdominaux"],
+    "muscles_secondaires": ["Obliques", "Transverse"]
   },
   {
     "id": "crunch_a_la_poulie",
@@ -246,13 +194,8 @@
     "description": "Exercice ciblant les abdominaux.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Abdominaux"
-    ],
-    "muscles_secondaires": [
-      "Obliques",
-      "Transverse"
-    ]
+    "muscles_principaux": ["Abdominaux"],
+    "muscles_secondaires": ["Obliques", "Transverse"]
   },
   {
     "id": "crunch_a_la_poulie_pour_les_obliques",
@@ -262,13 +205,8 @@
     "description": "Exercice ciblant les abdominaux.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Abdominaux"
-    ],
-    "muscles_secondaires": [
-      "Obliques",
-      "Transverse"
-    ]
+    "muscles_principaux": ["Abdominaux"],
+    "muscles_secondaires": ["Obliques", "Transverse"]
   },
   {
     "id": "curl_allonge_a_la_poulie",
@@ -278,12 +216,8 @@
     "description": "Exercice d'isolation des biceps.",
     "equipment": "Machine de curl / Poulie",
     "type": "Machine",
-    "muscles_principaux": [
-      "Biceps"
-    ],
-    "muscles_secondaires": [
-      "Avant-bras"
-    ]
+    "muscles_principaux": ["Biceps"],
+    "muscles_secondaires": ["Avant-bras"]
   },
   {
     "id": "curl_au_pupitre_a_la_poulie",
@@ -293,12 +227,8 @@
     "description": "Exercice d'isolation des biceps.",
     "equipment": "Machine de curl / Poulie",
     "type": "Machine",
-    "muscles_principaux": [
-      "Biceps"
-    ],
-    "muscles_secondaires": [
-      "Avant-bras"
-    ]
+    "muscles_principaux": ["Biceps"],
+    "muscles_secondaires": ["Avant-bras"]
   },
   {
     "id": "curl_avec_sangles_de_suspension",
@@ -308,12 +238,8 @@
     "description": "Exercice d'isolation des biceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Biceps"
-    ],
-    "muscles_secondaires": [
-      "Avant-bras"
-    ]
+    "muscles_principaux": ["Biceps"],
+    "muscles_secondaires": ["Avant-bras"]
   },
   {
     "id": "curl_biceps_alterne_avec_halteres",
@@ -323,12 +249,8 @@
     "description": "Exercice d'isolation des biceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Biceps"
-    ],
-    "muscles_secondaires": [
-      "Avant-bras"
-    ]
+    "muscles_principaux": ["Biceps"],
+    "muscles_secondaires": ["Avant-bras"]
   },
   {
     "id": "curl_biceps_alterne_en_supination_sur_banc_incline",
@@ -338,12 +260,8 @@
     "description": "Exercice d'isolation des biceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Biceps"
-    ],
-    "muscles_secondaires": [
-      "Avant-bras"
-    ]
+    "muscles_principaux": ["Biceps"],
+    "muscles_secondaires": ["Avant-bras"]
   },
   {
     "id": "curl_biceps_assis_a_la_machine",
@@ -353,12 +271,8 @@
     "description": "Exercice d'isolation des biceps.",
     "equipment": "Machine de curl / Poulie",
     "type": "Machine",
-    "muscles_principaux": [
-      "Biceps"
-    ],
-    "muscles_secondaires": [
-      "Avant-bras"
-    ]
+    "muscles_principaux": ["Biceps"],
+    "muscles_secondaires": ["Avant-bras"]
   },
   {
     "id": "curl_biceps_avec_elastique",
@@ -368,12 +282,8 @@
     "description": "Exercice d'isolation des biceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Biceps"
-    ],
-    "muscles_secondaires": [
-      "Avant-bras"
-    ]
+    "muscles_principaux": ["Biceps"],
+    "muscles_secondaires": ["Avant-bras"]
   },
   {
     "id": "curl_biceps_a_la_poulie_basse",
@@ -383,12 +293,8 @@
     "description": "Exercice d'isolation des biceps.",
     "equipment": "Machine de curl / Poulie",
     "type": "Machine",
-    "muscles_principaux": [
-      "Biceps"
-    ],
-    "muscles_secondaires": [
-      "Avant-bras"
-    ]
+    "muscles_principaux": ["Biceps"],
+    "muscles_secondaires": ["Avant-bras"]
   },
   {
     "id": "curl_concentre",
@@ -398,12 +304,8 @@
     "description": "Exercice d'isolation des biceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Biceps"
-    ],
-    "muscles_secondaires": [
-      "Avant-bras"
-    ]
+    "muscles_principaux": ["Biceps"],
+    "muscles_secondaires": ["Avant-bras"]
   },
   {
     "id": "curl_en_prise_marteau_avec_elastique",
@@ -413,12 +315,8 @@
     "description": "Exercice d'isolation des biceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Biceps"
-    ],
-    "muscles_secondaires": [
-      "Avant-bras"
-    ]
+    "muscles_principaux": ["Biceps"],
+    "muscles_secondaires": ["Avant-bras"]
   },
   {
     "id": "curl_haltere_debout_sur_banc_incline",
@@ -428,12 +326,8 @@
     "description": "Exercice d'isolation des biceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Biceps"
-    ],
-    "muscles_secondaires": [
-      "Avant-bras"
-    ]
+    "muscles_principaux": ["Biceps"],
+    "muscles_secondaires": ["Avant-bras"]
   },
   {
     "id": "curl_haltere_incline_avec_rotation",
@@ -443,12 +337,8 @@
     "description": "Exercice d'isolation des biceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Biceps"
-    ],
-    "muscles_secondaires": [
-      "Avant-bras"
-    ]
+    "muscles_principaux": ["Biceps"],
+    "muscles_secondaires": ["Avant-bras"]
   },
   {
     "id": "curl_haltere_prise_marteau_au_pupitre",
@@ -458,12 +348,8 @@
     "description": "Exercice d'isolation des biceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Biceps"
-    ],
-    "muscles_secondaires": [
-      "Avant-bras"
-    ]
+    "muscles_principaux": ["Biceps"],
+    "muscles_secondaires": ["Avant-bras"]
   },
   {
     "id": "curl_halteres_prise_neutre",
@@ -473,12 +359,8 @@
     "description": "Exercice d'isolation des biceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Biceps"
-    ],
-    "muscles_secondaires": [
-      "Avant-bras"
-    ]
+    "muscles_principaux": ["Biceps"],
+    "muscles_secondaires": ["Avant-bras"]
   },
   {
     "id": "curl_incline_a_la_poulie",
@@ -488,12 +370,8 @@
     "description": "Exercice d'isolation des biceps.",
     "equipment": "Machine de curl / Poulie",
     "type": "Machine",
-    "muscles_principaux": [
-      "Biceps"
-    ],
-    "muscles_secondaires": [
-      "Avant-bras"
-    ]
+    "muscles_principaux": ["Biceps"],
+    "muscles_secondaires": ["Avant-bras"]
   },
   {
     "id": "curl_inverse_a_la_barre",
@@ -503,12 +381,8 @@
     "description": "Exercice d'isolation des biceps.",
     "equipment": "Barre",
     "type": "Poids libres",
-    "muscles_principaux": [
-      "Biceps"
-    ],
-    "muscles_secondaires": [
-      "Avant-bras"
-    ]
+    "muscles_principaux": ["Biceps"],
+    "muscles_secondaires": ["Avant-bras"]
   },
   {
     "id": "curl_poulie_en_position_squat",
@@ -518,15 +392,8 @@
     "description": "Exercice de base sollicitant les cuisses et les fessiers.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Quadriceps",
-      "Fessiers"
-    ],
-    "muscles_secondaires": [
-      "Ischio-jambiers",
-      "Mollets",
-      "Abdominaux"
-    ]
+    "muscles_principaux": ["Quadriceps", "Fessiers"],
+    "muscles_secondaires": ["Ischio-jambiers", "Mollets", "Abdominaux"]
   },
   {
     "id": "curl_pupitre_barre_ez",
@@ -536,12 +403,8 @@
     "description": "Exercice d'isolation des biceps.",
     "equipment": "Barre",
     "type": "Poids libres",
-    "muscles_principaux": [
-      "Biceps"
-    ],
-    "muscles_secondaires": [
-      "Avant-bras"
-    ]
+    "muscles_principaux": ["Biceps"],
+    "muscles_secondaires": ["Avant-bras"]
   },
   {
     "id": "curl_spider",
@@ -551,12 +414,8 @@
     "description": "Exercice d'isolation des biceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Biceps"
-    ],
-    "muscles_secondaires": [
-      "Avant-bras"
-    ]
+    "muscles_principaux": ["Biceps"],
+    "muscles_secondaires": ["Avant-bras"]
   },
   {
     "id": "curl_unilateral_avec_sangles_de_suspension",
@@ -566,12 +425,8 @@
     "description": "Exercice d'isolation des biceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Biceps"
-    ],
-    "muscles_secondaires": [
-      "Avant-bras"
-    ]
+    "muscles_principaux": ["Biceps"],
+    "muscles_secondaires": ["Avant-bras"]
   },
   {
     "id": "curl_zottman",
@@ -581,12 +436,8 @@
     "description": "Exercice d'isolation des biceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Biceps"
-    ],
-    "muscles_secondaires": [
-      "Avant-bras"
-    ]
+    "muscles_principaux": ["Biceps"],
+    "muscles_secondaires": ["Avant-bras"]
   },
   {
     "id": "curl_a_la_barre",
@@ -596,12 +447,8 @@
     "description": "Exercice d'isolation des biceps.",
     "equipment": "Barre",
     "type": "Poids libres",
-    "muscles_principaux": [
-      "Biceps"
-    ],
-    "muscles_secondaires": [
-      "Avant-bras"
-    ]
+    "muscles_principaux": ["Biceps"],
+    "muscles_secondaires": ["Avant-bras"]
   },
   {
     "id": "curl_a_la_poulie_vis_a_vis",
@@ -611,12 +458,8 @@
     "description": "Exercice d'isolation des biceps.",
     "equipment": "Machine de curl / Poulie",
     "type": "Machine",
-    "muscles_principaux": [
-      "Biceps"
-    ],
-    "muscles_secondaires": [
-      "Avant-bras"
-    ]
+    "muscles_principaux": ["Biceps"],
+    "muscles_secondaires": ["Avant-bras"]
   },
   {
     "id": "dead_bug",
@@ -637,13 +480,8 @@
     "description": "Exercice polyarticulaire ciblant triceps et pectoraux.",
     "equipment": "Machine à dips",
     "type": "Machine",
-    "muscles_principaux": [
-      "Triceps",
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Triceps", "Pectoraux"],
+    "muscles_secondaires": ["Deltoïdes antérieurs"]
   },
   {
     "id": "dips_assis_a_la_machine_matrix",
@@ -653,13 +491,8 @@
     "description": "Exercice polyarticulaire ciblant triceps et pectoraux.",
     "equipment": "Machine à dips",
     "type": "Machine",
-    "muscles_principaux": [
-      "Triceps",
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Triceps", "Pectoraux"],
+    "muscles_secondaires": ["Deltoïdes antérieurs"]
   },
   {
     "id": "dips_assistes_a_la_machine",
@@ -669,13 +502,8 @@
     "description": "Exercice polyarticulaire ciblant triceps et pectoraux.",
     "equipment": "Machine à dips",
     "type": "Machine",
-    "muscles_principaux": [
-      "Triceps",
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Triceps", "Pectoraux"],
+    "muscles_secondaires": ["Deltoïdes antérieurs"]
   },
   {
     "id": "dips_aux_anneaux",
@@ -685,13 +513,8 @@
     "description": "Exercice polyarticulaire ciblant triceps et pectoraux.",
     "equipment": "Barres parallèles",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Triceps",
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Triceps", "Pectoraux"],
+    "muscles_secondaires": ["Deltoïdes antérieurs"]
   },
   {
     "id": "dips_aux_barres_paralleles",
@@ -701,13 +524,8 @@
     "description": "Exercice polyarticulaire ciblant triceps et pectoraux.",
     "equipment": "Barres parallèles",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Triceps",
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Triceps", "Pectoraux"],
+    "muscles_secondaires": ["Deltoïdes antérieurs"]
   },
   {
     "id": "dips_entre_deux_bancs",
@@ -717,13 +535,8 @@
     "description": "Exercice polyarticulaire ciblant triceps et pectoraux.",
     "equipment": "Barres parallèles",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Triceps",
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Triceps", "Pectoraux"],
+    "muscles_secondaires": ["Deltoïdes antérieurs"]
   },
   {
     "id": "dips_sur_banc",
@@ -733,13 +546,8 @@
     "description": "Exercice polyarticulaire ciblant triceps et pectoraux.",
     "equipment": "Barres parallèles",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Triceps",
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Triceps", "Pectoraux"],
+    "muscles_secondaires": ["Deltoïdes antérieurs"]
   },
   {
     "id": "dips_sur_une_chaise",
@@ -749,13 +557,8 @@
     "description": "Exercice polyarticulaire ciblant triceps et pectoraux.",
     "equipment": "Barres parallèles",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Triceps",
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Triceps", "Pectoraux"],
+    "muscles_secondaires": ["Deltoïdes antérieurs"]
   },
   {
     "id": "donkey_kick",
@@ -776,12 +579,8 @@
     "description": "Exercice d'isolation des biceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Biceps"
-    ],
-    "muscles_secondaires": [
-      "Avant-bras"
-    ]
+    "muscles_principaux": ["Biceps"],
+    "muscles_secondaires": ["Avant-bras"]
   },
   {
     "id": "drag_curl_avec_halteres",
@@ -791,12 +590,8 @@
     "description": "Exercice d'isolation des biceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Biceps"
-    ],
-    "muscles_secondaires": [
-      "Avant-bras"
-    ]
+    "muscles_principaux": ["Biceps"],
+    "muscles_secondaires": ["Avant-bras"]
   },
   {
     "id": "drag_curl_a_la_smith_machine",
@@ -806,12 +601,8 @@
     "description": "Exercice d'isolation des biceps.",
     "equipment": "Machine de curl / Poulie",
     "type": "Machine",
-    "muscles_principaux": [
-      "Biceps"
-    ],
-    "muscles_secondaires": [
-      "Avant-bras"
-    ]
+    "muscles_principaux": ["Biceps"],
+    "muscles_secondaires": ["Avant-bras"]
   },
   {
     "id": "developpe_arnold",
@@ -821,13 +612,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_assis_a_la_machine_pour_les_pectoraux",
@@ -837,13 +623,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "Machine de développé",
     "type": "Machine",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_couche",
@@ -853,13 +634,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_couche_au_sol",
@@ -869,13 +645,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_couche_au_sol_avec_kettlebell",
@@ -885,13 +656,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_couche_avec_chaines",
@@ -901,13 +667,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_couche_avec_elastique",
@@ -917,13 +678,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_couche_halteres",
@@ -933,13 +689,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_couche_larsen",
@@ -949,13 +700,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_couche_prise_inversee",
@@ -965,13 +711,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_couche_prise_serree_a_la_smith_machine",
@@ -981,13 +722,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "Smith Machine",
     "type": "Machine guidée",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_couche_serre_avec_halteres",
@@ -997,13 +733,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_couche_unilateral_avec_kettlebell",
@@ -1013,13 +744,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_couche_a_la_smith_machine",
@@ -1029,13 +755,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "Smith Machine",
     "type": "Machine guidée",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_debout_avec_elastique",
@@ -1045,13 +766,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_decline_avec_haltere",
@@ -1061,13 +777,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_decline_avec_elastique",
@@ -1077,13 +788,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_decline_a_la_barre",
@@ -1093,13 +799,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "Barre",
     "type": "Poids libres",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_incline_avec_halteres",
@@ -1109,13 +810,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_incline_a_la_barre",
@@ -1125,13 +821,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "Barre",
     "type": "Poids libres",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_incline_a_la_machine_convergente",
@@ -1141,13 +832,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "Machine de développé",
     "type": "Machine",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_incline_a_la_poulie",
@@ -1157,13 +843,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_militaire",
@@ -1173,13 +854,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_nuque_barre_guidee",
@@ -1189,13 +865,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "Barre",
     "type": "Poids libres",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_a_la_landmine_a_genoux_pour_les_pectoraux",
@@ -1205,13 +876,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_epaule_avec_kettlebell",
@@ -1221,13 +887,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_epaule_unilateral_avec_elastique",
@@ -1237,13 +898,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_epaule_unilateral_a_genou_avec_landmine",
@@ -1253,13 +909,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_epaules_assis",
@@ -1269,13 +920,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_epaules_assis_avec_elastique",
@@ -1285,13 +931,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_epaules_avec_halteres",
@@ -1301,13 +942,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_epaules_avec_elastique",
@@ -1317,13 +953,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_epaules_debout_a_la_landmine",
@@ -1333,13 +964,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_epaules_a_la_machine",
@@ -1349,13 +975,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "Machine de développé",
     "type": "Machine",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "developpe_epaules_a_la_smith_machine",
@@ -1365,13 +986,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "Smith Machine",
     "type": "Machine guidée",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "extension_de_jambe_unilaterale_sur_une_machine_a_dips_assistes",
@@ -1381,13 +997,8 @@
     "description": "Exercice polyarticulaire ciblant triceps et pectoraux.",
     "equipment": "Machine à dips",
     "type": "Machine",
-    "muscles_principaux": [
-      "Triceps",
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Triceps", "Pectoraux"],
+    "muscles_secondaires": ["Deltoïdes antérieurs"]
   },
   {
     "id": "extension_de_la_hanche_a_la_poulie_basse",
@@ -1573,15 +1184,8 @@
     "description": "Exercice de base sollicitant les cuisses et les fessiers.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Quadriceps",
-      "Fessiers"
-    ],
-    "muscles_secondaires": [
-      "Ischio-jambiers",
-      "Mollets",
-      "Abdominaux"
-    ]
+    "muscles_principaux": ["Quadriceps", "Fessiers"],
+    "muscles_secondaires": ["Ischio-jambiers", "Mollets", "Abdominaux"]
   },
   {
     "id": "extensions_des_mollets_avec_partenaire",
@@ -1877,15 +1481,8 @@
     "description": "Exercice de base sollicitant les cuisses et les fessiers.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Quadriceps",
-      "Fessiers"
-    ],
-    "muscles_secondaires": [
-      "Ischio-jambiers",
-      "Mollets",
-      "Abdominaux"
-    ]
+    "muscles_principaux": ["Quadriceps", "Fessiers"],
+    "muscles_secondaires": ["Ischio-jambiers", "Mollets", "Abdominaux"]
   },
   {
     "id": "goblet_squat_avec_haltere",
@@ -1895,15 +1492,8 @@
     "description": "Exercice de base sollicitant les cuisses et les fessiers.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Quadriceps",
-      "Fessiers"
-    ],
-    "muscles_secondaires": [
-      "Ischio-jambiers",
-      "Mollets",
-      "Abdominaux"
-    ]
+    "muscles_principaux": ["Quadriceps", "Fessiers"],
+    "muscles_secondaires": ["Ischio-jambiers", "Mollets", "Abdominaux"]
   },
   {
     "id": "good_morning",
@@ -1924,15 +1514,8 @@
     "description": "Exercice de base sollicitant les cuisses et les fessiers.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Quadriceps",
-      "Fessiers"
-    ],
-    "muscles_secondaires": [
-      "Ischio-jambiers",
-      "Mollets",
-      "Abdominaux"
-    ]
+    "muscles_principaux": ["Quadriceps", "Fessiers"],
+    "muscles_secondaires": ["Ischio-jambiers", "Mollets", "Abdominaux"]
   },
   {
     "id": "hack_squat_assis",
@@ -1942,15 +1525,8 @@
     "description": "Exercice de base sollicitant les cuisses et les fessiers.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Quadriceps",
-      "Fessiers"
-    ],
-    "muscles_secondaires": [
-      "Ischio-jambiers",
-      "Mollets",
-      "Abdominaux"
-    ]
+    "muscles_principaux": ["Quadriceps", "Fessiers"],
+    "muscles_secondaires": ["Ischio-jambiers", "Mollets", "Abdominaux"]
   },
   {
     "id": "hack_squat_inverse",
@@ -1960,15 +1536,8 @@
     "description": "Exercice de base sollicitant les cuisses et les fessiers.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Quadriceps",
-      "Fessiers"
-    ],
-    "muscles_secondaires": [
-      "Ischio-jambiers",
-      "Mollets",
-      "Abdominaux"
-    ]
+    "muscles_principaux": ["Quadriceps", "Fessiers"],
+    "muscles_secondaires": ["Ischio-jambiers", "Mollets", "Abdominaux"]
   },
   {
     "id": "handstand_push_up",
@@ -2044,15 +1613,8 @@
     "description": "Exercice de base sollicitant les cuisses et les fessiers.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Quadriceps",
-      "Fessiers"
-    ],
-    "muscles_secondaires": [
-      "Ischio-jambiers",
-      "Mollets",
-      "Abdominaux"
-    ]
+    "muscles_principaux": ["Quadriceps", "Fessiers"],
+    "muscles_secondaires": ["Ischio-jambiers", "Mollets", "Abdominaux"]
   },
   {
     "id": "kickback",
@@ -2095,12 +1657,8 @@
     "description": "Exercice d'isolation des biceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Biceps"
-    ],
-    "muscles_secondaires": [
-      "Avant-bras"
-    ]
+    "muscles_principaux": ["Biceps"],
+    "muscles_secondaires": ["Avant-bras"]
   },
   {
     "id": "leg_curl_assis_a_la_machine",
@@ -2110,12 +1668,8 @@
     "description": "Exercice d'isolation des biceps.",
     "equipment": "Machine de curl / Poulie",
     "type": "Machine",
-    "muscles_principaux": [
-      "Biceps"
-    ],
-    "muscles_secondaires": [
-      "Avant-bras"
-    ]
+    "muscles_principaux": ["Biceps"],
+    "muscles_secondaires": ["Avant-bras"]
   },
   {
     "id": "leg_curl_decline_avec_haltere",
@@ -2125,12 +1679,8 @@
     "description": "Exercice d'isolation des biceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Biceps"
-    ],
-    "muscles_secondaires": [
-      "Avant-bras"
-    ]
+    "muscles_principaux": ["Biceps"],
+    "muscles_secondaires": ["Avant-bras"]
   },
   {
     "id": "leg_curl_inverse_sur_le_tirage_vertical",
@@ -2140,12 +1690,8 @@
     "description": "Exercice d'isolation des biceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Biceps"
-    ],
-    "muscles_secondaires": [
-      "Avant-bras"
-    ]
+    "muscles_principaux": ["Biceps"],
+    "muscles_secondaires": ["Avant-bras"]
   },
   {
     "id": "leg_curl_unilateral_debout_a_la_machine",
@@ -2155,12 +1701,8 @@
     "description": "Exercice d'isolation des biceps.",
     "equipment": "Machine de curl / Poulie",
     "type": "Machine",
-    "muscles_principaux": [
-      "Biceps"
-    ],
-    "muscles_secondaires": [
-      "Avant-bras"
-    ]
+    "muscles_principaux": ["Biceps"],
+    "muscles_secondaires": ["Avant-bras"]
   },
   {
     "id": "leg_extension",
@@ -2313,15 +1855,8 @@
     "description": "Exercice de base sollicitant les cuisses et les fessiers.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Quadriceps",
-      "Fessiers"
-    ],
-    "muscles_secondaires": [
-      "Ischio-jambiers",
-      "Mollets",
-      "Abdominaux"
-    ]
+    "muscles_principaux": ["Quadriceps", "Fessiers"],
+    "muscles_secondaires": ["Ischio-jambiers", "Mollets", "Abdominaux"]
   },
   {
     "id": "overhead_squat_avec_halteres",
@@ -2331,15 +1866,8 @@
     "description": "Exercice de base sollicitant les cuisses et les fessiers.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Quadriceps",
-      "Fessiers"
-    ],
-    "muscles_secondaires": [
-      "Ischio-jambiers",
-      "Mollets",
-      "Abdominaux"
-    ]
+    "muscles_principaux": ["Quadriceps", "Fessiers"],
+    "muscles_secondaires": ["Ischio-jambiers", "Mollets", "Abdominaux"]
   },
   {
     "id": "pec_deck_inverse",
@@ -2371,15 +1899,8 @@
     "description": "Exercice de base sollicitant les cuisses et les fessiers.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Quadriceps",
-      "Fessiers"
-    ],
-    "muscles_secondaires": [
-      "Ischio-jambiers",
-      "Mollets",
-      "Abdominaux"
-    ]
+    "muscles_principaux": ["Quadriceps", "Fessiers"],
+    "muscles_secondaires": ["Ischio-jambiers", "Mollets", "Abdominaux"]
   },
   {
     "id": "pin_squat",
@@ -2389,15 +1910,8 @@
     "description": "Exercice de base sollicitant les cuisses et les fessiers.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Quadriceps",
-      "Fessiers"
-    ],
-    "muscles_secondaires": [
-      "Ischio-jambiers",
-      "Mollets",
-      "Abdominaux"
-    ]
+    "muscles_principaux": ["Quadriceps", "Fessiers"],
+    "muscles_secondaires": ["Ischio-jambiers", "Mollets", "Abdominaux"]
   },
   {
     "id": "pistol_squat",
@@ -2407,15 +1921,8 @@
     "description": "Exercice de base sollicitant les cuisses et les fessiers.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Quadriceps",
-      "Fessiers"
-    ],
-    "muscles_secondaires": [
-      "Ischio-jambiers",
-      "Mollets",
-      "Abdominaux"
-    ]
+    "muscles_principaux": ["Quadriceps", "Fessiers"],
+    "muscles_secondaires": ["Ischio-jambiers", "Mollets", "Abdominaux"]
   },
   {
     "id": "planche",
@@ -2711,16 +2218,8 @@
     "description": "Exercice de tirage pour le dos.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Grand dorsal",
-      "Rhomboïdes",
-      "Trapèzes"
-    ],
-    "muscles_secondaires": [
-      "Biceps",
-      "Avant-bras",
-      "Deltoïdes postérieurs"
-    ]
+    "muscles_principaux": ["Grand dorsal", "Rhomboïdes", "Trapèzes"],
+    "muscles_secondaires": ["Biceps", "Avant-bras", "Deltoïdes postérieurs"]
   },
   {
     "id": "reverse_hyperextension",
@@ -2807,16 +2306,8 @@
     "description": "Exercice de tirage pour le dos.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Grand dorsal",
-      "Rhomboïdes",
-      "Trapèzes"
-    ],
-    "muscles_secondaires": [
-      "Biceps",
-      "Avant-bras",
-      "Deltoïdes postérieurs"
-    ]
+    "muscles_principaux": ["Grand dorsal", "Rhomboïdes", "Trapèzes"],
+    "muscles_secondaires": ["Biceps", "Avant-bras", "Deltoïdes postérieurs"]
   },
   {
     "id": "rowing_avec_sangles_de_suspension",
@@ -2826,16 +2317,8 @@
     "description": "Exercice de tirage pour le dos.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Grand dorsal",
-      "Rhomboïdes",
-      "Trapèzes"
-    ],
-    "muscles_secondaires": [
-      "Biceps",
-      "Avant-bras",
-      "Deltoïdes postérieurs"
-    ]
+    "muscles_principaux": ["Grand dorsal", "Rhomboïdes", "Trapèzes"],
+    "muscles_secondaires": ["Biceps", "Avant-bras", "Deltoïdes postérieurs"]
   },
   {
     "id": "rowing_barre",
@@ -2845,16 +2328,8 @@
     "description": "Exercice de tirage pour le dos.",
     "equipment": "Barre",
     "type": "Poids libres",
-    "muscles_principaux": [
-      "Grand dorsal",
-      "Rhomboïdes",
-      "Trapèzes"
-    ],
-    "muscles_secondaires": [
-      "Biceps",
-      "Avant-bras",
-      "Deltoïdes postérieurs"
-    ]
+    "muscles_principaux": ["Grand dorsal", "Rhomboïdes", "Trapèzes"],
+    "muscles_secondaires": ["Biceps", "Avant-bras", "Deltoïdes postérieurs"]
   },
   {
     "id": "rowing_buste_penche_avec_elastique",
@@ -2864,16 +2339,8 @@
     "description": "Exercice de tirage pour le dos.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Grand dorsal",
-      "Rhomboïdes",
-      "Trapèzes"
-    ],
-    "muscles_secondaires": [
-      "Biceps",
-      "Avant-bras",
-      "Deltoïdes postérieurs"
-    ]
+    "muscles_principaux": ["Grand dorsal", "Rhomboïdes", "Trapèzes"],
+    "muscles_secondaires": ["Biceps", "Avant-bras", "Deltoïdes postérieurs"]
   },
   {
     "id": "rowing_en_prise_neutre_assis_a_la_machine",
@@ -2883,16 +2350,8 @@
     "description": "Exercice de tirage pour le dos.",
     "equipment": "Machine de tirage",
     "type": "Machine",
-    "muscles_principaux": [
-      "Grand dorsal",
-      "Rhomboïdes",
-      "Trapèzes"
-    ],
-    "muscles_secondaires": [
-      "Biceps",
-      "Avant-bras",
-      "Deltoïdes postérieurs"
-    ]
+    "muscles_principaux": ["Grand dorsal", "Rhomboïdes", "Trapèzes"],
+    "muscles_secondaires": ["Biceps", "Avant-bras", "Deltoïdes postérieurs"]
   },
   {
     "id": "rowing_en_pronation_assis_a_la_machine_technogym",
@@ -2902,16 +2361,8 @@
     "description": "Exercice de tirage pour le dos.",
     "equipment": "Machine de tirage",
     "type": "Machine",
-    "muscles_principaux": [
-      "Grand dorsal",
-      "Rhomboïdes",
-      "Trapèzes"
-    ],
-    "muscles_secondaires": [
-      "Biceps",
-      "Avant-bras",
-      "Deltoïdes postérieurs"
-    ]
+    "muscles_principaux": ["Grand dorsal", "Rhomboïdes", "Trapèzes"],
+    "muscles_secondaires": ["Biceps", "Avant-bras", "Deltoïdes postérieurs"]
   },
   {
     "id": "rowing_haltere_a_un_bras",
@@ -2921,16 +2372,8 @@
     "description": "Exercice de tirage pour le dos.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Grand dorsal",
-      "Rhomboïdes",
-      "Trapèzes"
-    ],
-    "muscles_secondaires": [
-      "Biceps",
-      "Avant-bras",
-      "Deltoïdes postérieurs"
-    ]
+    "muscles_principaux": ["Grand dorsal", "Rhomboïdes", "Trapèzes"],
+    "muscles_secondaires": ["Biceps", "Avant-bras", "Deltoïdes postérieurs"]
   },
   {
     "id": "rowing_halteres_sur_banc_incline",
@@ -2940,16 +2383,8 @@
     "description": "Exercice de tirage pour le dos.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Grand dorsal",
-      "Rhomboïdes",
-      "Trapèzes"
-    ],
-    "muscles_secondaires": [
-      "Biceps",
-      "Avant-bras",
-      "Deltoïdes postérieurs"
-    ]
+    "muscles_principaux": ["Grand dorsal", "Rhomboïdes", "Trapèzes"],
+    "muscles_secondaires": ["Biceps", "Avant-bras", "Deltoïdes postérieurs"]
   },
   {
     "id": "rowing_inverse_sous_une_table",
@@ -2959,13 +2394,8 @@
     "description": "Exercice ciblant les abdominaux.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Abdominaux"
-    ],
-    "muscles_secondaires": [
-      "Obliques",
-      "Transverse"
-    ]
+    "muscles_principaux": ["Abdominaux"],
+    "muscles_secondaires": ["Obliques", "Transverse"]
   },
   {
     "id": "rowing_unilateral_avec_elastique",
@@ -2975,16 +2405,8 @@
     "description": "Exercice de tirage pour le dos.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Grand dorsal",
-      "Rhomboïdes",
-      "Trapèzes"
-    ],
-    "muscles_secondaires": [
-      "Biceps",
-      "Avant-bras",
-      "Deltoïdes postérieurs"
-    ]
+    "muscles_principaux": ["Grand dorsal", "Rhomboïdes", "Trapèzes"],
+    "muscles_secondaires": ["Biceps", "Avant-bras", "Deltoïdes postérieurs"]
   },
   {
     "id": "rowing_unilateral_a_la_landmine",
@@ -2994,16 +2416,8 @@
     "description": "Exercice de tirage pour le dos.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Grand dorsal",
-      "Rhomboïdes",
-      "Trapèzes"
-    ],
-    "muscles_secondaires": [
-      "Biceps",
-      "Avant-bras",
-      "Deltoïdes postérieurs"
-    ]
+    "muscles_principaux": ["Grand dorsal", "Rhomboïdes", "Trapèzes"],
+    "muscles_secondaires": ["Biceps", "Avant-bras", "Deltoïdes postérieurs"]
   },
   {
     "id": "rowing_t_bar",
@@ -3013,16 +2427,8 @@
     "description": "Exercice de tirage pour le dos.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Grand dorsal",
-      "Rhomboïdes",
-      "Trapèzes"
-    ],
-    "muscles_secondaires": [
-      "Biceps",
-      "Avant-bras",
-      "Deltoïdes postérieurs"
-    ]
+    "muscles_principaux": ["Grand dorsal", "Rhomboïdes", "Trapèzes"],
+    "muscles_secondaires": ["Biceps", "Avant-bras", "Deltoïdes postérieurs"]
   },
   {
     "id": "rowing_a_la_barre_en_t_avec_machine",
@@ -3032,16 +2438,8 @@
     "description": "Exercice de tirage pour le dos.",
     "equipment": "Barre",
     "type": "Poids libres",
-    "muscles_principaux": [
-      "Grand dorsal",
-      "Rhomboïdes",
-      "Trapèzes"
-    ],
-    "muscles_secondaires": [
-      "Biceps",
-      "Avant-bras",
-      "Deltoïdes postérieurs"
-    ]
+    "muscles_principaux": ["Grand dorsal", "Rhomboïdes", "Trapèzes"],
+    "muscles_secondaires": ["Biceps", "Avant-bras", "Deltoïdes postérieurs"]
   },
   {
     "id": "rowing_a_la_smith_machine",
@@ -3051,16 +2449,8 @@
     "description": "Exercice de tirage pour le dos.",
     "equipment": "Smith Machine",
     "type": "Machine guidée",
-    "muscles_principaux": [
-      "Grand dorsal",
-      "Rhomboïdes",
-      "Trapèzes"
-    ],
-    "muscles_secondaires": [
-      "Biceps",
-      "Avant-bras",
-      "Deltoïdes postérieurs"
-    ]
+    "muscles_principaux": ["Grand dorsal", "Rhomboïdes", "Trapèzes"],
+    "muscles_secondaires": ["Biceps", "Avant-bras", "Deltoïdes postérieurs"]
   },
   {
     "id": "russian_twist_avec_developpe_epaules",
@@ -3070,13 +2460,8 @@
     "description": "Exercice de poussée ciblant les pectoraux et triceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Pectoraux"
-    ],
-    "muscles_secondaires": [
-      "Triceps",
-      "Deltoïdes antérieurs"
-    ]
+    "muscles_principaux": ["Pectoraux"],
+    "muscles_secondaires": ["Triceps", "Deltoïdes antérieurs"]
   },
   {
     "id": "russian_twists_a_la_poulie_sur_swiss_ball",
@@ -3097,15 +2482,8 @@
     "description": "Exercice de base sollicitant les cuisses et les fessiers.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Quadriceps",
-      "Fessiers"
-    ],
-    "muscles_secondaires": [
-      "Ischio-jambiers",
-      "Mollets",
-      "Abdominaux"
-    ]
+    "muscles_principaux": ["Quadriceps", "Fessiers"],
+    "muscles_secondaires": ["Ischio-jambiers", "Mollets", "Abdominaux"]
   },
   {
     "id": "seal_row_avec_halteres",
@@ -3115,16 +2493,8 @@
     "description": "Exercice de tirage pour le dos.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Grand dorsal",
-      "Rhomboïdes",
-      "Trapèzes"
-    ],
-    "muscles_secondaires": [
-      "Biceps",
-      "Avant-bras",
-      "Deltoïdes postérieurs"
-    ]
+    "muscles_principaux": ["Grand dorsal", "Rhomboïdes", "Trapèzes"],
+    "muscles_secondaires": ["Biceps", "Avant-bras", "Deltoïdes postérieurs"]
   },
   {
     "id": "shrug_barre",
@@ -3178,15 +2548,8 @@
     "description": "Exercice de base sollicitant les cuisses et les fessiers.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Quadriceps",
-      "Fessiers"
-    ],
-    "muscles_secondaires": [
-      "Ischio-jambiers",
-      "Mollets",
-      "Abdominaux"
-    ]
+    "muscles_principaux": ["Quadriceps", "Fessiers"],
+    "muscles_secondaires": ["Ischio-jambiers", "Mollets", "Abdominaux"]
   },
   {
     "id": "snatch_arrache",
@@ -3284,15 +2647,8 @@
     "description": "Exercice de base sollicitant les cuisses et les fessiers.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Quadriceps",
-      "Fessiers"
-    ],
-    "muscles_secondaires": [
-      "Ischio-jambiers",
-      "Mollets",
-      "Abdominaux"
-    ]
+    "muscles_principaux": ["Quadriceps", "Fessiers"],
+    "muscles_secondaires": ["Ischio-jambiers", "Mollets", "Abdominaux"]
   },
   {
     "id": "squat_barre_devant",
@@ -3302,15 +2658,8 @@
     "description": "Exercice de base sollicitant les cuisses et les fessiers.",
     "equipment": "Barre",
     "type": "Poids libres",
-    "muscles_principaux": [
-      "Quadriceps",
-      "Fessiers"
-    ],
-    "muscles_secondaires": [
-      "Ischio-jambiers",
-      "Mollets",
-      "Abdominaux"
-    ]
+    "muscles_principaux": ["Quadriceps", "Fessiers"],
+    "muscles_secondaires": ["Ischio-jambiers", "Mollets", "Abdominaux"]
   },
   {
     "id": "squat_bulgare_avec_halteres",
@@ -3320,15 +2669,8 @@
     "description": "Exercice de base sollicitant les cuisses et les fessiers.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Quadriceps",
-      "Fessiers"
-    ],
-    "muscles_secondaires": [
-      "Ischio-jambiers",
-      "Mollets",
-      "Abdominaux"
-    ]
+    "muscles_principaux": ["Quadriceps", "Fessiers"],
+    "muscles_secondaires": ["Ischio-jambiers", "Mollets", "Abdominaux"]
   },
   {
     "id": "squat_cosaque",
@@ -3338,15 +2680,8 @@
     "description": "Exercice de base sollicitant les cuisses et les fessiers.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Quadriceps",
-      "Fessiers"
-    ],
-    "muscles_secondaires": [
-      "Ischio-jambiers",
-      "Mollets",
-      "Abdominaux"
-    ]
+    "muscles_principaux": ["Quadriceps", "Fessiers"],
+    "muscles_secondaires": ["Ischio-jambiers", "Mollets", "Abdominaux"]
   },
   {
     "id": "squat_saute",
@@ -3356,15 +2691,8 @@
     "description": "Exercice de base sollicitant les cuisses et les fessiers.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Quadriceps",
-      "Fessiers"
-    ],
-    "muscles_secondaires": [
-      "Ischio-jambiers",
-      "Mollets",
-      "Abdominaux"
-    ]
+    "muscles_principaux": ["Quadriceps", "Fessiers"],
+    "muscles_secondaires": ["Ischio-jambiers", "Mollets", "Abdominaux"]
   },
   {
     "id": "squat_statique_contre_un_mur_exercice_de_la_chaise",
@@ -3374,15 +2702,8 @@
     "description": "Exercice de base sollicitant les cuisses et les fessiers.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Quadriceps",
-      "Fessiers"
-    ],
-    "muscles_secondaires": [
-      "Ischio-jambiers",
-      "Mollets",
-      "Abdominaux"
-    ]
+    "muscles_principaux": ["Quadriceps", "Fessiers"],
+    "muscles_secondaires": ["Ischio-jambiers", "Mollets", "Abdominaux"]
   },
   {
     "id": "squat_sumo_avec_haltere",
@@ -3392,15 +2713,8 @@
     "description": "Exercice de base sollicitant les cuisses et les fessiers.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Quadriceps",
-      "Fessiers"
-    ],
-    "muscles_secondaires": [
-      "Ischio-jambiers",
-      "Mollets",
-      "Abdominaux"
-    ]
+    "muscles_principaux": ["Quadriceps", "Fessiers"],
+    "muscles_secondaires": ["Ischio-jambiers", "Mollets", "Abdominaux"]
   },
   {
     "id": "squat_sur_banc",
@@ -3410,15 +2724,8 @@
     "description": "Exercice de base sollicitant les cuisses et les fessiers.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Quadriceps",
-      "Fessiers"
-    ],
-    "muscles_secondaires": [
-      "Ischio-jambiers",
-      "Mollets",
-      "Abdominaux"
-    ]
+    "muscles_principaux": ["Quadriceps", "Fessiers"],
+    "muscles_secondaires": ["Ischio-jambiers", "Mollets", "Abdominaux"]
   },
   {
     "id": "superman",
@@ -3725,12 +3032,8 @@
     "description": "Exercice d'isolation des biceps.",
     "equipment": "",
     "type": "",
-    "muscles_principaux": [
-      "Biceps"
-    ],
-    "muscles_secondaires": [
-      "Avant-bras"
-    ]
+    "muscles_principaux": ["Biceps"],
+    "muscles_secondaires": ["Avant-bras"]
   },
   {
     "id": "windmill",
@@ -3773,15 +3076,8 @@
     "description": "Exercice de base sollicitant les cuisses et les fessiers.",
     "equipment": "Aucun",
     "type": "Poids du corps",
-    "muscles_principaux": [
-      "Quadriceps",
-      "Fessiers"
-    ],
-    "muscles_secondaires": [
-      "Ischio-jambiers",
-      "Mollets",
-      "Abdominaux"
-    ]
+    "muscles_principaux": ["Quadriceps", "Fessiers"],
+    "muscles_secondaires": ["Ischio-jambiers", "Mollets", "Abdominaux"]
   },
   {
     "id": "ecarte_unilateral_a_la_poulie",

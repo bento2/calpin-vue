@@ -1,7 +1,6 @@
 // firebase.ts
-import { initializeApp } from "firebase/app"
-import { getAuth, GoogleAuthProvider } from "firebase/auth"
-
+import { initializeApp } from 'firebase/app'
+import { getAuth, GoogleAuthProvider } from 'firebase/auth'
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -11,13 +10,13 @@ const firebaseConfig = {
   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
-};
+}
 
 export const firebaseApp = initializeApp(firebaseConfig)
 export const auth = getAuth(firebaseApp)
 export const googleProvider = new GoogleAuthProvider()
 
-import { getFirestore, enableIndexedDbPersistence } from "firebase/firestore"
+import { getFirestore, enableIndexedDbPersistence } from 'firebase/firestore'
 
 export const db = getFirestore(firebaseApp)
 

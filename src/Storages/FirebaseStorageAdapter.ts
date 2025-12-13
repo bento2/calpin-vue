@@ -123,7 +123,9 @@ export class FirebaseStorageAdapter<T> implements StorageAdapter<T> {
     // Note: On ne peut pas facilement "tout effacer" dans Firestore sans connaître toutes les clés
     // ou faire une requête de collection.
     // Pour l'instant, on laisse vide ou on implémente si nécessaire avec une collection.
-    console.warn('Clear non implémenté pour FirebaseStorageAdapter (nécessite une structure de collection)')
+    console.warn(
+      'Clear non implémenté pour FirebaseStorageAdapter (nécessite une structure de collection)',
+    )
   }
 
   async setupRealtimeSync(key: string, callback?: (data: T | null) => void): Promise<Unsubscribe> {
@@ -132,7 +134,7 @@ export class FirebaseStorageAdapter<T> implements StorageAdapter<T> {
     if (!userId) return () => {}
 
     const docRef = doc(this.db, this.getDocPath(key))
-    
+
     // onSnapshot fonctionne aussi avec le cache offline
     return onSnapshot(
       docRef,
@@ -146,7 +148,7 @@ export class FirebaseStorageAdapter<T> implements StorageAdapter<T> {
       },
       (error) => {
         console.error(`Erreur synchro temps réel [${key}]:`, error)
-      }
+      },
     )
   }
 

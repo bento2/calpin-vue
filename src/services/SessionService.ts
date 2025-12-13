@@ -24,7 +24,7 @@ export default class SessionService {
       ended: false,
       nbChecked: 0,
 
-      total:0
+      total: 0,
     }
   }
 
@@ -35,16 +35,16 @@ export default class SessionService {
   ): ExerciceSeries[] {
     return exercices.map((exercice) => ({
       ...exercice,
-      completed : false,
+      completed: false,
       nbChecked: 0,
-      max:null,
-      total:0,
+      max: null,
+      total: 0,
       series: Array.from({ length: defaultSeriesCount }, () => ({
         poids: 0,
         repetitions: 0,
         checked: false,
-        max:null,
-        total:0
+        max: null,
+        total: 0,
       })),
     }))
   }

@@ -10,12 +10,12 @@ export function forHumans(seconds: number) {
     ':' +
     Math.floor((seconds % 3600) / 60).toLocaleString('en-US', {
       minimumIntegerDigits: 2,
-      useGrouping: false
+      useGrouping: false,
     }) +
     ':' +
     ((seconds % 3600) % 60).toLocaleString('en-US', {
       minimumIntegerDigits: 2,
-      useGrouping: false
+      useGrouping: false,
     })
   )
 }
