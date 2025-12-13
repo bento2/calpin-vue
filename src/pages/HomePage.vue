@@ -26,15 +26,24 @@ onMounted(async () => {
 </script>
 
 <template>
-  <v-main class="d-flex flex-column justify-start ga-2" style="flex: 1 1 auto; min-height: calc(100vh - 100px)">
-    <v-card v-if="activeSession !== null"
-      class="bg-green-darken-1 pa-2 d-flex justify-space-between align-center flex-row">
+  <v-main
+    class="d-flex flex-column justify-start ga-2"
+    style="flex: 1 1 auto; min-height: calc(100vh - 100px)"
+  >
+    <v-card
+      v-if="activeSession !== null"
+      class="bg-green-darken-1 pa-2 d-flex justify-space-between align-center flex-row"
+    >
       <div class="text-left">
         <p class="text-caption">{{ activeSession.name }}</p>
         <p>{{ diff }}</p>
       </div>
-      <v-btn class="bg-white text-green-darken-3" rounded="xl" outline
-        :to="{ name: 'session', params: { id: activeSession.id } }">continuer
+      <v-btn
+        class="bg-white text-green-darken-3"
+        rounded="xl"
+        outline
+        :to="{ name: 'session', params: { id: activeSession.id } }"
+        >continuer
       </v-btn>
     </v-card>
 

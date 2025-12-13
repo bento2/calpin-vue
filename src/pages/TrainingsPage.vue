@@ -21,15 +21,20 @@ const newTraining = async () => {
 const trainings = computed(() => store.trainings)
 
 watch(trainings, () => {
-  update.value++;
+  update.value++
 })
 </script>
 
 <template>
   <v-btn @click="newTraining" class="mb-4">Nouvel entrainement</v-btn>
   <div :key="update">
-    <TrainingCard v-for="training in trainings" :key="training.id" :training="training" :showDelete="true"
-      class="mb-2" />
+    <TrainingCard
+      v-for="training in trainings"
+      :key="training.id"
+      :training="training"
+      :showDelete="true"
+      class="mb-2"
+    />
   </div>
 </template>
 

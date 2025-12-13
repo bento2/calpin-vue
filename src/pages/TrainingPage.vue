@@ -70,21 +70,35 @@ const save = () => {
     saveTraining(training.value)
   }
 }
-
 </script>
 
 <template>
   <v-card v-if="training" class="d-flex flex-column" style="height: 100%">
     <v-card-title class="bg-blue mb-1">
-      <v-text-field label="Titre de l'entrainement" v-model="training.name" hide-details="auto" clearable
-        @click:clear="() => (training!.name = '')"></v-text-field>
+      <v-text-field
+        label="Titre de l'entrainement"
+        v-model="training.name"
+        hide-details="auto"
+        clearable
+        @click:clear="() => (training!.name = '')"
+      ></v-text-field>
     </v-card-title>
 
-    <draggable v-model="training.exercices" item-key="id" :animation="200"
-      v-if="training.exercices && training.exercices.length > 0">
+    <draggable
+      v-model="training.exercices"
+      item-key="id"
+      :animation="200"
+      v-if="training.exercices && training.exercices.length > 0"
+    >
       <template #item="{ element: exercice, index: idx }">
-        <TrainingExerciceItem :exercice="exercice" :index="idx" :is-last="idx === training.exercices.length - 1"
-          @move-up="moveUp" @move-down="moveDown" @remove="remove" />
+        <TrainingExerciceItem
+          :exercice="exercice"
+          :index="idx"
+          :is-last="idx === training.exercices.length - 1"
+          @move-up="moveUp"
+          @move-down="moveDown"
+          @remove="remove"
+        />
       </template>
     </draggable>
 
@@ -109,7 +123,14 @@ const save = () => {
     <div class="text-red">{{ error }}</div>
   </v-card>
 
-  <v-dialog v-model="dialog" transition="dialog-bottom-transition" width="95%" height="90vh" rounded elevation="4">
+  <v-dialog
+    v-model="dialog"
+    transition="dialog-bottom-transition"
+    width="95%"
+    height="90vh"
+    rounded
+    elevation="4"
+  >
     <v-card v-if="training">
       <v-card-title class="d-flex justify-space-between align-center">
         <div class="text-h5 text-medium-emphasis ps-2">Ajouter des exercices</div>

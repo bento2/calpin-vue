@@ -18,7 +18,7 @@ const emit = defineEmits<{
 
 const isOpen = computed({
   get: () => props.modelValue,
-  set: (val) => emit('update:modelValue', val)
+  set: (val) => emit('update:modelValue', val),
 })
 
 const ended = computed(() => props.session?.ended ?? false)
@@ -33,23 +33,17 @@ const close = () => {
     <template v-slot:default>
       <v-card title="Pause">
         <v-card-text class="d-flex flex-column ga-3">
-          <AppBtn block @click="$emit('restart')" variant="secondary">
-            Recommencer
-          </AppBtn>
+          <AppBtn block @click="$emit('restart')" variant="secondary"> Recommencer </AppBtn>
 
           <!-- TODO: Check behavior of this button in original UI. It was 'Terminer et enregistrer' -->
-          <AppBtn block @click="$emit('end')" variant="primary">
-            Terminer et enregistrer
-          </AppBtn>
+          <AppBtn block @click="$emit('end')" variant="primary"> Terminer et enregistrer </AppBtn>
 
           <AppBtn v-if="!ended" block @click="$emit('save')" variant="success">
             <!-- Note: AppBtn variant doesn't have 'success' preset yet, passing direct color/class works due to v-bind but verify -->
             Sauvegarder
           </AppBtn>
 
-          <AppBtn v-if="!ended" block @click="close" variant="secondary">
-            Reprendre
-          </AppBtn>
+          <AppBtn v-if="!ended" block @click="close" variant="secondary"> Reprendre </AppBtn>
 
           <AppBtn v-if="!ended" block @click="$emit('cancel')" variant="danger">
             Supprimer l'entrainement

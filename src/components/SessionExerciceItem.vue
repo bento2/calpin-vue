@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 import { type ExerciceSeries } from '@/types/ExerciceSeriesSchema' // Assuming this type exists or will be inferred correctly, actually Session has Exercice[] but let's check types.
 // In SessionPage it iterates over session.exercices.
 // Let's check session schema or usage.
@@ -25,8 +24,12 @@ const emit = defineEmits<{
 <template>
   <ExerciceCard :exercice="exercice" class="d-flex flex-row space-between align-center ga-2">
     <template #subtitle>
-      <v-chip size="x-small" label :color="exercice.nbChecked === exercice.series?.length ? 'success' : 'white'"
-        class="font-weight-bold ml-auto">
+      <v-chip
+        size="x-small"
+        label
+        :color="exercice.nbChecked === exercice.series?.length ? 'success' : 'white'"
+        class="font-weight-bold ml-auto"
+      >
         {{ exercice.nbChecked ?? 0 }} / {{ exercice.series?.length ?? 0 }} séries
       </v-chip>
     </template>
@@ -38,13 +41,13 @@ const emit = defineEmits<{
             <v-btn icon="mdi-dots-vertical" variant="outlined" v-bind="props"></v-btn>
           </template>
           <v-list>
-            <v-list-item @click="emit('move-up', index)" v-if='index > 0'>
+            <v-list-item @click="emit('move-up', index)" v-if="index > 0">
               <v-list-item-title>
                 <v-icon>mdi-arrow-up</v-icon>
                 Monter
               </v-list-item-title>
             </v-list-item>
-            <v-list-item @click="emit('move-down', index)" v-if='!isLast'>
+            <v-list-item @click="emit('move-down', index)" v-if="!isLast">
               <v-list-item-title>
                 <v-icon>mdi-arrow-down</v-icon>
                 Déscendre
@@ -58,8 +61,12 @@ const emit = defineEmits<{
             </v-list-item>
           </v-list>
         </v-menu>
-        <v-btn :icon="isOpen ? 'mdi-chevron-up' : 'mdi-chevron-down'" :title="isOpen ? 'Fermer' : 'Ouvrir'"
-          variant="text" @click="emit('toggle', index)" />
+        <v-btn
+          :icon="isOpen ? 'mdi-chevron-up' : 'mdi-chevron-down'"
+          :title="isOpen ? 'Fermer' : 'Ouvrir'"
+          variant="text"
+          @click="emit('toggle', index)"
+        />
       </div>
     </template>
   </ExerciceCard>

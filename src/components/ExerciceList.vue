@@ -55,17 +55,29 @@ watch(filter, (newValue) => {
 
 <template>
   <div class="mt-2">
-
-    <v-text-field clearable label="Recherche" variant="outlined" v-model="filter" placeholder="Nom d'un exercice"
-      append-inner-icon="mdi-magnify" hide-details="auto" density="compact"
-      @click:clear="() => (filter = '')"></v-text-field>
+    <v-text-field
+      clearable
+      label="Recherche"
+      variant="outlined"
+      v-model="filter"
+      placeholder="Nom d'un exercice"
+      append-inner-icon="mdi-magnify"
+      hide-details="auto"
+      density="compact"
+      @click:clear="() => (filter = '')"
+    ></v-text-field>
     <v-infinite-scroll :items="merged" @load="updateExercices" ref="scroll" :key="filter">
       <template v-for="exercice of merged" :key="exercice.id">
         <ExerciceCard :exercice="exercice">
           <template #actions>
-            <v-checkbox v-if="props.selectable" class="align-self-end" hide-details="auto"
-              :model-value="selectedExercices.some((e: Exercice) => e.id === exercice.id)" color="success"
-              @update:model-value="() => updateSelected(exercice)"></v-checkbox>
+            <v-checkbox
+              v-if="props.selectable"
+              class="align-self-end"
+              hide-details="auto"
+              :model-value="selectedExercices.some((e: Exercice) => e.id === exercice.id)"
+              color="success"
+              @update:model-value="() => updateSelected(exercice)"
+            ></v-checkbox>
           </template>
         </ExerciceCard>
       </template>

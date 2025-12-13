@@ -27,10 +27,10 @@ export class ExerciceUtils {
   find({ nb = 10, page = 0, filter = '' }: FindOptions = {}): Exercice[] {
     return this.exercices
       .filter((item) =>
-        filter === '' ? true :
-          item.name.toLowerCase().includes(filter.toLowerCase()) ||
-          item.equipment?.toLowerCase().includes(filter.toLowerCase())
-
+        filter === ''
+          ? true
+          : item.name.toLowerCase().includes(filter.toLowerCase()) ||
+            item.equipment?.toLowerCase().includes(filter.toLowerCase()),
       )
       .slice(page * nb, page * nb + nb)
   }
