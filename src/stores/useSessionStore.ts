@@ -97,7 +97,7 @@ export const useSessionStore = defineStore(storageName, () => {
           serie.repetitions = 0
         })
       })
-      return updateSession(session)
+      return await updateSession(session)
     } catch (error) {
       baseStore.error.value = `Erreur lors du restart: ${getErrorMessage(error)}`
       throw error

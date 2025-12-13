@@ -41,6 +41,7 @@ import type { ExerciceSeries } from '@/types/ExerciceSeriesSchema'
 interface SessionPageInstance {
   session: Session | null
   dialogExercices: boolean
+  isOpen: (index: number) => boolean
 }
 
 describe('Page Session (SessionPage)', () => {
@@ -365,16 +366,75 @@ describe('Page Session (SessionPage)', () => {
             SeriesCard: true,
             'v-progress-circular': true,
             'v-chip': true,
+            SessionExerciceItem: {
+              name: 'SessionExerciceItem',
+              template: '<div class="session-exercice-item-stub" />',
+              props: ['exercice', 'index', 'isOpen', 'isLast'],
+              emits: ['move-up', 'move-down', 'remove', 'toggle'],
+            },
           },
         },
       })
     })
 
-    it('supprime un exercice', async () => {
+    it('supprime un exercice via event', async () => {
       await flushPromises()
-      const deleteBtn = wrapper.findAll('.list-item').find((w) => w.text().includes('Supprimer'))
-      await deleteBtn?.trigger('click')
-      expect((wrapper.vm as unknown as SessionPageInstance).session?.exercices.length).toBe(1)
+      const items = wrapper.findAllComponents({ name: 'SessionExerciceItem' })
+      expect(items.length).toBe(2)
+
+      await items[0].vm.$emit('remove', 'e1')
+
+      const session = (wrapper.vm as unknown as SessionPageInstance).session
+      expect(session?.exercices.findIndex((e) => e.id === 'e1')).toBe(-1)
+      expect(session?.exercices.length).toBe(1)
+    })
+
+    it('déplace un exercice (move-down)', async () => {
+      await flushPromises()
+      const items = wrapper.findAllComponents({ name: 'SessionExerciceItem' })
+
+      // Move first item down
+      await items[0].vm.$emit('move-down', 0)
+
+      const session = (wrapper.vm as unknown as SessionPageInstance).session
+      expect(session?.exercices[0].name).toBe('Ex2')
+      expect(session?.exercices[1].name).toBe('Ex1')
+    })
+
+    it('déplace un exercice (move-up)', async () => {
+      await flushPromises()
+      const items = wrapper.findAllComponents({ name: 'SessionExerciceItem' })
+
+      // Move second item up
+      await items[1].vm.$emit('move-up', 1)
+
+      const session = (wrapper.vm as unknown as SessionPageInstance).session
+      expect(session?.exercices[0].name).toBe('Ex2') // e2 was second
+      expect(session?.exercices[1].name).toBe('Ex1')
+    })
+
+    it('ne déplace pas si invalide', async () => {
+      await flushPromises()
+      const items = wrapper.findAllComponents({ name: 'SessionExerciceItem' })
+
+      // Try move first up (should fail)
+      await items[0].vm.$emit('move-up', 0)
+
+      const session = (wrapper.vm as unknown as SessionPageInstance).session
+      expect(session?.exercices[0].name).toBe('Ex1')
+    })
+
+    it('toggle ouvre/ferme les details', async () => {
+      await flushPromises()
+      const items = wrapper.findAllComponents({ name: 'SessionExerciceItem' })
+
+      // Toggle first
+      await items[0].vm.$emit('toggle', 0)
+      expect((wrapper.vm as unknown as SessionPageInstance).isOpen(0)).toBe(true)
+
+      // Toggle again (close)
+      await items[0].vm.$emit('toggle', 0)
+      expect((wrapper.vm as unknown as SessionPageInstance).isOpen(0)).toBe(false)
     })
 
     it('gère les events du dialogue pause', async () => {

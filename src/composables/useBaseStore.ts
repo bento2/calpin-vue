@@ -125,7 +125,7 @@ export function useBaseStore<T extends Identifiable>(
       const validatedItem = itemSchema.parse(itemData)
 
       // Sauvegarde
-      return saveItem(validatedItem)
+      return await saveItem(validatedItem)
     } catch (err) {
       error.value = `Erreur lors de la création: ${getErrorMessage(err)}`
       throw err
@@ -145,7 +145,7 @@ export function useBaseStore<T extends Identifiable>(
       // Re-validation pour sûreté
       const validatedItem = itemSchema.parse(item)
 
-      return saveItem(validatedItem)
+      return await saveItem(validatedItem)
     } catch (err) {
       error.value = `Erreur lors de la mise à jour: ${getErrorMessage(err)}`
       throw err

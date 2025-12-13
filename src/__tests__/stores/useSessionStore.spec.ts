@@ -217,4 +217,108 @@ describe('useSessionStore', () => {
     const statsWeight = await store.findStatsExercices('MAX_WEIGHT')
     expect(statsWeight.get('e1')).toBeDefined()
   })
+
+  it('restartSession devrait réinitialiser la session', async () => {
+    const store = useSessionStore()
+    const session = await store.createSession(mockTraining)
+
+    // Simulate progress
+    session.exercices[0].series![0].checked = true
+    session.exercices[0].series![0].poids = 50
+    session.exercices[0].series![0].repetitions = 10
+
+    // Wait for date change
+    const oldDate = session.dateDebut
+    vi.advanceTimersByTime(1000)
+
+    await store.restartSession(session)
+
+    expect(session.dateDebut.getTime()).toBeGreaterThan(oldDate.getTime())
+    expect(session.exercices[0].series![0].checked).toBe(false)
+    expect(session.exercices[0].series![0].poids).toBe(0)
+    expect(session.exercices[0].series![0].repetitions).toBe(0)
+
+    // Should trigger update
+    expect(mockSave).toHaveBeenCalled()
+  })
+
+  it('restartSession devrait gérer les erreurs', async () => {
+    const store = useSessionStore()
+    const session = await store.createSession(mockTraining)
+
+    mockSave.mockRejectedValueOnce(new Error('Save failed'))
+
+    await expect(store.restartSession(session)).rejects.toThrow('Save failed')
+    expect(store.error).toContain('Erreur lors du restart')
+  })
+
+  describe('Getters & Aliases', () => {
+    it('sessionsSortedByDate should verify sort order', async () => {
+      const store = useSessionStore()
+      const s1 = {
+        ...(await store.createSession(mockTraining)),
+        id: 's1',
+        dateDebut: new Date('2023-01-01'),
+      }
+      const s2 = {
+        ...(await store.createSession(mockTraining)),
+        id: 's2',
+        dateDebut: new Date('2023-01-02'),
+      }
+
+      mockLoad.mockResolvedValue([s1, s2])
+      await store.loadSessions()
+
+      const sorted = store.sessionsSortedByDate
+      expect(sorted[0].id).toBe('s2')
+      expect(sorted[1].id).toBe('s1')
+    })
+
+    it('activeSessions should filter correctly', async () => {
+      const store = useSessionStore()
+      mockLoad.mockResolvedValue([])
+      await store.loadSessions()
+
+      // Create session 1 and finish it
+      const s1 = await store.createSession(mockTraining)
+      await store.finishSession(s1.id)
+
+      // Create session 2 (default is en_cours)
+      const s2 = await store.createSession(mockTraining)
+
+      expect(store.sessions).toHaveLength(2)
+      expect(store.activeSessions).toHaveLength(1)
+      expect(store.activeSessions[0].id).toBe(s2.id)
+    })
+
+    it('Calculated properties should be correct', async () => {
+      const store = useSessionStore()
+      // Clear existing
+      mockLoad.mockResolvedValue([])
+      await store.loadSessions()
+
+      await store.createSession(mockTraining)
+      await store.createSession({ ...mockTraining, id: 't2' })
+
+      expect(store.sessionsCount).toBe(2)
+    })
+
+    it('aliases should map to baseStore methods', async () => {
+      const store = useSessionStore()
+      const session = await store.createSession(mockTraining)
+
+      // deleteSession calls deleteItem -> persistItems -> save
+      mockSave.mockClear()
+      await store.deleteSession(session.id)
+      expect(mockSave).toHaveBeenCalled()
+
+      // clearAllSessions calls clearAll -> delete (on adapter)
+      await store.clearAllSessions()
+      expect(mockDelete).toHaveBeenCalled()
+
+      mockSave.mockClear()
+      await store.saveSession(session)
+      expect(mockSave).toHaveBeenCalled()
+    })
+  })
 })

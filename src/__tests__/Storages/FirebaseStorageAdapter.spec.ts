@@ -120,12 +120,28 @@ describe('FirebaseStorageAdapter', () => {
       await adapter.remove(TEST_KEY)
       expect(deleteDoc).not.toHaveBeenCalled()
     })
+
+    it("devrait logger l'erreur si deleteDoc échoue", async () => {
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
+      ;(deleteDoc as Mock).mockRejectedValue(new Error('Delete failed'))
+
+      await adapter.remove(TEST_KEY) // Should catch and log
+      expect(consoleSpy).toHaveBeenCalled()
+    })
   })
 
   describe('exists', () => {
     it('devrait retourner true si le document existe', async () => {
       ;(getDoc as Mock).mockResolvedValue({ exists: () => true })
       expect(await adapter.exists(TEST_KEY)).toBe(true)
+    })
+
+    it('devrait gérer les erreurs (retourner false)', async () => {
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
+      ;(getDoc as Mock).mockRejectedValue(new Error('Exists failed'))
+      const res = await adapter.exists(TEST_KEY)
+      expect(res).toBe(false)
+      expect(consoleSpy).toHaveBeenCalled()
     })
 
     it("devrait retourner false si le document n'existe pas", async () => {
@@ -148,6 +164,35 @@ describe('FirebaseStorageAdapter', () => {
       })
 
       expect(cb).toHaveBeenCalledWith(TEST_DATA)
+
+      // Error handling callback
+      const errHandler = (onSnapshot as Mock).mock.calls[0][2]
+      const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
+      errHandler(new Error('Sync error'))
+      expect(consoleSpy).toHaveBeenCalled()
+    })
+
+    it('devrait retourner noop si non connecté', async () => {
+      if (onAuthCallback) onAuthCallback(null)
+      const unsub = await adapter.setupRealtimeSync(TEST_KEY)
+      expect(unsub).toBeInstanceOf(Function) // returns () => {}
+      expect(onSnapshot).not.toHaveBeenCalled()
+    })
+  })
+
+  describe('destroy', () => {
+    it('devrait appeler unsubscribe si défini', async () => {
+      const unsubscribeSpy = vi.fn()
+
+      // Override mock for this specific test to capture spy
+      ;(onAuthStateChanged as Mock).mockImplementation(() => unsubscribeSpy)
+
+      const localAdapter = new FirebaseStorageAdapter()
+      // Wait for auth to settle (microtasks)
+      await new Promise((r) => setTimeout(r, 0))
+
+      localAdapter.destroy()
+      expect(unsubscribeSpy).toHaveBeenCalled()
     })
   })
 })
