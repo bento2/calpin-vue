@@ -232,4 +232,38 @@ describe('Composant SeriesCard', () => {
     expect(inputs[0].attributes('data-placeholder')).toBe('42')
     expect(inputs[1].attributes('data-placeholder')).toBe('12')
   })
+
+  it('met à jour les valeurs via v-model lorsque InputNumberSerie change', async () => {
+    const pinia = createTestingPinia({ createSpy: vi.fn })
+    const store = useSessionStore(pinia)
+    ;(store.findStatsExercices as Mock).mockResolvedValue(new Map())
+
+    const series = [{ poids: 0, repetitions: 0, checked: false, total: 0 }]
+    const wrapper = mount(SeriesCard, {
+      props: { modelValue: series, exerciceId: '1' },
+      global: {
+        plugins: [pinia],
+        stubs: {
+          InputNumberSerie: {
+            template:
+              '<input class="input-stub" :value="modelValue" @input="$emit(\'update:modelValue\', +$event.target.value)" />',
+            props: ['modelValue'],
+            emits: ['update:modelValue'],
+          },
+          'v-checkbox': true,
+        },
+      },
+    })
+
+    await wrapper.vm.$nextTick()
+    const inputs = wrapper.findAll('.input-stub')
+
+    // Simulate input on weight (first input)
+    await inputs[0].setValue('50')
+    expect(series[0].poids).toBe(50)
+
+    // Simulate input on reps (second input)
+    await inputs[1].setValue('10')
+    expect(series[0].repetitions).toBe(10)
+  })
 })

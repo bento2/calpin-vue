@@ -59,7 +59,9 @@ describe('Page Session (SessionPage)', () => {
           'v-row': { template: '<div><slot /></div>' },
           'v-col': { template: '<div><slot /></div>' },
           'v-btn': {
-            template: '<button v-bind="$attrs" @click="$emit(\'click\')"><slot /></button>',
+            props: ['text'],
+            template:
+              '<button v-bind="$attrs" @click="$emit(\'click\')">{{ text }}<slot /></button>',
           },
           'v-icon': true,
           'v-toolbar': { name: 'v-toolbar', template: '<div><slot /></div>' },
@@ -339,10 +341,40 @@ describe('Page Session (SessionPage)', () => {
       await addBtn?.vm.$emit('click')
       expect(exerciseDialog.props('modelValue')).toBe(true)
 
-      // Close logic
-      const closeBtn = wrapper.findComponent({ name: 'v-toolbar' }).find('button') // simplified selector
-      await closeBtn.trigger('click')
+      // Close logic via icon
+      const closeIcon = wrapper.findComponent({ name: 'v-toolbar' }).find('button')
+      await closeIcon.trigger('click')
       expect(exerciseDialog.props('modelValue')).toBe(false)
+
+      // Re-open and close via "Fermer" button
+      await addBtn?.vm.$emit('click')
+
+      // We need to find the specific button with text "Fermer"
+      // Since AppBtn is stubbed with text slots, we might need to look deeper or rely on classes.
+      // The "Fermer" button is a v-btn, not AppBtn. Stubbbed as <button ...><slot/></button>
+      const buttons = wrapper.findAll('button')
+      const closeTextBtn = buttons.find((b) => b.text().includes('Fermer'))
+
+      expect(closeTextBtn?.exists()).toBe(true)
+      await closeTextBtn?.trigger('click')
+      expect(exerciseDialog.props('modelValue')).toBe(false)
+    })
+
+    it('ouvre le menu pause au clic sur le bouton pause', async () => {
+      await flushPromises()
+      // Pause button has icon "mdi-pause"
+      // Find AppBtn with this icon
+      const pauseBtn = wrapper
+        .findAllComponents({ name: 'AppBtn' })
+        .find((c) => c.attributes('icon') === 'mdi-pause')
+
+      expect(pauseBtn?.exists()).toBe(true)
+
+      const sessionPauseDialog = wrapper.findComponent({ name: 'SessionPauseDialog' })
+      expect(sessionPauseDialog.props('modelValue')).toBe(false)
+
+      await pauseBtn?.vm.$emit('click')
+      expect(sessionPauseDialog.props('modelValue')).toBe(true)
     })
   })
 })

@@ -178,6 +178,26 @@ describe('FirebaseStorageAdapter', () => {
       expect(unsub).toBeInstanceOf(Function) // returns () => {}
       expect(onSnapshot).not.toHaveBeenCalled()
     })
+
+    it("devrait appeler le callback avec null si le document n'existe pas", async () => {
+      const cb = vi.fn()
+      await adapter.setupRealtimeSync(TEST_KEY, cb)
+
+      const snapshotHandler = (onSnapshot as Mock).mock.calls[0][1]
+      snapshotHandler({
+        exists: () => false,
+      })
+
+      expect(cb).toHaveBeenCalledWith(null)
+    })
+  })
+
+  describe('clear', () => {
+    it('devrait logger un avertissement', async () => {
+      const consoleSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
+      await adapter.clear()
+      expect(consoleSpy).toHaveBeenCalledWith(expect.stringContaining('Clear non implémenté'))
+    })
   })
 
   describe('destroy', () => {
