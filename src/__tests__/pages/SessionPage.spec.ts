@@ -94,7 +94,7 @@ describe('Page Session (SessionPage)', () => {
           'v-toolbar': { template: '<div><slot /></div>' },
           'v-toolbar-title': { template: '<div><slot /></div>' },
           'v-spacer': true,
-          'v-dialog': { template: '<div><slot /></div>' },
+          'v-dialog': { template: '<div><slot /></div>', props: ['modelValue'] },
           'v-card': { template: '<div><slot /></div>' },
           'v-card-title': { template: '<div><slot /></div>' },
           'v-card-text': { template: '<div><slot /></div>' },
@@ -343,7 +343,9 @@ describe('Page Session (SessionPage)', () => {
           plugins: [pinia],
           stubs: {
             'v-btn': {
-              template: '<button class="test-btn" @click="$emit(\'click\')"><slot /></button>',
+              name: 'v-btn',
+              template:
+                '<button class="test-btn" v-bind="$attrs" @click="$emit(\'click\')"><slot /></button>',
             },
             'v-menu': { template: '<div><slot /><slot name="activator" :props="{}" /></div>' },
             'v-list': { template: '<div><slot /></div>' },
@@ -352,8 +354,14 @@ describe('Page Session (SessionPage)', () => {
             },
             'v-list-item-title': { template: '<span><slot /></span>' },
             'v-icon': true,
-            'v-dialog': true,
+            'v-toolbar': { name: 'v-toolbar', template: '<div><slot /></div>' },
+            'v-dialog': {
+              name: 'v-dialog',
+              template: '<div v-bind="$attrs"><slot /></div>',
+              props: ['modelValue'],
+            },
             AppBtn: {
+              name: 'AppBtn',
               template: '<button class="app-btn-stub" @click="$emit(\'click\')"><slot /></button>',
             },
             SessionPauseDialog: {
@@ -439,43 +447,83 @@ describe('Page Session (SessionPage)', () => {
 
     it('gère les events du dialogue pause', async () => {
       await flushPromises()
-      // Find by class since Stub name might not work with findComponent correctly if not registered globally or name mismatch
-      // Using findComponent with stub definition/name if registered
-      // Or simply find the element as it is stubbed heavily.
-      // The stub template is <div class="pause-dialog-stub" ...>
-
-      const dialogStub = wrapper.find('.pause-dialog-stub')
-      // But we want component events (restart, save...).
-      // findComponent({ name: 'SessionPauseDialog' }) should work if stub is named.
-      // It failed with empty VueWrapper.
-      // This usually means it is not found.
-
-      // Let's verify existence
-      expect(dialogStub.exists()).toBe(true)
-
-      // To emit component events on a stub, we need the component wrapper.
-      // wrapper.findAllComponents({ name: 'SessionPauseDialog' })
-      const dialogComp = wrapper.findComponent({ name: 'SessionPauseDialog' })
-
-      if (dialogComp.exists()) {
-        dialogComp.vm.$emit('restart')
+      const dialogCompFallback = wrapper.findAllComponents({ name: 'SessionPauseDialog' })[0]
+      if (dialogCompFallback) {
+        dialogCompFallback.vm.$emit('restart')
         expect(store.restartSession).toHaveBeenCalled()
-        dialogComp.vm.$emit('save')
+        dialogCompFallback.vm.$emit('save')
         expect(store.saveSession).toHaveBeenCalled()
-        dialogComp.vm.$emit('end')
+        dialogCompFallback.vm.$emit('end')
         expect(store.finishSession).toHaveBeenCalled()
-        dialogComp.vm.$emit('cancel')
+        dialogCompFallback.vm.$emit('cancel')
         expect(store.deleteSession).toHaveBeenCalled()
-      } else {
-        // Fallback: maybe name is missing in stub definition?
-        // In beforeEach, I defined stub with name: 'SessionPauseDialog'.
-        // Try fallback
-        const dialogCompFallback = wrapper.findAllComponents({ name: 'SessionPauseDialog' })[0]
-        if (dialogCompFallback) {
-          dialogCompFallback.vm.$emit('restart')
-          expect(store.restartSession).toHaveBeenCalled()
-        }
       }
+    })
+
+    it('ouvre le menu de pause', async () => {
+      await flushPromises()
+      // Find the AppBtn with pause icon via stub class
+      // Stub template: <button class="app-btn-stub" ...>
+      // We can check attributes on the button element directly if bind $attrs is working in stub
+
+      const pauseBtn = wrapper
+        .findAll('.app-btn-stub')
+        .find((c) => c.attributes('icon') === 'mdi-pause')
+
+      expect(pauseBtn?.exists()).toBe(true)
+
+      const pauseDialog = wrapper.findComponent({ name: 'SessionPauseDialog' })
+      expect(pauseDialog.exists()).toBe(true)
+
+      await pauseBtn?.trigger('click')
+      expect(pauseDialog.props('modelValue')).toBe(true)
+    })
+
+    it("ouvre et ferme le dialogue d'ajout d'exercice", async () => {
+      await flushPromises()
+
+      const addBtn = wrapper
+        .findAllComponents({ name: 'AppBtn' })
+        .find((c) => c.text().includes('Ajout un Exercice'))
+
+      expect(addBtn?.exists()).toBe(true)
+
+      // Dialog is initially false
+      const exerciseDialog = wrapper.findComponent({ name: 'v-dialog' })
+
+      expect(exerciseDialog.exists()).toBe(true)
+      expect(exerciseDialog.props('modelValue')).toBe(false)
+
+      addBtn?.vm.$emit('click')
+      await wrapper.vm.$nextTick()
+
+      // Check VM state type-safe
+      expect((wrapper.vm as unknown as SessionPageInstance).dialogExercices).toBe(true)
+
+      expect(exerciseDialog.props('modelValue')).toBe(true)
+
+      // Close via toolbar btn (v-btn stub)
+      // Look for button inside v-toolbar
+      const closeBtn = wrapper.findComponent({ name: 'v-toolbar' }).findComponent({ name: 'v-btn' })
+
+      expect(closeBtn.exists()).toBe(true)
+
+      closeBtn.vm.$emit('click')
+      await wrapper.vm.$nextTick()
+
+      expect(exerciseDialog?.props('modelValue')).toBe(false)
+    })
+
+    it('rend le composant SeriesCard quand ouvert', async () => {
+      await flushPromises()
+      // Initially closed
+      expect(wrapper.findComponent({ name: 'SeriesCard' }).exists()).toBe(false)
+
+      // Open first item
+      const items = wrapper.findAllComponents({ name: 'SessionExerciceItem' })
+      await items[0].vm.$emit('toggle', 0)
+
+      expect(wrapper.findComponent({ name: 'SeriesCard' }).exists()).toBe(true)
     })
   })
 })
