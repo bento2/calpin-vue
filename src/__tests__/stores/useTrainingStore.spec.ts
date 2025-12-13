@@ -36,6 +36,7 @@ describe('useTrainingStore', () => {
     )
 
     mockSave.mockClear()
+    mockSave.mockResolvedValue(undefined) // Reset implementation
     mockLoad.mockClear()
     mockLoad.mockResolvedValue([]) // Stockage vide par défaut
     vi.clearAllMocks()
@@ -259,6 +260,65 @@ describe('useTrainingStore', () => {
 
       expect(consoleSpy).toHaveBeenCalled()
       consoleSpy.mockRestore()
+    })
+  })
+
+  describe('Getters', () => {
+    it('trainingsSortedByDate should return trainings sorted by creation date descending', async () => {
+      const store = useTrainingStore()
+      const t1 = await store.createTraining()
+      vi.advanceTimersByTime(100)
+      const t2 = await store.createTraining()
+      vi.advanceTimersByTime(100)
+      const t3 = await store.createTraining()
+
+      // Default createTraining sets mtime/ctime to now.
+      // We rely on execution order or we can manually force dates if needed,
+      // but let's assume performant enough to have different timestamps or define them manually.
+
+      // Manually adjusting to be sure
+      t1.ctime = new Date(2020, 0, 1)
+      t2.ctime = new Date(2022, 0, 1)
+      t3.ctime = new Date(2021, 0, 1)
+
+      expect(store.trainingsSortedByDate).toEqual([t2, t3, t1])
+    })
+
+    it('trainingsCount should return the correct number of trainings', async () => {
+      const store = useTrainingStore()
+      expect(store.trainingsCount).toBe(0)
+      await store.createTraining()
+      expect(store.trainingsCount).toBe(1)
+      await store.createTraining()
+      expect(store.trainingsCount).toBe(2)
+    })
+  })
+
+  describe('Aliased Methods', () => {
+    it('getTrainingById should return the correct training', async () => {
+      const store = useTrainingStore()
+      const training = await store.createTraining()
+      const found = await store.getTrainingById(training.id)
+      expect(found).toEqual(training)
+    })
+
+    it('loadTrainings should call baseStore.loadItems', async () => {
+      const store = useTrainingStore()
+      await store.loadTrainings()
+      expect(mockLoad).toHaveBeenCalled()
+    })
+
+    it('persistTrainings should call baseStore.persistItems', async () => {
+      const store = useTrainingStore()
+      await store.persistTrainings()
+      // persistItems calls save on adapter
+      // LocalStorage adapter saves the whole list, so it saves []
+      expect(mockSave).toHaveBeenCalled()
+
+      await store.createTraining()
+      mockSave.mockClear()
+      await store.persistTrainings()
+      expect(mockSave).toHaveBeenCalled()
     })
   })
 })

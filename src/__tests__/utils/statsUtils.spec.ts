@@ -2,9 +2,10 @@ import { describe, it, expect } from 'vitest'
 import { calculateExerciseStats } from '@/utils/statsUtils'
 import type { Session } from '@/types/SessionSchema'
 import type { Serie } from '@/types/SerieSchema'
+import type { ExerciceSeries } from '@/types/ExerciceSeriesSchema'
 
 // Helper to create a minimal session
-function createSession(id: string, exercices: any[]): Session {
+function createSession(id: string, exercices: Partial<ExerciceSeries>[]): Session {
   return {
     id,
     name: 'Test Session',
@@ -12,13 +13,11 @@ function createSession(id: string, exercices: any[]): Session {
     status: 'terminee',
     exercices: exercices.map((ex) => ({
       ...ex,
-      series: ex.series && ex.series.length > 0 ? ex.series : ex.max ? [ex.max] : [], // Ensure series is present if max is there
-      set: 0, // Mock missing props
-      // Mocking the 'max' property if not provided, assuming the test setup provides it or we calculate it?
-      // The utility relies on 'max' being present.
+      series: ex.series && ex.series.length > 0 ? ex.series : ex.max ? [ex.max] : [],
+      set: 0,
       max: ex.max || undefined,
-    })) as any,
-  } as Session
+    })),
+  } as unknown as Session
 }
 
 // Helper to create a serie

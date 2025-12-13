@@ -30,6 +30,13 @@ describe('ExerciceSeriesSchema', () => {
     })
     expect(result.completed).toBe(false)
 
+    // Undefined series
+    result = ExerciceSeriesSchema.parse({
+      ...baseExercice,
+      series: undefined,
+    })
+    expect(result.completed).toBe(false)
+
     // All checked
     result = ExerciceSeriesSchema.parse({
       ...baseExercice,
@@ -51,6 +58,13 @@ describe('ExerciceSeriesSchema', () => {
       ],
     })
     expect(result.nbChecked).toBe(2)
+
+    // Undefined series
+    const resultUndef = ExerciceSeriesSchema.parse({
+      ...baseExercice,
+      series: undefined,
+    })
+    expect(resultUndef.nbChecked).toBe(0)
   })
 
   it('should calculate total correctly', () => {
@@ -62,6 +76,13 @@ describe('ExerciceSeriesSchema', () => {
       ],
     })
     expect(result.total).toBe(200)
+
+    // Undefined series
+    const resultUndef = ExerciceSeriesSchema.parse({
+      ...baseExercice,
+      series: undefined,
+    })
+    expect(resultUndef.total).toBe(0)
   })
 
   it('should find max series correctly', () => {
@@ -74,5 +95,19 @@ describe('ExerciceSeriesSchema', () => {
     })
     expect(result.max).not.toBeNull()
     expect(result.max?.total).toBe(150)
+
+    // Undefined series
+    const resultUndef = ExerciceSeriesSchema.parse({
+      ...baseExercice,
+      series: undefined,
+    })
+    expect(resultUndef.max).toBeNull()
+
+    // Empty series
+    const resultEmpty = ExerciceSeriesSchema.parse({
+      ...baseExercice,
+      series: [],
+    })
+    expect(resultEmpty.max).toBeNull()
   })
 })
