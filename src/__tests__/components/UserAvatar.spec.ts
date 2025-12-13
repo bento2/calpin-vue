@@ -181,4 +181,34 @@ describe('UserAvatar.vue', () => {
     // Vérifie la propriété calculée indirectement via la classe
     expect(wrapper.find('.v-avatar').classes()).toContain('rounded-xl')
   })
+  it('affiche une icône par défaut si non authentifié et sans user prop', () => {
+    const pinia = createTestingPinia({ createSpy: vi.fn })
+    setupAuthStore(pinia, null, false)
+    const wrapper = createWrapper({}, pinia)
+    expect(wrapper.find('.anon-icon').exists()).toBe(true)
+  })
+
+  it('affiche une icône par défaut si authentifié mais sans nom ni photo', async () => {
+    const pinia = createTestingPinia({ createSpy: vi.fn })
+    setupAuthStore(
+      pinia,
+      {
+        uid: '123',
+        displayName: null,
+        photoURL: null,
+      } as AuthUser,
+      true,
+    )
+
+    const wrapper = createWrapper({}, pinia)
+    await flushPromises()
+
+    // Fallback logic in template:
+    // v-if="!!auth.user?.photoURL ..." -> false
+    // v-else -> template
+    //   span v-if="initials" -> initials computed relies on displayName. If null -> null.
+    //   v-else -> anon-icon
+
+    expect(wrapper.find('.anon-icon').exists()).toBe(true)
+  })
 })

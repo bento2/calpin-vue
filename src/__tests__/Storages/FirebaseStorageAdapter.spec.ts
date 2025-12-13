@@ -148,6 +148,10 @@ describe('FirebaseStorageAdapter', () => {
       ;(getDoc as Mock).mockResolvedValue({ exists: () => false })
       expect(await adapter.exists(TEST_KEY)).toBe(false)
     })
+    it('devrait retourner false si non connecté', async () => {
+      if (onAuthCallback) onAuthCallback(null)
+      expect(await adapter.exists(TEST_KEY)).toBe(false)
+    })
   })
 
   describe('setupRealtimeSync', () => {

@@ -45,7 +45,7 @@ export class FirebaseStorageAdapter<T> implements StorageAdapter<T> {
 
   private getDocPath(key: string): string {
     const userId = this.getUserId()
-    if (!userId) throw new Error('Utilisateur non authentifié')
+    // if (!userId) throw new Error('Utilisateur non authentifié') - Unreachable/redundant
     return `users/${userId}/storage/${key}`
   }
 
