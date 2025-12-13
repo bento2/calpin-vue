@@ -21,25 +21,6 @@ export function calculateExerciseStats(
 
   sessions.forEach((session) => {
     session.exercices.forEach((exercice) => {
-      // Ensure we have series to look at
-      if (!exercice.series || exercice.series.length === 0) return
-
-      // Find the best series in this specific exercise instance based on criteria
-      // Note: original logic used `exercice.max`, which was likely a pre-calculated property.
-      // If we want to be pure, we should verify if we strictly rely on `exercice.series` or `exercice.max`.
-      // Looking at the original code:
-      // if (exercice.series && exercice.max) { ... uses exercice.max ... }
-      // So it assumes `exercice.max` is already populated correctly on the session object.
-      // If we want to calculate it from scratch from series, we would iterate series.
-      // However, to keep behavior identical to original logic which trusted `exercice.max`,
-      // we should probably stick to that if available, OR iterate series if we want to be more robust.
-      // The original code:
-      // if (exercice.series && exercice.max) {
-      //   ...
-      //   statsExercices.value.set(exercice.id, exercice.max)
-      // }
-      // So it takes `exercice.max`. Let's assume `exercice.max` is the source of truth for "best of that session".
-
       if (exercice.max) {
         const currentMax = exercice.max
 
@@ -48,11 +29,11 @@ export function calculateExerciseStats(
 
           let isBetter = false
           if (criteria === 'MAX_TOTAL') {
-            // Safe access to total getter if it exists, otherwise calculate
             const currentTotal =
               currentMax.total ?? (currentMax.poids || 0) * (currentMax.repetitions || 0)
             const recordedTotal =
               recordedBest.total ?? (recordedBest.poids || 0) * (recordedBest.repetitions || 0)
+
             if (currentTotal > recordedTotal) {
               isBetter = true
             }

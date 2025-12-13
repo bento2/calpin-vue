@@ -5,6 +5,7 @@ import TrainingPage from '@/pages/TrainingPage.vue'
 import { useTrainingStore } from '@/stores/useTrainingStore'
 import type { Training } from '@/types/TrainingSchema'
 import { addExerciceGetters } from '@/types/ExerciceSchema'
+import draggableNode from 'vuedraggable'
 
 // Mock des sous-composants
 vi.mock('@/components/ExerciceCard.vue', () => ({
@@ -187,6 +188,7 @@ describe('TrainingPage', () => {
     )
     await wrapper.vm.$nextTick()
 
+    // Le draggable rend les items
     expect(wrapper.findAll('.exercice-card-stub').length).toBe(1)
 
     const removeBtn = wrapper
@@ -286,11 +288,90 @@ describe('TrainingPage', () => {
     await flushPromises()
 
     const saveBtn = wrapper.findAll('.op-btn').find((b) => b.text().includes('Enregistrer'))
-    expect(saveBtn?.attributes('disabled')).toBeUndefined() // or false?
-    // Si showSave est vrai, disabled est faux ou absent.
-    // Dans le composant : :disabled="!showSave".
 
     await saveBtn?.trigger('click')
     expect(store.saveTraining).toHaveBeenCalledWith(mockTraining)
+  })
+
+  it("met à jour le nom de l'entrainement", async () => {
+    mockTraining.name = 'Old Name'
+    // Populate exercises to enable save button
+    mockTraining.exercices = [addExerciceGetters({ id: 'e1', name: 'Ex1' })]
+
+    const pinia = createTestingPinia({ createSpy: vi.fn })
+    const store = useTrainingStore(pinia)
+    vi.mocked(store.createTraining).mockResolvedValue(mockTraining)
+
+    const wrapper = mount(TrainingPage, {
+      global: {
+        plugins: [pinia],
+        stubs: {
+          'v-card': { template: '<div><slot /><slot name="actions" /></div>' },
+          'v-card-title': { template: '<div><slot /></div>' },
+          'v-card-item': { template: '<div><slot /></div>' },
+          'v-card-actions': { template: '<div><slot /></div>' },
+          'v-text-field': {
+            name: 'v-text-field',
+            props: ['modelValue'],
+            template: '<div class="v-text-field-stub">{{ modelValue }}</div>',
+            emits: ['update:modelValue'],
+          },
+          'v-btn': {
+            template:
+              '<button class="op-btn" v-bind="$attrs" @click="$emit(\'click\')"><slot /></button>',
+          },
+          'v-progress-circular': true,
+          'v-dialog': true,
+          'v-menu': true,
+          'v-list': true,
+          'v-list-item': true,
+          'v-icon': true,
+        },
+      },
+    })
+    await flushPromises()
+
+    const tf = wrapper.findComponent({ name: 'v-text-field' })
+    tf.vm.$emit('update:modelValue', 'New Name')
+
+    // Simulate saving
+    const saveBtn = wrapper.findAll('.op-btn').find((b) => b.text().includes('Enregistrer'))
+    await saveBtn?.trigger('click')
+
+    expect(store.saveTraining).toHaveBeenCalled()
+    const callArgs = vi.mocked(store.saveTraining).mock.calls[0][0]
+    expect(callArgs.name).toBe('New Name')
+  })
+
+  it("met à jour l'ordre via draggable", async () => {
+    mockTraining.exercices = [
+      addExerciceGetters({ id: 'e1', name: 'Ex1' }),
+      addExerciceGetters({ id: 'e2', name: 'Ex2' }),
+    ]
+    const pinia = createTestingPinia({ createSpy: vi.fn })
+    const store = useTrainingStore(pinia)
+    vi.mocked(store.createTraining).mockResolvedValue(mockTraining)
+
+    const wrapper = mount(TrainingPage, {
+      global: {
+        plugins: [pinia],
+        stubs: {
+          'v-card': { template: '<div><slot /><slot name="actions" /></div>' },
+          'v-progress-circular': true,
+          'v-dialog': true,
+        },
+      },
+    })
+    await flushPromises()
+
+    // Use imported draggable mock to find component
+    const draggable = wrapper.findComponent(draggableNode)
+    const newOrder = [mockTraining.exercices[1], mockTraining.exercices[0]]
+
+    draggable.vm.$emit('update:modelValue', newOrder)
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.vm.training!.exercices[0].id).toBe('e2')
+    expect(wrapper.vm.training!.exercices[1].id).toBe('e1')
   })
 })

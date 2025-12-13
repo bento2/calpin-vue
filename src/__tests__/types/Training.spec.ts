@@ -62,5 +62,10 @@ describe('TrainingSchema', () => {
       }
       expect(() => TrainingSchema.parse(validTraining)).not.toThrow()
     })
+
+    it('devrait échouer proprement pour une entrée invalide, couvrant le cas de repli', () => {
+      const invalidDate = 12345 // Number not handled by custom logic, falls through to z.date()
+      expect(() => schema.parse(invalidDate)).toThrow()
+    })
   })
 })

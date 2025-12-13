@@ -4,118 +4,159 @@ import type { Session } from '@/types/SessionSchema'
 import type { Serie } from '@/types/SerieSchema'
 import type { ExerciceSeries } from '@/types/ExerciceSeriesSchema'
 
-// Helper pour créer une session minimale
-function createSession(id: string, exercices: Partial<ExerciceSeries>[]): Session {
-  return {
-    id,
-    name: 'Test Session',
-    dateDebut: new Date(),
-    status: 'terminee',
-    exercices: exercices.map((ex) => ({
-      ...ex,
-      series: ex.series && ex.series.length > 0 ? ex.series : ex.max ? [ex.max] : [],
-      set: 0,
-      max: ex.max || undefined,
-    })),
-  } as unknown as Session
-}
+// --- Factories ---
 
-// Helper pour créer une série
-function createSerie(poids: number, repetitions: number): Serie {
-  // Nous imitons le comportement du getter pour le total
+/**
+ * Creates a mock series with a total getter.
+ */
+function createSerie({ poids = 0, repetitions = 0, checked = true }: Partial<Serie> = {}): Serie {
   return {
     poids,
     repetitions,
-    checked: true,
+    checked,
     get total() {
       return (this.poids || 0) * (this.repetitions || 0)
     },
   }
 }
 
+/**
+ * Creates a mock session enclosing specific exercises.
+ */
+function createSession(id: string, exercicesValues: Partial<ExerciceSeries>[] = []): Session {
+  // Map partial inputs to the structure expected by the util
+  const exercises = exercicesValues.map((ex) => ({
+    id: ex.id || 'ex-default',
+    series: ex.series || [],
+    max: ex.max, // Explicitly pass max if provided
+  }))
+
+  return {
+    id,
+    name: 'Test Session',
+    dateDebut: new Date(),
+    status: 'terminee',
+    exercices: exercises,
+  } as unknown as Session
+}
+
 describe('statsUtils', () => {
   describe('calculateExerciseStats', () => {
-    it('devrait retourner des stats vides pour des sessions vides', () => {
+    // --- Basic Empty Cases ---
+
+    it('returns empty stats for empty sessions list', () => {
       const stats = calculateExerciseStats([])
       expect(stats.size).toBe(0)
     })
 
-    it("devrait retourner des stats vides si aucun exercice n'a de max défini", () => {
-      const session = createSession('s1', [{ id: 'ex1', series: [], max: null }])
+    it('returns empty stats if no exercise has a defined max', () => {
+      // Case where max is undefined/null
+      const session = createSession('s1', [{ id: 'ex1', series: [], max: undefined }])
       const stats = calculateExerciseStats([session])
       expect(stats.size).toBe(0)
     })
 
-    it('devrait trouver des stats pour une seule session', () => {
-      const maxSerie = createSerie(10, 10) // total 100
-      const session = createSession('s1', [{ id: 'ex1', series: [maxSerie], max: maxSerie }])
+    // --- Single Session ---
 
+    it('finds stats for a single session', () => {
+      const best = createSerie({ poids: 10, repetitions: 10 })
+      const session = createSession('s1', [
+        { id: 'ex1', max: best }, // max is set
+      ])
       const stats = calculateExerciseStats([session])
-      expect(stats.get('ex1')).toEqual(maxSerie)
+      expect(stats.get('ex1')).toEqual(best)
     })
 
-    describe('Critère MAX_TOTAL (défaut)', () => {
-      it('devrait garder la série avec le total le plus élevé', () => {
-        const serie1 = createSerie(10, 10) // total 100
-        const serie2 = createSerie(12, 10) // total 120 (meilleur)
+    // --- Criteria: MAX_TOTAL (Default) ---
+
+    describe('Criteria: MAX_TOTAL', () => {
+      it('keeps the series with higher total', () => {
+        const sLower = createSerie({ poids: 10, repetitions: 10 }) // 100
+        const sHigher = createSerie({ poids: 12, repetitions: 10 }) // 120
 
         const sessions = [
-          createSession('s1', [{ id: 'ex1', series: [], max: serie1 }]),
-          createSession('s2', [{ id: 'ex1', series: [], max: serie2 }]),
+          createSession('s1', [{ id: 'ex1', max: sLower }]),
+          createSession('s2', [{ id: 'ex1', max: sHigher }]),
         ]
 
         const stats = calculateExerciseStats(sessions, 'MAX_TOTAL')
-        expect(stats.get('ex1')).toEqual(serie2)
+        expect(stats.get('ex1')).toEqual(sHigher)
       })
 
-      it('devrait garder le max existant si le nouveau a un total inférieur', () => {
-        const serie1 = createSerie(12, 10) // total 120 (meilleur)
-        const serie2 = createSerie(10, 10) // total 100
+      it('keeps existing max if new one is lower', () => {
+        const sHigher = createSerie({ poids: 12, repetitions: 10 })
+        const sLower = createSerie({ poids: 10, repetitions: 10 })
 
         const sessions = [
-          createSession('s1', [{ id: 'ex1', series: [], max: serie1 }]),
-          createSession('s2', [{ id: 'ex1', series: [], max: serie2 }]),
+          createSession('s1', [{ id: 'ex1', max: sHigher }]),
+          createSession('s2', [{ id: 'ex1', max: sLower }]),
         ]
 
         const stats = calculateExerciseStats(sessions, 'MAX_TOTAL')
-        expect(stats.get('ex1')).toEqual(serie1)
+        expect(stats.get('ex1')).toEqual(sHigher)
       })
 
-      it("devrait gérer l'absence de getter total en toute sécurité", () => {
-        // Littéral d'objet sans getter
-        const serie1 = { poids: 10, repetitions: 10, checked: true } as Serie
-        const serie2 = { poids: 20, repetitions: 10, checked: true } as Serie // Total plus élevé implicite
+      it('handles missing total getter gracefully (fallback calculation)', () => {
+        // Objects without getters (plain JSON style)
+        const s1 = { poids: 10, repetitions: 10, checked: true } as Serie
+        const s2 = { poids: 20, repetitions: 10, checked: true } as Serie
 
         const sessions = [
-          createSession('s1', [{ id: 'ex1', series: [], max: serie1 }]),
-          createSession('s2', [{ id: 'ex1', series: [], max: serie2 }]),
+          createSession('s1', [{ id: 'ex1', max: s1 }]),
+          createSession('s2', [{ id: 'ex1', max: s2 }]),
         ]
 
-        const stats = calculateExerciseStats(sessions) // le défaut est MAX_TOTAL
-        expect(stats.get('ex1')).toEqual(serie2)
+        const stats = calculateExerciseStats(sessions)
+        expect(stats.get('ex1')).toEqual(s2)
+      })
+
+      it('handles undefined weight/reps in fallback', () => {
+        // Fallback coverage: currentMax.total undefined
+        // And ensure it handles nulls in math -> (undefined || 0)
+        const s1 = { poids: undefined, repetitions: undefined, checked: true } as unknown as Serie // 0
+        const s2 = { poids: 10, repetitions: 1, checked: true } as Serie // 10
+
+        const sessions = [
+          createSession('s1', [{ id: 'ex1', max: s1 }]),
+          createSession('s2', [{ id: 'ex1', max: s2 }]),
+        ]
+
+        const stats = calculateExerciseStats(sessions)
+        // Should pick s2 because 10 > 0
+        expect(stats.get('ex1')).toEqual(s2)
       })
     })
 
-    describe('Critère MAX_WEIGHT', () => {
-      it('devrait garder la série avec le poids le plus élevé indépendamment du total', () => {
-        // Volume élevé, poids faible
-        const serieVolume = createSerie(10, 20) // weight 10, total 200
-        // Volume faible, poids élevé
-        const serieWeight = createSerie(50, 1) // weight 50, total 50
+    // --- Criteria: MAX_WEIGHT ---
+
+    describe('Criteria: MAX_WEIGHT', () => {
+      it('prioritizes weight over total volume', () => {
+        const highVolLowWeight = createSerie({ poids: 10, repetitions: 20 }) // 200 total
+        const lowVolHighWeight = createSerie({ poids: 50, repetitions: 1 }) // 50 total
 
         const sessions = [
-          createSession('s1', [{ id: 'ex1', series: [], max: serieVolume }]),
-          createSession('s2', [{ id: 'ex1', series: [], max: serieWeight }]),
+          createSession('s1', [{ id: 'bench', max: highVolLowWeight }]),
+          createSession('s2', [{ id: 'bench', max: lowVolHighWeight }]),
         ]
 
         const stats = calculateExerciseStats(sessions, 'MAX_WEIGHT')
-        // Devrait choisir serieWeight car 50 > 10
-        expect(stats.get('ex1')).toEqual(serieWeight)
+        expect(stats.get('bench')).toEqual(lowVolHighWeight)
       })
 
-      it('devrait mettre à jour si une charge plus lourde est trouvée plus tard', () => {
-        const s1 = createSerie(100, 1)
-        const s2 = createSerie(105, 1) // New PR
+      it('updates if heavier weight found', () => {
+        const s1 = createSerie({ poids: 100 })
+        const s2 = createSerie({ poids: 105 })
+
+        const sessions = [
+          createSession('s1', [{ id: 'bench', max: s1 }]),
+          createSession('s2', [{ id: 'bench', max: s2 }]),
+        ]
+        expect(calculateExerciseStats(sessions, 'MAX_WEIGHT').get('bench')).toEqual(s2)
+      })
+
+      it('handles undefined weight gracefully', () => {
+        const s1 = { poids: undefined } as unknown as Serie // 0
+        const s2 = { poids: 10 } as Serie
 
         const sessions = [
           createSession('s1', [{ id: 'bench', max: s1 }]),
@@ -124,19 +165,6 @@ describe('statsUtils', () => {
 
         const stats = calculateExerciseStats(sessions, 'MAX_WEIGHT')
         expect(stats.get('bench')).toEqual(s2)
-      })
-
-      it('ne devrait pas mettre à jour si une charge plus légère est trouvée plus tard', () => {
-        const s1 = createSerie(100, 1)
-        const s2 = createSerie(90, 5)
-
-        const sessions = [
-          createSession('s1', [{ id: 'bench', max: s1 }]),
-          createSession('s2', [{ id: 'bench', max: s2 }]),
-        ]
-
-        const stats = calculateExerciseStats(sessions, 'MAX_WEIGHT')
-        expect(stats.get('bench')).toEqual(s1)
       })
     })
   })
