@@ -95,7 +95,7 @@ describe('AppBtn.vue', () => {
   })
   it('utilise la variante par défaut sivariant inconnue', () => {
     const wrapper = mount(AppBtn, {
-      props: { variant: 'unknown' as any },
+      props: { variant: 'unknown' as unknown as 'primary' },
     })
     const btn = wrapper.findComponent({ name: 'v-btn' })
     // Should fall back to base props (execution of default branch)
