@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { SerieSchema } from '@/types/SerieSchema'
 
 describe('SerieSchema', () => {
-  it('should calculate total correctly', () => {
+  it('devrait calculer total correctement', () => {
     const result = SerieSchema.parse({
       repetitions: 10,
       poids: 15,
@@ -11,7 +11,7 @@ describe('SerieSchema', () => {
     expect(result.total).toBe(150)
   })
 
-  it('should return 0 total if poids or repetitions missing', () => {
+  it('devrait retourner un total de 0 si poids ou répétitions manquants', () => {
     let result = SerieSchema.parse({
       repetitions: 10,
       checked: true,

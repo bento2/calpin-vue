@@ -92,7 +92,7 @@ describe('Composant SeriesCard', () => {
   it('supprime une série au clic sur le bouton supprimer', async () => {
     const pinia = createTestingPinia({ createSpy: vi.fn })
     const store = useSessionStore(pinia)
-    // Fix: Mock findStatsExercices
+    // Correctif : Mock findStatsExercices
     ;(store.findStatsExercices as Mock).mockResolvedValue(new Map())
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -112,7 +112,7 @@ describe('Composant SeriesCard', () => {
     const deleteBtn = wrapper.find('.v-card button')
 
     // Pour être sûr, on met un stub mieux fait dans ce test ou on update global stub
-    // Update global stub approach via wrapper override? No, easier to rely on structure.
+    // Mettre à jour l'approche par stub global via surcharge du wrapper ? Non, plus simple de se fier à la structure.
     // L'unique bouton DANS la v-card est le delete. Le bouton AJOUTER est hors v-card.
 
     await deleteBtn.trigger('click')
@@ -144,7 +144,7 @@ describe('Composant SeriesCard', () => {
     })
 
     series[0].repetitions = 10
-    // Finding by class added to stub template to be sure
+    // Recherche par classe ajoutée au template du stub pour être sûr
     const inputs = wrapper.findAll('.input-number-stub')
     await inputs[1].trigger('focusout')
 
@@ -174,7 +174,7 @@ describe('Composant SeriesCard', () => {
       },
     })
 
-    await wrapper.vm.$nextTick() // wait for onMounted
+    await wrapper.vm.$nextTick() // attendre le onMounted
 
     const checkbox = wrapper.find('.checkbox-stub')
     await checkbox.trigger('change')

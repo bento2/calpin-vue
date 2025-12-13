@@ -6,7 +6,7 @@ import { useTrainingStore } from '@/stores/useTrainingStore'
 import type { Training } from '@/types/TrainingSchema'
 import { addExerciceGetters } from '@/types/ExerciceSchema'
 
-// Mock sub-components
+// Mock des sous-composants
 vi.mock('@/components/ExerciceCard.vue', () => ({
   default: {
     name: 'ExerciceCard',
@@ -287,8 +287,8 @@ describe('TrainingPage', () => {
 
     const saveBtn = wrapper.findAll('.op-btn').find((b) => b.text().includes('Enregistrer'))
     expect(saveBtn?.attributes('disabled')).toBeUndefined() // or false?
-    // If showSave is true, disabled is false or not present.
-    // In component: :disabled="!showSave".
+    // Si showSave est vrai, disabled est faux ou absent.
+    // Dans le composant : :disabled="!showSave".
 
     await saveBtn?.trigger('click')
     expect(store.saveTraining).toHaveBeenCalledWith(mockTraining)

@@ -99,7 +99,7 @@ describe('FirebaseStorageAdapter', () => {
     it('devrait sauvegarder les données avec métadonnées', async () => {
       await adapter.set(TEST_KEY, TEST_DATA)
       expect(setDoc).toHaveBeenCalledWith(
-        undefined, // docRef (mock result of doc())
+        undefined, // docRef (résultat mocké de doc())
         expect.objectContaining({
           userId: mockUser.uid,
           data: TEST_DATA,
@@ -125,7 +125,7 @@ describe('FirebaseStorageAdapter', () => {
       const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
       ;(deleteDoc as Mock).mockRejectedValue(new Error('Delete failed'))
 
-      await adapter.remove(TEST_KEY) // Should catch and log
+      await adapter.remove(TEST_KEY) // Devrait attraper et logger
       expect(consoleSpy).toHaveBeenCalled()
     })
   })
@@ -165,7 +165,7 @@ describe('FirebaseStorageAdapter', () => {
 
       expect(cb).toHaveBeenCalledWith(TEST_DATA)
 
-      // Error handling callback
+      // Callback de gestion d'erreur
       const errHandler = (onSnapshot as Mock).mock.calls[0][2]
       const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
       errHandler(new Error('Sync error'))
@@ -184,11 +184,11 @@ describe('FirebaseStorageAdapter', () => {
     it('devrait appeler unsubscribe si défini', async () => {
       const unsubscribeSpy = vi.fn()
 
-      // Override mock for this specific test to capture spy
+      // Surcharger le mock pour ce test spécifique afin de capturer l'espion
       ;(onAuthStateChanged as Mock).mockImplementation(() => unsubscribeSpy)
 
       const localAdapter = new FirebaseStorageAdapter()
-      // Wait for auth to settle (microtasks)
+      // Attendre que l'auth se stabilise (microtâches)
       await new Promise((r) => setTimeout(r, 0))
 
       localAdapter.destroy()

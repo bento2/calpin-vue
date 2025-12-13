@@ -111,7 +111,7 @@ describe('useTrainingStore', () => {
         remoteTraining, // Nouveau distant
       ])
 
-      // @ts-expect-error - Added by plugin
+      // @ts-expect-error - Ajouté par le plugin
       await store.syncFromCloud()
 
       expect(store.trainings).toHaveLength(2)
@@ -137,7 +137,7 @@ describe('useTrainingStore', () => {
 
       mockLoad.mockResolvedValue([remoteVersion])
 
-      // @ts-expect-error - Added by plugin
+      // @ts-expect-error - Ajouté par le plugin
       await store.syncFromCloud()
 
       const updated = store.trainings.find((t) => t.id === training.id)
@@ -165,7 +165,7 @@ describe('useTrainingStore', () => {
 
       mockLoad.mockResolvedValue([remoteVersion])
 
-      // @ts-expect-error - Added by plugin
+      // @ts-expect-error - Ajouté par le plugin
       await store.syncFromCloud()
 
       const current = store.trainings.find((t) => t.id === training.id)
@@ -182,12 +182,12 @@ describe('useTrainingStore', () => {
       mockSave.mockClear()
       await store.deleteTrainingById(training.id)
 
-      // Local save (delete modifies list -> baseStore saves)
+      // Sauvegarde locale (delete modifie la liste -> baseStore sauvegarde)
       expect(mockSave).toHaveBeenCalledTimes(1)
 
-      // Plugin sync (action intercepted)
+      // Synchro plugin (action interceptée)
       vi.advanceTimersByTime(2500)
-      expect(mockSave).toHaveBeenCalledTimes(2) // Local save + Cloud save (uploading with item removed)
+      expect(mockSave).toHaveBeenCalledTimes(2) // Sauvegarde locale + Sauvegarde Cloud (upload avec élément supprimé)
 
       expect(store.trainings.find((t) => t.id === training.id)).toBeUndefined()
     })
@@ -197,7 +197,7 @@ describe('useTrainingStore', () => {
       await store.getTrainings()
       expect(mockLoad).toHaveBeenCalled()
 
-      // The plugin intercepts 'getTrainings' and calls 'syncFromCloud'
+      // Le plugin intercepte 'getTrainings' et appelle 'syncFromCloud'
       expect(store).toHaveProperty('syncFromCloud')
     })
   })
@@ -205,7 +205,7 @@ describe('useTrainingStore', () => {
   describe('Error Handling', () => {
     it('createTraining devrait gérer les erreurs de synchro', async () => {
       const store = useTrainingStore()
-      // mockSave used for both local (1st) and firebase (2nd)
+      // mockSave utilisé pour local (1er) et firebase (2ème)
       let callCount = 0
       mockSave.mockImplementation(async () => {
         callCount++
@@ -217,7 +217,7 @@ describe('useTrainingStore', () => {
 
       await store.createTraining()
 
-      // Advance to trigger plugin sync which should fail
+      // Avancer pour déclencher la synchro plugin qui devrait échouer
       vi.advanceTimersByTime(2500)
       await flushPromises()
 
@@ -230,7 +230,7 @@ describe('useTrainingStore', () => {
       mockLoad.mockRejectedValue(new Error('Sync error'))
       const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
 
-      // @ts-expect-error - Added by plugin
+      // @ts-expect-error - Ajouté par le plugin
       await store.syncFromCloud()
 
       expect(consoleSpy).toHaveBeenCalled()
@@ -241,13 +241,13 @@ describe('useTrainingStore', () => {
       const store = useTrainingStore()
       mockSave.mockResolvedValue(undefined)
       const training = await store.createTraining()
-      vi.advanceTimersByTime(2500) // sync create
+      vi.advanceTimersByTime(2500) // synchro création
 
       let callCount = 0
       mockSave.mockImplementation(async () => {
         callCount++
-        // 1st call: local save (delete) -> pass
-        // 2nd call: plugin sync (save) -> fail
+        // 1er appel : sauvegarde locale (suppression) -> succès
+        // 2ème appel : synchro plugin (sauvegarde) -> échec
         if (callCount > 1) throw new Error('Sync error')
         return undefined
       })
@@ -264,7 +264,7 @@ describe('useTrainingStore', () => {
   })
 
   describe('Getters', () => {
-    it('trainingsSortedByDate should return trainings sorted by creation date descending', async () => {
+    it('trainingsSortedByDate devrait retourner les entrainements triés par date de création décroissante', async () => {
       const store = useTrainingStore()
       const t1 = await store.createTraining()
       vi.advanceTimersByTime(100)
@@ -272,11 +272,11 @@ describe('useTrainingStore', () => {
       vi.advanceTimersByTime(100)
       const t3 = await store.createTraining()
 
-      // Default createTraining sets mtime/ctime to now.
-      // We rely on execution order or we can manually force dates if needed,
-      // but let's assume performant enough to have different timestamps or define them manually.
+      // createTraining par défaut définit mtime/ctime à maintenant.
+      // On se fie à l'ordre d'exécution ou on peut forcer manuellement les dates si nécessaire,
+      // mais supposons que c'est assez performant pour avoir des timestamps différents ou définissons-les manuellement.
 
-      // Manually adjusting to be sure
+      // Ajustement manuel pour être sûr
       t1.ctime = new Date(2020, 0, 1)
       t2.ctime = new Date(2022, 0, 1)
       t3.ctime = new Date(2021, 0, 1)
@@ -284,7 +284,7 @@ describe('useTrainingStore', () => {
       expect(store.trainingsSortedByDate).toEqual([t2, t3, t1])
     })
 
-    it('trainingsCount should return the correct number of trainings', async () => {
+    it("trainingsCount devrait retourner le bon nombre d'entrainements", async () => {
       const store = useTrainingStore()
       expect(store.trainingsCount).toBe(0)
       await store.createTraining()
@@ -295,24 +295,24 @@ describe('useTrainingStore', () => {
   })
 
   describe('Aliased Methods', () => {
-    it('getTrainingById should return the correct training', async () => {
+    it('getTrainingById devrait retourner le bon entrainement', async () => {
       const store = useTrainingStore()
       const training = await store.createTraining()
       const found = await store.getTrainingById(training.id)
       expect(found).toEqual(training)
     })
 
-    it('loadTrainings should call baseStore.loadItems', async () => {
+    it('loadTrainings devrait appeler baseStore.loadItems', async () => {
       const store = useTrainingStore()
       await store.loadTrainings()
       expect(mockLoad).toHaveBeenCalled()
     })
 
-    it('persistTrainings should call baseStore.persistItems', async () => {
+    it('persistTrainings devrait appeler baseStore.persistItems', async () => {
       const store = useTrainingStore()
       await store.persistTrainings()
-      // persistItems calls save on adapter
-      // LocalStorage adapter saves the whole list, so it saves []
+      // persistItems appelle save sur l'adaptateur
+      // L'adaptateur LocalStorage sauvegarde toute la liste, donc il sauvegarde []
       expect(mockSave).toHaveBeenCalled()
 
       await store.createTraining()

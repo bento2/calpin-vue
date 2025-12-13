@@ -134,22 +134,22 @@ describe('Composant ExerciceList', () => {
     await searchInput.setValue('pompes')
 
     // Attendre le debounce (si présent) ou le watch
-    // Note: Le watch déclenche le reset de la scroll view
+    // Note: Le watch déclenche la réinitialisation de la vue défilante
     await nextTick()
 
-    // Simuler le rechargement via infinite scroll reset (si implémenté dans le composant réel via ref)
+    // Simuler le rechargement via la réinitialisation du défilement infini (si implémenté dans le composant réel via ref)
     // Mais ici le stub est simple. On vérifie que le mock find est appelé avec le filtre
 
-    // Pour tester le debounce/watch effectif, on devrait mocker timers si nécessaire.
+    // Pour tester le debounce/watch effectif, on devrait mocker les timers si nécessaire.
     // Le composant utilise watch(filter), qui appelle utils.find
-    // trigger watcher
+    // déclenche le watcher
 
     // Attendre que le watch effectue son travail
     await nextTick()
 
-    // Comme le stub v-infinite-scroll ne déclenche pas automatiquement le load au reset,
+    // Comme le stub v-infinite-scroll ne déclenche pas automatiquement le chargement à la réinitialisation,
     // on doit vérifier l'état interne ou l'appel au service si possible,
-    // ou manuellement trigger le load si exposé.
+    // ou déclencher manuellement le chargement si exposé.
 
     // Ici on vérifie simplement que le mock a été appelé (si possible) ou on se fie au rendu
     // si le watch met à jour `exercices`.
@@ -157,7 +157,7 @@ describe('Composant ExerciceList', () => {
     // La logique du composant : watch filter -> reset infiniteScroll -> page=0 -> exercices = utils.find()
 
     const exerciceCards = wrapper.findAllComponents(ExerciceCard)
-    // "Pompes" match 1 item.
+    // "Pompes" match 1 élément.
     expect(exerciceCards.length).toBe(1)
     expect(exerciceCards[0].props('exercice').name).toBe('Pompes')
   })
@@ -166,26 +166,26 @@ describe('Composant ExerciceList', () => {
     const wrapper = createWrapper()
     await nextTick()
 
-    // Simulate load event from infinite scroll
+    // Simuler l'événement de chargement du défilement infini
     const scroll = wrapper.findComponent({ name: 'v-infinite-scroll' })
-    // We stubbed it, but we can emit 'load'
+    // Nous l'avons stubbé, mais nous pouvons émettre 'load'
     const doneMock = vi.fn()
     scroll.vm.$emit('load', { done: doneMock })
 
-    // find should be called for page 1
-    // Utils is mocked
-    // We can't easily access the mocked instance method calls without capturing it
-    // But we know it changes 'exercices' ref.
-    // Page 1 -> items 2,3 (Gainage, empty?) in our mock data
-    // Mock data has 3 items. Page 0 -> 0,1. Page 1 -> 2.
+    // find devrait être appelé pour la page 1
+    // Utils est mocké
+    // Nous ne pouvons pas facilement accéder aux appels de méthode d'instance mockée sans la capturer
+    // Mais nous savons qu'il change la ref 'exercices'.
+    // Page 1 -> éléments 2,3 (Gainage, vide ?) dans nos données de mock
+    // Les données de mock ont 3 éléments. Page 0 -> 0,1. Page 1 -> 2.
 
     await nextTick()
     const cards = wrapper.findAllComponents(ExerciceCard)
-    // Should have 3 items now
+    // Devrait avoir 3 éléments maintenant
     expect(cards.length).toBe(3)
     expect(doneMock).toHaveBeenCalledWith('ok')
 
-    // Load again (page 2 -> empty)
+    // Charger à nouveau (page 2 -> vide)
     scroll.vm.$emit('load', { done: doneMock })
     await nextTick()
     expect(doneMock).toHaveBeenCalledWith('empty')
@@ -196,12 +196,12 @@ describe('Composant ExerciceList', () => {
     const wrapper = createWrapper({ selectable: true, selected })
     await nextTick()
 
-    // Mock has 2 items on page 0: 1(Pompes), 2(Squats)
-    // Merged should filter out Pompes because it is selected
+    // Le mock a 2 éléments sur la page 0 : 1(Pompes), 2(Squats)
+    // Merged devrait filtrer Pompes car il est sélectionné
 
-    // Access merged computed? Or just check rendered items via infinite scroll :items
-    // The infinite scroll iterates over 'merged'.
-    // So we should see only Squats.
+    // Accéder au computed merged ? Ou juste vérifier les éléments rendus via infinite scroll :items
+    // Le défilement infini itère sur 'merged'.
+    // Donc on ne devrait voir que Squats.
 
     const cards = wrapper.findAllComponents(ExerciceCard)
     expect(cards.length).toBe(1)

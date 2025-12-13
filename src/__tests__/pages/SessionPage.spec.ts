@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 
-// Mock sub-components
+// Mock des sous-composants
 vi.mock('@/components/SessionCard.vue', () => ({
   default: {
     template: '<div>SessionCard Stub</div>',
@@ -63,7 +63,7 @@ describe('Page Session (SessionPage)', () => {
       updatedAt: new Date('2024-01-01T12:00:00Z'),
       status: 'en_cours',
       exercices: [],
-      // Transform properties
+      // Propriétés de transformation
       ended: false,
       nbChecked: 0,
       total: 0,
@@ -149,7 +149,7 @@ describe('Page Session (SessionPage)', () => {
     const localSession = { ...mockSession, name: 'Local Session' }
     vi.mocked(localStorage.getItem).mockReturnValue(JSON.stringify(localSession))
 
-    // Remount to trigger onMounted
+    // Remonter pour déclencher onMounted
     const pinia = createTestingPinia({ createSpy: vi.fn })
     const localStore = useSessionStore(pinia)
 
@@ -168,10 +168,10 @@ describe('Page Session (SessionPage)', () => {
 
     await flushPromises()
     expect(localStore.updateSession).toHaveBeenCalled()
-    // Wait, updateSession is called with the parsed session
-    // We can check if session ref has required name if we could access it or render
-    // But since we spy, let's check spy
-    // But updateSession in store mock
+    // Attends, updateSession est appelé avec la session parsée
+    // On pourrait vérifier si la session ref a le nom requis si on pouvait y accéder ou rendre
+    // Mais comme on espionne, vérifions l'espion
+    // Mais updateSession dans le mock store
     expect(localStore.updateSession).toHaveBeenCalledWith(
       expect.objectContaining({ name: 'Local Session' }),
     )
@@ -194,7 +194,7 @@ describe('Page Session (SessionPage)', () => {
 
     await flushPromises()
     expect(consoleSpy).toHaveBeenCalled()
-    // Should fall back to API
+    // Devrait se replier sur l'API
     expect(localStore.getSessionById).toHaveBeenCalled()
     consoleSpy.mockRestore()
   })
@@ -242,10 +242,10 @@ describe('Page Session (SessionPage)', () => {
     // Access vm session manually if needed to verify or just rely on render
     // Simulate open
     const toggleBtn = wrapper.findAll('v-btn-stub').find((c) => c.attributes('title') === 'Ouvrir')
-    // Since we stubbed v-btn as true above, it's v-btn-stub.
-    // However, in our global config for this test we might have overridden it?
-    // Ah, in this test setup I overrode stubs locally.
-    // 'v-btn': true returns v-btn-stub.
+    // Puisque nous avons stubbé v-btn à true ci-dessus, c'est v-btn-stub.
+    // Cependant, dans notre configuration globale pour ce test, nous l'avons peut-être surchargé ?
+    // Ah, dans cette configuration de test, j'ai surchargé les stubs localement.
+    // 'v-btn': true renvoie v-btn-stub.
 
     expect(toggleBtn?.exists()).toBe(true)
     await toggleBtn?.trigger('click')
@@ -280,15 +280,15 @@ describe('Page Session (SessionPage)', () => {
     }
     await wrapper.vm.$nextTick()
 
-    // Debounce wait?
-    // The component uses debounce 2000.
-    // We simulated timers.
+    // Attente du debounce ?
+    // Le composant utilise debounce 2000.
+    // Nous avons simulé les timers.
     vi.advanceTimersByTime(2000)
 
     expect(localStorage.setItem).toHaveBeenCalled()
   })
 
-  // === NEW TESTS FOR COVERAGE ===
+  // === NOUVEAUX TESTS POUR LA COUVERTURE ===
   describe('Actions et Dialogues', () => {
     let wrapper: VueWrapper
     let store: ReturnType<typeof useSessionStore>

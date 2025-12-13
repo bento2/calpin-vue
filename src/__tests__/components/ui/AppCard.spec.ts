@@ -3,7 +3,7 @@ import { mount } from '@vue/test-utils'
 import AppCard from '@/components/ui/AppCard.vue'
 
 describe('AppCard.vue', () => {
-  it('renders default slot', () => {
+  it('affiche le slot par défaut', () => {
     const wrapper = mount(AppCard, {
       slots: {
         default: 'Card Content',
@@ -18,35 +18,35 @@ describe('AppCard.vue', () => {
     expect(wrapper.text()).toContain('Card Content')
   })
 
-  it('renders title from prop', () => {
+  it('affiche le titre depuis la prop', () => {
     const wrapper = mount(AppCard, {
       props: { title: 'My Title' },
     })
     expect(wrapper.text()).toContain('My Title')
   })
 
-  it('renders title from slot', () => {
+  it('affiche le titre depuis le slot', () => {
     const wrapper = mount(AppCard, {
       slots: { title: 'Slot Title' },
     })
     expect(wrapper.text()).toContain('Slot Title')
   })
 
-  it('renders subtitle from prop', () => {
+  it('affiche le sous-titre depuis la prop', () => {
     const wrapper = mount(AppCard, {
       props: { subtitle: 'My Subtitle' },
     })
     expect(wrapper.text()).toContain('My Subtitle')
   })
 
-  it('renders subtitle from slot', () => {
+  it('affiche le sous-titre depuis le slot', () => {
     const wrapper = mount(AppCard, {
       slots: { subtitle: 'Slot Subtitle' },
     })
     expect(wrapper.text()).toContain('Slot Subtitle')
   })
 
-  it('renders header actions slot', () => {
+  it('affiche le slot header actions', () => {
     const wrapper = mount(AppCard, {
       props: { title: 'Test Title' },
       slots: { headerActions: '<button>Action</button>' },
@@ -55,15 +55,15 @@ describe('AppCard.vue', () => {
     expect(wrapper.text()).toContain('Action')
   })
 
-  it('renders actions slot', () => {
+  it('affiche le slot actions', () => {
     const wrapper = mount(AppCard, {
       slots: { actions: '<button>Bottom Action</button>' },
     })
-    // Simulate v-if="$slots.actions" being true
+    // Simule v-if="$slots.actions" à true
     expect(wrapper.text()).toContain('Bottom Action')
   })
 
-  it('passes props to v-card', () => {
+  it('passe les props à v-card', () => {
     const wrapper = mount(AppCard, {
       props: {
         color: 'primary',
@@ -77,7 +77,7 @@ describe('AppCard.vue', () => {
     expect(card.props('loading')).toBe(true)
   })
 
-  it('applies specific classes when title is present', () => {
+  it('applique des classes spécifiques quand le titre est présent', () => {
     const wrapper = mount(AppCard, {
       props: { title: 'Has Title' },
     })

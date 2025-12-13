@@ -39,7 +39,7 @@ describe('ExerciceCard', () => {
       global: { stubs: { 'n-image': true } },
     })
 
-    // Snapshot test
+    // Test de snapshot
     expect(wrapper.html()).toMatchSnapshot()
   })
 })

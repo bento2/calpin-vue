@@ -50,7 +50,7 @@ describe('Page Edition Entrainement (TrainingPage)', () => {
       createSpy: vi.fn,
     })
 
-    // Setup store mock BEFORE mounting because onMounted calls it immediately
+    // Configuration du mock du store AVANT le montage car onMounted l'appelle immédiatement
     store = useTrainingStore(pinia)
     ;(store.getTrainingById as Mock).mockResolvedValue({
       id: 't1',
@@ -60,7 +60,7 @@ describe('Page Edition Entrainement (TrainingPage)', () => {
       mtime: new Date(),
     })
 
-    // Mount using the pre-configured pinia
+    // Monter en utilisant le pinia pré-configuré
     wrapper = mount(TrainingPage, {
       global: {
         plugins: [pinia],
@@ -111,14 +111,14 @@ describe('Page Edition Entrainement (TrainingPage)', () => {
     await flushPromises()
     const tf = wrapper.findComponent({ name: 'v-text-field' }) // Finds stub by name
 
-    // Emit update:modelValue from the component instance
+    // Émettre update:modelValue depuis l'instance du composant
     tf.vm.$emit('update:modelValue', 'New Name')
 
-    // Check if store save action is called when save is clicked
+    // Vérifier si l'action de sauvegarde du store est appelée lors du clic sur enregistrer
     const saveBtn = wrapper.findAll('button').find((b) => b.text().includes('Enregistrer'))
     if (saveBtn) {
       await saveBtn.trigger('click')
-      // Check for saveTraining, not updateTraining
+      // Vérifier saveTraining, pas updateTraining
       expect(store.saveTraining).toHaveBeenCalled()
       const callArgs = (store.saveTraining as Mock).mock.calls[0][0]
       expect(callArgs.name).toBe('New Name')
@@ -128,13 +128,13 @@ describe('Page Edition Entrainement (TrainingPage)', () => {
   it("gère l'ajout d'exercices", async () => {
     await flushPromises()
 
-    // Open dialog
+    // Ouvrir le dialogue
     const addBtn = wrapper.findAll('button').find((b) => b.text().includes('Ajouter un exercice'))
     await addBtn?.trigger('click')
 
     expect((wrapper.vm as unknown as TrainingPageInstance).dialog).toBe(true)
 
-    // Simulate selection in Exercices component
+    // Simuler la sélection dans le composant Exercices
     const exercicesComp = wrapper.findComponent({ name: 'Exercices' })
     expect(exercicesComp.exists()).toBe(true)
 
@@ -146,7 +146,7 @@ describe('Page Edition Entrainement (TrainingPage)', () => {
 
     await flushPromises()
 
-    // Verify training exercises updated
+    // Vérifier que les exercices de l'entraînement sont mis à jour
     expect((wrapper.vm as unknown as TrainingPageInstance).training.exercices).toHaveLength(2)
     expect((wrapper.vm as unknown as TrainingPageInstance).training.exercices[1].id).toBe('e2')
   })
@@ -156,10 +156,10 @@ describe('Page Edition Entrainement (TrainingPage)', () => {
 
     expect((wrapper.vm as unknown as TrainingPageInstance).training.exercices).toHaveLength(1)
 
-    // Find remove button in menu
-    // Menu content is usually not rendered until activated, but stub renders slots.
+    // Trouver le bouton supprimer dans le menu
+    // Le contenu du menu n'est généralement pas rendu tant qu'il n'est pas activé, mais le stub rend les slots.
     // v-menu stub: <div><slot /><slot name="activator" /></div>
-    // So list items should be visible.
+    // Donc les éléments de liste devraient être visibles.
 
     const removeBtn = wrapper
       .findAll('.v-list-item-stub')
@@ -173,7 +173,7 @@ describe('Page Edition Entrainement (TrainingPage)', () => {
 
   it('gère le déplacement des exercices (Monter/Descendre)', async () => {
     await flushPromises()
-    // Setup 2 ex with minimal required properties
+    // Configurer 2 ex avec les propriétés minimales requises
     const ex1 = {
       id: 'e1',
       name: 'Ex 1',
@@ -191,18 +191,18 @@ describe('Page Edition Entrainement (TrainingPage)', () => {
       instructions: 'inst',
     }
 
-    // Use partial casting or satisfy the type to avoid 'any'
+    // Utiliser le casting partiel ou satisfaire le type pour éviter 'any'
     ;(wrapper.vm as unknown as TrainingPageInstance).training.exercices = [
       ex1 as unknown as Exercice,
       ex2 as unknown as Exercice,
     ]
     await wrapper.vm.$nextTick()
 
-    // Trigger moveUp directly on VM to avoid UI trigger issues
+    // Déclencher moveUp directement sur la VM pour éviter les problèmes de déclenchement UI
     ;(wrapper.vm as unknown as TrainingPageInstance).moveUp(1)
     await wrapper.vm.$nextTick()
 
-    // Check order
+    // Vérifier l'ordre
     const training = (wrapper.vm as unknown as TrainingPageInstance).training
     expect(training.exercices[0].id).toBe('e2')
     expect(training.exercices[1].id).toBe('e1')
@@ -225,7 +225,7 @@ describe('Page Edition Entrainement (TrainingPage)', () => {
   it("gère l'erreur de chargement", async () => {
     ;(store.getTrainingById as Mock).mockRejectedValue(new Error('Load failed'))
 
-    // Remount to trigger onMounted
+    // Remonter pour déclencher onMounted
     const pinia = createTestingPinia({ createSpy: vi.fn })
     store = useTrainingStore(pinia)
     ;(store.getTrainingById as Mock).mockRejectedValue(new Error('Load failed'))
@@ -235,11 +235,11 @@ describe('Page Edition Entrainement (TrainingPage)', () => {
     })
 
     await flushPromises()
-    // Validation: isLoading should be false finally, and maybe error shown?
-    // The component sets isLoading = false in finally.
-    // It doesn't seem to show error message in UI based on code analysis, just stops loading.
-    // We check that loading spinner is gone.
-    // We check that loading spinner is gone and error is present
+    // Validation : isLoading devrait être false finalement, et peut-être une erreur affichée ?
+    // Le composant met isLoading à false dans finally.
+    // Il ne semble pas afficher de message d'erreur dans l'UI d'après l'analyse du code, arrête juste le chargement.
+    // On vérifie que le spinner de chargement a disparu.
+    // On vérifie que le spinner de chargement a disparu et que l'erreur est présente
     const progress = wrapper.find('v-progress-circular')
     expect(progress.exists()).toBe(false)
     expect(wrapper.text()).toContain('Erreur lors du chargement')

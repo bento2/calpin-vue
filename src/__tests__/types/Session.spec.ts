@@ -10,12 +10,12 @@ describe('SessionSchema', () => {
     exercices: [],
   }
 
-  it('should calculate ended correctly', () => {
-    // No exercises
+  it('devrait calculer ended correctement', () => {
+    // Pas d'exercices
     let result = SessionSchema.parse(baseSession)
     expect(result.ended).toBe(false)
 
-    // Unfinished exercise
+    // Exercice non terminé
     result = SessionSchema.parse({
       ...baseSession,
       exercices: [
@@ -28,7 +28,7 @@ describe('SessionSchema', () => {
     })
     expect(result.ended).toBe(false)
 
-    // Finished exercise
+    // Exercice terminé
     result = SessionSchema.parse({
       ...baseSession,
       exercices: [
@@ -42,26 +42,26 @@ describe('SessionSchema', () => {
     expect(result.ended).toBe(true)
   })
 
-  it('should calculate nbChecked correctly', () => {
+  it('devrait calculer nbChecked correctement', () => {
     const result = SessionSchema.parse({
       ...baseSession,
       exercices: [
         {
           id: 'e1',
           name: 'Ex 1',
-          series: [{ checked: true, repetitions: 10, poids: 10 }], // Completed
+          series: [{ checked: true, repetitions: 10, poids: 10 }], // Terminé
         },
         {
           id: 'e2',
           name: 'Ex 2',
-          series: [{ checked: false, repetitions: 10, poids: 10 }], // Not completed
+          series: [{ checked: false, repetitions: 10, poids: 10 }], // Non terminé
         },
       ],
     })
     expect(result.nbChecked).toBe(1)
   })
 
-  it('should calculate total correctly', () => {
+  it('devrait calculer total correctement', () => {
     const result = SessionSchema.parse({
       ...baseSession,
       exercices: [

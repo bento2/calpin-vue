@@ -6,7 +6,7 @@ import { useAuthStore } from '@/stores/useAuthStore'
 import type { User as AuthUser } from 'firebase/auth'
 import { ref } from 'vue'
 
-// Mock useAuth to prevent auto-reset of user state during tests
+// Mock useAuth pour empêcher la réinitialisation automatique de l'état utilisateur pendant les tests
 vi.mock('@vueuse/firebase/useAuth', () => ({
   useAuth: () => ({
     user: ref(null),
@@ -21,7 +21,7 @@ describe('UserAvatar.vue', () => {
     })
     const authStore = useAuthStore(pinia)
 
-    // Mock user first
+    // Mock de l'utilisateur d'abord
     const user = {
       uid: '123',
       displayName: 'John Doe',
@@ -30,7 +30,7 @@ describe('UserAvatar.vue', () => {
     } as AuthUser
     authStore.user = user
 
-    // Force isAuthenticated to be writable/mocked for the test
+    // Force isAuthenticated à être accessible en écriture/mocké pour le test
     Object.defineProperty(authStore, 'isAuthenticated', {
       value: true,
       writable: true,
@@ -122,7 +122,7 @@ describe('UserAvatar.vue', () => {
     const pinia = createTestingPinia({ createSpy: vi.fn })
     const authStore = useAuthStore(pinia)
 
-    // Ensure properly reset
+    // Assurer une réinitialisation correcte
     authStore.user = null
     Object.defineProperty(authStore, 'isAuthenticated', {
       value: false,
@@ -147,9 +147,9 @@ describe('UserAvatar.vue', () => {
 
     expect(wrapper.find('.v-icon').exists()).toBe(true)
 
-    // The component renders two v-btns (outer and inner). The inner one triggers login.
-    // Stubs render both as <button class="login-btn">.
-    // We want the one inside .v-avatar.
+    // Le composant rend deux v-btns (externe et interne). L'interne déclenche la connexion.
+    // Les stubs rendent les deux comme <button class="login-btn">.
+    // On veut celui qui est dans .v-avatar.
     const innerBtn = wrapper.find('.v-avatar .login-btn')
 
     expect(innerBtn.exists()).toBe(true)
@@ -177,7 +177,7 @@ describe('UserAvatar.vue', () => {
         plugins: [pinia],
         stubs: {
           'v-tooltip': true,
-          'v-btn': { template: '<div><slot /></div>' }, // No interaction needed for this test
+          'v-btn': { template: '<div><slot /></div>' }, // Pas d'interaction nécessaire pour ce test
           'v-avatar': { template: '<div class="v-avatar"><slot /></div>' },
           'v-img': {
             template: '<img class="v-img" :src="src" />',
@@ -266,7 +266,7 @@ describe('UserAvatar.vue', () => {
         plugins: [pinia],
         stubs: {
           'v-tooltip': true,
-          // Ensure v-btn renders its slot content, otherwise v-avatar is lost
+          // S'assurer que v-btn rend le contenu de son slot, sinon v-avatar est perdu
           'v-btn': { template: '<div><slot /></div>' },
           'v-avatar': {
             template: '<div class="v-avatar" :class="$attrs.class"><slot /></div>',
@@ -277,7 +277,7 @@ describe('UserAvatar.vue', () => {
       },
     })
 
-    // Check computed property indirectly via class or vm
+    // Vérifie la propriété calculée indirectement via la classe ou vm
     expect(wrapper.find('.v-avatar').classes()).toContain('rounded-xl')
   })
 })

@@ -10,8 +10,7 @@ import { useTrainingStore } from '@/stores/useTrainingStore'
 
 import { flushPromises } from '@vue/test-utils'
 
-// Mock useRouter
-// Mock useRouter
+// Mock du router
 const pushMock = vi.fn()
 vi.mock('vue-router', () => ({
   useRouter: () => ({
@@ -58,7 +57,7 @@ describe('TrainingCard', () => {
           'v-card-title': true,
           'v-card-text': true,
           AppBtn: {
-            name: 'AppBtn', // Easing findComponent
+            name: 'AppBtn', // Facilite findComponent
             template:
               '<button class="app-btn-stub" :icon="icon" @click="$emit(\'click\')"></button>',
             props: ['icon'],
@@ -133,18 +132,18 @@ describe('TrainingCard', () => {
   it('masque le bouton supprimer si showDelete est false', async () => {
     const wrapper = createWrapper({ showDelete: false })
 
-    // Use class selector matching the stub template
+    // Utiliser le sélecteur de classe correspondant au template du stub
     const deleteBtn = wrapper
       .findAll('.app-btn-stub')
-      .find((w) => w.attributes('icon') === 'mdi-delete') // Attributes are passed to root element of stub if props are defined? NO.
-    // Props in stub: props: ['icon'].
-    // If props are passed to a component stub, they reside in vm.$props
-    // DOM element doesn't necessarily have them as attributes unless we bind them in template.
-    // My stub template: <button class="app-btn-stub" @click="$emit('click')"></button>
-    // It does NOT bind icon to attribute.
-    // So finding by attribute will FAIL.
-    // I must find by COMPONENT property or bind it in stub.
-    // Let's bind it in stub!
+      .find((w) => w.attributes('icon') === 'mdi-delete')
+    // Les props dans le stub : props: ['icon'].
+    // Si des props sont passées à un stub de composant, elles résident dans vm.$props
+    // L'élément DOM ne les a pas nécessairement comme attributs à moins qu'on ne les lie dans le template.
+    // Mon template de stub : <button class="app-btn-stub" @click="$emit('click')"></button>
+    // Il ne lie PAS l'icône à l'attribut.
+    // Donc trouver par attribut ÉCHOUERAIT.
+    // Je dois trouver par propriété du COMPOSANT ou le lier dans le stub.
+    // Lions-le dans le stub !
 
     expect(deleteBtn).toBeUndefined()
   })

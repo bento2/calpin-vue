@@ -3,7 +3,7 @@ import { createPinia, defineStore, setActivePinia } from 'pinia'
 import { setupSync } from '@/plugins/syncPlugin'
 import { StorageService } from '@/services/StorageService'
 
-// Mock StorageService
+// Mock de StorageService
 vi.mock('@/services/StorageService', () => {
   return {
     StorageService: vi.fn().mockImplementation(function () {
@@ -26,7 +26,7 @@ describe('setupSync', () => {
     vi.useRealTimers()
   })
 
-  it('initializes storage service', () => {
+  it('initialise le service de stockage', () => {
     const useStore = defineStore('test', { state: () => ({ items: [] }) })
     const store = useStore()
 
@@ -41,7 +41,7 @@ describe('setupSync', () => {
     expect(StorageService).toHaveBeenCalledWith('tests', { adapter: 'firebase' })
   })
 
-  it('subscribes to actions', () => {
+  it("s'abonne aux actions", () => {
     const useStore = defineStore('test-actions', {
       state: () => ({ items: [] as { id: string }[] }),
       actions: {
@@ -64,7 +64,7 @@ describe('setupSync', () => {
     expect(spyOnAction).toHaveBeenCalled()
   })
 
-  it('triggers save on push action', async () => {
+  it("déclenche la sauvegarde sur l'action push", async () => {
     const useStore = defineStore('test-save', {
       state: () => ({ items: [] as { id: string }[] }),
       actions: {
@@ -91,13 +91,13 @@ describe('setupSync', () => {
         results: { value: { save: { mock: { calls: unknown[][] } } } }[]
       }
     }
-    // Iterate backwards or find the one that has save called?
-    // Since we just ran one test in this block (hopefully), let's check correct instance
-    // But calls accumulate if not cleared properly? beforeEach clears mocks history.
+    // Itérer en arrière ou trouver celui qui a save appelé ?
+    // Puisque nous venons de lancer un test dans ce bloc (espérons-le), vérifions la bonne instance
+    // Mais les appels s'accumulent s'ils ne sont pas effacés correctement ? beforeEach efface l'historique des mocks.
 
-    // We need to find the instance that was created in THIS test
-    // access to calls of constructor
-    // But simpler: just check if ANY instance had save called
+    // Nous devons trouver l'instance créée dans CE test
+    // accès aux appels du constructeur
+    // Mais plus simple : vérifier si UNE instance a eu save appelé
     const instances = MockStorageService.mock.results.map((r) => r.value)
     const calledInstance = instances.find((i) => i.save.mock.calls.length > 0)
 

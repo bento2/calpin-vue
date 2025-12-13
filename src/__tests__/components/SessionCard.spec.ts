@@ -8,7 +8,7 @@ describe('SessionCard', () => {
     id: 'session-1',
     name: 'Session du matin',
     nbChecked: 5,
-    total: 2500, // Large number to test formatting if locale applies
+    total: 2500, // Grand nombre pour tester le formatage si la locale s'applique
     exercices: [],
     ended: false,
     dateDebut: new Date(),
@@ -39,8 +39,8 @@ describe('SessionCard', () => {
     })
     expect(wrapper.find('.title').text()).toBe('Session du matin')
     expect(wrapper.text()).toContain("Nombre d'exercices : 5")
-    // Check formatting - locale string might depend on env but usually groups thousands
-    // We just check it contains the number structure somewhat
+    // Vérifie le formatage - la chaîne locale peut dépendre de l'env mais regroupe généralement les milliers
+    // On vérifie juste qu'il contient la structure du nombre
     expect(wrapper.text()).toContain('2')
     expect(wrapper.text()).toContain('500')
   })
@@ -66,7 +66,7 @@ describe('SessionCard', () => {
       },
     })
     expect(wrapper.find('.title').text()).toBe('Pas de nom')
-    // Should verify it doesn't crash accessing properties
+    // Devrait vérifier qu'il ne plante pas en accédant aux propriétés
     expect(wrapper.text()).toContain("Nombre d'exercices :")
   })
 

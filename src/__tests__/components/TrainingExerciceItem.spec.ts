@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import TrainingExerciceItem from '@/components/TrainingExerciceItem.vue'
 import { type Exercice } from '@/types/ExerciceSchema'
+import ExerciceActionsMenu from '@/components/ExerciceActionsMenu.vue'
 
 vi.mock('@/components/ExerciceCard.vue', () => ({
   default: {
@@ -11,13 +12,22 @@ vi.mock('@/components/ExerciceCard.vue', () => ({
   },
 }))
 
+// Mock ExerciceActionsMenu
+vi.mock('@/components/ExerciceActionsMenu.vue', () => ({
+  default: {
+    name: 'ExerciceActionsMenu',
+    template: '<div class="exercice-actions-menu-stub"></div>',
+    props: ['index', 'isLast', 'exerciceId'],
+  },
+}))
+
 describe('TrainingExerciceItem', () => {
   const mockExercice = {
     id: 'e1',
     name: 'Ex1',
   } as unknown as Exercice
 
-  it('renders correctly', () => {
+  it("s'affiche correctement", () => {
     const wrapper = mount(TrainingExerciceItem, {
       props: {
         exercice: mockExercice,
@@ -26,22 +36,19 @@ describe('TrainingExerciceItem', () => {
       },
       global: {
         stubs: {
-          'v-menu': { template: '<div><slot name="activator" :props="{}"/><slot/></div>' },
-          'v-list': { template: '<div><slot/></div>' },
-          'v-list-item': {
-            template: '<div class="list-item" @click="$emit(\'click\')"><slot/></div>',
-          },
-          'v-list-item-title': true,
+          'v-btn': true,
           'v-icon': true,
-          'v-btn': { template: '<button></button>' },
         },
       },
     })
 
     expect(wrapper.find('.exercice-card-stub').exists()).toBe(true)
+    const menu = wrapper.findComponent(ExerciceActionsMenu)
+    expect(menu.exists()).toBe(true)
+    expect(menu.props('exerciceId')).toBe('e1')
   })
 
-  it('emits remove event', async () => {
+  it('relais les événements du menu', async () => {
     const wrapper = mount(TrainingExerciceItem, {
       props: {
         exercice: mockExercice,
@@ -50,28 +57,25 @@ describe('TrainingExerciceItem', () => {
       },
       global: {
         stubs: {
-          'v-menu': { template: '<div><slot name="activator" :props="{}"/><slot/></div>' },
-          'v-list': { template: '<div><slot/></div>' },
-          'v-list-item': {
-            template: '<div class="list-item" @click="$emit(\'click\')"><slot/></div>',
-          }, // Stub list item to be clickable
-          'v-list-item-title': true,
-          'v-icon': true,
           'v-btn': true,
+          'v-icon': true,
         },
       },
     })
 
-    // Menu items:
-    // 1. Move Up (if index > 0) -> Not present (index=0)
-    // 2. Move Down (if !isLast) -> Not present (isLast=true)
-    // 3. Remove -> Present
+    const menu = wrapper.findComponent(ExerciceActionsMenu)
 
-    const items = wrapper.findAll('.list-item')
-    expect(items.length).toBe(1)
-
-    await items[0].trigger('click')
+    // Test remove
+    await menu.vm.$emit('remove', 'e1')
     expect(wrapper.emitted('remove')).toBeTruthy()
     expect(wrapper.emitted('remove')![0]).toEqual(['e1'])
+
+    // Test move-up
+    await menu.vm.$emit('move-up', 0)
+    expect(wrapper.emitted('move-up')).toBeTruthy()
+
+    // Test move-down
+    await menu.vm.$emit('move-down', 0)
+    expect(wrapper.emitted('move-down')).toBeTruthy()
   })
 })
