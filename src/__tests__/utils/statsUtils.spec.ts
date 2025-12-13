@@ -166,6 +166,19 @@ describe('statsUtils', () => {
         const stats = calculateExerciseStats(sessions, 'MAX_WEIGHT')
         expect(stats.get('bench')).toEqual(s2)
       })
+
+      it('keeps existing max if new weight is lower (L44 false branch)', () => {
+        const s1 = { poids: 100 } as Serie
+        const s2 = { poids: 50 } as Serie
+
+        const sessions = [
+          createSession('s1', [{ id: 'bench', max: s1 }]),
+          createSession('s2', [{ id: 'bench', max: s2 }]),
+        ]
+
+        const stats = calculateExerciseStats(sessions, 'MAX_WEIGHT')
+        expect(stats.get('bench')).toEqual(s1)
+      })
     })
   })
 })

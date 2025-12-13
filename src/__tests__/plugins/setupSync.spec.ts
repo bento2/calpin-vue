@@ -4,12 +4,15 @@ import { setupSync } from '@/plugins/syncPlugin'
 import { StorageService } from '@/services/StorageService'
 
 // Mock de StorageService
+const mockSave = vi.fn()
+const mockLoad = vi.fn().mockResolvedValue([])
+
 vi.mock('@/services/StorageService', () => {
   return {
     StorageService: vi.fn().mockImplementation(function () {
       return {
-        save: vi.fn(),
-        load: vi.fn().mockResolvedValue([]),
+        save: mockSave,
+        load: mockLoad,
       }
     }),
   }
@@ -19,6 +22,7 @@ describe('setupSync', () => {
   beforeEach(() => {
     setActivePinia(createPinia())
     vi.clearAllMocks()
+    mockSave.mockResolvedValue(undefined)
     vi.useFakeTimers()
   })
 
@@ -86,21 +90,43 @@ describe('setupSync', () => {
     store.createItem()
     vi.advanceTimersByTime(2000)
 
-    const MockStorageService = StorageService as unknown as {
-      mock: {
-        results: { value: { save: { mock: { calls: unknown[][] } } } }[]
-      }
-    }
-    // Itérer en arrière ou trouver celui qui a save appelé ?
-    // Puisque nous venons de lancer un test dans ce bloc (espérons-le), vérifions la bonne instance
-    // Mais les appels s'accumulent s'ils ne sont pas effacés correctement ? beforeEach efface l'historique des mocks.
+    expect(mockSave).toHaveBeenCalled()
+  })
 
-    // Nous devons trouver l'instance créée dans CE test
-    // accès aux appels du constructeur
-    // Mais plus simple : vérifier si UNE instance a eu save appelé
-    const instances = MockStorageService.mock.results.map((r) => r.value)
-    const calledInstance = instances.find((i) => i.save.mock.calls.length > 0)
+  it('gère les erreurs de sauvegarde silencieusement (L140-143)', async () => {
+    const useStore = defineStore('test-error-save', {
+      state: () => ({ items: [] as { id: string }[], error: '' }),
+      actions: {
+        createItem() {
+          this.items.push({ id: '1' })
+        },
+      },
+    })
+    const store = useStore()
 
-    expect(calledInstance).toBeDefined()
+    setupSync(store, {
+      storageName: 'tests',
+      actionsToPush: ['createItem'],
+      actionsToPull: [],
+      getTimestamp: () => 0,
+      sort: () => 0,
+    })
+
+    mockSave.mockRejectedValueOnce(new Error('Sync Error'))
+    const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
+
+    store.createItem()
+    vi.advanceTimersByTime(2000)
+
+    // Waiting for the promise in after callback which is not awaited by store action
+    // We rely on fake timers to trigger the debounced function, but the async save inside it
+    // spins in the event loop.
+    await vi.waitFor(() => expect(consoleSpy).toHaveBeenCalled())
+
+    expect(consoleSpy).toHaveBeenCalledWith(
+      '[Sync tests] Erreur sauvegarde cloud:',
+      expect.any(Error),
+    )
+    consoleSpy.mockRestore()
   })
 })

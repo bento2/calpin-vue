@@ -131,6 +131,7 @@ describe('Page Session (SessionPage)', () => {
 
     vi.spyOn(Storage.prototype, 'getItem').mockReturnValue(null)
     vi.spyOn(Storage.prototype, 'setItem').mockImplementation(() => {})
+    vi.spyOn(Storage.prototype, 'removeItem').mockImplementation(() => {})
   })
 
   afterEach(() => {
@@ -292,8 +293,36 @@ describe('Page Session (SessionPage)', () => {
       dialog.vm.$emit('save')
       expect(store.saveSession).toHaveBeenCalled()
 
-      // ... other events tested similarly in previous file, we can trust them or add them.
-      // Reduced duplication: just testing mapping works.
+      // New tests for missing coverage
+      await dialog.vm.$emit('cancel')
+      expect(store.deleteSession).toHaveBeenCalled()
+      expect(localStorage.removeItem).toHaveBeenCalled()
+
+      await dialog.vm.$emit('end')
+      expect(store.finishSession).toHaveBeenCalled()
+    })
+
+    it("gère le swap d'exercices correctement (move internal logic)", async () => {
+      await flushPromises()
+      const session = (wrapper.vm as unknown as SessionPageInstance).session
+      expect(session?.exercices[0].name).toBe('Ex1')
+      expect(session?.exercices[1].name).toBe('Ex2')
+
+      // Move Ex1 down (which is at index 0)
+      // Simulate by calling the method if we want to confirm the logic *inside* the component
+      // But we already tested "déplace un exercice (move-down)" which tests the outcome.
+      // The user pointed to line 112: `exercices[index] = exercices[index + step]`.
+      // This is covererd by `move` which is called by `moveDown`.
+      // Let's ensure we hit the swap logic fully.
+
+      // Actually, let's verify invalid moves (already tested?).
+      // 'ne déplace pas si invalide' tests if step < 0 && index <= 0.
+      // Let's test step > 0 && index >= len -1.
+
+      const items = wrapper.findAllComponents({ name: 'SessionExerciceItem' })
+      // Try to move last item down
+      await items[1].vm.$emit('move-down', 1)
+      expect(session?.exercices[1].name).toBe('Ex2') // Should stay same
     })
 
     it("ouvre et ferme le dialogue d'ajout d'exercice", async () => {

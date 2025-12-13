@@ -321,4 +321,47 @@ describe('useSessionStore', () => {
       expect(mockSave).toHaveBeenCalled()
     })
   })
+
+  // Tests ajoutés pour la couverture de lignes (Erreurs et getSessions)
+  it('gère les erreurs lors de la récupération des stats (L73-74)', async () => {
+    const store = useSessionStore()
+    mockLoad.mockRejectedValueOnce(new Error('Load Error'))
+
+    const stats = await store.findStatsExercices()
+
+    expect(stats.size).toBe(0)
+    expect(store.error).toContain('Load Error')
+  })
+
+  it('lance une erreur si finishSession avec ID inexistant (L110)', async () => {
+    const store = useSessionStore()
+    await expect(store.finishSession('inconnu')).rejects.toThrow('Session inconnu non trouvée')
+  })
+
+  it('getSessions retourne les sessions triées (L148-151)', async () => {
+    const store = useSessionStore()
+    const s1 = {
+      ...mockTraining,
+      id: 's1',
+      dateDebut: new Date('2023-01-01'),
+      status: 'terminee',
+      trainingId: 't1',
+    }
+    const s2 = {
+      ...mockTraining,
+      id: 's2',
+      dateDebut: new Date('2023-01-02'),
+      status: 'en_cours',
+      trainingId: 't1',
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    mockLoad.mockResolvedValue([s1, s2] as any)
+
+    // Le test active la méthode
+    const result = await store.getSessions()
+    expect(result).toHaveLength(2)
+    expect(result[0].id).toBe('s2') // Plus récent d'abord
+    expect(result[1].id).toBe('s1')
+  })
 })
