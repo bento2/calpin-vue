@@ -68,6 +68,32 @@ describe('SessionExerciceItem', () => {
 
     const chip2 = wrapper.find('.v-chip-stub')
     expect(chip2.attributes('color')).toBe('success')
+
+    // Case 3: Missing values (coverage for ?? 0)
+    const emptyEx = {
+      id: 'e2',
+      name: 'Ex2',
+    } as unknown as ExerciceSeries
+
+    wrapper = mount(SessionExerciceItem, {
+      props: {
+        exercice: emptyEx,
+        index: 0,
+        isOpen: false,
+        isLast: false,
+      },
+      global: {
+        stubs: {
+          'v-chip': { template: '<div class="v-chip-stub"><slot/></div>' },
+          'v-menu': { template: '<div><slot name="activator" :props="{}"/><slot/></div>' },
+          'v-list': true,
+          'v-list-item': true,
+          'v-btn': true,
+          'v-icon': true,
+        },
+      },
+    })
+    expect(wrapper.text()).toContain('0 / 0 séries')
   })
 
   it('handles conditional menu actions', async () => {
@@ -89,27 +115,32 @@ describe('SessionExerciceItem', () => {
           },
           'v-list-item-title': { template: '<span><slot/></span>' },
           'v-btn': true,
-          'v-icon': true,
+          'v-icon': { template: '<div class="v-icon-stub"><slot/></div>' },
         },
       },
     })
 
     const menuItems = wrapper.findAll('.menu-item')
-    // Expected: Move Down, Remove (2 items)
-    // Texts: Descendre, Supprimer
-    // Move Up should be absent
     const texts = menuItems.map((w) => w.text())
-    expect(texts).not.toContain('Monter')
-    expect(texts).toContain('Déscendre')
-    expect(texts).toContain('Supprimer')
+    // Texts now include icon names due to the better stub
+    expect(texts.some((t) => t.includes('Monter'))).toBe(false)
+    expect(texts.some((t) => t.includes('Déscendre'))).toBe(true)
+    expect(texts.some((t) => t.includes('Supprimer'))).toBe(true)
+
+    // Verify icons
+    const downBtn = menuItems.find((w) => w.text().includes('Déscendre'))
+    expect(downBtn).toBeDefined()
+    expect(downBtn?.find('.v-icon-stub').text()).toBe('mdi-arrow-down')
+
+    const removeBtn = menuItems.find((w) => w.text().includes('Supprimer'))
+    expect(removeBtn).toBeDefined()
+    expect(removeBtn?.find('.v-icon-stub').text()).toBe('mdi-delete')
 
     // Test emit Move Down
-    const downBtn = menuItems.find((w) => w.text().includes('Déscendre'))
     await downBtn?.trigger('click')
     expect(wrapper.emitted('move-down')![0]).toEqual([0])
 
     // Test emit Remove
-    const removeBtn = menuItems.find((w) => w.text().includes('Supprimer'))
     await removeBtn?.trigger('click')
     expect(wrapper.emitted('remove')![0]).toEqual(['e1'])
   })
@@ -131,20 +162,78 @@ describe('SessionExerciceItem', () => {
           'v-list-item': { template: '<button class="menu-item"><slot/></button>' },
           'v-list-item-title': { template: '<span><slot/></span>' },
           'v-btn': true,
-          'v-icon': true,
+          'v-icon': { template: '<div class="v-icon-stub"><slot/></div>' },
         },
       },
     })
-    const texts = wrapper.findAll('.menu-item').map((w) => w.text())
-    expect(texts).toContain('Monter')
 
-    // Trigger move up
+    // Find Move Up item
     const upBtn = wrapper.findAll('.menu-item').find((w) => w.text().includes('Monter'))
     expect(upBtn?.exists()).toBe(true)
+
+    const texts = wrapper.findAll('.menu-item').map((w) => w.text())
+    expect(texts.some((t) => t.includes('Monter'))).toBe(true)
+
+    // Check icon
+    expect(upBtn?.find('.v-icon-stub').text()).toBe('mdi-arrow-up')
+
+    // Trigger move up
     await upBtn?.trigger('click')
 
     expect(wrapper.emitted('move-up')).toBeTruthy()
     expect(wrapper.emitted('move-up')![0]).toEqual([1])
+  })
+
+  it('reflects isOpen prop on toggle button', () => {
+    const wrapper = mount(SessionExerciceItem, {
+      props: {
+        exercice: mockExercice,
+        index: 1,
+        isOpen: true,
+        isLast: true,
+      },
+      global: {
+        stubs: {
+          'v-chip': true,
+          'v-menu': { template: '<div><slot name="activator" :props="{}"/><slot/></div>' },
+          'v-list': true,
+          'v-list-item': true,
+          'v-btn': true,
+          'v-icon': true,
+        },
+      },
+    })
+
+    // Find all v-btn stubs
+    const btns = wrapper.findAllComponents({ name: 'v-btn' })
+    // The toggle button is the one with the chevron icon
+    const toggleBtn = btns.find((btn) => btn.attributes('icon') === 'mdi-chevron-up')
+
+    expect(toggleBtn).toBeDefined()
+    expect(toggleBtn?.attributes('title')).toBe('Fermer')
+
+    // Verify opposite case
+    const wrapperClosed = mount(SessionExerciceItem, {
+      props: {
+        exercice: mockExercice,
+        index: 1,
+        isOpen: false,
+        isLast: true,
+      },
+      global: {
+        stubs: {
+          'v-chip': true,
+          'v-menu': true,
+          'v-btn': true,
+          'v-icon': true,
+        },
+      },
+    })
+
+    const btnsClosed = wrapperClosed.findAllComponents({ name: 'v-btn' })
+    const toggleBtnClosed = btnsClosed.find((btn) => btn.attributes('icon') === 'mdi-chevron-down')
+    expect(toggleBtnClosed).toBeDefined()
+    expect(toggleBtnClosed?.attributes('title')).toBe('Ouvrir')
   })
 
   it('emits toggle event', async () => {
