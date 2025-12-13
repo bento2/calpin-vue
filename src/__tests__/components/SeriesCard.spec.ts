@@ -211,7 +211,7 @@ describe('Composant SeriesCard', () => {
     ;(store.findStatsExercices as Mock).mockResolvedValue(statsMap)
 
     const wrapper = mount(SeriesCard, {
-      props: { modelValue: [{ poids: 0, repetitions: 0 }], exerciceId: '1' },
+      props: { modelValue: [{ poids: 0, repetitions: 0, total: 0 }], exerciceId: '1' },
       global: {
         plugins: [pinia],
         stubs: {
