@@ -2,13 +2,24 @@ import { describe, it, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import SessionExerciceItem from '@/components/SessionExerciceItem.vue'
 import { type ExerciceSeries } from '@/types/ExerciceSeriesSchema'
+import ExerciceActionsMenu from '@/components/ExerciceActionsMenu.vue'
 
-// Mock ExerciceCard since it is a child
+// Mock ExerciceCard car c'est un enfant
 vi.mock('@/components/ExerciceCard.vue', () => ({
   default: {
     name: 'ExerciceCard',
     template: '<div class="exercice-card-stub"><slot name="subtitle"/><slot name="actions"/></div>',
     props: ['exercice'],
+  },
+}))
+
+// Mock ExerciceActionsMenu pour éviter de tester sa logique interne ici
+vi.mock('@/components/ExerciceActionsMenu.vue', () => ({
+  default: {
+    name: 'ExerciceActionsMenu',
+    template:
+      '<div class="exercice-actions-menu-stub" @click="$emit(\'remove\', exerciceId)"></div>', // Simple stub pour déclencher un event
+    props: ['index', 'isLast', 'exerciceId'],
   },
 }))
 
@@ -20,244 +31,118 @@ describe('SessionExerciceItem', () => {
     nbChecked: 1,
   } as unknown as ExerciceSeries
 
-  it('renders correctly props and computed', () => {
-    // Case 1: Not completed
-    let wrapper = mount(SessionExerciceItem, {
+  const createWrapper = (props = {}) => {
+    return mount(SessionExerciceItem, {
       props: {
         exercice: mockExercice,
         index: 0,
         isOpen: false,
         isLast: false,
+        ...props,
       },
       global: {
         stubs: {
           'v-chip': { template: '<div class="v-chip-stub"><slot/></div>' },
-          'v-menu': { template: '<div><slot name="activator" :props="{}"/><slot/></div>' },
-          'v-list': true,
-          'v-list-item': true,
           'v-btn': true,
           'v-icon': true,
         },
       },
     })
+  }
+
+  it('affiche correctement les props et computed', () => {
+    // Cas 1: Pas terminé
+    let wrapper = createWrapper()
 
     expect(wrapper.text()).toContain('1 / 2 séries')
     const chip = wrapper.find('.v-chip-stub')
     expect(chip.attributes('color')).toBe('white')
 
-    // Case 2: Completed
+    // Cas 2: Terminé
     const completedEx = { ...mockExercice, nbChecked: 2 }
-    wrapper = mount(SessionExerciceItem, {
-      props: {
-        exercice: completedEx,
-        index: 0,
-        isOpen: false,
-        isLast: false,
-      },
-      global: {
-        stubs: {
-          'v-chip': { template: '<div class="v-chip-stub"><slot/></div>' },
-          'v-menu': { template: '<div><slot name="activator" :props="{}"/><slot/></div>' },
-          'v-list': true,
-          'v-list-item': true,
-          'v-btn': true,
-          'v-icon': true,
-        },
-      },
-    })
+    wrapper = createWrapper({ exercice: completedEx })
 
     const chip2 = wrapper.find('.v-chip-stub')
     expect(chip2.attributes('color')).toBe('success')
 
-    // Case 3: Missing values (coverage for ?? 0)
+    // Cas 3: Valeurs manquantes (coverage pour ?? 0)
     const emptyEx = {
       id: 'e2',
       name: 'Ex2',
     } as unknown as ExerciceSeries
 
-    wrapper = mount(SessionExerciceItem, {
-      props: {
-        exercice: emptyEx,
-        index: 0,
-        isOpen: false,
-        isLast: false,
-      },
-      global: {
-        stubs: {
-          'v-chip': { template: '<div class="v-chip-stub"><slot/></div>' },
-          'v-menu': { template: '<div><slot name="activator" :props="{}"/><slot/></div>' },
-          'v-list': true,
-          'v-list-item': true,
-          'v-btn': true,
-          'v-icon': true,
-        },
-      },
-    })
+    wrapper = createWrapper({ exercice: emptyEx })
     expect(wrapper.text()).toContain('0 / 0 séries')
   })
 
-  it('handles conditional menu actions', async () => {
-    // Index 0, isLast = false -> No Move Up, Yes Move Down, Yes Remove
-    const wrapper = mount(SessionExerciceItem, {
-      props: {
-        exercice: mockExercice,
-        index: 0,
-        isOpen: false,
-        isLast: false,
-      },
-      global: {
-        stubs: {
-          'v-chip': true,
-          'v-menu': { template: '<div><slot name="activator" :props="{}"/><slot/></div>' },
-          'v-list': { template: '<div><slot/></div>' },
-          'v-list-item': {
-            template: '<button class="menu-item" @click="$emit(\'click\')"><slot/></button>',
-          },
-          'v-list-item-title': { template: '<span><slot/></span>' },
-          'v-btn': true,
-          'v-icon': { template: '<div class="v-icon-stub"><slot/></div>' },
-        },
-      },
-    })
+  it("passe les bonnes props au menu d'actions", () => {
+    const wrapper = createWrapper({ index: 1, isLast: true })
+    const menuStub = wrapper.findComponent(ExerciceActionsMenu)
 
-    const menuItems = wrapper.findAll('.menu-item')
-    const texts = menuItems.map((w) => w.text())
-    // Texts now include icon names due to the better stub
-    expect(texts.some((t) => t.includes('Monter'))).toBe(false)
-    expect(texts.some((t) => t.includes('Déscendre'))).toBe(true)
-    expect(texts.some((t) => t.includes('Supprimer'))).toBe(true)
+    expect(menuStub.exists()).toBe(true)
+    expect(menuStub.props('index')).toBe(1)
+    expect(menuStub.props('isLast')).toBe(true)
+    expect(menuStub.props('exerciceId')).toBe('e1')
+  })
 
-    // Verify icons
-    const downBtn = menuItems.find((w) => w.text().includes('Déscendre'))
-    expect(downBtn).toBeDefined()
-    expect(downBtn?.find('.v-icon-stub').text()).toBe('mdi-arrow-down')
+  it('relais les événements du menu', async () => {
+    const wrapper = createWrapper()
+    const menuStub = wrapper.findComponent(ExerciceActionsMenu)
 
-    const removeBtn = menuItems.find((w) => w.text().includes('Supprimer'))
-    expect(removeBtn).toBeDefined()
-    expect(removeBtn?.find('.v-icon-stub').text()).toBe('mdi-delete')
-
-    // Test emit Move Down
-    await downBtn?.trigger('click')
-    expect(wrapper.emitted('move-down')![0]).toEqual([0])
-
-    // Test emit Remove
-    await removeBtn?.trigger('click')
+    // Test remove
+    await menuStub.vm.$emit('remove', 'e1')
+    expect(wrapper.emitted('remove')).toBeTruthy()
     expect(wrapper.emitted('remove')![0]).toEqual(['e1'])
-  })
 
-  it('handles move up availability', async () => {
-    // Index 1 -> Move Up Available
-    const wrapper = mount(SessionExerciceItem, {
-      props: {
-        exercice: mockExercice,
-        index: 1,
-        isOpen: false,
-        isLast: false,
-      },
-      global: {
-        stubs: {
-          'v-chip': true,
-          'v-menu': { template: '<div><slot name="activator" :props="{}"/><slot/></div>' },
-          'v-list': { template: '<div><slot/></div>' },
-          'v-list-item': { template: '<button class="menu-item"><slot/></button>' },
-          'v-list-item-title': { template: '<span><slot/></span>' },
-          'v-btn': true,
-          'v-icon': { template: '<div class="v-icon-stub"><slot/></div>' },
-        },
-      },
-    })
-
-    // Find Move Up item
-    const upBtn = wrapper.findAll('.menu-item').find((w) => w.text().includes('Monter'))
-    expect(upBtn?.exists()).toBe(true)
-
-    const texts = wrapper.findAll('.menu-item').map((w) => w.text())
-    expect(texts.some((t) => t.includes('Monter'))).toBe(true)
-
-    // Check icon
-    expect(upBtn?.find('.v-icon-stub').text()).toBe('mdi-arrow-up')
-
-    // Trigger move up
-    await upBtn?.trigger('click')
-
+    // Test move-up
+    await menuStub.vm.$emit('move-up', 0)
     expect(wrapper.emitted('move-up')).toBeTruthy()
-    expect(wrapper.emitted('move-up')![0]).toEqual([1])
+    expect(wrapper.emitted('move-up')![0]).toEqual([0])
+
+    // Test move-down
+    await menuStub.vm.$emit('move-down', 0)
+    expect(wrapper.emitted('move-down')).toBeTruthy()
+    expect(wrapper.emitted('move-down')![0]).toEqual([0])
   })
 
-  it('reflects isOpen prop on toggle button', () => {
-    const wrapper = mount(SessionExerciceItem, {
-      props: {
-        exercice: mockExercice,
-        index: 1,
-        isOpen: true,
-        isLast: true,
-      },
-      global: {
-        stubs: {
-          'v-chip': true,
-          'v-menu': { template: '<div><slot name="activator" :props="{}"/><slot/></div>' },
-          'v-list': true,
-          'v-list-item': true,
-          'v-btn': true,
-          'v-icon': true,
-        },
-      },
-    })
+  it('reflète la prop isOpen sur le bouton toggle', () => {
+    const wrapper = createWrapper({ isOpen: true })
 
-    // Find all v-btn stubs
+    // Trouve le bouton toggle (celui avec le chevron)
     const btns = wrapper.findAllComponents({ name: 'v-btn' })
-    // The toggle button is the one with the chevron icon
     const toggleBtn = btns.find((btn) => btn.attributes('icon') === 'mdi-chevron-up')
 
     expect(toggleBtn).toBeDefined()
     expect(toggleBtn?.attributes('title')).toBe('Fermer')
 
-    // Verify opposite case
-    const wrapperClosed = mount(SessionExerciceItem, {
-      props: {
-        exercice: mockExercice,
-        index: 1,
-        isOpen: false,
-        isLast: true,
-      },
-      global: {
-        stubs: {
-          'v-chip': true,
-          'v-menu': true,
-          'v-btn': true,
-          'v-icon': true,
-        },
-      },
-    })
-
+    // Vérifie le cas inverse
+    const wrapperClosed = createWrapper({ isOpen: false })
     const btnsClosed = wrapperClosed.findAllComponents({ name: 'v-btn' })
     const toggleBtnClosed = btnsClosed.find((btn) => btn.attributes('icon') === 'mdi-chevron-down')
+
     expect(toggleBtnClosed).toBeDefined()
     expect(toggleBtnClosed?.attributes('title')).toBe('Ouvrir')
   })
 
-  it('emits toggle event', async () => {
-    const wrapper = mount(SessionExerciceItem, {
-      props: {
-        exercice: mockExercice,
-        index: 0,
-        isOpen: false,
-        isLast: false,
-      },
-      global: {
-        stubs: {
-          'v-chip': true,
-          'v-menu': true, // Stub v-menu away to focus on toggle button
-          'v-btn': { template: '<button class="toggle-btn" @click="$emit(\'click\')"></button>' },
-          'v-list': true,
-          'v-list-item': true,
-          'v-icon': true,
-        },
-      },
-    })
+  it("émet l'événement toggle", async () => {
+    const wrapper = createWrapper()
 
-    const btn = wrapper.find('.toggle-btn')
-    await btn.trigger('click')
+    // On simule le clic directement sur le stub du v-btn si on peut le trouver facilement
+    // Mais ici v-btn est stubbé à "true".
+    // On va utiliser findComponent pour déclencher le click
+
+    const btns = wrapper.findAllComponents({ name: 'v-btn' })
+    // Le bouton toggle est le deuxième bouton dans le template après le menu ? Non il est après le menu.
+    // Le menu est stubbé.
+    // Dans le template:
+    /*
+      <ExerciceActionsMenu ... />
+      <v-btn ... @click="emit('toggle')" />
+    */
+    // Donc il y a 1 v-btn (le toggle). ExerciceActionsMenu contient aussi des v-btn mais il est stubbé en shallow.
+
+    expect(btns.length).toBe(1)
+    await btns[0].trigger('click')
 
     expect(wrapper.emitted('toggle')).toBeTruthy()
     expect(wrapper.emitted('toggle')![0]).toEqual([0])

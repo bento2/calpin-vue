@@ -55,8 +55,8 @@ describe('InputNumberSerie.vue', () => {
     await wrapper.find('input').trigger('focus')
     // Le composant met à jour la valeur locale (displayValue) via set
     // Mais ici la prop modelValue est reactively updated?
-    // Wait, `onFocus` fait `value.value = null` where value is defineModel.
-    // So it should emit update:modelValue null.
+    // Attends, onFocus fait value.value = null où value est defineModel.
+    // Donc ça devrait émettre update:modelValue null.
     expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([null])
   })
 
@@ -68,5 +68,27 @@ describe('InputNumberSerie.vue', () => {
 
     await wrapper.find('input').trigger('focus')
     expect(wrapper.emitted('update:modelValue')).toBeUndefined()
+  })
+
+  it('met à jour la valeur via le setter (couverture ligne 25, 41)', async () => {
+    const wrapper = mount(InputNumberSerie, {
+      props: { modelValue: 5, unit: 'KG' },
+      global: {
+        stubs: {
+          'v-number-input': {
+            template:
+              '<input :value="modelValue" @input="$emit(\'update:modelValue\', Number($event.target.value))" />',
+            props: ['modelValue'],
+          },
+        },
+      },
+    })
+
+    const input = wrapper.find('input')
+    await input.setValue(15)
+
+    // Check emit
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
+    expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([15])
   })
 })

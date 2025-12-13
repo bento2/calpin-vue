@@ -5,7 +5,7 @@ describe('firebase.ts', () => {
     vi.resetModules()
     vi.clearAllMocks()
 
-    // Mock environment variables
+    // Mocker les variables d'environnement
     vi.stubGlobal('import.meta', {
       env: {
         VITE_FIREBASE_API_KEY: 'test-key',
@@ -23,7 +23,7 @@ describe('firebase.ts', () => {
     vi.unstubAllGlobals()
   })
 
-  it('initializes firebase correctly', async () => {
+  it('initialise firebase correctement', async () => {
     const initializeApp = vi.fn(() => ({}))
     const getAuth = vi.fn(() => ({}))
     const GoogleAuthProvider = vi.fn()
@@ -42,13 +42,13 @@ describe('firebase.ts', () => {
     expect(enableIndexedDbPersistence).toHaveBeenCalled()
   })
 
-  it('handles failed-precondition error', async () => {
+  it("gère l'erreur failed-precondition", async () => {
     const enableIndexedDbPersistence = vi.fn().mockRejectedValue({ code: 'failed-precondition' })
     vi.doMock('firebase/firestore', () => ({
       getFirestore: vi.fn(),
       enableIndexedDbPersistence,
     }))
-    // Others need to be mocked to avoid errors during import
+    // Les autres doivent être mockés pour éviter les erreurs lors de l'import
     vi.doMock('firebase/app', () => ({ initializeApp: vi.fn() }))
     vi.doMock('firebase/auth', () => ({ getAuth: vi.fn(), GoogleAuthProvider: vi.fn() }))
 
@@ -56,13 +56,13 @@ describe('firebase.ts', () => {
 
     await import('@/firebase')
 
-    // Wait for promise rejection handling (catch is async)
+    // Attendre la gestion du rejet de promesse (le catch est asynchrone)
     await new Promise((r) => setTimeout(r, 10))
 
     expect(consoleSpy).toHaveBeenCalledWith(expect.stringContaining('Multiple tabs open'))
   })
 
-  it('handles unimplemented error', async () => {
+  it("gère l'erreur unimplemented", async () => {
     const enableIndexedDbPersistence = vi.fn().mockRejectedValue({ code: 'unimplemented' })
     vi.doMock('firebase/firestore', () => ({
       getFirestore: vi.fn(),

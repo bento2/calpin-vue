@@ -5,7 +5,7 @@ import TrainingsPage from '@/pages/TrainingsPage.vue'
 import { useTrainingStore } from '@/stores/useTrainingStore'
 import { nextTick } from 'vue'
 
-// Mock components
+// Mock des composants
 vi.mock('@/components/TrainingCard.vue', () => ({
   default: {
     name: 'TrainingCard',
@@ -68,11 +68,11 @@ describe('Page Entrainements (TrainingsPage)', () => {
   })
 
   it('crée un nouvel entrainement au clic sur le bouton', async () => {
-    // Mock createTraining action
+    // Mock de l'action createTraining
     const newTraining = { id: 't3', name: 'Nouvel Entrainement' }
     ;(store.createTraining as Mock).mockResolvedValue(newTraining)
 
-    // Find the "Nouvel entrainement" button
+    // Trouver le bouton "Nouvel entrainement"
     const buttons = wrapper.findAll('button')
     const createButton = buttons.find((b) => b.text().includes('Nouvel entrainement'))
 

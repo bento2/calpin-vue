@@ -3,7 +3,7 @@ import { mount } from '@vue/test-utils'
 import AppBtn from '@/components/ui/AppBtn.vue'
 
 describe('AppBtn.vue', () => {
-  it('renders default slot', () => {
+  it('affiche le slot par défaut', () => {
     const wrapper = mount(AppBtn, {
       slots: {
         default: 'Click me',
@@ -18,7 +18,7 @@ describe('AppBtn.vue', () => {
     expect(wrapper.text()).toContain('Click me')
   })
 
-  it('applies primary variant classes by default', () => {
+  it('applique les classes de variante primaire par défaut', () => {
     const wrapper = mount(AppBtn)
     const btn = wrapper.findComponent({ name: 'v-btn' })
     expect(btn.exists()).toBe(true)
@@ -27,7 +27,7 @@ describe('AppBtn.vue', () => {
     expect(btn.classes()).toContain('text-white')
   })
 
-  it('applies secondary variant classes', () => {
+  it('applique les classes de variante secondaire', () => {
     const wrapper = mount(AppBtn, {
       props: { variant: 'secondary' },
     })
@@ -37,7 +37,7 @@ describe('AppBtn.vue', () => {
     expect(btn.classes()).toContain('bg-white')
   })
 
-  it('applies danger variant classes', () => {
+  it('applique les classes de variante danger', () => {
     const wrapper = mount(AppBtn, {
       props: { variant: 'danger' },
     })
@@ -47,7 +47,7 @@ describe('AppBtn.vue', () => {
     expect(btn.classes()).toContain('text-white')
   })
 
-  it('applies success variant classes', () => {
+  it('applique les classes de variante succès', () => {
     const wrapper = mount(AppBtn, {
       props: { variant: 'success' },
     })
@@ -57,7 +57,7 @@ describe('AppBtn.vue', () => {
     expect(btn.classes()).toContain('text-white')
   })
 
-  it('applies ghost variant classes', () => {
+  it('applique les classes de variante ghost', () => {
     const wrapper = mount(AppBtn, {
       props: { variant: 'ghost' },
     })
@@ -65,7 +65,7 @@ describe('AppBtn.vue', () => {
     expect(btn.props('variant')).toBe('text')
   })
 
-  it('renders icon with icon variant', () => {
+  it("affiche l'icône avec la variante icône", () => {
     const wrapper = mount(AppBtn, {
       props: { variant: 'icon', icon: 'mdi-plus' },
     })
@@ -78,7 +78,7 @@ describe('AppBtn.vue', () => {
     expect(iconClasses.some((c) => c.includes('mdi-plus'))).toBe(true)
   })
 
-  it('passes props to v-btn', () => {
+  it('passe les props à v-btn', () => {
     const wrapper = mount(AppBtn, {
       props: {
         block: true,

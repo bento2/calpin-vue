@@ -3,13 +3,16 @@ import { createPinia, defineStore, setActivePinia } from 'pinia'
 import { setupSync } from '@/plugins/syncPlugin'
 import { StorageService } from '@/services/StorageService'
 
-// Mock StorageService
+// Mock de StorageService
+const mockSave = vi.fn()
+const mockLoad = vi.fn().mockResolvedValue([])
+
 vi.mock('@/services/StorageService', () => {
   return {
     StorageService: vi.fn().mockImplementation(function () {
       return {
-        save: vi.fn(),
-        load: vi.fn().mockResolvedValue([]),
+        save: mockSave,
+        load: mockLoad,
       }
     }),
   }
@@ -19,6 +22,7 @@ describe('setupSync', () => {
   beforeEach(() => {
     setActivePinia(createPinia())
     vi.clearAllMocks()
+    mockSave.mockResolvedValue(undefined)
     vi.useFakeTimers()
   })
 
@@ -26,7 +30,7 @@ describe('setupSync', () => {
     vi.useRealTimers()
   })
 
-  it('initializes storage service', () => {
+  it('initialise le service de stockage', () => {
     const useStore = defineStore('test', { state: () => ({ items: [] }) })
     const store = useStore()
 
@@ -41,7 +45,7 @@ describe('setupSync', () => {
     expect(StorageService).toHaveBeenCalledWith('tests', { adapter: 'firebase' })
   })
 
-  it('subscribes to actions', () => {
+  it("s'abonne aux actions", () => {
     const useStore = defineStore('test-actions', {
       state: () => ({ items: [] as { id: string }[] }),
       actions: {
@@ -64,7 +68,7 @@ describe('setupSync', () => {
     expect(spyOnAction).toHaveBeenCalled()
   })
 
-  it('triggers save on push action', async () => {
+  it("déclenche la sauvegarde sur l'action push", async () => {
     const useStore = defineStore('test-save', {
       state: () => ({ items: [] as { id: string }[] }),
       actions: {
@@ -86,21 +90,43 @@ describe('setupSync', () => {
     store.createItem()
     vi.advanceTimersByTime(2000)
 
-    const MockStorageService = StorageService as unknown as {
-      mock: {
-        results: { value: { save: { mock: { calls: unknown[][] } } } }[]
-      }
-    }
-    // Iterate backwards or find the one that has save called?
-    // Since we just ran one test in this block (hopefully), let's check correct instance
-    // But calls accumulate if not cleared properly? beforeEach clears mocks history.
+    expect(mockSave).toHaveBeenCalled()
+  })
 
-    // We need to find the instance that was created in THIS test
-    // access to calls of constructor
-    // But simpler: just check if ANY instance had save called
-    const instances = MockStorageService.mock.results.map((r) => r.value)
-    const calledInstance = instances.find((i) => i.save.mock.calls.length > 0)
+  it('gère les erreurs de sauvegarde silencieusement (L140-143)', async () => {
+    const useStore = defineStore('test-error-save', {
+      state: () => ({ items: [] as { id: string }[], error: '' }),
+      actions: {
+        createItem() {
+          this.items.push({ id: '1' })
+        },
+      },
+    })
+    const store = useStore()
 
-    expect(calledInstance).toBeDefined()
+    setupSync(store, {
+      storageName: 'tests',
+      actionsToPush: ['createItem'],
+      actionsToPull: [],
+      getTimestamp: () => 0,
+      sort: () => 0,
+    })
+
+    mockSave.mockRejectedValueOnce(new Error('Sync Error'))
+    const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
+
+    store.createItem()
+    vi.advanceTimersByTime(2000)
+
+    // Waiting for the promise in after callback which is not awaited by store action
+    // We rely on fake timers to trigger the debounced function, but the async save inside it
+    // spins in the event loop.
+    await vi.waitFor(() => expect(consoleSpy).toHaveBeenCalled())
+
+    expect(consoleSpy).toHaveBeenCalledWith(
+      '[Sync tests] Erreur sauvegarde cloud:',
+      expect.any(Error),
+    )
+    consoleSpy.mockRestore()
   })
 })

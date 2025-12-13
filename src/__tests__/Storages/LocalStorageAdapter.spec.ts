@@ -25,13 +25,13 @@ describe('LocalStorageAdapter', () => {
     })
 
     it('devrait gérer les erreurs de parsing JSON', async () => {
-      // Mock console.error to keep output clean
+      // Mocker console.error pour garder la sortie propre
       const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
       localStorage.setItem(TEST_KEY, '{ invalid json')
 
-      // The implementation catches error and returns null?
-      // Let's verify source: "return data ? JSON.parse(data) : null" inside try, catch returns null.
-      // Wait, JSON.parse throws.
+      // L'implémentation attrape l'erreur et retourne null ?
+      // Vérifions la source : "return data ? JSON.parse(data) : null" inside try, catch returns null.
+      // Attends, JSON.parse lance une exception.
       const result = await adapter.get(TEST_KEY)
       expect(result).toBeNull()
       expect(consoleSpy).toHaveBeenCalled()

@@ -71,9 +71,9 @@ describe('useSessionStore', () => {
     expect(session.updatedAt).toBeDefined()
     expect(store.sessions).toHaveLength(1)
 
-    // Check sync (debounced)
+    // Vérifier la synchro (debounced)
     vi.advanceTimersByTime(2500)
-    expect(mockSave).toHaveBeenCalledTimes(2) // 1 local + 1 sync
+    expect(mockSave).toHaveBeenCalledTimes(2) // 1 local + 1 synchro
   })
 
   it('updateSession devrait mettre à jour updatedAt', async () => {
@@ -81,7 +81,7 @@ describe('useSessionStore', () => {
     const session = await store.createSession(mockTraining)
     const oldDate = session.updatedAt
 
-    vi.advanceTimersByTime(100) // Ensure time passes
+    vi.advanceTimersByTime(100) // S'assurer que le temps passe
 
     await store.updateSession(session)
 
@@ -100,20 +100,20 @@ describe('useSessionStore', () => {
     expect(updated?.dateFin).toBeDefined()
     expect(updated?.updatedAt).toBeDefined()
 
-    vi.advanceTimersByTime(2500) // Trigger sync
+    vi.advanceTimersByTime(2500) // Déclencher la synchro
     expect(mockSave).toHaveBeenCalled()
   })
 
-  describe('Sync Conflict Resolution', () => {
+  describe('Résolution de Conflit de Synchro', () => {
     it('devrait mettre à jour la session locale si la distante est plus récente (updatedAt)', async () => {
       const store = useSessionStore()
       const session = await store.createSession(mockTraining)
-      vi.advanceTimersByTime(2500) // initial sync
+      vi.advanceTimersByTime(2500) // synchro initiale
 
       const oldDate = new Date('2023-01-01')
       const newDate = new Date('2050-01-01')
 
-      session.updatedAt = oldDate // Local is old
+      session.updatedAt = oldDate // La locale est vieille
 
       const remoteSession = {
         ...session,
@@ -121,11 +121,11 @@ describe('useSessionStore', () => {
         name: 'Updated Remotely',
       }
 
-      // Need partial logic for deserialization simulation? No, load returns objects.
+      // Besoin de logique partielle pour la simulation de désérialisation ? Non, load retourne des objets.
 
       mockLoad.mockResolvedValue([remoteSession])
 
-      // @ts-expect-error - Added by plugin
+      // @ts-expect-error - Ajouté par le plugin
       await store.syncFromCloud()
 
       const updated = await store.getSessionById(session.id)
@@ -152,7 +152,7 @@ describe('useSessionStore', () => {
 
       mockLoad.mockResolvedValue([remoteSession])
 
-      // @ts-expect-error - Added by plugin
+      // @ts-expect-error - Ajouté par le plugin
       await store.syncFromCloud()
 
       const current = await store.getSessionById(session.id)
@@ -170,10 +170,10 @@ describe('useSessionStore', () => {
     expect(active?.status).toBe('en_cours')
   })
 
-  it('findStatsExercices should correctly aggregate stats using different criteria', async () => {
+  it('findStatsExercices devrait agréger correctement les stats en utilisant différents critères', async () => {
     const store = useSessionStore()
 
-    // Create a past session with stats
+    // Créer une session passée avec des stats
     const pastTraining: Training = {
       ...mockTraining,
       id: 't_past',
@@ -187,9 +187,9 @@ describe('useSessionStore', () => {
       ],
     }
 
-    // We need to bypass createSession because it sets date to now.
-    // Or just manually insert into store items for test speed/simplicity
-    // Since we mock load, we can set load return value
+    // Nous devons contourner createSession car il définit la date à maintenant.
+    // Ou juste insérer manuellement dans les items du store pour la rapidité/simplicité du test
+    // Puisque nous mockons load, nous pouvons définir la valeur de retour de load
 
     const s1 = {
       id: 's1',
@@ -201,10 +201,10 @@ describe('useSessionStore', () => {
       updatedAt: new Date(),
     }
 
-    // Mock load to return our session
+    // Mocker load pour retourner notre session
     mockLoad.mockResolvedValue([s1])
 
-    // Trigger load
+    // Déclencher le chargement
     await store.loadSessions()
     expect(store.sessions).toHaveLength(1)
 
@@ -222,12 +222,12 @@ describe('useSessionStore', () => {
     const store = useSessionStore()
     const session = await store.createSession(mockTraining)
 
-    // Simulate progress
+    // Simuler la progression
     session.exercices[0].series![0].checked = true
     session.exercices[0].series![0].poids = 50
     session.exercices[0].series![0].repetitions = 10
 
-    // Wait for date change
+    // Attendre le changement de date
     const oldDate = session.dateDebut
     vi.advanceTimersByTime(1000)
 
@@ -238,7 +238,7 @@ describe('useSessionStore', () => {
     expect(session.exercices[0].series![0].poids).toBe(0)
     expect(session.exercices[0].series![0].repetitions).toBe(0)
 
-    // Should trigger update
+    // Devrait déclencher la mise à jour
     expect(mockSave).toHaveBeenCalled()
   })
 
@@ -252,8 +252,8 @@ describe('useSessionStore', () => {
     expect(store.error).toContain('Erreur lors du restart')
   })
 
-  describe('Getters & Aliases', () => {
-    it('sessionsSortedByDate should verify sort order', async () => {
+  describe('Getters & Alias', () => {
+    it("sessionsSortedByDate devrait vérifier l'ordre de tri", async () => {
       const store = useSessionStore()
       const s1 = {
         ...(await store.createSession(mockTraining)),
@@ -274,16 +274,16 @@ describe('useSessionStore', () => {
       expect(sorted[1].id).toBe('s1')
     })
 
-    it('activeSessions should filter correctly', async () => {
+    it('activeSessions devrait filtrer correctement', async () => {
       const store = useSessionStore()
       mockLoad.mockResolvedValue([])
       await store.loadSessions()
 
-      // Create session 1 and finish it
+      // Créer session 1 et la terminer
       const s1 = await store.createSession(mockTraining)
       await store.finishSession(s1.id)
 
-      // Create session 2 (default is en_cours)
+      // Créer session 2 (par défaut en_cours)
       const s2 = await store.createSession(mockTraining)
 
       expect(store.sessions).toHaveLength(2)
@@ -291,9 +291,9 @@ describe('useSessionStore', () => {
       expect(store.activeSessions[0].id).toBe(s2.id)
     })
 
-    it('Calculated properties should be correct', async () => {
+    it('Les propriétés calculées devraient être correctes', async () => {
       const store = useSessionStore()
-      // Clear existing
+      // Effacer l'existant
       mockLoad.mockResolvedValue([])
       await store.loadSessions()
 
@@ -303,16 +303,16 @@ describe('useSessionStore', () => {
       expect(store.sessionsCount).toBe(2)
     })
 
-    it('aliases should map to baseStore methods', async () => {
+    it('les alias devraient correspondre aux méthodes de baseStore', async () => {
       const store = useSessionStore()
       const session = await store.createSession(mockTraining)
 
-      // deleteSession calls deleteItem -> persistItems -> save
+      // deleteSession appelle deleteItem -> persistItems -> save
       mockSave.mockClear()
       await store.deleteSession(session.id)
       expect(mockSave).toHaveBeenCalled()
 
-      // clearAllSessions calls clearAll -> delete (on adapter)
+      // clearAllSessions appelle clearAll -> delete (sur l'adaptateur)
       await store.clearAllSessions()
       expect(mockDelete).toHaveBeenCalled()
 
@@ -320,5 +320,48 @@ describe('useSessionStore', () => {
       await store.saveSession(session)
       expect(mockSave).toHaveBeenCalled()
     })
+  })
+
+  // Tests ajoutés pour la couverture de lignes (Erreurs et getSessions)
+  it('gère les erreurs lors de la récupération des stats (L73-74)', async () => {
+    const store = useSessionStore()
+    mockLoad.mockRejectedValueOnce(new Error('Load Error'))
+
+    const stats = await store.findStatsExercices()
+
+    expect(stats.size).toBe(0)
+    expect(store.error).toContain('Load Error')
+  })
+
+  it('lance une erreur si finishSession avec ID inexistant (L110)', async () => {
+    const store = useSessionStore()
+    await expect(store.finishSession('inconnu')).rejects.toThrow('Session inconnu non trouvée')
+  })
+
+  it('getSessions retourne les sessions triées (L148-151)', async () => {
+    const store = useSessionStore()
+    const s1 = {
+      ...mockTraining,
+      id: 's1',
+      dateDebut: new Date('2023-01-01'),
+      status: 'terminee',
+      trainingId: 't1',
+    }
+    const s2 = {
+      ...mockTraining,
+      id: 's2',
+      dateDebut: new Date('2023-01-02'),
+      status: 'en_cours',
+      trainingId: 't1',
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    mockLoad.mockResolvedValue([s1, s2] as any)
+
+    // Le test active la méthode
+    const result = await store.getSessions()
+    expect(result).toHaveLength(2)
+    expect(result[0].id).toBe('s2') // Plus récent d'abord
+    expect(result[1].id).toBe('s1')
   })
 })

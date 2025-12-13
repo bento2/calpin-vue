@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, type Mock } from 'vitest'
-import { mount } from '@vue/test-utils'
+import { mount, flushPromises } from '@vue/test-utils'
 import { createTestingPinia } from '@pinia/testing'
 import SeriesCard from '@/components/SeriesCard.vue'
 import type { Serie } from '@/types/SerieSchema'
@@ -92,7 +92,7 @@ describe('Composant SeriesCard', () => {
   it('supprime une série au clic sur le bouton supprimer', async () => {
     const pinia = createTestingPinia({ createSpy: vi.fn })
     const store = useSessionStore(pinia)
-    // Fix: Mock findStatsExercices
+    // Correctif : Mock findStatsExercices
     ;(store.findStatsExercices as Mock).mockResolvedValue(new Map())
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -112,7 +112,7 @@ describe('Composant SeriesCard', () => {
     const deleteBtn = wrapper.find('.v-card button')
 
     // Pour être sûr, on met un stub mieux fait dans ce test ou on update global stub
-    // Update global stub approach via wrapper override? No, easier to rely on structure.
+    // Mettre à jour l'approche par stub global via surcharge du wrapper ? Non, plus simple de se fier à la structure.
     // L'unique bouton DANS la v-card est le delete. Le bouton AJOUTER est hors v-card.
 
     await deleteBtn.trigger('click')
@@ -144,7 +144,7 @@ describe('Composant SeriesCard', () => {
     })
 
     series[0].repetitions = 10
-    // Finding by class added to stub template to be sure
+    // Recherche par classe ajoutée au template du stub pour être sûr
     const inputs = wrapper.findAll('.input-number-stub')
     await inputs[1].trigger('focusout')
 
@@ -174,12 +174,62 @@ describe('Composant SeriesCard', () => {
       },
     })
 
-    await wrapper.vm.$nextTick() // wait for onMounted
+    await wrapper.vm.$nextTick() // attendre le onMounted
 
     const checkbox = wrapper.find('.checkbox-stub')
     await checkbox.trigger('change')
 
     expect(series[0].poids).toBe(50)
     expect(series[0].repetitions).toBe(12)
+  })
+  it("initialise le tableau si vide lors de l'ajout", async () => {
+    const pinia = createTestingPinia({ createSpy: vi.fn })
+    const store = useSessionStore(pinia)
+    ;(store.findStatsExercices as Mock).mockResolvedValue(new Map())
+
+    const wrapper = mount(SeriesCard, {
+      props: { modelValue: undefined, exerciceId: '1' }, // Test undefined
+      global: { plugins: [pinia] },
+    })
+
+    const addBtn = wrapper.findAll('button').find((b) => b.text().includes('Ajouter'))
+    await addBtn!.trigger('click')
+
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy()
+    // First emit should be the new array with 1 item
+    expect(wrapper.emitted('update:modelValue')?.[0]?.[0]).toHaveLength(1)
+  })
+
+  it('bind correctement les placeholders (couverture lignes 69-71, 74)', async () => {
+    const pinia = createTestingPinia({ createSpy: vi.fn })
+    const store = useSessionStore(pinia)
+    const lastStats = { poids: 42, repetitions: 12, checked: true }
+    const statsMap = new Map()
+    statsMap.set('1', lastStats)
+
+    // Mock return
+    ;(store.findStatsExercices as Mock).mockResolvedValue(statsMap)
+
+    const wrapper = mount(SeriesCard, {
+      props: { modelValue: [{ poids: 0, repetitions: 0, total: 0 }], exerciceId: '1' },
+      global: {
+        plugins: [pinia],
+        stubs: {
+          InputNumberSerie: {
+            template: '<div class="input-stub" :data-placeholder="placeholder"></div>',
+            props: ['placeholder', 'modelValue', 'unit'],
+          },
+        },
+      },
+    })
+
+    await flushPromises() // Wait for computed/mounted promise
+
+    const inputs = wrapper.findAll('.input-stub')
+    expect(inputs.length).toBe(2)
+
+    // Check placeholder props
+    expect(inputs[0].attributes('data-placeholder')).toBe('42')
+    expect(inputs[1].attributes('data-placeholder')).toBe('12')
   })
 })

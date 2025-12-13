@@ -3,7 +3,7 @@ import { useBaseStore } from '@/composables/useBaseStore'
 import { z } from 'zod'
 
 // Mock StorageService
-// Mock StorageService
+// Mock de StorageService
 vi.mock('@/services/StorageService', () => {
   const StorageService = vi.fn()
   StorageService.prototype.load = vi.fn()
@@ -28,11 +28,11 @@ describe('useBaseStore', () => {
 
   beforeEach(() => {
     vi.clearAllMocks()
-    // Get the mock instance from the constructor call
-    // Since we call useBaseStore inside the test, we need to capture the instance created
+    // Récupérer l'instance mockée depuis l'appel du constructeur
+    // Puisque nous appelons useBaseStore dans le test, nous devons capturer l'instance créée
   })
 
-  it('should initialize with empty state', () => {
+  it('devrait initialiser avec un état vide', () => {
     const store = useBaseStore('test-storage', TestItemSchema)
     expect(store.items.value).toEqual([])
     expect(store.loaded.value).toBe(false)
@@ -40,9 +40,9 @@ describe('useBaseStore', () => {
     expect(store.error.value).toBe(null)
   })
 
-  it('should load items successfully', async () => {
+  it('devrait charger les éléments avec succès', async () => {
     const store = useBaseStore('test-storage', TestItemSchema)
-    storageMock = store.storage as unknown as Record<string, Mock> // Access the mocked instance exposed by the composable
+    storageMock = store.storage as unknown as Record<string, Mock> // Accéder à l'instance mockée exposée par le composable
 
     const mockData = [{ id: '1', name: 'Item 1' }]
     vi.spyOn(storageMock, 'load').mockResolvedValue(mockData)
@@ -56,7 +56,7 @@ describe('useBaseStore', () => {
     expect(storageMock.load).toHaveBeenCalled()
   })
 
-  it('should handle load error', async () => {
+  it('devrait gérer les erreurs de chargement', async () => {
     const store = useBaseStore('test-storage', TestItemSchema)
     storageMock = store.storage as unknown as Record<string, Mock>
 
@@ -66,16 +66,16 @@ describe('useBaseStore', () => {
     await store.loadItems()
 
     expect(store.loading.value).toBe(false)
-    expect(store.loaded.value).toBe(true) // It sets loaded to true even on error
+    expect(store.loaded.value).toBe(true) // Il met loaded à true même en cas d'erreur
     expect(store.items.value).toEqual([])
     expect(store.error.value).toContain('Load failed')
   })
 
-  it('should create item (add new)', async () => {
+  it('devrait créer un élément (ajouter nouveau)', async () => {
     const store = useBaseStore('test-storage', TestItemSchema)
     storageMock = store.storage as unknown as Record<string, Mock>
 
-    // Mock load to return empty initially
+    // Mocker load pour retourner vide initialement
     vi.spyOn(storageMock, 'load').mockResolvedValue([])
     vi.spyOn(storageMock, 'save').mockResolvedValue(undefined)
 
@@ -87,7 +87,7 @@ describe('useBaseStore', () => {
     expect(storageMock.save).toHaveBeenCalledWith([newItem])
   })
 
-  it('should update item (update existing)', async () => {
+  it('devrait mettre à jour un élément (mise à jour existante)', async () => {
     const store = useBaseStore('test-storage', TestItemSchema)
     storageMock = store.storage as unknown as Record<string, Mock>
 
@@ -95,7 +95,7 @@ describe('useBaseStore', () => {
     vi.spyOn(storageMock, 'load').mockResolvedValue([initialItem])
     vi.spyOn(storageMock, 'save').mockResolvedValue(undefined)
 
-    // Load first
+    // Charger d'abord
     await store.loadItems()
 
     const updatedItem = { id: '1', name: 'New Name' }
@@ -106,7 +106,7 @@ describe('useBaseStore', () => {
     expect(storageMock.save).toHaveBeenCalledWith([updatedItem])
   })
 
-  it('should delete item', async () => {
+  it('devrait supprimer un élément', async () => {
     const store = useBaseStore('test-storage', TestItemSchema)
     storageMock = store.storage as unknown as Record<string, Mock>
 
@@ -121,7 +121,7 @@ describe('useBaseStore', () => {
     expect(storageMock.save).toHaveBeenCalledWith([])
   })
 
-  it('should throw error when deleting non-existent item', async () => {
+  it("devrait lancer une erreur lors de la suppression d'un élément inexistant", async () => {
     const store = useBaseStore('test-storage', TestItemSchema)
     storageMock = store.storage as unknown as Record<string, Mock>
 
@@ -130,7 +130,7 @@ describe('useBaseStore', () => {
     await expect(store.deleteItem('999')).rejects.toThrow('Item 999 non trouvé')
   })
 
-  it('should clear all items', async () => {
+  it('devrait effacer tous les éléments', async () => {
     const store = useBaseStore('test-storage', TestItemSchema)
     storageMock = store.storage as unknown as Record<string, Mock>
 
@@ -143,43 +143,43 @@ describe('useBaseStore', () => {
     expect(storageMock.delete).toHaveBeenCalled()
   })
 
-  it('should ensure loaded', async () => {
+  it("devrait s'assurer que c'est chargé", async () => {
     const store = useBaseStore('test-storage', TestItemSchema)
     storageMock = store.storage as unknown as Record<string, Mock>
 
     vi.spyOn(storageMock, 'load').mockResolvedValue([])
 
-    // First call should load
+    // Le premier appel devrait charger
     await store.ensureLoaded()
     expect(storageMock.load).toHaveBeenCalledTimes(1)
 
-    // Second call should not load if already loaded
+    // Le second appel ne devrait pas charger si déjà chargé
     await store.ensureLoaded()
     expect(storageMock.load).toHaveBeenCalledTimes(1)
   })
 
-  it('should clear error', () => {
+  it("devrait effacer l'erreur", () => {
     const store = useBaseStore('test-storage', TestItemSchema)
     store.error.value = 'Some error'
     store.clearError()
     expect(store.error.value).toBeNull()
   })
 
-  it('should handle realtime sync callback', async () => {
+  it('devrait gérer le callback de synchro temps réel', async () => {
     const store = useBaseStore('test-storage', TestItemSchema)
     storageMock = store.storage as unknown as Record<string, Mock>
     vi.spyOn(storageMock, 'load').mockResolvedValue([])
 
     await store.loadItems()
 
-    // Check if enableRealtimeSync was called
+    // Vérifier si enableRealtimeSync a été appelé
     expect(storageMock.enableRealtimeSync).toHaveBeenCalled()
 
-    // Get the callback
+    // Récupérer le callback
     const callback = storageMock.enableRealtimeSync.mock.calls[0][0]
     expect(callback).toBeDefined()
 
-    // Invoke callback
+    // Invoquer le callback
     const newData = [{ id: '99', name: 'Synced' }]
     callback(newData)
 
@@ -187,22 +187,22 @@ describe('useBaseStore', () => {
     expect(store.lastSync.value).toBeDefined()
   })
 
-  it('should handle errors in create/update/save', async () => {
+  it('devrait gérer les erreurs dans create/update/save', async () => {
     const store = useBaseStore('test-storage', TestItemSchema)
     storageMock = store.storage as unknown as Record<string, Mock>
     vi.spyOn(storageMock, 'load').mockResolvedValue([])
     vi.spyOn(storageMock, 'save').mockRejectedValue(new Error('Save failed'))
 
-    // Create
+    // Créer
     await expect(store.createItem({ name: 'New' })).rejects.toThrow('Save failed')
     expect(store.error.value).toContain('Erreur lors de la création')
 
-    // Update
+    // Mettre à jour
     await expect(store.updateItem({ id: '1', name: 'Update' })).rejects.toThrow('Save failed')
     expect(store.error.value).toContain('Erreur lors de la mise à jour')
   })
 
-  it('should switch storage mode', async () => {
+  it('devrait changer le mode de stockage', async () => {
     const store = useBaseStore('test-storage', TestItemSchema)
     storageMock = store.storage as unknown as Record<string, Mock>
     vi.spyOn(storageMock, 'load').mockResolvedValue([])
@@ -210,11 +210,11 @@ describe('useBaseStore', () => {
     await store.switchStorageMode({ adapter: 'firebase' })
 
     expect(storageMock.switchAdapter).toHaveBeenCalledWith({ adapter: 'firebase' })
-    // Should reload
+    // Devrait recharger
     expect(storageMock.load).toHaveBeenCalled()
   })
 
-  it('should use timestamp config', async () => {
+  it('devrait utiliser la configuration timestamp', async () => {
     const TimestampValidSchema = TestItemSchema.extend({
       createdAt: z.date().optional(),
       updatedAt: z.date().optional(),
@@ -228,14 +228,14 @@ describe('useBaseStore', () => {
     vi.spyOn(storageMock, 'load').mockResolvedValue([])
     vi.spyOn(storageMock, 'save').mockResolvedValue(undefined)
 
-    // Create should add timestamps
+    // La création devrait ajouter des timestamps
     const item = await store.createItem({ name: 'Time' })
     expect(item.createdAt).toBeDefined()
     expect(item.updatedAt).toBeDefined()
 
-    // Update should update updatedAt
+    // La mise à jour devrait mettre à jour updatedAt
     const oldUpdate = item.updatedAt
-    await new Promise((r) => setTimeout(r, 10)) // Wait small time
+    await new Promise((r) => setTimeout(r, 10)) // Attendre un petit moment
 
     const updated = await store.updateItem(item)
     expect(updated.updatedAt!.getTime()).toBeGreaterThan(oldUpdate!.getTime())

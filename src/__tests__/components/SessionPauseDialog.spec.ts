@@ -11,7 +11,7 @@ describe('SessionPauseDialog.vue', () => {
     updatedAt: new Date('2020-01-01'),
     status: 'en_cours',
     exercices: [],
-    // Properties from transform (simulated for test since we pass object directly)
+    // Propriétés issues de la transformation (simulées pour le test car on passe l'objet directement)
     ended: false,
     nbChecked: 0,
     total: 0,
@@ -81,7 +81,7 @@ describe('SessionPauseDialog.vue', () => {
     const btnResume = findBtn('Reprendre')
     expect(btnResume).toBeDefined()
     await btnResume?.trigger('click')
-    // Close sets modelValue to false
+    // Fermer met modelValue à false
     expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([false])
 
     const btnDelete = findBtn('Supprimer')
@@ -91,7 +91,7 @@ describe('SessionPauseDialog.vue', () => {
   })
 
   it("masque les boutons d'action si la session est terminée", async () => {
-    // Create explicitly ended session
+    // Créer une session explicitement terminée
     const endedSession: Session = {
       ...mockSession,
       ended: true,
@@ -119,8 +119,8 @@ describe('SessionPauseDialog.vue', () => {
     const buttons = wrapper.findAll('.app-btn-stub')
     const findBtn = (text: string) => buttons.find((b) => b.text().includes(text))
 
-    expect(findBtn('Recommencer')).toBeDefined() // Always visible
-    expect(findBtn('Terminer')).toBeDefined() // Always visible
+    expect(findBtn('Recommencer')).toBeDefined() // Toujours visible
+    expect(findBtn('Terminer')).toBeDefined() // Toujours visible
 
     expect(findBtn('Sauvegarder')).toBeUndefined()
     expect(findBtn('Reprendre')).toBeUndefined()
