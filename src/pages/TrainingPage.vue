@@ -70,6 +70,11 @@ const save = () => {
     saveTraining(training.value)
   }
 }
+
+defineExpose({
+  training,
+  dialog,
+})
 </script>
 
 <template>

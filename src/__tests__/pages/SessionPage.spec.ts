@@ -375,6 +375,25 @@ describe('Page Session (SessionPage)', () => {
 
       await pauseBtn?.vm.$emit('click')
       expect(sessionPauseDialog.props('modelValue')).toBe(true)
+
+      // Test v-model update from dialog (line 188 coverage)
+      await sessionPauseDialog.vm.$emit('update:modelValue', false)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      expect((wrapper.vm as any).menu).toBe(false)
+    })
+
+    it('met à jour les exercices de la session (v-model:selected)', async () => {
+      await flushPromises()
+      const list = wrapper.findComponent({ name: 'ExerciceList' })
+      expect(list.exists()).toBe(true)
+
+      const newSelection = [mockSession.exercices[0]] // Just one
+      await list.vm.$emit('update:selected', newSelection)
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      expect((wrapper.vm as any).session!.exercices).toHaveLength(1)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      expect((wrapper.vm as any).session!.exercices[0].id).toBe('e1')
     })
   })
 })

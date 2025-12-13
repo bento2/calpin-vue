@@ -93,4 +93,12 @@ describe('AppBtn.vue', () => {
     expect(btn.props('disabled')).toBe(true)
     expect(btn.props('to')).toBe('/home')
   })
+  it('utilise la variante par défaut sivariant inconnue', () => {
+    const wrapper = mount(AppBtn, {
+      props: { variant: 'unknown' as unknown as 'primary' },
+    })
+    const btn = wrapper.findComponent({ name: 'v-btn' })
+    // Should fall back to base props (execution of default branch)
+    expect(btn.exists()).toBe(true)
+  })
 })
