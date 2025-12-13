@@ -185,6 +185,22 @@ describe('useBaseStore', () => {
 
     expect(store.items.value).toEqual(newData)
     expect(store.lastSync.value).toBeDefined()
+
+    // Test null data (coverage check)
+    const originalItems = store.items.value
+    callback(null)
+    expect(store.items.value).toEqual(originalItems) // Should not change
+  })
+
+  it('ne devrait pas recharger si déjà en cours de chargement', async () => {
+    const store = useBaseStore('test-storage', TestItemSchema)
+    storageMock = store.storage as unknown as Record<string, Mock>
+    vi.spyOn(storageMock, 'load').mockReturnValue(new Promise(() => {})) // Pending promise
+
+    store.loading.value = true
+    await store.loadItems()
+
+    expect(storageMock.load).not.toHaveBeenCalled()
   })
 
   it('devrait gérer les erreurs dans create/update/save', async () => {

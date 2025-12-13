@@ -73,6 +73,7 @@ describe('Composant ExerciceList', () => {
             },
           },
           'v-text-field': {
+            name: 'v-text-field',
             template: '<input @input="$emit(\'update:modelValue\', $event.target.value)" />',
             props: ['modelValue'],
           },
@@ -224,5 +225,27 @@ describe('Composant ExerciceList', () => {
     const sel = emitted[0][0] as Exercice[]
     expect(sel).toHaveLength(1)
     expect(sel[0].id).toBe('1') // ID du premier exercice
+  })
+
+  it('réinitialise le filtre au clic sur clear', async () => {
+    const wrapper = createWrapper()
+    await nextTick()
+
+    // Définir une valeur de filtre
+    const searchInput = wrapper.find('input')
+    await searchInput.setValue('pompes')
+    await nextTick()
+
+    const textField = wrapper.findComponent({ name: 'v-text-field' })
+    textField.vm.$emit('click:clear')
+    await nextTick()
+
+    // Vérifier que le filtre est bien vide en vérifiant les appels à Utils.find
+    // Le dernier appel doit avoir filter: ''
+    // Utils est un mock
+    // Comme nous n'avons pas accès direct à l'instance du mock retournée par getInstance dans le test,
+    // on peut vérifier que tous les éléments sont affichés (2 items -> car filtre vide = page 0 complète)
+    const cards = wrapper.findAllComponents(ExerciceCard)
+    expect(cards.length).toBe(2)
   })
 })
