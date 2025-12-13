@@ -36,8 +36,6 @@ const updateSelected = (exercice: Exercice): void => {
   const index = selectedExercices.findIndex((e) => e.id === exercice.id)
   if (index === -1) {
     selectedExercices.push(exercice)
-  } else {
-    selectedExercices.splice(index, 1)
   }
   emit('update:selected', selectedExercices)
 }

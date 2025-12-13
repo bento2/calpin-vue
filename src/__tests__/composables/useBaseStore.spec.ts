@@ -157,4 +157,87 @@ describe('useBaseStore', () => {
     await store.ensureLoaded()
     expect(storageMock.load).toHaveBeenCalledTimes(1)
   })
+
+  it('should clear error', () => {
+    const store = useBaseStore('test-storage', TestItemSchema)
+    store.error.value = 'Some error'
+    store.clearError()
+    expect(store.error.value).toBeNull()
+  })
+
+  it('should handle realtime sync callback', async () => {
+    const store = useBaseStore('test-storage', TestItemSchema)
+    storageMock = store.storage as unknown as Record<string, Mock>
+    vi.spyOn(storageMock, 'load').mockResolvedValue([])
+
+    await store.loadItems()
+
+    // Check if enableRealtimeSync was called
+    expect(storageMock.enableRealtimeSync).toHaveBeenCalled()
+
+    // Get the callback
+    const callback = storageMock.enableRealtimeSync.mock.calls[0][0]
+    expect(callback).toBeDefined()
+
+    // Invoke callback
+    const newData = [{ id: '99', name: 'Synced' }]
+    callback(newData)
+
+    expect(store.items.value).toEqual(newData)
+    expect(store.lastSync.value).toBeDefined()
+  })
+
+  it('should handle errors in create/update/save', async () => {
+    const store = useBaseStore('test-storage', TestItemSchema)
+    storageMock = store.storage as unknown as Record<string, Mock>
+    vi.spyOn(storageMock, 'load').mockResolvedValue([])
+    vi.spyOn(storageMock, 'save').mockRejectedValue(new Error('Save failed'))
+
+    // Create
+    await expect(store.createItem({ name: 'New' })).rejects.toThrow('Save failed')
+    expect(store.error.value).toContain('Erreur lors de la création')
+
+    // Update
+    await expect(store.updateItem({ id: '1', name: 'Update' })).rejects.toThrow('Save failed')
+    expect(store.error.value).toContain('Erreur lors de la mise à jour')
+  })
+
+  it('should switch storage mode', async () => {
+    const store = useBaseStore('test-storage', TestItemSchema)
+    storageMock = store.storage as unknown as Record<string, Mock>
+    vi.spyOn(storageMock, 'load').mockResolvedValue([])
+
+    await store.switchStorageMode({ adapter: 'firebase' })
+
+    expect(storageMock.switchAdapter).toHaveBeenCalledWith({ adapter: 'firebase' })
+    // Should reload
+    expect(storageMock.load).toHaveBeenCalled()
+  })
+
+  it('should use timestamp config', async () => {
+    const TimestampValidSchema = TestItemSchema.extend({
+      createdAt: z.date().optional(),
+      updatedAt: z.date().optional(),
+    })
+
+    const store = useBaseStore('test-storage-ts', TimestampValidSchema, 'firebase', {
+      createdAt: 'createdAt',
+      updatedAt: 'updatedAt',
+    })
+    storageMock = store.storage as unknown as Record<string, Mock>
+    vi.spyOn(storageMock, 'load').mockResolvedValue([])
+    vi.spyOn(storageMock, 'save').mockResolvedValue(undefined)
+
+    // Create should add timestamps
+    const item = await store.createItem({ name: 'Time' })
+    expect(item.createdAt).toBeDefined()
+    expect(item.updatedAt).toBeDefined()
+
+    // Update should update updatedAt
+    const oldUpdate = item.updatedAt
+    await new Promise((r) => setTimeout(r, 10)) // Wait small time
+
+    const updated = await store.updateItem(item)
+    expect(updated.updatedAt!.getTime()).toBeGreaterThan(oldUpdate!.getTime())
+  })
 })

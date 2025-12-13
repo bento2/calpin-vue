@@ -66,6 +66,7 @@ describe('Composant ExerciceList', () => {
         ],
         stubs: {
           'v-infinite-scroll': {
+            name: 'v-infinite-scroll',
             template: '<div><slot :done="() => {}" /></div>',
             methods: {
               reset: vi.fn(),
@@ -77,7 +78,7 @@ describe('Composant ExerciceList', () => {
           },
           'v-checkbox': {
             template:
-              '<input type="checkbox" @change="$emit(\'update:modelValue\', $event.target.checked)" />',
+              '<input type="checkbox" :checked="modelValue" @change="$emit(\'update:modelValue\', $event.target.checked)" />',
             props: ['modelValue'],
           },
           'v-icon': true,
@@ -141,6 +142,7 @@ describe('Composant ExerciceList', () => {
 
     // Pour tester le debounce/watch effectif, on devrait mocker timers si nécessaire.
     // Le composant utilise watch(filter), qui appelle utils.find
+    // trigger watcher
 
     // Attendre que le watch effectue son travail
     await nextTick()
@@ -160,6 +162,52 @@ describe('Composant ExerciceList', () => {
     expect(exerciceCards[0].props('exercice').name).toBe('Pompes')
   })
 
+  it('gère le chargement infini (updateExercices)', async () => {
+    const wrapper = createWrapper()
+    await nextTick()
+
+    // Simulate load event from infinite scroll
+    const scroll = wrapper.findComponent({ name: 'v-infinite-scroll' })
+    // We stubbed it, but we can emit 'load'
+    const doneMock = vi.fn()
+    scroll.vm.$emit('load', { done: doneMock })
+
+    // find should be called for page 1
+    // Utils is mocked
+    // We can't easily access the mocked instance method calls without capturing it
+    // But we know it changes 'exercices' ref.
+    // Page 1 -> items 2,3 (Gainage, empty?) in our mock data
+    // Mock data has 3 items. Page 0 -> 0,1. Page 1 -> 2.
+
+    await nextTick()
+    const cards = wrapper.findAllComponents(ExerciceCard)
+    // Should have 3 items now
+    expect(cards.length).toBe(3)
+    expect(doneMock).toHaveBeenCalledWith('ok')
+
+    // Load again (page 2 -> empty)
+    scroll.vm.$emit('load', { done: doneMock })
+    await nextTick()
+    expect(doneMock).toHaveBeenCalledWith('empty')
+  })
+
+  it('calcule correctement merged (filtre les sélectionnés)', async () => {
+    const selected = [{ id: '1', name: 'Pompes' } as Exercice]
+    const wrapper = createWrapper({ selectable: true, selected })
+    await nextTick()
+
+    // Mock has 2 items on page 0: 1(Pompes), 2(Squats)
+    // Merged should filter out Pompes because it is selected
+
+    // Access merged computed? Or just check rendered items via infinite scroll :items
+    // The infinite scroll iterates over 'merged'.
+    // So we should see only Squats.
+
+    const cards = wrapper.findAllComponents(ExerciceCard)
+    expect(cards.length).toBe(1)
+    expect(cards[0].props('exercice').name).toBe('Squats')
+  })
+
   it('émet update:selected quand un exercice est sélectionné en mode sélectionnable', async () => {
     const wrapper = createWrapper({ selectable: true })
     await nextTick()
@@ -173,8 +221,8 @@ describe('Composant ExerciceList', () => {
 
     expect(wrapper.emitted('update:selected')).toBeTruthy()
     const emitted = wrapper.emitted('update:selected') as unknown[][]
-    const selectedExercices = emitted[0][0] as Exercice[]
-    expect(selectedExercices).toHaveLength(1)
-    expect(selectedExercices[0].id).toBe('1') // ID du premier exercice
+    const sel = emitted[0][0] as Exercice[]
+    expect(sel).toHaveLength(1)
+    expect(sel[0].id).toBe('1') // ID du premier exercice
   })
 })
