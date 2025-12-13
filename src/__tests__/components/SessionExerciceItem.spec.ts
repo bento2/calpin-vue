@@ -114,7 +114,7 @@ describe('SessionExerciceItem', () => {
     expect(wrapper.emitted('remove')![0]).toEqual(['e1'])
   })
 
-  it('handles move up availability', () => {
+  it('handles move up availability', async () => {
     // Index 1 -> Move Up Available
     const wrapper = mount(SessionExerciceItem, {
       props: {
@@ -137,6 +137,14 @@ describe('SessionExerciceItem', () => {
     })
     const texts = wrapper.findAll('.menu-item').map((w) => w.text())
     expect(texts).toContain('Monter')
+
+    // Trigger move up
+    const upBtn = wrapper.findAll('.menu-item').find((w) => w.text().includes('Monter'))
+    expect(upBtn?.exists()).toBe(true)
+    await upBtn?.trigger('click')
+
+    expect(wrapper.emitted('move-up')).toBeTruthy()
+    expect(wrapper.emitted('move-up')![0]).toEqual([1])
   })
 
   it('emits toggle event', async () => {
