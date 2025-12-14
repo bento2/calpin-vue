@@ -17,14 +17,20 @@ const selectedExercices = props.selected
 const page = ref(0)
 const filter = ref('')
 
+const isReady = ref(false)
 let utils: ExerciceUtils
 const infiniteScrollRef = useTemplateRef('scroll')
 onMounted(async () => {
-  utils = ExerciceUtils.getInstance()
+  utils = await ExerciceUtils.getInstance()
   exercices.value = utils.find({ page: page.value })
+  isReady.value = true
 })
 
 const updateExercices = ({ done }: { done: (status: 'ok' | 'empty' | 'error') => void }) => {
+  if (!utils) {
+    done('error')
+    return
+  }
   const newExercices = utils.find({ page: ++page.value, filter: filter.value })
   exercices.value.push(...newExercices)
   done(newExercices.length > 0 ? 'ok' : 'empty')
@@ -48,7 +54,9 @@ watch(filter, (newValue) => {
   if (infiniteScrollRef.value && typeof infiniteScrollRef.value.reset === 'function') {
     infiniteScrollRef.value?.reset('start')
     page.value = 0
-    exercices.value = utils.find({ filter: newValue })
+    if (utils) {
+      exercices.value = utils.find({ filter: newValue })
+    }
   }
 })
 </script>
@@ -66,7 +74,13 @@ watch(filter, (newValue) => {
       density="compact"
       @click:clear="() => (filter = '')"
     ></v-text-field>
-    <v-infinite-scroll :items="merged" @load="updateExercices" ref="scroll" :key="filter">
+    <v-infinite-scroll
+      v-if="isReady"
+      :items="merged"
+      @load="updateExercices"
+      ref="scroll"
+      :key="filter"
+    >
       <template v-for="exercice of merged" :key="exercice.id">
         <ExerciceCard :exercice="exercice">
           <template #actions>

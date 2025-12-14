@@ -1,11 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Trainings from '@/pages/TrainingsPage.vue'
-import Training from '@/pages/TrainingPage.vue'
 import DefaultLayout from '@/Layouts/DefaultLayout.vue'
 import Home from '@/pages/HomePage.vue'
-import Session from '@/pages/SessionPage.vue'
-import ExercicesPage from '@/pages/ExercicesPage.vue'
-import HistoryPage from '@/pages/HistoryPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,29 +12,34 @@ const router = createRouter({
         { path: '', component: Home, name: 'Home' },
         {
           path: 'exercices',
-          component: ExercicesPage,
+          component: () => import('@/pages/ExercicesPage.vue'),
           name: 'exercices',
           meta: { title: 'Exercices' },
         },
         {
           path: 'history',
-          component: HistoryPage,
+          component: () => import('@/pages/HistoryPage.vue'),
           name: 'history',
           meta: { title: 'Historiques' },
         },
         {
           path: 'trainings',
-          component: Trainings,
+          component: () => import('@/pages/TrainingsPage.vue'),
           name: 'trainings',
           meta: { title: 'Entrainements' },
         },
         {
           path: 'trainings/:id',
-          component: Training,
+          component: () => import('@/pages/TrainingPage.vue'),
           name: 'training',
           meta: { title: 'Entrainement', noPadding: true },
         },
-        { path: 'sessions/:id', component: Session, name: 'session', meta: { noPadding: true } },
+        {
+          path: 'sessions/:id',
+          component: () => import('@/pages/SessionPage.vue'),
+          name: 'session',
+          meta: { noPadding: true },
+        },
       ],
     },
   ],

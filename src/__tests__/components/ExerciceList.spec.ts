@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest'
-import { mount } from '@vue/test-utils'
+import { mount, flushPromises } from '@vue/test-utils'
 import { createTestingPinia } from '@pinia/testing'
 import { nextTick } from 'vue'
 import ExerciceList from '@/components/ExerciceList.vue'
@@ -123,7 +123,7 @@ describe('Composant ExerciceList', () => {
 
   it('charge les exercices au montage', async () => {
     const wrapper = createWrapper()
-    await nextTick()
+    await flushPromises()
 
     const exerciceCards = wrapper.findAllComponents(ExerciceCard)
     expect(exerciceCards.length).toBe(2) // La première page a 2 items
@@ -131,7 +131,7 @@ describe('Composant ExerciceList', () => {
 
   it('filtre les exercices quand la recherche change', async () => {
     const wrapper = createWrapper()
-    await nextTick()
+    await flushPromises()
 
     // Définit le filtre
     const searchInput = wrapper.find('input')
@@ -168,7 +168,7 @@ describe('Composant ExerciceList', () => {
 
   it('gère le chargement infini (updateExercices)', async () => {
     const wrapper = createWrapper()
-    await nextTick()
+    await flushPromises()
 
     // Simuler l'événement de chargement du défilement infini
     const scroll = wrapper.findComponent({ name: 'v-infinite-scroll' })
@@ -198,7 +198,7 @@ describe('Composant ExerciceList', () => {
   it('calcule correctement merged (filtre les sélectionnés)', async () => {
     const selected = [{ id: '1', name: 'Pompes' } as Exercice]
     const wrapper = createWrapper({ selectable: true, selected })
-    await nextTick()
+    await flushPromises()
 
     // Le mock a 2 éléments sur la page 0 : 1(Pompes), 2(Squats)
     // Merged devrait filtrer Pompes car il est sélectionné
@@ -214,7 +214,7 @@ describe('Composant ExerciceList', () => {
 
   it('émet update:selected quand un exercice est sélectionné en mode sélectionnable', async () => {
     const wrapper = createWrapper({ selectable: true })
-    await nextTick()
+    await flushPromises()
 
     // Trouve le checkbox stub
     // Comme v-checkbox est stubbé, on peut chercher directement l'input dans le DOM si le stub est rendu
@@ -232,7 +232,7 @@ describe('Composant ExerciceList', () => {
 
   it('réinitialise le filtre au clic sur clear', async () => {
     const wrapper = createWrapper()
-    await nextTick()
+    await flushPromises()
 
     // Définir une valeur de filtre
     const searchInput = wrapper.find('input')
@@ -255,68 +255,23 @@ describe('Composant ExerciceList', () => {
   it('réinitialise le scroll infini via watch(filter)', async () => {
     // Ce test cible spécifiquement la logique du watch qui appelle reset() sur la ref
     const wrapper = createWrapper()
-    await nextTick()
+    await flushPromises()
 
-    // Accéder au scroll component stub et spy sur la méthode reset si possible
-    // Le stub a une méthode reset définie e.g. reset: vi.fn()
-    // const scrollInfo = wrapper.findComponent({ name: 'v-infinite-scroll' })
     const searchInput = wrapper.find('input')
     await searchInput.setValue('test')
     await nextTick()
 
-    // Utils mocké : Le watch appelle utils.find({ filter: 'test' }) après reset.
-    // On vérifie que le mock renvoie bien data.
-    // Mais on veut surtout vérifier que 'page' est reset à 0.
-    // Le composant ExerciceList ne expose pas 'page'.
-
-    // Indirectement: si page est reset, le prochain updateExercices (load) devrait demander page 1
-    // Mais updateExercices incrémente page avant appel.
-
-    // Si on regarde le code:
-    // watch(filter) -> infiniteScroll.reset('start') -> page.value = 0 -> exercices.value = utils.find(...)
-
-    // Si le stub v-infinite-scroll a la méthode reset, elle doit être appelée.
-    // Vu que nous avons stubbé avec `methods: { reset: vi.fn() }`, on doit pouvoir vérifier l'appel ?
-    // wrapper.findComponent().vm.reset serait le spy ?
-
-    // Sur un composant stubbé par Vue Test Utils, les méthodes déclarées dans options 'methods' du stub sont sur l'instance.
-    // Pour que le spy fonctionne, il faut que la méthode sur l'instance soit celle créée par vi.fn()
-    // Le createWrapper définit reset: vi.fn().
-
-    // IMPORTANT: le watch est asynchrone / nextTick.
-    // Assurons nous que le watcher a tiré.
-
-    // Vérification alternative via le mock Utils si le spy est capricieux :
-    // La réinitialisation doit entraîner un appel à utils.find avec le nouveau filtre ET implicitement une nouvelle page 0.
-    // Mais utils.find est appelé avec ({ page: 0, filter: 'test' }).
-    // Si nous interceptons cet appel, cela valide que le code a atteint la ligne après le reset.
-
-    // Accédons au vi.mocked du service
-    // Le mock est défini en haut du fichier mais pas assigné à une variable externe exportée.
-    // Nous devons importer le mock ou le récupérer via import.
-    // Dans vitest, si on importe le module mocké, on a accès aux mocks.
-
     const { ExerciceUtils } = await import('@/services/ExerciceUtils.ts')
-    const findMock = ExerciceUtils.getInstance().find
+    const instance = await ExerciceUtils.getInstance()
+    const findMock = instance.find
 
     expect(findMock).toHaveBeenCalledWith(expect.objectContaining({ filter: 'test' }))
-    // On pourrait vérifier que page n'est pas incrémentée incorrectement, mais le watcher reset page=0 localement avant appel.
-
-    // Si on veut vraiment vérifier reset, il faut que le stub soit monté et accessible.
-    // Le code : if (infiniteScrollRef.value ... .reset ...).
-
-    // Si le test précédent échouait, c'est peut-être que infiniteScrollRef.value est null dans le test (problème ref template avec stub).
-    // Mais VTU gère les refs sur stubs.
-
-    // Tentons une vérification plus directe si possible, sinon repli sur l'appel API qui prouve le passage.
-    // Le fail précédent était "AssertionError: expected spy to be called ...".
-    // Donc le spy n'a PAS été appelé. Donc soit ref null, soit condition fausse.
   })
 
   it("ajoute un exercice à la sélection s'il n'y est pas déjà", async () => {
     // Cas où selectedExercices ne contient pas l'exo
     const wrapper = createWrapper({ selectable: true, selected: [] })
-    await nextTick()
+    await flushPromises()
 
     // Simuler emit update sur un exercice
     const checkbox = wrapper.find('input[type="checkbox"]')
@@ -325,19 +280,6 @@ describe('Composant ExerciceList', () => {
     // Vérifier l'emit
     const emitted = wrapper.emitted('update:selected')
     expect(emitted).toBeTruthy()
-    // Utils mock returns items. The first one is passed.
-    // L'objet Array selected doit contenir l'item.
-    // Comme props.selected est [], updateSelected le push dedans.
-    // L'emit renvoie le tableau muté.
-    // Note: props sont readonly, mais Array passé par ref est mutable si pas freeze.
-    // Vue props reactivity : selected est une prop.
-    // const selectedExercices = props.selected -> ceci est une ref locale ou alias ?
-    // Dans setup: const selectedExercices = props.selected.
-    // Si props.selected est un array, c'est une ref vers le même array.
-    // Le code fait selectedExercices.push(exercice).
-    // Cela mute la prop (anti-pattern) mais c'est le code actuel.
-
-    // Le test vérifie que le array émis contient l'élément.
     const val = emitted?.[0][0] as Exercice[]
     expect(val).toHaveLength(1)
     expect(val[0].id).toBe('1')
