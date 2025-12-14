@@ -1,6 +1,6 @@
 {
   "name": "calpin-vue",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "build": "run-p type-check \"build-only {@}\" --",
@@ -20,7 +20,7 @@
   "dependencies": {
     "@mdi/font": "^7.4.47",
     "@vueuse/firebase": "^14.0.0-alpha.0",
-    "firebase": "^12.3.0",
+    "firebase": "^12.6.0",
     "lodash-es": "^4.17.21",
     "pinia": "^3.0.3",
     "register-service-worker": "^1.7.2",
@@ -67,10 +67,11 @@
     "vite-plugin-vue-devtools": "^8.0.0",
     "vite-plugin-vuetify": "^2.1.2",
     "vitest": "^4.0.14",
-    "vue-tsc": "^3.0.4"
+    "vue-tsc": "^3.0.4",
+    "workbox-window": "^7.4.0"
   },
   "engines": {
-    "node": "^20.19.0 || >=22.12.0"
+    "node": ">=24.0.0"
   },
   "type": "module"
 }
