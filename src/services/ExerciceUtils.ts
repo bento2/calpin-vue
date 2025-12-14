@@ -1,4 +1,3 @@
-import exercisesData from '@/assets/exercises.json'
 import { ExerciceArraySchema } from '@/types/ExerciceSchema'
 import type { Exercice } from '@/types/ExerciceSchema'
 
@@ -8,20 +7,46 @@ type FindOptions = {
   filter?: string
 }
 
+type TabularData = {
+  keys: string[]
+  data: unknown[][]
+}
+
 export class ExerciceUtils {
-  private static instance: ExerciceUtils
+  private static instancePromise: Promise<ExerciceUtils> | null = null
   private readonly exercices: Exercice[]
 
-  private constructor() {
-    // Ici le parsing/validation est fait immédiatement
-    this.exercices = ExerciceArraySchema.parse(exercisesData)
+  private constructor(exercices: Exercice[]) {
+    this.exercices = exercices
   }
 
-  public static getInstance(): ExerciceUtils {
-    if (!ExerciceUtils.instance) {
-      ExerciceUtils.instance = new ExerciceUtils()
+  public static async getInstance(): Promise<ExerciceUtils> {
+    if (!ExerciceUtils.instancePromise) {
+      ExerciceUtils.instancePromise = (async () => {
+        try {
+          const module = await import('@/assets/exercises-tabular.json')
+          const json = module.default as TabularData
+
+          // Reconstruct objects from tabular format
+          const { keys, data } = json
+          const reconstructed = data.map((row) => {
+            const obj: Record<string, unknown> = {}
+            keys.forEach((key, index) => {
+              obj[key] = row[index]
+            })
+            return obj
+          })
+
+          const parsedExercices = ExerciceArraySchema.parse(reconstructed)
+          return new ExerciceUtils(parsedExercices)
+        } catch (error) {
+          console.error('Error loading exercises:', error)
+          // Fallback or empty if failed
+          return new ExerciceUtils([])
+        }
+      })()
     }
-    return ExerciceUtils.instance
+    return ExerciceUtils.instancePromise
   }
 
   find({ nb = 10, page = 0, filter = '' }: FindOptions = {}): Exercice[] {

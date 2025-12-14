@@ -14,7 +14,14 @@ export default defineConfig({
     vuetify({ autoImport: true }),
     VitePWA({
       registerType: 'autoUpdate', // service worker auto-màj
-      includeAssets: ['favicon.svg', 'robots.txt','exercise_icons/*.png','assets/*.ttf','assets/*.woff2','assets/*.woff'], // tes assets
+      includeAssets: [
+        'favicon.svg',
+        'robots.txt',
+        'exercise_icons/*.png',
+        'assets/*.ttf',
+        'assets/*.woff2',
+        'assets/*.woff',
+      ], // tes assets
       manifest: {
         id: '/?homescreen=1',
         name: 'Carnet Muscu',
@@ -90,6 +97,23 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+  },
+  build: {
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('vuetify')) {
+              return 'vuetify'
+            }
+            if (id.includes('firebase') || id.includes('@vueuse/firebase')) {
+              return 'firebase'
+            }
+          }
+        },
+      },
     },
   },
 })
